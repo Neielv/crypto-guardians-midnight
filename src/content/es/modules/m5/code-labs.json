@@ -5,7 +5,7 @@
     "lessonId": "m5-l1",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: recurso DUST",
-    "instructions": "Completa qué mide el combustible criptográfico de la misión.",
+    "instructions": "Completa qué mide el combustible criptográfico de la misión. Pista: c____ c____________.",
     "successCriteria": "Llenar el espacio con costo computacional.",
     "payload": {
       "template": "DUST mide el ___ requerido para generar pruebas ZK.",
@@ -20,7 +20,7 @@
     "lessonId": "m5-l2",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: estimar DUST",
-    "instructions": "Completa la pista clave para presupuestar DUST antes del despliegue.",
+    "instructions": "Completa la pista clave para presupuestar DUST antes del despliegue. Pista: r____________.",
     "successCriteria": "Llenar el espacio con restricciones.",
     "payload": {
       "template": "Para estimar DUST, cuenta el número de ___ en tu circuito.",
@@ -35,7 +35,7 @@
     "lessonId": "m5-l3",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: datos del servidor de pruebas",
-    "instructions": "Completa qué material protegido se envía al taller blindado de pruebas.",
+    "instructions": "Completa qué material protegido se envía al taller blindado de pruebas. Pista: w____s_s.",
     "successCriteria": "Llenar el espacio con witnesses.",
     "payload": {
       "template": "El sistema envía ___ cifrados al servidor de pruebas.",
@@ -49,13 +49,13 @@
     "moduleId": "m5",
     "lessonId": "m5-l4",
     "type": "fill_in_the_blank",
-    "title": "Manos a la obra: estrategia de optimización",
-    "instructions": "Completa la técnica que agrupa acciones para ahorrar DUST.",
-    "successCriteria": "Llenar el espacio con única.",
+    "title": "Manos a la obra: agrupar pruebas",
+    "instructions": "Completa el nombre del circuit que agrupa diez votos para generar una sola prueba. Pista: b________.",
+    "successCriteria": "Completa el hueco con batchVote.",
     "payload": {
-      "template": "La agregación de pruebas combina múltiples pruebas en una prueba ___.",
+      "template": "export circuit ___(\n  candidates: [Field; 10],\n  nullifiers: [Field; 10]\n) {\n  // Una sola prueba para 10 acciones\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "única" }
+        { "id": "blank-1", "answer": "batchVote" }
       ]
     }
   }

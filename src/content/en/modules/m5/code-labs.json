@@ -5,7 +5,7 @@
     "lessonId": "m5-l1",
     "type": "fill_in_the_blank",
     "title": "Hands on: DUST resource",
-    "instructions": "Complete the book's description of what DUST measures.",
+    "instructions": "Complete the book's description of what DUST measures. Hint: c____________ c___.",
     "successCriteria": "Fill the blank with computational cost.",
     "payload": {
       "template": "DUST measures the ___ required to generate ZK proofs.",
@@ -20,7 +20,7 @@
     "lessonId": "m5-l2",
     "type": "fill_in_the_blank",
     "title": "Hands on: estimate DUST",
-    "instructions": "Complete the book's method for estimating DUST costs.",
+    "instructions": "Complete the book's method for estimating DUST costs. Hint: c__________.",
     "successCriteria": "Fill the blank with constraints.",
     "payload": {
       "template": "To estimate DUST, count the number of ___ in your circuit.",
@@ -35,7 +35,7 @@
     "lessonId": "m5-l3",
     "type": "fill_in_the_blank",
     "title": "Hands on: proof server data",
-    "instructions": "Complete what data is sent to the proof server.",
+    "instructions": "Complete what data is sent to the proof server. Hint: w____s_s.",
     "successCriteria": "Fill the blank with witnesses.",
     "payload": {
       "template": "The user sends encrypted ___ to the proof server.",
@@ -49,13 +49,13 @@
     "moduleId": "m5",
     "lessonId": "m5-l4",
     "type": "fill_in_the_blank",
-    "title": "Hands on: optimization strategy",
-    "instructions": "Complete the proof aggregation technique.",
-    "successCriteria": "Fill the blank with single.",
+    "title": "Hands on: aggregate proofs",
+    "instructions": "Complete the circuit name that groups ten votes into one proof. Hint: b________.",
+    "successCriteria": "Complete the blank with batchVote.",
     "payload": {
-      "template": "Proof aggregation combines multiple proofs into a ___ proof.",
+      "template": "export circuit ___(\n  candidates: [Field; 10],\n  nullifiers: [Field; 10]\n) {\n  // One proof for 10 actions\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "single" }
+        { "id": "blank-1", "answer": "batchVote" }
       ]
     }
   }

@@ -42,6 +42,8 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
 
   const lesson = useMemo(() => lessons.find((item) => item.lessonId === activeLessonId) ?? null, [lessons, activeLessonId])
   const step = lesson?.steps[activeStepIndex] ?? null
+  const isDeferredChallenge = step?.type === 'challenge'
+    && (step.challengeId === 'm4-l2-challenge-1' || step.challengeId === 'm4-l4-challenge-1')
   const slides = useMemo(() => {
     if (!content || !step || step.type !== 'slides') return []
     return getSlidesByIds(content, step.slideIds)
@@ -96,7 +98,8 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
   }, [moduleStatus])
 
   return (
-    <AppShell sidebar={<div style={{ display: 'grid', gap: 16 }}><Link to={ROUTES.dashboard} style={{ textDecoration: 'none' }}><Button variant="secondary" style={{ width: '100%' }}>{t('navigation.backToDashboard')}</Button></Link><LessonSidebar lessons={lessons} progress={progress} moduleId={moduleId} activeLessonId={activeLessonId} onSelect={openLesson} /></div>} sidebarWidth={320}>
+    <AppShell sidebar={<div className="module-player__sidebar" style={{ display: 'grid', gap: 16 }}><Link to={ROUTES.dashboard} style={{ textDecoration: 'none' }}><Button variant="secondary" style={{ width: '100%' }}>{t('navigation.backToDashboard')}</Button></Link><LessonSidebar lessons={lessons} progress={progress} moduleId={moduleId} activeLessonId={activeLessonId} onSelect={openLesson} /></div>} sidebarWidth={320}>
+      <div className="module-player">
       {showIntro || moduleCompleted ? (
         <div
           style={{
@@ -107,7 +110,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
             background: 'linear-gradient(135deg, rgba(17,17,17,0.98) 0%, rgba(11,18,25,0.98) 55%, rgba(10,10,10,0.98) 100%)',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, alignItems: 'start' }}>
+          <div className="module-player__module-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 16, alignItems: 'start' }}>
             <div>
               <div style={{ color: '#a1a1aa', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>{t('module.moduleLabel', { moduleId: moduleId.toUpperCase() })}</div>
               <h1 style={{ margin: '0 0 12px 0', fontSize: 36 }}>{module?.narrativeTitle ?? module?.title ?? moduleId}</h1>
@@ -128,7 +131,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
           {showIntro && (module?.introScene || module?.introImage) ? (
             <Card>
               {module.introImage ? (
-                <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', marginBottom: 24, border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div className="module-player__intro-media" style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', marginBottom: 24, border: '1px solid rgba(255,255,255,0.1)' }}>
                   <img 
                     src={`${import.meta.env.BASE_URL}${module.introImage}`} 
                     alt="Intro scene" 
@@ -157,12 +160,12 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
                   </p>
                 )
               )}
-              <Button size="lg" style={{ width: '100%', marginTop: 8 }} onClick={() => setShowIntro(false)}>{module.startButtonLabel ?? 'Comenzar'}</Button>
+              <Button style={{ width: '100%', marginTop: 8 }} onClick={() => setShowIntro(false)}>{module.startButtonLabel ?? 'Comenzar'}</Button>
             </Card>
           ) : null}
 
           {!showIntro && !lessonCompleted && !moduleCompleted && lesson ? (
-            <div style={{ marginBottom: 18, display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
+            <div className="module-player__lesson-header" style={{ marginBottom: 18, display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
               <div>
                 <div style={{ color: '#a1a1aa', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{t('module.currentLesson')}</div>
                 <h2 style={{ margin: '6px 0 6px 0' }}>{lesson.title}</h2>
@@ -174,7 +177,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
 
           {!showIntro && lessonCompleted && !moduleCompleted ? (
             <Card>
-              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+              <div className="module-player__completion-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 12 }}>
                 <div>
                   <div style={{ color: '#86efac', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>{t('status.completed')}</div>
                   <h2 style={{ margin: 0 }}>{t('module.lessonCompleted')}</h2>
@@ -182,7 +185,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
                 <Badge tone="success">{t('module.secureProgress')}</Badge>
               </div>
               <p style={{ color: '#d4d4d8' }}>{lesson?.title}</p>
-              <div style={{ display: 'flex', gap: 8, marginTop: 18 }}>
+              <div className="module-player__completion-actions" style={{ display: 'flex', gap: 8, marginTop: 18 }}>
                 {nextLesson ? <Button onClick={() => openLesson(nextLesson.lessonId)}>{t('module.nextLesson')}</Button> : <Button onClick={() => { completeModule(moduleId); setModuleCompleted(true) }}>{t('module.completeModule')}</Button>}
               </div>
             </Card>
@@ -190,7 +193,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
 
           {!showIntro && moduleCompleted ? (
             <Card>
-              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+              <div className="module-player__completion-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 12 }}>
                 <div>
                   <div style={{ color: '#86efac', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>{t('status.completed')}</div>
                   <h2 style={{ margin: 0 }}>{t('module.moduleCompleted')}</h2>
@@ -198,7 +201,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
                 <Badge tone="success">{t('module.secureProgress')}</Badge>
               </div>
               <p style={{ color: '#d4d4d8', marginTop: 0 }}>{t('module.moduleCompletedDescription')}</p>
-              <div style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap' }}>
+              <div className="module-player__completion-actions" style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap' }}>
                 <Link to={ROUTES.dashboard} style={{ textDecoration: 'none' }}><Button variant="secondary">{t('navigation.backToDashboard')}</Button></Link>
                 {nextModuleId ? <Link to={`/modules/${nextModuleId}`} style={{ textDecoration: 'none' }}><Button>{t('module.goToNextModule')}</Button></Link> : null}
               </div>
@@ -231,8 +234,9 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
               onSuccess={(exposureDelta) => {
                 markChallengeCompleted(step.challengeId)
                 if (exposureDelta > 0) increaseExposure(exposureDelta)
-                goToNextStep()
+                if (!isDeferredChallenge) goToNextStep()
               }}
+              {...(isDeferredChallenge ? { onSuccessContinue: () => goToNextStep() } : {})}
             />
           ) : null}
 
@@ -246,6 +250,7 @@ export function ModulePlayer({ moduleId }: { moduleId: ModuleId }) {
               }}
             />
           ) : null}
+      </div>
       </div>
     </AppShell>
   )

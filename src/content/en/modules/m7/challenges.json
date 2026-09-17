@@ -74,5 +74,68 @@
       ],
       "correctOptionId": "b"
     }
+  },
+  {
+    "challengeId": "final-boss-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "final_assembly",
+    "title": "Final integration",
+    "instructions": "Choose the architecture that protects privacy, proves eligibility, and prevents double voting.",
+    "successCriteria": "Select the private witness, ZK proof, Merkle root, and nullifier architecture.",
+    "maxAttempts": 3,
+    "payload": {
+      "stages": [
+        {
+          "id": "private-witness",
+          "title": "Private witness",
+          "description": "Keep eligibility and private voter data hidden while preparing the proof.",
+          "pieces": [
+            { "id": "keep-private", "label": "Keep eligibility data in the private witness" },
+            { "id": "publish-identity", "label": "Publish the raw voter identity for everyone to inspect" },
+            { "id": "store-public", "label": "Copy the witness into a public ledger field" }
+          ],
+          "correctPieceId": "keep-private",
+          "explanation": "The witness contains private eligibility data, so it must remain hidden instead of becoming public state."
+        },
+        {
+          "id": "merkle-membership",
+          "title": "Merkle membership",
+          "description": "Prove that the private witness belongs to the authorized Merkle root.",
+          "pieces": [
+            { "id": "prove-membership", "label": "Verify a Merkle path against the authorized root" },
+            { "id": "publish-tree", "label": "Publish every voter identity as the membership proof" },
+            { "id": "compare-count", "label": "Compare the witness only with the current vote count" }
+          ],
+          "correctPieceId": "prove-membership",
+          "explanation": "A Merkle membership path links the hidden witness to the authorized root without revealing the entire voter set."
+        },
+        {
+          "id": "zk-proof",
+          "title": "Zero-knowledge proof",
+          "description": "Prove eligibility without revealing the witness itself.",
+          "pieces": [
+            { "id": "prove-without-reveal", "label": "Generate a ZK proof of eligibility without exposing the witness" },
+            { "id": "reveal-witness", "label": "Reveal the witness so the verifier can check it directly" },
+            { "id": "skip-proof", "label": "Trust the submitted claim without cryptographic evidence" }
+          ],
+          "correctPieceId": "prove-without-reveal",
+          "explanation": "The ZK proof lets the system verify the claim while keeping the witness value private."
+        },
+        {
+          "id": "nullifier",
+          "title": "Nullifier",
+          "description": "Prevent the same eligibility from being used twice.",
+          "pieces": [
+            { "id": "reject-reuse", "label": "Derive a nullifier and reject any repeated nullifier" },
+            { "id": "reveal-again", "label": "Reveal the witness whenever the voter submits again" },
+            { "id": "allow-duplicates", "label": "Accept every proof even when the eligibility repeats" }
+          ],
+          "correctPieceId": "reject-reuse",
+          "explanation": "The nullifier marks one use of an eligibility without exposing its source, allowing the system to reject reuse."
+        }
+      ],
+      "finalSummary": "The complete architecture keeps the witness private, proves Merkle membership, uses a ZK proof to verify eligibility without disclosure, and checks a nullifier to prevent double use."
+    }
   }
 ]

@@ -40,7 +40,8 @@ export default function OnboardingPage() {
 
   if (showIntro) {
     return (
-      <main 
+      <main
+        className="onboarding-page onboarding-page--intro"
         onClick={() => setShowIntro(false)}
         style={{ 
           minHeight: '100vh', 
@@ -50,7 +51,7 @@ export default function OnboardingPage() {
           cursor: 'pointer' 
         }}
       >
-        <div style={{ textAlign: 'center', animation: 'fadeInOut 4s ease-in-out' }}>
+        <div className="onboarding-page__intro" style={{ textAlign: 'center', animation: 'fadeInOut 4s ease-in-out' }}>
           <h2 style={{ color: '#fff', fontSize: 24, fontWeight: 300, letterSpacing: '0.15em' }}>
             {t('onboarding.introMessage')}
           </h2>
@@ -72,6 +73,7 @@ export default function OnboardingPage() {
 
   return (
     <main
+      className="onboarding-page"
       style={{
         minHeight: '100vh',
         display: 'grid',
@@ -81,7 +83,7 @@ export default function OnboardingPage() {
         padding: 24,
       }}
     >
-      <section style={{ maxWidth: 520, width: '100%', textAlign: 'center' }}>
+      <section className="onboarding-page__content" style={{ maxWidth: 520, width: '100%', textAlign: 'center' }}>
         <h1
           style={{
             fontSize: 32,
@@ -108,7 +110,7 @@ export default function OnboardingPage() {
           onSubmit={handleSubmit}
           style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
         >
-          <div style={{ textAlign: 'left' }}>
+          <div className="onboarding-page__input-area" style={{ textAlign: 'left' }}>
             <label
               style={{
                 display: 'block',
@@ -152,7 +154,7 @@ export default function OnboardingPage() {
             )}
           </div>
 
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div className="onboarding-page__actions" style={{ display: 'flex', gap: 12 }}>
             <Button
               type="button"
               variant="secondary"

@@ -7,7 +7,9 @@
     "dashboard": "Dashboard",
     "settings": "Settings",
     "finalBoss": "Final Boss",
-    "backToDashboard": "Back to dashboard"
+    "backToDashboard": "Back to dashboard",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "landing": {
     "title": "CryptoGuardians Midnight Edition",
@@ -73,7 +75,9 @@
     "threatLevel": "Threat level",
     "exposureLabel": "Exposure: {{level}} ({{score}})",
     "headerEyebrow": "Agent status",
-    "headerTitle": "Operational dashboard"
+    "headerTitle": "Operational dashboard",
+    "footerLabel": "Application version",
+    "version": "CryptoGuardians · v{{version}}"
   },
   "module": {
     "badgeLesson": "Lesson",
@@ -105,6 +109,154 @@
     "startChallenge": "Start challenge",
     "visualPlaceholderTitle": "Support visual",
     "visualPlaceholderFallback": "Illustration pending for this lesson."
+  },
+  "challenge": {
+    "touchHint": "On touch screens: tap an item, then tap its destination zone.",
+    "interactiveStep": "Interactive step",
+    "submit": "Submit",
+    "success": "Success",
+    "tryAgain": "Try again",
+    "codeAssembly": {
+      "toolbox": "LEGO toolbox",
+      "routine": "Fixed Compact routine",
+      "emptySlot": "Empty slot",
+      "check": "Check routine",
+      "reset": "Reset assembly",
+      "selected": "Selected. Choose a slot.",
+      "removePiece": "Remove piece",
+      "objective": "Repair the highlighted witness-to-ledger disclosure boundary without exposing the witness value directly.",
+      "slotHint": "Choose a toolbox piece, then choose a slot. You can also drag pieces into slots."
+    },
+    "stateSimulation": {
+      "survey": "Anonymous poll",
+      "ledger": "Registered masked entries",
+      "voteOptions": "Vote options",
+      "submitVote": "Submit vote",
+      "retryVote": "Resend same vote",
+      "identity": "Masked identity",
+      "nullifier": "Masked nullifier",
+      "selectedVote": "Selected vote:",
+      "routine": "Routine trace",
+      "routineHint": "A simplified local trace of the vote check, not real chain execution.",
+      "simulationNote": "This is a simplified simulation through a local routine. It does not execute on a blockchain.",
+      "eventHistory": "Event history",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "emptyHistory": "No vote actions processed yet.",
+      "emptyRoutine": "Submit a vote to trace the routine.",
+      "emptyLedger": "No masked ledger entry",
+      "reset": "Reset simulation",
+      "step": "Step {{current}} of {{total}}",
+      "routineLine": "Routine line {{number}}: {{code}}"
+    },
+    "typeMatching": {
+      "concepts": "Concepts",
+      "consequences": "Consequences",
+      "selectPrompt": "Select a concept",
+      "selectOption": "Select a consequence",
+      "matchHint": "Select a concept, then select its consequence. You can change any match before checking.",
+      "check": "Check matches",
+      "reset": "Reset matches",
+      "matched": "Matched",
+      "unmatched": "Not matched",
+      "matchedWith": "Matched with {{label}}",
+      "matchesCount": "{{current}} of {{total}} matched",
+      "removeMatch": "Remove match",
+      "removeMatchAriaLabel": "{{action}}: {{label}}",
+      "assignment": "Current matches",
+      "selected": "Selected",
+      "promptAriaLabel": "Concept: {{label}}",
+      "optionAriaLabel": "Consequence: {{label}}"
+    },
+    "finalAssembly": {
+      "stageProgress": "Stage {{current}} of {{total}}",
+      "completedStage": "Completed stage",
+      "selectPiece": "Select the piece that belongs in this stage.",
+      "selected": "Selected",
+      "notSelected": "Not selected",
+      "pieceAriaLabel": "Assembly piece: {{label}}",
+      "confirm": "Confirm stage",
+      "nextStage": "Next stage",
+      "finalSummaryTitle": "Complete privacy architecture",
+      "finalSummary": "Final integration summary",
+      "continue": "Continue to results"
+    }
+  },
+  "finalBoss": {
+    "eyebrow": "Final operation",
+    "title": "The final privacy test",
+    "description": "All modules are complete. Now assemble the protection model that keeps eligibility verifiable without exposing the voter.",
+    "mission": "Choose the integration that protects the vote and prevents one eligibility from being used twice.",
+    "loadingTitle": "Loading the final operation...",
+    "loadingDescription": "Preparing the final challenge for the selected language.",
+    "loadErrorTitle": "We couldn't load the final operation",
+    "loadErrorDescription": "The final challenge is temporarily unavailable. Return to the dashboard and try again.",
+    "unavailableTitle": "Final challenge unavailable",
+    "unavailableDescription": "The final challenge is not present in the loaded content pack. Return to the dashboard to continue."
+  },
+  "results": {
+    "eyebrow": "Mission complete",
+    "title": "Midnight is protected",
+    "description": "Agent {{alias}}, you completed the CryptoGuardians training mission and secured the final integration.",
+    "unknownAgent": "Unidentified agent",
+    "loadingTitle": "Loading your results...",
+    "loadingDescription": "Restoring the learning content needed to display your mission record.",
+    "loadErrorTitle": "We couldn't load your results",
+    "loadErrorDescription": "Your progress is safe, but the content needed for this summary could not be loaded.",
+    "backToDashboard": "Return to dashboard",
+    "stats": {
+      "agentAlias": "Agent alias",
+      "modules": "Completed modules",
+      "challenges": "Completed challenges",
+      "exposureLevel": "Exposure level",
+      "exposureScore": "Exposure score",
+      "finalBadge": "Final badge"
+    },
+    "exposureLevels": {
+      "safe": "Safe",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "badges": {
+      "midnightGuardian": "Midnight Guardian",
+      "pending": "Pending"
+    },
+    "closing": {
+      "eyebrow": "Beyond the mission",
+      "title": "The mission is complete. Now build what comes next.",
+      "description": "You proved the core ideas behind privacy on Midnight. Take the next step by studying working examples and turning these patterns into your own private applications."
+    },
+    "nextSteps": {
+      "eyebrow": "Next learning path",
+      "title": "Learn next",
+      "description": "Move from guided concepts to real Midnight projects, one pattern at a time.",
+      "officialHub": {
+        "label": "Official Midnight examples hub",
+        "title": "Explore the wider Midnight ecosystem",
+        "description": "Browse the official collection of Midnight examples and discover new ideas for your next dapp.",
+        "linkLabel": "Visit the official examples hub"
+      },
+      "resources": {
+        "counter": {
+          "level": "Fundamentals",
+          "title": "Example Counter",
+          "description": "Start with the basics: follow a focused example to understand the structure of a Midnight application.",
+          "linkLabel": "Explore Example Counter"
+        },
+        "bboard": {
+          "level": "Privacy, state & ZK patterns",
+          "title": "Example BBoard",
+          "description": "Build on the fundamentals with an example that combines private data, state, and zero-knowledge patterns.",
+          "linkLabel": "Explore Example BBoard"
+        },
+        "zkLoan": {
+          "level": "Advanced private state",
+          "title": "Example ZK Loan",
+          "description": "Study a more advanced application that puts private state and zero-knowledge design to work in a lending flow.",
+          "linkLabel": "Explore Example ZK Loan"
+        }
+      }
+    }
   },
   "status": {
     "locked": "Locked",

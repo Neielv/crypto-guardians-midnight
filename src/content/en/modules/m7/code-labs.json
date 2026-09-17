@@ -4,11 +4,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l1",
     "type": "fill_in_the_blank",
-    "title": "Hands on: integration concept",
-    "instructions": "Complete the list of concepts that must be integrated.",
-    "successCriteria": "Fill the blank with Merkle.",
+    "title": "Code lab: integrate private voting",
+    "instructions": "Complete the missing concept in the final block. The flow combines witness, assert, commitment, disclose, nullifier, DUST, and Merkle trees.",
+    "successCriteria": "Complete the blank with Merkle.",
     "payload": {
-      "template": "The final challenge integrates witness, assert, disclose, nullifier, DUST, and ___ trees.",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteCommitment: Commitment,\n  merkleProof: [Field; depth],\n  nullifier: Field,\n  root: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n  const tally = disclose(commitments, aggregate);\n  // Integrates witness, assert, commitment, disclose, nullifier, DUST, and ___ trees.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -19,13 +19,13 @@
     "moduleId": "m7",
     "lessonId": "m7-l2",
     "type": "fill_in_the_blank",
-    "title": "Hands on: nullifier formula",
-    "instructions": "Complete the nullifier generation in the final system.",
-    "successCriteria": "Fill the blank with secret_key.",
+    "title": "Code lab: generate the nullifier",
+    "instructions": "Complete the nullifier formula using the secret key and vote event.",
+    "successCriteria": "Complete the blank with secretKey.",
     "payload": {
-      "template": "nullifier = hash(___ + vote_event)",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteEvent: Field\n): [] {\n  const nullifier = hash(___ + voteEvent);\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "secret_key" }
+        { "id": "blank-1", "answer": "secretKey" }
       ]
     }
   },
@@ -34,11 +34,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l3",
     "type": "fill_in_the_blank",
-    "title": "Hands on: circuit verification",
-    "instructions": "Complete what the circuit verifies first.",
-    "successCriteria": "Fill the blank with Merkle.",
+    "title": "Code lab: verify eligibility",
+    "instructions": "Complete the function that the circuit uses first to verify the membership proof.",
+    "successCriteria": "Complete the blank with Merkle.",
     "payload": {
-      "template": "The circuit first verifies the ___ proof for eligibility.",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field,\n  nullifier: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verify___(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -49,11 +49,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l4",
     "type": "fill_in_the_blank",
-    "title": "Hands on: optimization target",
-    "instructions": "Complete what must be optimized in the final challenge.",
-    "successCriteria": "Fill the blank with DUST.",
+    "title": "Code lab: optimize the circuit",
+    "instructions": "Complete the resource that must be minimized while preserving privacy guarantees.",
+    "successCriteria": "Complete the blank with DUST.",
     "payload": {
-      "template": "Optimize the circuit to minimize ___ while maintaining privacy.",
+      "template": "export circuit optimizedVote(\n  secretKey: witness<Field>,\n  vote: Field,\n  merkleProof: [Field; depth]\n): [] {\n  // Reduce constraints to minimize ___ without losing privacy.\n  const shared = hash(secretKey, vote);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "DUST" }
       ]

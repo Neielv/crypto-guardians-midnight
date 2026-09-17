@@ -4,11 +4,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l1",
     "type": "fill_in_the_blank",
-    "title": "Práctica: propiedades de un commitment",
-    "instructions": "Completa una de las dos propiedades fundamentales de los commitments.",
-    "successCriteria": "Llenar el espacio con binding.",
+    "title": "Práctica de código: sellar un voto con un commitment",
+    "instructions": "Completa la propiedad que impide cambiar el valor después de crear el commitment. Conserva el bloque Compact.",
+    "successCriteria": "Completar el espacio con binding.",
     "payload": {
-      "template": "Un commitment tiene dos propiedades: hiding y ___.",
+      "template": "export ledger commitments: Map<Field, Commitment>;\n\nconst { commitment, opening } = persistentCommit(vote);\n// Propiedades: hiding y ___\ncommitments.set(voterId, commitment);",
       "blanks": [
         { "id": "blank-1", "answer": "binding" }
       ]
@@ -19,13 +19,13 @@
     "moduleId": "m6",
     "lessonId": "m6-l2",
     "type": "fill_in_the_blank",
-    "title": "Práctica: uso de `persistentCommit`",
-    "instructions": "Completa el caso de uso de `persistentCommit` dentro de la misión.",
-    "successCriteria": "Llenar el espacio con oculto.",
+    "title": "Práctica de código: usar persistentCommit",
+    "instructions": "Completa la primitiva que mantiene el voto oculto hasta una revelación autorizada.",
+    "successCriteria": "Completar el espacio con persistentCommit.",
     "payload": {
-    "template": "Usa persistentCommit cuando los valores deben permanecer ___ hasta su apertura autorizada.",
+      "template": "export ledger commitments: Map<Field, Commitment>;\n\nconst { commitment, opening } = ___(vote);\n// Revelar solo con la clave de apertura.\ncommitments.set(voterId, commitment);",
       "blanks": [
-        { "id": "blank-1", "answer": "oculto" }
+        { "id": "blank-1", "answer": "persistentCommit" }
       ]
     }
   },
@@ -34,11 +34,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l3",
     "type": "fill_in_the_blank",
-    "title": "Práctica: tamaño de la prueba Merkle",
-    "instructions": "Completa la eficiencia de las pruebas Merkle del padrón protegido.",
-    "successCriteria": "Llenar el espacio con log.",
+    "title": "Práctica de código: verificar una prueba Merkle",
+    "instructions": "Completa la complejidad de la prueba de membresía en el bloque del circuito.",
+    "successCriteria": "Completar el espacio con log para expresar O(log n).",
     "payload": {
-      "template": "Una prueba Merkle tiene tamaño O(___ n).",
+      "template": "export circuit verifyMembership(\n  leaf: Field,\n  proofPath: [Field; depth],\n  root: Field\n): [] {\n  // Tamaño de la prueba: O(___ n)\n  let computed = leaf;\n  for (i in 0..depth) {\n    computed = hash(computed, proofPath[i]);\n  }\n  assert(computed == root);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "log" }
       ]
@@ -49,11 +49,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l4",
     "type": "fill_in_the_blank",
-    "title": "Práctica: flujo de verificación",
-    "instructions": "Completa qué verifica el circuito ZK junto con la prueba Merkle.",
-    "successCriteria": "Llenar el espacio con commitment.",
+    "title": "Práctica de código: verificar el flujo electoral",
+    "instructions": "Completa qué verifica el circuito junto con la prueba Merkle.",
+    "successCriteria": "Completar el espacio con commitment.",
     "payload": {
-      "template": "El circuito verifica el ___ más la prueba Merkle.",
+      "template": "export circuit verifyEligibility(\n  leaf: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field,\n  voteCommitment: Commitment\n): [] {\n  assert(verifyMerkle(leaf, merkleProof, root));\n  // El circuito verifica el ___ junto con la prueba Merkle.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "commitment" }
       ]

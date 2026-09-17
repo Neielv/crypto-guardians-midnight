@@ -8,9 +8,9 @@
     "sourceSection": "Introducción a Nullifiers",
     "title": "El problema de la unicidad en sistemas privados",
     "excerpts": [
-      "En sistemas de votación y distribución de tokens, cada参与者 debe poder participar exactamente una vez.",
+      "En sistemas de votación y distribución de tokens, cada participante debe poder participar exactamente una vez.",
       "El desafío es garantizar unicidad sin exponer la identidad del participante.",
-      "Los nullifiers resuelven este problema añadiendo una capa de exclusión sin revelar quién es el agente."
+      "Los nullifiers permiten registrar que una participación ya ocurrió y rechazar intentos duplicados, sin publicar la identidad ni la clave secreta del participante."
     ],
     "codeBlocks": [
       {

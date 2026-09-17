@@ -48,7 +48,7 @@ export function LessonSidebar({ lessons, progress, moduleId, activeLessonId, onS
               borderRadius: 16,
               border: isActive ? '1px solid rgba(56,189,248,0.8)' : '1px solid rgba(255,255,255,0.06)',
               background:
-                status === 'completed'
+              status === 'completed'
                   ? 'linear-gradient(180deg, rgba(5,46,22,0.95) 0%, rgba(6,24,16,0.95) 100%)'
                   : isActive
                     ? 'linear-gradient(180deg, rgba(14,35,46,0.92) 0%, rgba(10,10,10,0.95) 100%)'

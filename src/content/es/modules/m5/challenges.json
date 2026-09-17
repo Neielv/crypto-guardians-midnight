@@ -22,38 +22,55 @@
     "challengeId": "m5-l2-challenge-1",
     "moduleId": "m5",
     "lessonId": "m5-l2",
-    "type": "trivia",
-    "title": "Factores de costo de DUST",
-    "instructions": "Identifica qué piezas del taller criptográfico hacen subir el costo de DUST al proteger el voto.",
-    "successCriteria": "Seleccionar la opción que menciona variables witness, restricciones y sistema de pruebas.",
+    "type": "drag_and_drop",
+    "title": "Clasifica los factores del costo de DUST",
+    "instructions": "Arrastra cada factor a la zona que mejor indique si influye en el costo de DUST.",
+    "successCriteria": "Coloca las variables witness, las restricciones del circuito y el sistema de pruebas en la zona de factores que influyen en DUST; coloca el tamaño de las salidas públicas por sí solo en la zona de factores que no lo determinan por sí mismos.",
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Qué factores determinan el costo de DUST de una prueba ZK?",
-      "options": [
-        { "id": "a", "label": "Solo el número de entradas del circuito" },
-        { "id": "b", "label": "El número de variables witness, número de restricciones y sistema de pruebas usado" },
-        { "id": "c", "label": "Solo el tamaño de las salidas públicas" }
+      "items": [
+        { "id": "witness-variables", "label": "Variables witness" },
+        { "id": "circuit-constraints", "label": "Restricciones del circuito" },
+        { "id": "proof-system", "label": "Sistema de pruebas usado" },
+        { "id": "public-output-size-alone", "label": "Tamaño de las salidas públicas por sí solo" }
       ],
-      "correctOptionId": "b"
+      "zones": [
+        { "id": "affects-dust", "label": "Factores que afectan o influyen en el costo de DUST" },
+        { "id": "does-not-determine-dust-alone", "label": "Factores que no determinan el costo de DUST por sí mismos" }
+      ],
+      "validAssignments": {
+        "witness-variables": "affects-dust",
+        "circuit-constraints": "affects-dust",
+        "proof-system": "affects-dust",
+        "public-output-size-alone": "does-not-determine-dust-alone"
+      }
     }
   },
   {
     "challengeId": "m5-l3-challenge-1",
     "moduleId": "m5",
     "lessonId": "m5-l3",
-    "type": "trivia",
-    "title": "Modelo de confianza de servidores de pruebas",
-    "instructions": "Selecciona cómo opera la confianza cuando la Agencia usa un servidor de pruebas para proteger la votación.",
-    "successCriteria": "Seleccionar la opción que explica que los servidores de pruebas no pueden ver datos privados porque se envían como witnesses cifrados.",
+    "type": "type_matching",
+    "title": "Relaciona conceptos de privacidad",
+    "instructions": "Relaciona cada concepto de privacidad con su consecuencia en un flujo con servidor de pruebas.",
+    "successCriteria": "Relacionar cada concepto con su consecuencia exacta.",
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Cómo funciona el modelo de confianza con servidores de pruebas?",
-      "options": [
-        { "id": "a", "label": "Debes confiar en que el servidor de pruebas sea honesto con los datos del ciudadano" },
-        { "id": "b", "label": "Los servidores de pruebas no pueden ver datos privados porque se proporcionan como witnesses cifrados; la integridad de la prueba es criptográfica" },
-        { "id": "c", "label": "Los servidores de pruebas no se usan en Midnight" }
+      "prompts": [
+        { "id": "encrypted-witnesses", "label": "Testigos cifrados" },
+        { "id": "cryptographic-proof-integrity", "label": "Integridad criptográfica de la prueba" },
+        { "id": "proof-server-role", "label": "Rol del servidor de pruebas" }
       ],
-      "correctOptionId": "b"
+      "options": [
+        { "id": "private-data-uninspectable", "label": "El servidor de pruebas no puede inspeccionar los datos privados de los votantes" },
+        { "id": "invalid-proofs-rejected", "label": "Las pruebas inválidas se rechazan sin confiar en la palabra del servidor" },
+        { "id": "proof-generation-without-plaintext", "label": "Ayuda a generar pruebas, pero no recibe entradas privadas en texto plano" }
+      ],
+      "correctMatches": {
+        "encrypted-witnesses": "private-data-uninspectable",
+        "cryptographic-proof-integrity": "invalid-proofs-rejected",
+        "proof-server-role": "proof-generation-without-plaintext"
+      }
     }
   },
   {

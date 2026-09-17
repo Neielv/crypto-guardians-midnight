@@ -10,6 +10,7 @@ export default function LandingPage() {
 
   return (
     <main
+      className="landing-page"
       style={{
         minHeight: '100vh',
         padding: 32,
@@ -20,6 +21,7 @@ export default function LandingPage() {
       }}
     >
       <section
+        className="landing-page__panel"
         style={{
           maxWidth: 980,
           width: '100%',
@@ -34,7 +36,7 @@ export default function LandingPage() {
         <h1 style={{ fontSize: 52, lineHeight: 1.05, margin: '0 0 16px 0' }}>{t('landing.title')}</h1>
         <p style={{ fontSize: 20, color: '#e4e4e7', marginTop: 0 }}>{t('landing.subtitle')}</p>
         <p style={{ maxWidth: 760, lineHeight: 1.8, color: '#a1a1aa' }}>{t('landing.description')}</p>
-        <div style={{ display: 'flex', gap: 12, marginTop: 26 }}>
+        <div className="landing-page__actions" style={{ display: 'flex', gap: 12, marginTop: 26 }}>
           <Link to={agent ? ROUTES.dashboard : ROUTES.onboarding}>
             <Button>{t('common.start')}</Button>
           </Link>

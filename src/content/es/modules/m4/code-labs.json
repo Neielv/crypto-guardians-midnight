@@ -53,7 +53,7 @@
     "instructions": "Registra el nullifier en el set una vez confirmado que es único.",
     "successCriteria": "Completar el hueco con insert.",
     "payload": {
-      "template": "nullifierSet___(nullifier);",
+      "template": "nullifierSet.___(nullifier);",
       "blanks": [
         { "id": "blank-1", "answer": "insert" }
       ]

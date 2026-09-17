@@ -68,8 +68,9 @@ export default function DashboardPage() {
 
   return (
     <AppShell>
-      <div style={{ maxWidth: 1040 }}>
+      <div className="dashboard-page" style={{ maxWidth: 1040 }}>
         <section
+          className="dashboard-page__hero"
           style={{
             marginBottom: 24,
             padding: 24,
@@ -84,7 +85,7 @@ export default function DashboardPage() {
           <p style={{ margin: 0, color: '#d4d4d8', lineHeight: 1.7 }}>{t('dashboard.description')}</p>
         </section>
 
-        <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 20 }}>
+        <section className="dashboard-page__stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 20 }}>
           <Card>
             <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>{t('dashboard.stats.totalModules')}</div>
             <strong style={{ fontSize: 30 }}>{dashboardStats.totalCount}</strong>
@@ -107,7 +108,7 @@ export default function DashboardPage() {
           </Card>
         </section>
 
-        <div style={{ display: 'grid', gap: 16 }}>
+        <div className="dashboard-page__content" style={{ display: 'grid', gap: 16 }}>
           {isLoading ? (
             <Card>
               <h2 style={{ marginTop: 0 }}>{t('dashboard.loadingTitle')}</h2>
@@ -129,7 +130,7 @@ export default function DashboardPage() {
             </Card>
           ) : null}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 16 }}>
+          <div className="dashboard-page__modules" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 16 }}>
           {(content?.modules ?? []).map((module) => {
               const moduleUiState = moduleStatuses[module.moduleId] ?? {
                 status: 'locked',
@@ -143,6 +144,7 @@ export default function DashboardPage() {
               const contentNode = (
                 <Card>
                   <div
+                    className="dashboard-page__module-card"
                     style={{
                       minHeight: 220,
                       aspectRatio: '1 / 1',
@@ -153,8 +155,8 @@ export default function DashboardPage() {
                       opacity: canOpen ? 1 : 0.88,
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: 12 }}>
-                      <div>
+                    <div className="dashboard-page__module-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: 12 }}>
+                      <div className="dashboard-page__module-heading">
                         <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 8 }}>{module.moduleId.toUpperCase()}</div>
                         <h2 style={{ margin: 0, fontSize: 22, lineHeight: 1.15, textShadow: isActive ? '0 0 16px rgba(139,92,246,0.35)' : undefined }}>{module.narrativeTitle ?? module.title}</h2>
                       </div>
@@ -176,11 +178,11 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <p style={{ margin: 0, color: '#d4d4d8', lineHeight: 1.6, fontSize: 14 }}>
+                    <p className="dashboard-page__module-description" style={{ margin: 0, color: '#d4d4d8', lineHeight: 1.6, fontSize: 14 }}>
                       {module.dramaticDescription ?? module.summary}
                     </p>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: 12 }}>
+                    <div className="dashboard-page__module-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: 12 }}>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                         {module.concepts.slice(0, 2).map((concept) => (
                           <span
@@ -232,12 +234,13 @@ export default function DashboardPage() {
                 <Link
                   key={module.moduleId}
                   to={`/modules/${module.moduleId}`}
+                  className="dashboard-page__module-link"
                   style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
                 >
                   {contentNode}
                 </Link>
               ) : (
-                <div key={module.moduleId}>{contentNode}</div>
+                <div className="dashboard-page__module-wrapper" key={module.moduleId}>{contentNode}</div>
               )
             })}
           </div>

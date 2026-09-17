@@ -87,28 +87,80 @@
     "challengeId": "m3-l4-challenge-1",
     "moduleId": "m3",
     "lessonId": "m3-l4",
-    "type": "trivia",
-    "title": "Critical mission error",
-    "instructions": "Identify what the `potential witness-value disclosure` error really means.",
-    "successCriteria": "Select the option describing a private witness value leaking into a public context without an explicit declaration.",
+    "type": "code_assembly",
+    "title": "Repair the disclosure boundary",
+    "instructions": "Repair the fixed Compact routine by placing the LEGO tokens in order. `disclose` is the explicit boundary that permits the witness value to enter the public ledger; do not replace it with a broader or unrelated operation.",
+    "successCriteria": "Repair the witness-value leak into the ledger using an explicit disclosure boundary.",
+    "hints": [
+      "`getBalance()` reads the witness value; find the piece that marks the explicit boundary before the statement ends.",
+      "Use only the pieces that repair the boundary between the witness and the ledger. The others are related operations, but they do not fix this error."
+    ],
     "maxAttempts": 3,
     "payload": {
-      "question": "What is the compiler telling you with that error?",
-      "options": [
+      "contextLines": [
+        "export ledger balance: Bytes<32>;",
+        "export circuit recordBalance(): [] {",
+        "  balance = getBalance(); // witness value crosses without explicit disclosure",
+        "}"
+      ],
+      "slots": [
         {
-          "id": "a",
-          "label": "A potentially private value is trying to be disclosed without `disclose()`"
+          "id": "slot-balance",
+          "label": "Assignment target"
         },
         {
-          "id": "b",
-          "label": "The ledger does not accept `Bytes<32>` types"
+          "id": "slot-disclose",
+          "label": "Disclosure boundary"
         },
         {
-          "id": "c",
-          "label": "The contract pragma must be removed"
+          "id": "slot-balance-reader",
+          "label": "Witness read"
+        },
+        {
+          "id": "slot-end",
+          "label": "Statement end"
         }
       ],
-      "correctOptionId": "a"
+      "pieces": [
+        {
+          "id": "piece-balance",
+          "label": "balance ="
+        },
+        {
+          "id": "piece-disclose",
+          "label": "disclose"
+        },
+        {
+          "id": "piece-get-balance",
+          "label": "getBalance()"
+        },
+        {
+          "id": "piece-close",
+          "label": ";"
+        },
+        {
+          "id": "piece-hash",
+          "label": "hash"
+        },
+        {
+          "id": "piece-assert",
+          "label": "assert"
+        },
+        {
+          "id": "piece-public",
+          "label": "public"
+        },
+        {
+          "id": "piece-reveal-all",
+          "label": "revealAll()"
+        }
+      ],
+      "correctOrder": [
+        "piece-balance",
+        "piece-disclose",
+        "piece-get-balance",
+        "piece-close"
+      ]
     }
   }
 ]

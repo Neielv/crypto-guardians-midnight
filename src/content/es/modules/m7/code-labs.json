@@ -4,11 +4,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l1",
     "type": "fill_in_the_blank",
-    "title": "Práctica: concepto de integración",
-    "instructions": "Completa la lista de piezas que deben integrarse en el sistema final.",
-    "successCriteria": "Llenar el espacio con Merkle.",
+    "title": "Práctica de código: integrar la votación privada",
+    "instructions": "Completa el concepto que falta en el bloque final. El flujo reúne witness, assert, commitment, disclose, nullifier, DUST y árboles Merkle.",
+    "successCriteria": "Completar el espacio con Merkle.",
     "payload": {
-      "template": "El sistema final integra witness, assert, commitment, disclose, nullifier y árboles ___.",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteCommitment: Commitment,\n  merkleProof: [Field; depth],\n  nullifier: Field,\n  root: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n  const tally = disclose(commitments, aggregate);\n  // Integra witness, assert, commitment, disclose, nullifier, DUST y árboles ___.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -19,13 +19,13 @@
     "moduleId": "m7",
     "lessonId": "m7-l2",
     "type": "fill_in_the_blank",
-    "title": "Práctica: fórmula de nullifier",
-    "instructions": "Completa la generación del nullifier en el sistema final.",
-    "successCriteria": "Llenar el espacio con secret_key.",
+    "title": "Práctica de código: generar el nullifier",
+    "instructions": "Completa la fórmula del nullifier usando la clave secreta y el evento de voto.",
+    "successCriteria": "Completar el espacio con secretKey.",
     "payload": {
-      "template": "nullifier = hash(___ + vote_event)",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteEvent: Field\n): [] {\n  const nullifier = hash(___ + voteEvent);\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "secret_key" }
+        { "id": "blank-1", "answer": "secretKey" }
       ]
     }
   },
@@ -34,11 +34,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l3",
     "type": "fill_in_the_blank",
-    "title": "Práctica: verificación de circuito",
-    "instructions": "Completa qué verifica primero el circuito.",
-    "successCriteria": "Llenar el espacio con Merkle.",
+    "title": "Práctica de código: verificar la elegibilidad",
+    "instructions": "Completa la función que el circuito usa primero para verificar la prueba de membresía.",
+    "successCriteria": "Completar el espacio con Merkle.",
     "payload": {
-      "template": "El circuito primero verifica la prueba ___ para confirmar habilitación.",
+      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field,\n  nullifier: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verify___(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -49,11 +49,11 @@
     "moduleId": "m7",
     "lessonId": "m7-l4",
     "type": "fill_in_the_blank",
-    "title": "Práctica: objetivo de optimización",
-    "instructions": "Completa qué debe optimizarse en la integración final.",
-    "successCriteria": "Llenar el espacio con DUST.",
+    "title": "Práctica de código: optimizar el circuito",
+    "instructions": "Completa el recurso que debe minimizarse mientras se conservan las garantías de privacidad.",
+    "successCriteria": "Completar el espacio con DUST.",
     "payload": {
-      "template": "Optimiza el circuito para minimizar ___ mientras mantiene privacidad.",
+      "template": "export circuit optimizedVote(\n  secretKey: witness<Field>,\n  vote: Field,\n  merkleProof: [Field; depth]\n): [] {\n  // Reduce las restricciones para minimizar ___ sin perder privacidad.\n  const shared = hash(secretKey, vote);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "DUST" }
       ]

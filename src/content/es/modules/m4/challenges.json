@@ -22,19 +22,58 @@
     "challengeId": "m4-l2-challenge-1",
     "moduleId": "m4",
     "lessonId": "m4-l2",
-    "type": "trivia",
-    "title": "Prevención de doble voto",
-    "instructions": "Identifica cómo el sistema evita que un ciudadano registrado vote dos veces usando nullifiers.",
-    "successCriteria": "Selecciona la opción que explica que el nullifier se registra y el segundo intento es rechazado.",
+    "type": "state_simulation",
+    "title": "Comprobación del estado del nullifier",
+    "instructions": "Procesa ambos intentos en orden para observar cómo un conjunto local de nullifiers evita el doble voto. Es una simulación educativa, no una transacción de blockchain.",
+    "successCriteria": "Procesa el primer intento aceptado y luego el segundo intento rechazado con el mismo nullifier enmascarado.",
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Cómo evita el sistema el doble voto con nullifiers?",
-      "options": [
-        { "id": "a", "label": "El ledger guarda la identidad del votante junto con su voto" },
-        { "id": "b", "label": "El nullifier generado se registra y un segundo intento asociado al mismo ciudadano encuentra que ya existe y es rechazado" },
-        { "id": "c", "label": "El sistema limita la cantidad de votos por dirección IP" }
-      ],
-      "correctOptionId": "b"
+      "ledgerLabel": "Entrada enmascarada del ledger local (simulación)",
+      "initialEntries": [],
+      "survey": {
+        "title": "Encuesta de participación comunitaria",
+        "question": "¿Qué propiedad de privacidad debería conservar este voto anónimo?",
+        "options": [
+          { "id": "privacy", "label": "Contar el voto sin exponer al votante" },
+          { "id": "identity", "label": "Publicar la identidad del votante junto al voto" }
+        ],
+        "identityLabel": "Identidad enmascarada",
+        "identityValue": "agente_••••••42",
+        "nullifierLabel": "Nullifier enmascarado",
+        "nullifierValue": "nf_••••••7A2"
+      },
+      "routine": {
+        "lines": [
+          { "id": "receive", "code": "receive(privateVote, maskedNullifier); // recibir voto privado" },
+          { "id": "derive", "code": "derive nullifier from private vote; // derivar nullifier" },
+          { "id": "check", "code": "const alreadyUsed = nullifierSet.member(nullifier);" },
+          { "id": "register", "code": "if (!alreadyUsed) nullifierSet.insert(nullifier); // registrar" },
+          { "id": "accept", "code": "accept vote; // aceptar voto" },
+          { "id": "reject", "code": "reject duplicate vote; // rechazar duplicado" }
+        ]
+      },
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "title": "Primer voto anónimo",
+          "description": "La encuesta anónima recibe el voto seleccionado con un nullifier enmascarado que todavía no está registrado localmente.",
+          "outcome": "accepted",
+          "ledgerEntry": "nf_••••••7A2",
+          "reason": "member(nullifier) -> false. El nullifier enmascarado no está presente, por eso el voto se acepta y se registra localmente.",
+          "completedLineIds": ["receive", "derive", "check", "register", "accept"],
+          "activeLineId": "accept"
+        },
+        {
+          "id": "attempt-2",
+          "title": "Voto anónimo reenviado",
+          "description": "Se vuelven a enviar el mismo voto seleccionado y el mismo nullifier enmascarado.",
+          "outcome": "rejected",
+          "ledgerEntry": "",
+          "reason": "member(nullifier) -> true. El mismo nullifier enmascarado ya está registrado, por eso el voto repetido se rechaza localmente.",
+          "completedLineIds": ["receive", "derive", "check", "reject"],
+          "activeLineId": "reject"
+        }
+      ]
     }
   },
   {
@@ -60,19 +99,37 @@
     "challengeId": "m4-l4-challenge-1",
     "moduleId": "m4",
     "lessonId": "m4-l4",
-    "type": "trivia",
-    "title": "Aplicación práctica",
-    "instructions": "Identifica qué verifica el circuit al procesar un nullifier en una votación protegida.",
-    "successCriteria": "Selecciona la opción que incluye verificar que el nullifier fue generado correctamente y que no existe en el set.",
+    "type": "code_assembly",
+    "title": "Ensambla las condiciones de aceptación del nullifier",
+    "instructions": "Ensambla en orden las dos condiciones de verificación para la rutina simplificada de aceptación del voto.",
+    "successCriteria": "Ensambla la rutina de verificación que decide si un nullifier puede aceptarse.",
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Qué verifica el circuit antes de aceptar un nullifier en una votación protegida?",
-      "options": [
-        { "id": "a", "label": "Solo verifica la identidad del ciudadano" },
-        { "id": "b", "label": "Verifica que el nullifier fue generado correctamente usando la clave secreta Y que no existe todavía en el set de nullifiers del ledger" },
-        { "id": "c", "label": "Solo verifica que el nullifier sea mayor a cero" }
+      "successMessage": "¡Buen trabajo! Con el nullifier verificamos que el voto es válido y evitamos el doble voto.",
+      "contextLines": [
+        "function acceptVote(secretKey, nonce, submittedNullifier) {",
+        "  const nullifier = deriveNullifier(secretKey, nonce);",
+        "  const alreadyUsed = nullifierSet.member(nullifier);",
+        "  // Coloca las comprobaciones antes de aceptar; un nullifier existente provoca rechazo.",
+        "  // La identidad permanece privada; solo continúa un nullifier válido y no usado.",
+        "  accept vote;",
+        "}"
       ],
-      "correctOptionId": "b"
+      "slots": [
+        { "id": "slot-match", "label": "Comprobación del nullifier enviado" },
+        { "id": "slot-unused", "label": "Comprobación de pertenencia al set" }
+      ],
+      "pieces": [
+        { "id": "piece-match", "label": "assert(nullifier === submittedNullifier)" },
+        { "id": "piece-unused", "label": "assert(!alreadyUsed)" },
+        { "id": "piece-positive", "label": "assert(nullifier > 0)" },
+        { "id": "piece-already-used", "label": "assert(alreadyUsed)" },
+        { "id": "piece-public-identity", "label": "assert(userIdentityIsPublic)" }
+      ],
+      "correctOrder": [
+        "piece-match",
+        "piece-unused"
+      ]
     }
   }
 ]

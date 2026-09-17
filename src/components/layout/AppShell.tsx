@@ -1,10 +1,11 @@
-import type { PropsWithChildren, ReactNode } from 'react'
+import { useState, type PropsWithChildren, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAppStore } from '@/app/store/app-store'
 import { ROUTES } from '@/lib/constants/routes'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
+import packageJson from '../../../package.json'
 
 type AppShellProps = PropsWithChildren<{
   sidebar?: ReactNode
@@ -16,11 +17,15 @@ export function AppShell({ children, sidebar, sidebarWidth = 250 }: AppShellProp
   const locale = useAppStore((state) => state.locale)
   const setLocale = useAppStore((state) => state.setLocale)
   const exposure = useAppStore((state) => state.exposure)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   const tone = exposure.level === 'high' ? 'danger' : exposure.level === 'medium' ? 'warning' : 'success'
+  const closeMobileNav = () => setMobileNavOpen(false)
+  const mobileMenuLabel = t(mobileNavOpen ? 'navigation.closeMenu' : 'navigation.openMenu')
 
   return (
     <div
+      className="app-shell"
       style={{
         minHeight: '100vh',
         display: 'grid',
@@ -29,12 +34,21 @@ export function AppShell({ children, sidebar, sidebarWidth = 250 }: AppShellProp
           'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 22%), radial-gradient(circle at bottom right, rgba(245,158,11,0.10), transparent 18%), #09090b',
       }}
     >
+      {mobileNavOpen ? <button type="button" className="app-shell__backdrop" aria-label={t('navigation.closeMenu')} onClick={closeMobileNav} /> : null}
       {sidebar ? (
-        <div style={{ padding: 24, borderRight: '1px solid rgba(255,255,255,0.08)', background: 'rgba(10,10,10,0.86)', backdropFilter: 'blur(10px)' }}>
+        <div
+          id="app-shell-sidebar"
+          className={`app-shell__sidebar${mobileNavOpen ? ' app-shell__sidebar--open' : ''}`}
+          onClick={closeMobileNav}
+          style={{ padding: 24, borderRight: '1px solid rgba(255,255,255,0.08)', background: 'rgba(10,10,10,0.86)', backdropFilter: 'blur(10px)' }}
+        >
           {sidebar}
         </div>
       ) : (
         <aside
+          id="app-shell-sidebar"
+          className={`app-shell__sidebar${mobileNavOpen ? ' app-shell__sidebar--open' : ''}`}
+          onClick={closeMobileNav}
           style={{
             borderRight: '1px solid rgba(255,255,255,0.08)',
             padding: 24,
@@ -58,8 +72,9 @@ export function AppShell({ children, sidebar, sidebarWidth = 250 }: AppShellProp
           </div>
         </aside>
       )}
-      <div>
+      <div className="app-shell__content">
         <header
+          className="app-shell__header"
           style={{
             borderBottom: '1px solid rgba(255,255,255,0.08)',
             padding: '16px 28px',
@@ -73,18 +88,32 @@ export function AppShell({ children, sidebar, sidebarWidth = 250 }: AppShellProp
             zIndex: 10,
           }}
         >
-          <div>
+          <div className="app-shell__header-copy">
             <div style={{ fontSize: 12, color: '#a1a1aa', textTransform: 'uppercase', letterSpacing: '0.12em' }}>{t('shell.headerEyebrow')}</div>
             <div style={{ marginTop: 6, fontWeight: 700 }}>{t('shell.headerTitle')}</div>
           </div>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <div className="app-shell__header-controls" style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <Button
+              type="button"
+              className="app-shell__menu-button"
+              variant="secondary"
+              aria-expanded={mobileNavOpen}
+              aria-controls="app-shell-sidebar"
+              aria-label={mobileMenuLabel}
+              onClick={() => setMobileNavOpen((open) => !open)}
+            >
+              {mobileNavOpen ? '×' : '☰'}
+            </Button>
             <Badge tone={tone}>{exposure.level}</Badge>
             <Button variant={locale === 'es' ? 'primary' : 'secondary'} onClick={() => setLocale('es')}>ES</Button>
             <Button variant={locale === 'en' ? 'primary' : 'secondary'} onClick={() => setLocale('en')}>EN</Button>
           </div>
-        </header>
-        <main style={{ padding: 28 }}>{children}</main>
-      </div>
+         </header>
+         <main className="app-shell__main" style={{ padding: 28 }}>{children}</main>
+         <footer className="app-shell__footer" aria-label={t('shell.footerLabel')}>
+           {t('shell.version', { version: packageJson.version })}
+         </footer>
+       </div>
     </div>
   )
 }

@@ -28,8 +28,9 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
 
   return (
     <Card>
-      <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
+      <div className="slide-viewer__tabs" style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
         <button
+          className="slide-viewer__tab"
           onClick={() => setActiveTab('slide')}
           style={{
             borderRadius: 999,
@@ -43,6 +44,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
           {t('slide.tabs.lesson')}
         </button>
         <button
+          className="slide-viewer__tab"
           onClick={() => setActiveTab('support')}
           style={{
             borderRadius: 999,
@@ -58,10 +60,11 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
       </div>
 
       {activeTab === 'support' ? (
-        <div style={{ display: 'grid', gap: 16 }}>          
+        <div className="slide-viewer__support-list" style={{ display: 'grid', gap: 16 }}>
           {supportMaterials.length > 0 ? supportMaterials.map((item) => (
             <section
               key={item.supportMaterialId}
+              className="slide-viewer__support-card"
               style={{
                 borderRadius: 20,
                 border: '1px solid rgba(255,255,255,0.08)',
@@ -78,9 +81,9 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
                   <p key={excerpt} style={{ margin: 0, color: '#e4e4e7', lineHeight: 1.7 }}>{excerpt}</p>
                 ))}
                 {item.codeBlocks?.map((block) => (
-                  <div key={`${item.supportMaterialId}-${block.title}`} style={{ display: 'grid', gap: 8, marginTop: 4 }}>
+                  <div className="slide-viewer__code-block" key={`${item.supportMaterialId}-${block.title}`} style={{ display: 'grid', gap: 8, marginTop: 4 }}>
                     <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{block.title}</div>
-                    <pre style={{ margin: 0, background: '#0a0a0a', padding: 16, borderRadius: 16, overflowX: 'auto', border: '1px solid rgba(255,255,255,0.06)', color: '#f5f5f5' }}><code>{block.code}</code></pre>
+                    <pre className="slide-viewer__code" style={{ margin: 0, background: '#0a0a0a', padding: 16, borderRadius: 16, overflowX: 'auto', border: '1px solid rgba(255,255,255,0.06)', color: '#f5f5f5' }}><code>{block.code}</code></pre>
                   </div>
                 ))}
               </div>
@@ -91,13 +94,14 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
         </div>
       ) : (
         <>
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 18 }}>
+      <div className="slide-viewer__progress" style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 18 }}>
         <div style={{ color: '#a1a1aa', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t('slide.progressLabel', { current, total })}</div>
-        <div style={{ width: 140, height: 8, borderRadius: 999, background: '#18181b', overflow: 'hidden' }}>
+        <div className="slide-viewer__progress-bar" style={{ width: 140, height: 8, borderRadius: 999, background: '#18181b', overflow: 'hidden' }}>
           <div style={{ width: `${(current / total) * 100}%`, height: '100%', background: 'linear-gradient(90deg, #38bdf8, #f8fafc)' }} />
         </div>
       </div>
       <div
+        className="slide-viewer__viewport"
         style={{
           minHeight: 340,
           borderRadius: 24,
@@ -114,6 +118,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
         {/* Navigation Arrows */}
         {canGoBack && (
           <button
+            className="slide-viewer__arrow slide-viewer__arrow--back"
             onClick={onBack}
             style={{
               position: 'absolute',
@@ -144,6 +149,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
 
         {canGoNext && (
           <button
+            className="slide-viewer__arrow slide-viewer__arrow--next"
             onClick={onNext}
             style={{
               position: 'absolute',
@@ -175,6 +181,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
         {(slide.image && !imageError) ? (
           <>
             <img 
+              className="slide-viewer__image"
               src={`${import.meta.env.BASE_URL}${slide.image}`} 
               alt={slide.title} 
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} 
@@ -182,7 +189,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
             />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)', zIndex: 1 }} />
             
-            <div style={{
+            <div className="slide-viewer__slide-content" style={{
               position: 'relative',
               zIndex: 2,
               background: 'rgba(10, 10, 10, 0.15)',
@@ -198,7 +205,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
             </div>
           </>
         ) : (
-          <div style={{ padding: 32, textAlign: 'center', zIndex: 2 }}>
+          <div className="slide-viewer__placeholder" style={{ padding: 32, textAlign: 'center', zIndex: 2 }}>
             <div style={{ maxWidth: 520, margin: '0 auto', marginBottom: 24 }}>
               <div style={{ fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7dd3fc', marginBottom: 12 }}>{t('slide.visualPlaceholderTitle')}</div>
               <div style={{ fontSize: 18, lineHeight: 1.6, color: '#e4e4e7' }}>{slide.visualHint ?? t('slide.visualPlaceholderFallback')}</div>
@@ -210,7 +217,7 @@ export function SlideViewer({ slide, supportMaterials, current, total, canGoBack
       </div>
         </>
       )}
-      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+      <div className="slide-viewer__navigation" style={{ display: 'flex', gap: 8, marginTop: 16 }}>
         <Button variant="secondary" disabled={!canGoBack} onClick={onBack}>{t('slide.previous')}</Button>
         <Button disabled={!canGoNext} onClick={onNext}>{isLast ? t('slide.startChallenge') : t('slide.next')}</Button>
       </div>

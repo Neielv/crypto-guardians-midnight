@@ -7,7 +7,9 @@
     "dashboard": "Dashboard",
     "settings": "Configuración",
     "finalBoss": "Jefe final",
-    "backToDashboard": "Volver al dashboard"
+    "backToDashboard": "Volver al dashboard",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "landing": {
     "title": "CryptoGuardians Midnight Edition",
@@ -70,7 +72,9 @@
     "threatLevel": "Nivel de amenaza",
     "exposureLabel": "Exposición: {{level}} ({{score}})",
     "headerEyebrow": "Estado del agente",
-    "headerTitle": "Panel operativo"
+    "headerTitle": "Panel operativo",
+    "footerLabel": "Versión de la aplicación",
+    "version": "CryptoGuardians · v{{version}}"
   },
   "module": {
     "badgeLesson": "Lección",
@@ -102,6 +106,154 @@
     "startChallenge": "Empezar desafío",
     "visualPlaceholderTitle": "Visual de apoyo",
     "visualPlaceholderFallback": "Ilustración pendiente para esta lección."
+  },
+  "challenge": {
+    "touchHint": "En pantallas táctiles: toca un dato y luego su zona de destino.",
+    "interactiveStep": "Paso interactivo",
+    "submit": "Enviar",
+    "success": "Correcto",
+    "tryAgain": "Intentar de nuevo",
+    "codeAssembly": {
+      "toolbox": "Caja de piezas LEGO",
+      "routine": "Rutina fija de Compact",
+      "emptySlot": "Espacio vacío",
+      "check": "Comprobar rutina",
+      "reset": "Reiniciar ensamblaje",
+      "selected": "Seleccionada. Elige un espacio.",
+      "removePiece": "Retirar pieza",
+      "objective": "Repara el límite de divulgación entre el witness y el ledger sin exponer directamente el valor witness.",
+      "slotHint": "Elige una pieza de la caja y luego un espacio. También puedes arrastrar las piezas a los espacios."
+    },
+    "stateSimulation": {
+      "survey": "Encuesta anónima",
+      "ledger": "Entradas enmascaradas registradas",
+      "voteOptions": "Opciones de voto",
+      "submitVote": "Enviar voto",
+      "retryVote": "Reenviar el mismo voto",
+      "identity": "Identidad enmascarada",
+      "nullifier": "Nullifier enmascarado",
+      "selectedVote": "Voto seleccionado:",
+      "routine": "Traza de la rutina",
+      "routineHint": "Una traza local simplificada de la comprobación, no una ejecución real en la cadena.",
+      "simulationNote": "Esta es una simulación simplificada mediante una rutina local. No se ejecuta en una blockchain.",
+      "eventHistory": "Historial de eventos",
+      "accepted": "Aceptado",
+      "rejected": "Rechazado",
+      "emptyHistory": "Todavía no se procesaron acciones de voto.",
+      "emptyRoutine": "Envía un voto para trazar la rutina.",
+      "emptyLedger": "No hay entrada enmascarada en el ledger",
+      "reset": "Reiniciar simulación",
+      "step": "Paso {{current}} de {{total}}",
+      "routineLine": "Línea {{number}} de la rutina: {{code}}"
+    },
+    "typeMatching": {
+      "concepts": "Conceptos",
+      "consequences": "Consecuencias",
+      "selectPrompt": "Selecciona un concepto",
+      "selectOption": "Selecciona una consecuencia",
+      "matchHint": "Selecciona un concepto y luego su consecuencia. Puedes cambiar cualquier relación antes de comprobar.",
+      "check": "Comprobar relaciones",
+      "reset": "Reiniciar relaciones",
+      "matched": "Relacionado",
+      "unmatched": "Sin relacionar",
+      "matchedWith": "Relacionado con {{label}}",
+      "matchesCount": "{{current}} de {{total}} relacionados",
+      "removeMatch": "Quitar relación",
+      "removeMatchAriaLabel": "{{action}}: {{label}}",
+      "assignment": "Relaciones actuales",
+      "selected": "Seleccionado",
+      "promptAriaLabel": "Concepto: {{label}}",
+      "optionAriaLabel": "Consecuencia: {{label}}"
+    },
+    "finalAssembly": {
+      "stageProgress": "Etapa {{current}} de {{total}}",
+      "completedStage": "Etapa completada",
+      "selectPiece": "Selecciona la pieza que corresponde a esta etapa.",
+      "selected": "Seleccionada",
+      "notSelected": "No seleccionada",
+      "pieceAriaLabel": "Pieza de ensamblaje: {{label}}",
+      "confirm": "Confirmar etapa",
+      "nextStage": "Siguiente etapa",
+      "finalSummaryTitle": "Arquitectura de privacidad completa",
+      "finalSummary": "Resumen de la integración final",
+      "continue": "Continuar a los resultados"
+    }
+  },
+  "finalBoss": {
+    "eyebrow": "Operación final",
+    "title": "La prueba final de privacidad",
+    "description": "Completaste todos los módulos. Ahora ensambla el modelo de protección que permite verificar la elegibilidad sin exponer a quien vota.",
+    "mission": "Elige la integración que protege el voto y evita usar dos veces la misma elegibilidad.",
+    "loadingTitle": "Cargando la operación final...",
+    "loadingDescription": "Preparando el desafío final para el idioma seleccionado.",
+    "loadErrorTitle": "No pudimos cargar la operación final",
+    "loadErrorDescription": "El desafío final no está disponible temporalmente. Vuelve al dashboard e intenta de nuevo.",
+    "unavailableTitle": "Desafío final no disponible",
+    "unavailableDescription": "El desafío final no está presente en el paquete de contenido cargado. Vuelve al dashboard para continuar."
+  },
+  "results": {
+    "eyebrow": "Misión completada",
+    "title": "Midnight está protegido",
+    "description": "Agente {{alias}}, completaste la misión de entrenamiento de CryptoGuardians y aseguraste la integración final.",
+    "unknownAgent": "Agente no identificado",
+    "loadingTitle": "Cargando tus resultados...",
+    "loadingDescription": "Restaurando el contenido educativo necesario para mostrar tu registro de misión.",
+    "loadErrorTitle": "No pudimos cargar tus resultados",
+    "loadErrorDescription": "Tu progreso está a salvo, pero no se pudo cargar el contenido necesario para este resumen.",
+    "backToDashboard": "Volver al dashboard",
+    "stats": {
+      "agentAlias": "Alias del agente",
+      "modules": "Módulos completados",
+      "challenges": "Desafíos completados",
+      "exposureLevel": "Nivel de exposición",
+      "exposureScore": "Puntaje de exposición",
+      "finalBadge": "Insignia final"
+    },
+    "exposureLevels": {
+      "safe": "Seguro",
+      "medium": "Medio",
+      "high": "Alto"
+    },
+    "badges": {
+      "midnightGuardian": "Guardián de Midnight",
+      "pending": "Pendiente"
+    },
+    "closing": {
+      "eyebrow": "Más allá de la misión",
+      "title": "La misión terminó. Ahora empieza lo que vas a construir.",
+      "description": "Probaste las ideas centrales de la privacidad en Midnight. Da el siguiente paso estudiando ejemplos funcionales y convierte estos patrones en tus propias aplicaciones privadas."
+    },
+    "nextSteps": {
+      "eyebrow": "Siguiente aprendizaje",
+      "title": "Aprende a construir",
+      "description": "Pasa de los conceptos guiados a proyectos reales de Midnight, un patrón a la vez.",
+      "officialHub": {
+        "label": "Hub oficial de ejemplos de Midnight",
+        "title": "Explora el ecosistema de Midnight",
+        "description": "Consulta la colección oficial de ejemplos de Midnight y encuentra nuevas ideas para tu próxima dapp.",
+        "linkLabel": "Visitar el hub oficial de ejemplos"
+      },
+      "resources": {
+        "counter": {
+          "level": "Fundamentos",
+          "title": "Example Counter",
+          "description": "Comienza por lo esencial: sigue un ejemplo enfocado para entender la estructura de una aplicación de Midnight.",
+          "linkLabel": "Explorar Example Counter"
+        },
+        "bboard": {
+          "level": "Privacidad, estado y patrones ZK",
+          "title": "Example BBoard",
+          "description": "Avanza sobre los fundamentos con un ejemplo que combina datos privados, estado y patrones de zero-knowledge.",
+          "linkLabel": "Explorar Example BBoard"
+        },
+        "zkLoan": {
+          "level": "Estado privado avanzado",
+          "title": "Example ZK Loan",
+          "description": "Estudia una aplicación más avanzada que aplica el estado privado y el diseño zero-knowledge en un flujo de préstamos.",
+          "linkLabel": "Explorar Example ZK Loan"
+        }
+      }
+    }
   },
   "status": {
     "locked": "Bloqueado",

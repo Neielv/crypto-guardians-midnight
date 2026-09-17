@@ -23,7 +23,7 @@
     "instructions": "Complete the book's operation to verify that a nullifier doesn't yet exist in the set.",
     "successCriteria": "Fill the blank with member.",
     "payload": {
-      "template": "const isUnique = nullifierSet___(nullifier);",
+      "template": "const isUnique = nullifierSet.___(nullifier);",
       "blanks": [
         { "id": "blank-1", "answer": "member" }
       ]
@@ -53,7 +53,7 @@
     "instructions": "Complete the book's operation to add a nullifier to the set after verifying it's unique.",
     "successCriteria": "Fill the blank with insert.",
     "payload": {
-      "template": "nullifierSet___(nullifier);",
+      "template": "nullifierSet.___(nullifier);",
       "blanks": [
         { "id": "blank-1", "answer": "insert" }
       ]

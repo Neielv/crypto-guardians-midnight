@@ -18,9 +18,10 @@ export function CodeLabRunner({ codeLab, onSuccess }: Props) {
 
 function CodeEditor({ value, onChange, minHeight = 280 }: { value: string; onChange: (value: string) => void; minHeight?: number }) {
   return (
-    <div>
+    <div className="code-lab-runner__editor">
       <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>Compact code</div>
       <textarea
+        className="code-lab-runner__textarea"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         spellCheck={false}
@@ -48,7 +49,7 @@ function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLa
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
       <CodeEditor value={sourceCode} onChange={setSourceCode} minHeight={220} />
-      <div style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
+      <div className="code-lab-runner__actions" style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
         <Button onClick={submit} disabled={!sourceCode.trim()}>Validate</Button>
         <ChallengeFeedback result={result} />
       </div>
@@ -103,22 +104,23 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(260px, 0.9fr)', gap: 16, alignItems: 'start' }}>
-        <div>
+      <div className="code-lab-runner__layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(260px, 0.9fr)', gap: 16, alignItems: 'start' }}>
+        <div className="code-lab-runner__primary">
           <CodeEditor value={sourceCode} onChange={setSourceCode} />
         </div>
-        <div style={{ display: 'grid', gap: 12 }}>
+        <div className="code-lab-runner__secondary" style={{ display: 'grid', gap: 12 }}>
           <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Ledger / Witness</div>
           {codeLab.payload.fields.map((field) => {
             const isLedger = values[field.id] === 'ledger'
             return (
               <button
+                className="code-lab-runner__field"
                 key={field.id}
                 type="button"
                 onClick={() => toggleField(field.id)}
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, padding: 14, border: '1px solid rgba(255,255,255,0.08)', borderRadius: 14, background: 'rgba(17,17,17,0.82)', color: '#f5f5f5', cursor: 'pointer' }}
               >
-                <div style={{ display: 'grid', gap: 2, textAlign: 'left' }}>
+                <div className="code-lab-runner__field-copy" style={{ display: 'grid', gap: 2, textAlign: 'left' }}>
                   <span>{field.label}</span>
                   <span style={{ color: '#a1a1aa', fontSize: 12 }}>{field.dataType}</span>
                 </div>
@@ -128,12 +130,12 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
           })}
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
+      <div className="code-lab-runner__actions" style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
         <Button onClick={submit}>Validate</Button>
         <ChallengeFeedback result={result} />
       </div>
       {hasLedgerParenthesesError ? (
-        <p style={{ marginTop: 12, color: '#fca5a5', lineHeight: 1.6 }}>
+        <p className="code-lab-runner__validation-error" style={{ marginTop: 12, color: '#fca5a5', lineHeight: 1.6 }}>
           `export ledger` no lleva paréntesis. Usa `export ledger nombre: Tipo;`. Los paréntesis se usan en `witness nombre(): Tipo;`.
         </p>
       ) : null}

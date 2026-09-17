@@ -74,5 +74,68 @@
       ],
       "correctOptionId": "b"
     }
+  },
+  {
+    "challengeId": "final-boss-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "final_assembly",
+    "title": "Integración final",
+    "instructions": "Elige la arquitectura que protege la privacidad, demuestra la elegibilidad y evita el doble voto.",
+    "successCriteria": "Seleccionar la arquitectura con witness privado, prueba ZK, raíz de Merkle y nullifier.",
+    "maxAttempts": 3,
+    "payload": {
+      "stages": [
+        {
+          "id": "private-witness",
+          "title": "Witness privado",
+          "description": "Mantén oculta la elegibilidad y los datos privados de quien vota mientras preparas la prueba.",
+          "pieces": [
+            { "id": "keep-private", "label": "Mantener los datos de elegibilidad en el witness privado" },
+            { "id": "publish-identity", "label": "Publicar la identidad real para que todos la inspeccionen" },
+            { "id": "store-public", "label": "Copiar el witness en un campo público del ledger" }
+          ],
+          "correctPieceId": "keep-private",
+          "explanation": "El witness contiene datos privados de elegibilidad, por eso debe permanecer oculto y no convertirse en estado público."
+        },
+        {
+          "id": "merkle-membership",
+          "title": "Pertenencia en Merkle",
+          "description": "Demuestra que el witness privado pertenece a la raíz de Merkle autorizada.",
+          "pieces": [
+            { "id": "prove-membership", "label": "Verificar una ruta de Merkle contra la raíz autorizada" },
+            { "id": "publish-tree", "label": "Publicar cada identidad como prueba de pertenencia" },
+            { "id": "compare-count", "label": "Comparar el witness solo con el conteo actual de votos" }
+          ],
+          "correctPieceId": "prove-membership",
+          "explanation": "Una ruta de pertenencia de Merkle vincula el witness oculto con la raíz autorizada sin revelar todo el padrón."
+        },
+        {
+          "id": "zk-proof",
+          "title": "Prueba zero-knowledge",
+          "description": "Demuestra la elegibilidad sin revelar el witness.",
+          "pieces": [
+            { "id": "prove-without-reveal", "label": "Generar una prueba ZK de elegibilidad sin exponer el witness" },
+            { "id": "reveal-witness", "label": "Revelar el witness para que el verificador lo compruebe directamente" },
+            { "id": "skip-proof", "label": "Aceptar la afirmación sin evidencia criptográfica" }
+          ],
+          "correctPieceId": "prove-without-reveal",
+          "explanation": "La prueba ZK permite verificar la afirmación mientras mantiene privado el valor del witness."
+        },
+        {
+          "id": "nullifier",
+          "title": "Nullifier",
+          "description": "Evita que la misma elegibilidad se use dos veces.",
+          "pieces": [
+            { "id": "reject-reuse", "label": "Derivar un nullifier y rechazar cualquier nullifier repetido" },
+            { "id": "reveal-again", "label": "Revelar el witness cada vez que se envía otra participación" },
+            { "id": "allow-duplicates", "label": "Aceptar cada prueba aunque la elegibilidad se repita" }
+          ],
+          "correctPieceId": "reject-reuse",
+          "explanation": "El nullifier marca un uso de la elegibilidad sin revelar su origen y permite rechazar cualquier reutilización."
+        }
+      ],
+      "finalSummary": "La arquitectura completa mantiene privado el witness, demuestra su pertenencia a Merkle, usa una prueba ZK para verificar la elegibilidad sin divulgarla y comprueba un nullifier para evitar el doble uso."
+    }
   }
 ]

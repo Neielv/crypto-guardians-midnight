@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { RequireAgentIdentity, RequireUnlockedModule } from './guards'
+import { RequireAgentIdentity, RequireBriefingCompletion, RequireCompletedModules, RequireFinalBossCompletion, RequireUnlockedModule } from './guards'
 import { ROUTES } from '@/lib/constants/routes'
 import LandingPage from '@/pages/LandingPage'
 import OnboardingPage from '@/pages/OnboardingPage'
@@ -16,15 +16,21 @@ export function AppRoutes() {
     <Routes>
       <Route path={ROUTES.landing} element={<LandingPage />} />
       <Route path={ROUTES.onboarding} element={<OnboardingPage />} />
-      <Route path={ROUTES.briefing} element={<BriefingPage />} />
-      <Route path={ROUTES.settings} element={<SettingsPage />} />
       <Route element={<RequireAgentIdentity />}>
-        <Route path={ROUTES.dashboard} element={<DashboardPage />} />
-        <Route element={<RequireUnlockedModule />}>
-          <Route path={ROUTES.module} element={<ModulePage />} />
+        <Route path={ROUTES.briefing} element={<BriefingPage />} />
+        <Route path={ROUTES.settings} element={<SettingsPage />} />
+        <Route element={<RequireBriefingCompletion />}>
+          <Route path={ROUTES.dashboard} element={<DashboardPage />} />
+          <Route element={<RequireUnlockedModule />}>
+            <Route path={ROUTES.module} element={<ModulePage />} />
+          </Route>
+          <Route element={<RequireCompletedModules />}>
+            <Route path={ROUTES.finalBoss} element={<FinalBossPage />} />
+          </Route>
+          <Route element={<RequireFinalBossCompletion />}>
+            <Route path={ROUTES.results} element={<ResultsPage />} />
+          </Route>
         </Route>
-        <Route path={ROUTES.finalBoss} element={<FinalBossPage />} />
-        <Route path={ROUTES.results} element={<ResultsPage />} />
       </Route>
       <Route path="/home" element={<Navigate to={ROUTES.landing} replace />} />
       <Route path="*" element={<NotFoundPage />} />

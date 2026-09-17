@@ -58,6 +58,7 @@ export default function BriefingPage() {
 
   return (
     <main
+      className="briefing-page"
       style={{
         minHeight: '100vh',
         display: 'grid',
@@ -81,6 +82,7 @@ export default function BriefingPage() {
       </style>
 
       <section
+        className="briefing-page__card"
         style={{
           maxWidth: 860, // Más ancha para acercarse al formato 16:9 de las imágenes
           width: '100%',
@@ -98,6 +100,7 @@ export default function BriefingPage() {
       >
         {/* IMAGE AS CARD BACKGROUND */}
         <img
+          className="briefing-page__image"
           key={slides[currentSlide].image}
           src={`${import.meta.env.BASE_URL}${slides[currentSlide].image}`}
           alt="Briefing visual"
@@ -143,7 +146,7 @@ export default function BriefingPage() {
         />
 
         {/* TOP SECTION: TITLE */}
-        <div style={{ padding: '32px 40px 24px 40px', position: 'relative', zIndex: 10 }}>
+        <div className="briefing-page__title" style={{ padding: '32px 40px 24px 40px', position: 'relative', zIndex: 10 }}>
           <p
             style={{
               fontSize: 12,
@@ -174,6 +177,7 @@ export default function BriefingPage() {
 
         {/* GLASSMORPHISM STRIP WITH TEXT */}
         <div
+          className="briefing-page__text-strip"
           style={{
             position: 'relative',
             zIndex: 10,
@@ -187,6 +191,7 @@ export default function BriefingPage() {
         >
           {/* Text Content Dinámico */}
           <div
+            className="briefing-page__text"
             key={currentSlide} // Fuerza re-render para la animación al cambiar de slide
             style={{
               display: 'flex',
@@ -212,6 +217,7 @@ export default function BriefingPage() {
           </div>
 
           <div
+            className="briefing-page__navigation"
             style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -222,7 +228,7 @@ export default function BriefingPage() {
             }}
           >
             {/* Dots */}
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div className="briefing-page__dots" style={{ display: 'flex', gap: 8 }}>
               {slides.map((_, i) => (
                 <button
                   key={i}
@@ -243,10 +249,10 @@ export default function BriefingPage() {
             </div>
 
             {/* Controls */}
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div className="briefing-page__controls" style={{ display: 'flex', gap: 10 }}>
               {currentSlide > 0 && (
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   onClick={prevSlide}
                   style={{
                     padding: '8px 16px',

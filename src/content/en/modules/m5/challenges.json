@@ -22,38 +22,55 @@
     "challengeId": "m5-l2-challenge-1",
     "moduleId": "m5",
     "lessonId": "m5-l2",
-    "type": "trivia",
-    "title": "DUST cost factors",
-    "instructions": "Identify what factors affect DUST cost according to the book.",
-    "successCriteria": "Select the option mentioning witness variables, constraints, and proof system.",
+    "type": "drag_and_drop",
+    "title": "Classify DUST cost factors",
+    "instructions": "Drag each factor to the zone that best explains whether it influences DUST cost.",
+    "successCriteria": "Place witness variables, circuit constraints, and the proof system in the factors that influence DUST zone; place public output size alone in the factor that does not determine it by itself zone.",
     "maxAttempts": 3,
     "payload": {
-      "question": "What factors determine the DUST cost of a ZK proof?",
-      "options": [
-        { "id": "a", "label": "Only the number of inputs to the circuit" },
-        { "id": "b", "label": "The number of witness variables, number of constraints, and proof system used" },
-        { "id": "c", "label": "Only the size of the public outputs" }
+      "items": [
+        { "id": "witness-variables", "label": "Witness variables" },
+        { "id": "circuit-constraints", "label": "Circuit constraints" },
+        { "id": "proof-system", "label": "Proof system used" },
+        { "id": "public-output-size-alone", "label": "Public output size alone" }
       ],
-      "correctOptionId": "b"
+      "zones": [
+        { "id": "affects-dust", "label": "Factors that affect or influence DUST cost" },
+        { "id": "does-not-determine-dust-alone", "label": "Factors that do not determine DUST cost by themselves" }
+      ],
+      "validAssignments": {
+        "witness-variables": "affects-dust",
+        "circuit-constraints": "affects-dust",
+        "proof-system": "affects-dust",
+        "public-output-size-alone": "does-not-determine-dust-alone"
+      }
     }
   },
   {
     "challengeId": "m5-l3-challenge-1",
     "moduleId": "m5",
     "lessonId": "m5-l3",
-    "type": "trivia",
-    "title": "Proof server trust model",
-    "instructions": "Select how trust works with proof servers.",
-    "successCriteria": "Select the option explaining that proof servers can't see private data because it's encrypted as witnesses.",
+    "type": "type_matching",
+    "title": "Match privacy concepts",
+    "instructions": "Match each privacy concept with its consequence in a proof-server flow.",
+    "successCriteria": "Match each concept to its exact consequence.",
     "maxAttempts": 3,
     "payload": {
-      "question": "How does the trust model work with proof servers?",
-      "options": [
-        { "id": "a", "label": "You must trust the proof server to be honest with your data" },
-        { "id": "b", "label": "Proof servers cannot see private data because it's provided as encrypted witnesses; proof integrity is cryptographic" },
-        { "id": "c", "label": "Proof servers are not used in Midnight" }
+      "prompts": [
+        { "id": "encrypted-witnesses", "label": "Encrypted witnesses" },
+        { "id": "cryptographic-proof-integrity", "label": "Cryptographic proof integrity" },
+        { "id": "proof-server-role", "label": "Proof server role" }
       ],
-      "correctOptionId": "b"
+      "options": [
+        { "id": "private-data-uninspectable", "label": "The proof server cannot inspect private voter data" },
+        { "id": "invalid-proofs-rejected", "label": "Invalid proofs are rejected without trusting the server's word" },
+        { "id": "proof-generation-without-plaintext", "label": "It helps generate proofs but does not receive plaintext private inputs" }
+      ],
+      "correctMatches": {
+        "encrypted-witnesses": "private-data-uninspectable",
+        "cryptographic-proof-integrity": "invalid-proofs-rejected",
+        "proof-server-role": "proof-generation-without-plaintext"
+      }
     }
   },
   {

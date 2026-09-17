@@ -22,19 +22,58 @@
     "challengeId": "m4-l2-challenge-1",
     "moduleId": "m4",
     "lessonId": "m4-l2",
-    "type": "trivia",
-    "title": "Double-vote prevention",
-    "instructions": "Identify how the system prevents a citizen from voting twice using nullifiers.",
-    "successCriteria": "Select the option explaining that the nullifier is registered and the second attempt is rejected.",
+    "type": "state_simulation",
+    "title": "Nullifier state check",
+    "instructions": "Process both attempts in order to observe how a local nullifier set prevents a double vote. This is an educational simulation, not a blockchain transaction.",
+    "successCriteria": "Process the first accepted attempt and then the second rejected attempt with the same masked nullifier.",
     "maxAttempts": 3,
     "payload": {
-      "question": "How does the system prevent double-voting with nullifiers?",
-      "options": [
-        { "id": "a", "label": "The ledger stores the voter's identity along with their vote" },
-        { "id": "b", "label": "The generated nullifier is registered, and the next attempt with the same citizen finds it already exists and is rejected" },
-        { "id": "c", "label": "The system limits the number of votes per IP address" }
-      ],
-      "correctOptionId": "b"
+      "ledgerLabel": "Masked local ledger entry (simulation)",
+      "initialEntries": [],
+      "survey": {
+        "title": "Community pulse poll",
+        "question": "Which privacy property should this anonymous vote preserve?",
+        "options": [
+          { "id": "privacy", "label": "Count the vote without exposing the voter" },
+          { "id": "identity", "label": "Publish the voter's identity with the vote" }
+        ],
+        "identityLabel": "Masked identity",
+        "identityValue": "agent_••••••42",
+        "nullifierLabel": "Masked nullifier",
+        "nullifierValue": "nf_••••••7A2"
+      },
+      "routine": {
+        "lines": [
+          { "id": "receive", "code": "receive(privateVote, maskedNullifier);" },
+          { "id": "derive", "code": "derive nullifier from private vote;" },
+          { "id": "check", "code": "const alreadyUsed = nullifierSet.member(nullifier);" },
+          { "id": "register", "code": "if (!alreadyUsed) nullifierSet.insert(nullifier);" },
+          { "id": "accept", "code": "accept vote;" },
+          { "id": "reject", "code": "reject duplicate vote;" }
+        ]
+      },
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "title": "First anonymous vote",
+          "description": "The anonymous poll receives the selected vote with a masked nullifier that is not registered locally.",
+          "outcome": "accepted",
+          "ledgerEntry": "nf_••••••7A2",
+          "reason": "member(nullifier) -> false. The masked nullifier is not present, so the vote is accepted and registered locally.",
+          "completedLineIds": ["receive", "derive", "check", "register", "accept"],
+          "activeLineId": "accept"
+        },
+        {
+          "id": "attempt-2",
+          "title": "Resent anonymous vote",
+          "description": "The same selected vote and masked nullifier are sent again.",
+          "outcome": "rejected",
+          "ledgerEntry": "",
+          "reason": "member(nullifier) -> true. The same masked nullifier is already registered, so the repeated vote is rejected locally.",
+          "completedLineIds": ["receive", "derive", "check", "reject"],
+          "activeLineId": "reject"
+        }
+      ]
     }
   },
   {
@@ -60,19 +99,37 @@
     "challengeId": "m4-l4-challenge-1",
     "moduleId": "m4",
     "lessonId": "m4-l4",
-    "type": "trivia",
-    "title": "Practical application",
-    "instructions": "Identify what the circuit verifies when processing a nullifier.",
-    "successCriteria": "Select the option that includes verifying the nullifier was correctly generated and that it doesn't exist in the set.",
+    "type": "code_assembly",
+    "title": "Assemble nullifier acceptance checks",
+    "instructions": "Assemble the two verification conditions in order for the simplified vote-acceptance routine.",
+    "successCriteria": "Assemble the verification routine that decides whether a nullifier can be accepted.",
     "maxAttempts": 3,
     "payload": {
-      "question": "According to the book, what does the circuit verify when processing a nullifier?",
-      "options": [
-        { "id": "a", "label": "Only verifies the user's identity" },
-        { "id": "b", "label": "Verifies the nullifier was correctly generated using the secret key AND that it doesn't yet exist in the ledger's nullifier set" },
-        { "id": "c", "label": "Only verifies the nullifier is greater than zero" }
+      "successMessage": "Great work! With the nullifier, we verified that the vote is valid and prevented double voting.",
+      "contextLines": [
+        "function acceptVote(secretKey, nonce, submittedNullifier) {",
+        "  const nullifier = deriveNullifier(secretKey, nonce);",
+        "  const alreadyUsed = nullifierSet.member(nullifier);",
+        "  // Place the checks before acceptance; an existing nullifier causes rejection.",
+        "  // The identity stays private; only a valid, unused nullifier proceeds.",
+        "  accept vote;",
+        "}"
       ],
-      "correctOptionId": "b"
+      "slots": [
+        { "id": "slot-match", "label": "Submitted nullifier check" },
+        { "id": "slot-unused", "label": "Set membership check" }
+      ],
+      "pieces": [
+        { "id": "piece-match", "label": "assert(nullifier === submittedNullifier)" },
+        { "id": "piece-unused", "label": "assert(!alreadyUsed)" },
+        { "id": "piece-positive", "label": "assert(nullifier > 0)" },
+        { "id": "piece-already-used", "label": "assert(alreadyUsed)" },
+        { "id": "piece-public-identity", "label": "assert(userIdentityIsPublic)" }
+      ],
+      "correctOrder": [
+        "piece-match",
+        "piece-unused"
+      ]
     }
   }
 ]

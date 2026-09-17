@@ -10,6 +10,7 @@ export default function ModulePage() {
   const bootstrapContent = useAppStore((state) => state.bootstrapContent)
   const bootstrapProgress = useAppStore((state) => state.bootstrapProgress)
   const content = useAppStore((state) => state.content)
+  const progress = useAppStore((state) => state.progress)
 
   useEffect(() => {
     if (!moduleId) return
@@ -22,7 +23,7 @@ export default function ModulePage() {
   }, [bootstrapContent, bootstrapProgress, locale, moduleId])
 
   if (!moduleId) return <main style={{ padding: 32 }}>Missing module id</main>
-  if (!content) return <main style={{ padding: 32 }}>Loading module...</main>
+  if (content === null || Object.keys(progress.modules).length === 0) return <main style={{ padding: 32 }}>Loading module...</main>
 
-  return <ModulePlayer moduleId={moduleId as never} />
+  return <ModulePlayer key={moduleId} moduleId={moduleId as never} />
 }

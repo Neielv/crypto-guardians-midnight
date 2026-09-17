@@ -87,28 +87,80 @@
     "challengeId": "m3-l4-challenge-1",
     "moduleId": "m3",
     "lessonId": "m3-l4",
-    "type": "trivia",
-    "title": "Error crítico de la misión",
-    "instructions": "Identifica qué significa realmente el error `potential witness-value disclosure`.",
-    "successCriteria": "Selecciona la opción que describe una fuga potencial de un valor de witness hacia un contexto público sin declaración explícita.",
+    "type": "code_assembly",
+    "title": "Repara el límite de divulgación",
+    "instructions": "Repara la rutina fija de Compact colocando las piezas LEGO en orden. `disclose` es el límite explícito que permite que el valor witness pase al ledger público; no lo reemplaces por una operación más amplia o no relacionada.",
+    "successCriteria": "Repara la fuga del valor witness hacia el ledger usando un límite de divulgación explícito.",
+      "hints": [
+       "`getBalance()` lee el valor witness; busca la pieza que marca explícitamente el límite antes de terminar la instrucción.",
+       "Usa solo las piezas que reparan la frontera entre el witness y el ledger. Las demás son operaciones relacionadas, pero no resuelven este error."
+      ],
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Qué está indicando el compilador con ese error?",
-      "options": [
+      "contextLines": [
+        "export ledger balance: Bytes<32>;",
+        "export circuit recordBalance(): [] {",
+        "  balance = getBalance(); // el valor witness cruza sin divulgación explícita",
+        "}"
+      ],
+      "slots": [
         {
-          "id": "a",
-          "label": "Un valor potencialmente privado intenta divulgarse sin `disclose()`"
+          "id": "slot-balance",
+          "label": "Objetivo de asignación"
         },
         {
-          "id": "b",
-          "label": "El ledger no acepta tipos `Bytes<32>`"
+          "id": "slot-disclose",
+          "label": "Límite de divulgación"
         },
         {
-          "id": "c",
-          "label": "El pragma del contrato debe eliminarse"
+          "id": "slot-balance-reader",
+          "label": "Lectura del witness"
+        },
+        {
+          "id": "slot-end",
+          "label": "Fin de la instrucción"
         }
       ],
-      "correctOptionId": "a"
+      "pieces": [
+        {
+          "id": "piece-balance",
+          "label": "balance ="
+        },
+        {
+          "id": "piece-disclose",
+          "label": "disclose"
+        },
+        {
+          "id": "piece-get-balance",
+          "label": "getBalance()"
+        },
+        {
+          "id": "piece-close",
+          "label": ";"
+        },
+        {
+          "id": "piece-hash",
+          "label": "hash"
+        },
+        {
+          "id": "piece-assert",
+          "label": "assert"
+        },
+        {
+          "id": "piece-public",
+          "label": "public"
+        },
+        {
+          "id": "piece-reveal-all",
+          "label": "revealAll()"
+        }
+      ],
+      "correctOrder": [
+        "piece-balance",
+        "piece-disclose",
+        "piece-get-balance",
+        "piece-close"
+      ]
     }
   }
 ]

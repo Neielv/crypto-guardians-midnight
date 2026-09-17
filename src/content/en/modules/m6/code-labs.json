@@ -4,11 +4,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l1",
     "type": "fill_in_the_blank",
-    "title": "Hands on: commitment properties",
-    "instructions": "Complete the two fundamental properties of commitments.",
-    "successCriteria": "Fill the blank with binding.",
+    "title": "Code lab: seal a vote with a commitment",
+    "instructions": "Complete the property that prevents changing the value after creating the commitment. Keep the Compact block intact.",
+    "successCriteria": "Complete the blank with binding.",
     "payload": {
-      "template": "A commitment has two properties: hiding and ___.",
+      "template": "export ledger commitments: Map<Field, Commitment>;\n\nconst { commitment, opening } = persistentCommit(vote);\n// Properties: hiding and ___\ncommitments.set(voterId, commitment);",
       "blanks": [
         { "id": "blank-1", "answer": "binding" }
       ]
@@ -19,13 +19,13 @@
     "moduleId": "m6",
     "lessonId": "m6-l2",
     "type": "fill_in_the_blank",
-    "title": "Hands on: persistentCommit use case",
-    "instructions": "Complete the use case for persistentCommit.",
-    "successCriteria": "Fill the blank with hidden.",
+    "title": "Code lab: use persistentCommit",
+    "instructions": "Complete the primitive that keeps the vote hidden until an authorized reveal.",
+    "successCriteria": "Complete the blank with persistentCommit.",
     "payload": {
-      "template": "Use persistentCommit when values must remain ___ until revealed.",
+      "template": "export ledger commitments: Map<Field, Commitment>;\n\nconst { commitment, opening } = ___(vote);\n// Reveal only with the opening key.\ncommitments.set(voterId, commitment);",
       "blanks": [
-        { "id": "blank-1", "answer": "hidden" }
+        { "id": "blank-1", "answer": "persistentCommit" }
       ]
     }
   },
@@ -34,11 +34,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l3",
     "type": "fill_in_the_blank",
-    "title": "Hands on: Merkle proof size",
-    "instructions": "Complete the efficiency of Merkle proofs.",
-    "successCriteria": "Fill the blank with log.",
+    "title": "Code lab: verify a Merkle proof",
+    "instructions": "Complete the membership-proof complexity in the circuit block.",
+    "successCriteria": "Complete the blank with log to express O(log n).",
     "payload": {
-      "template": "A Merkle proof has O(___ n) size.",
+      "template": "export circuit verifyMembership(\n  leaf: Field,\n  proofPath: [Field; depth],\n  root: Field\n): [] {\n  // Proof size: O(___ n)\n  let computed = leaf;\n  for (i in 0..depth) {\n    computed = hash(computed, proofPath[i]);\n  }\n  assert(computed == root);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "log" }
       ]
@@ -49,11 +49,11 @@
     "moduleId": "m6",
     "lessonId": "m6-l4",
     "type": "fill_in_the_blank",
-    "title": "Hands on: verification flow",
-    "instructions": "Complete what the ZK circuit verifies.",
-    "successCriteria": "Fill the blank with commitment.",
+    "title": "Code lab: verify the electoral flow",
+    "instructions": "Complete what the circuit verifies together with the Merkle proof.",
+    "successCriteria": "Complete the blank with commitment.",
     "payload": {
-      "template": "The circuit verifies the ___ plus the Merkle proof.",
+      "template": "export circuit verifyEligibility(\n  leaf: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field,\n  voteCommitment: Commitment\n): [] {\n  assert(verifyMerkle(leaf, merkleProof, root));\n  // The circuit verifies the ___ together with the Merkle proof.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "commitment" }
       ]

@@ -14,8 +14,9 @@ export default function SettingsPage() {
 
   return (
     <AppShell>
-      <div style={{ maxWidth: 760 }}>
+      <div className="settings-page" style={{ maxWidth: 760 }}>
         <section
+          className="settings-page__hero"
           style={{
             marginBottom: 24,
             padding: 24,
@@ -32,11 +33,11 @@ export default function SettingsPage() {
         <Card>
           <h2 style={{ marginTop: 0 }}>{t('settings.languageTitle')}</h2>
           <p style={{ color: '#d4d4d8' }}>{t('settings.currentLanguage', { locale: locale.toUpperCase() })}</p>
-          <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+          <div className="settings-page__language-actions" style={{ display: 'flex', gap: 8, marginTop: 16 }}>
             <Button variant={locale === 'es' ? 'primary' : 'secondary'} onClick={() => setLocale('es')}>Español</Button>
             <Button variant={locale === 'en' ? 'primary' : 'secondary'} onClick={() => setLocale('en')}>English</Button>
           </div>
-          <div style={{ marginTop: 20 }}>
+          <div className="settings-page__navigation-action" style={{ marginTop: 20 }}>
             {isAgent ? (
               <Link to={ROUTES.dashboard}>
                 <Button variant="secondary">{t('navigation.backToDashboard')}</Button>
