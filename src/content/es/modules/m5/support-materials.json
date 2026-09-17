@@ -1,0 +1,292 @@
+[
+  {
+    "supportMaterialId": "m5-l1-slide-1-support-1",
+    "slideId": "m5-l1-slide-1",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST y Costos de Privacidad",
+    "sourceSection": "Introducción",
+    "title": "El precio de la privacidad",
+    "excerpts": [
+      "Cada prueba zero-knowledge requiere recursos computacionales para generarse.",
+      "DUST es la unidad que mide este costo computacional en Midnight.",
+      "Como el gas en otras blockchains, DUST representa la energía necesaria para mantener datos privados."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-2-support-1",
+    "slideId": "m5-l1-slide-2",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST y Costos de Privacidad",
+    "sourceSection": "Qué es DUST",
+    "title": "Qué es DUST",
+    "excerpts": [
+      "DUST es una métrica de recursos criptográficos que mide el costo computacional de generar pruebas ZK.",
+      "Pruebas más complejas (más inputs, más restricciones) consumen más DUST.",
+      "DUST es el puente entre privacidad y eficiencia."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Concepto DUST",
+        "code": "// DUST representa recursos computacionales\n// necesarios para pruebas zero-knowledge\nconst dustCost = calculateDust(witnessCount, constraints);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-3-support-1",
+    "slideId": "m5-l1-slide-3",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST y Costos de Privacidad",
+    "sourceSection": "Por qué la Privacidad Cuesta",
+    "title": "Por qué la privacidad cuesta recursos",
+    "excerpts": [
+      "Las pruebas ZK requieren operaciones matemáticas complejas: operaciones hash, aritmética de curvas elípticas.",
+      "Se necesitan cientos o miles de estas operaciones para cada prueba.",
+      "Este trabajo hace posible la privacidad pero también la hace costosa."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-4-support-1",
+    "slideId": "m5-l1-slide-4",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST y Costos de Privacidad",
+    "sourceSection": "Balance de DUST",
+    "title": "El balance de DUST",
+    "excerpts": [
+      "Los usuarios deben mantener un balance de DUST para realizar operaciones privadas.",
+      "Este balance es separado del balance de tokens.",
+      "Entender DUST es esencial para construir aplicaciones privadas eficientes."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Verificación de balance DUST",
+        "code": "import { dust } from '@midnight/coins';\n\nconst dustBalance = await dust.balanceOf(user);\nassert(dustBalance >= requiredDust, 'DUST insuficiente');"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-1-support-1",
+    "slideId": "m5-l2-slide-1",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "Recursos ZK y Costos de Pruebas",
+    "sourceSection": "Recursos",
+    "title": "Recursos de generación de pruebas ZK",
+    "excerpts": [
+      "Generar una prueba ZK requiere CPU para operaciones criptográficas.",
+      "Se necesita memoria para almacenar valores intermedios.",
+      "Se requiere tiempo para que la prueba sea computada."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-2-support-1",
+    "slideId": "m5-l2-slide-2",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "Recursos ZK y Costos de Pruebas",
+    "sourceSection": "Factores",
+    "title": "Factores que afectan el costo de DUST",
+    "excerpts": [
+      "El costo de DUST depende de: número de variables witness.",
+      "Número de restricciones en el circuito.",
+      "Sistema de pruebas usado."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Fórmula de DUST",
+        "code": "const dustCost = calculateDust(\n  witnessCount,   // número de inputs privados\n  constraintCount, // complejidad del circuito\n  proofSystem     // tipo de sistema de pruebas\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-3-support-1",
+    "slideId": "m5-l2-slide-3",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "Recursos ZK y Costos de Pruebas",
+    "sourceSection": "Compromisos",
+    "title": "Compromisos de complejidad de pruebas",
+    "excerpts": [
+      "Siempre hay un compromiso entre privacidad y costo.",
+      "Pruebas más privadas requieren circuitos más grandes y más DUST.",
+      "Entender esto ayuda a diseñar sistemas eficientes."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-4-support-1",
+    "slideId": "m5-l2-slide-4",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "Recursos ZK y Costos de Pruebas",
+    "sourceSection": "Estimación",
+    "title": "Estimando DUST para tu circuito",
+    "excerpts": [
+      "Antes de desplegar, analiza el circuito para estimar costos de DUST.",
+      "Contar restricciones y variables witness da una buena aproximación.",
+      "Esto ayuda a los usuarios a planificar su presupuesto de DUST."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Estimación de DUST",
+        "code": "export circuit estimateDust<C>(constraints: Uint<C>) {\n  // Fórmula de estimación aproximada\n  const baseCost = 1000;\n  const perConstraint = 10;\n  return baseCost + (perConstraint * constraints);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-1-support-1",
+    "slideId": "m5-l3-slide-1",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Arquitectura de Servidores de Pruebas",
+    "sourceSection": "Rol",
+    "title": "El rol del servidor de pruebas",
+    "excerpts": [
+      "La generación de pruebas a menudo se delega a servidores especializados.",
+      "Estos servidores realizan cálculos criptográficos pesados off-chain.",
+      "Esto habilita clientes ligeros que consumen DUST vía el servidor."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-2-support-1",
+    "slideId": "m5-l3-slide-2",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Arquitectura de Servidores de Pruebas",
+    "sourceSection": "Cómo Funciona",
+    "title": "Cómo funcionan los servidores de pruebas",
+    "excerpts": [
+      "El usuario provee datos witness (encriptados).",
+      "El servidor de pruebas genera la prueba ZK, consumiendo DUST.",
+      "La prueba se devuelve al usuario."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Flujo del servidor de pruebas",
+        "code": "const encryptedWitness = encrypt(witness, serverPublicKey);\nconst proof = await proofServer.generate(encryptedWitness);\n// DUST se descuenta de la cuenta del usuario"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-3-support-1",
+    "slideId": "m5-l3-slide-3",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Arquitectura de Servidores de Pruebas",
+    "sourceSection": "Confianza",
+    "title": "Modelo de confianza para servidores de pruebas",
+    "excerpts": [
+      "Los servidores de pruebas no pueden ver datos privados porque se proveen como witnesses encriptados.",
+      "La integridad de la prueba está garantizada criptográficamente.",
+      "No hay necesidad de confiar en el servidor - la matemática asegura corrección."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Witness encriptado",
+        "code": "import { encrypt } from '@midnight/crypto';\n\n// Los datos privados nunca salen del dispositivo del usuario en claro\nconst encryptedWitness = encrypt(\n  { secretKey, eligibility, nonce },\n  serverPublicKey\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-4-support-1",
+    "slideId": "m5-l3-slide-4",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Arquitectura de Servidores de Pruebas",
+    "sourceSection": "Descentralización",
+    "title": "Generación de pruebas descentralizada",
+    "excerpts": [
+      "Midnight soporta una red de servidores de pruebas.",
+      "Los usuarios pueden elegir su servidor de pruebas o ejecutar el propio.",
+      "La competencia entre proveedores ayuda a mantener costos razonables."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-1-support-1",
+    "slideId": "m5-l4-slide-1",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Estrategias de Costo de Privacidad",
+    "sourceSection": "Optimización",
+    "title": "Estrategias de optimización de circuitos",
+    "excerpts": [
+      "Reduce el número de restricciones en tus circuitos.",
+      "Reutiliza cómputo donde sea posible.",
+      "Elige funciones hash eficientes. Circuitos más pequeños consumen menos DUST."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuito optimizado",
+        "code": "// Antes: 1000 restricciones\nconst hash1 = hash(a);\nconst hash2 = hash(b);\n\n// Después: 500 restricciones (reutilizar)\nconst hashA = hash(a);\nconst hashB = hash(b, hashA); // Encadenar cómputo"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-2-support-1",
+    "slideId": "m5-l4-slide-2",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Estrategias de Costo de Privacidad",
+    "sourceSection": "Agregación",
+    "title": "Agregación de pruebas",
+    "excerpts": [
+      "Múltiples acciones pueden probarse juntas en una sola prueba.",
+      "Esto reduce el costo amortizado de DUST por acción.",
+      "Las operaciones por lotes son más eficientes."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Prueba agregada",
+        "code": "export circuit batchVote(\n  candidates: [Field; 10],\n  nullifiers: [Field; 10]\n) {\n  // Probar los 10 votos en un circuito\n  for (i in 0..10) {\n    assert(isValid[i]);\n  }\n  // Una sola prueba para 10 acciones"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-3-support-1",
+    "slideId": "m5-l4-slide-3",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Estrategias de Costo de Privacidad",
+    "sourceSection": "Caché",
+    "title": "Caché de pruebas",
+    "excerpts": [
+      "Para operaciones repetidas, haz caché de pruebas.",
+      "Algunos datos no cambian entre operaciones.",
+      "Reutilizar pruebas evita regenerarlas y ahorra DUST."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Caché de pruebas",
+        "code": "// Caché de prueba de elegibilidad para la temporada\nconst cachedProof = proofCache.get(seasonId);\nif (cachedProof) {\n  return cachedProof; // Reutilizar, ahorrar DUST\n}\n// Solo generar si no está en caché"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-4-support-1",
+    "slideId": "m5-l4-slide-4",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Estrategias de Costo de Privacidad",
+    "sourceSection": "Balance",
+    "title": "Equilibrando privacidad y costo",
+    "excerpts": [
+      "La privacidad es una característica que cuesta DUST.",
+      "Diseña sistemas que den a los usuarios control sobre el compromiso.",
+      "Permite a los usuarios elegir su nivel de privacidad para cada operación."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Privacidad controlada por usuario",
+        "code": "enum PrivacyLevel {\n  Public,      // No se necesita prueba\n  Protected,   // Prueba ZK básica\n  FullyPrivate // Prueba de privacidad completa\n}\n\nconst userChoice = await user.selectPrivacyLevel();"
+      }
+    ]
+  }
+]

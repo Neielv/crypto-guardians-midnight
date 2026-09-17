@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m4-l1-slide-1",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "Un derecho político no puede usarse dos veces",
+        "text":  "Estar habilitado para participar no basta: el sistema también debe impedir que el mismo derecho se use dos veces. Piensa en el nullifier como una marca única de participación: una vez que ese derecho se ejerce, queda señalado para que no pueda volver a usarse sin exponer la identidad del ciudadano.",
+        "visualHint":  "Panel electoral mostrando que un derecho ya fue ejercido una vez, con una marca única registrada y sin revelar la identidad del ciudadano.",
+        "image":  "images/modules/m4/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-2",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "El nullifier marca uso sin revelar identidad",
+        "text":  "Nullifier actúa como un sello de “ya fue usado”. El sistema no necesita ver el nombre del ciudadano ni su expediente: le basta con detectar esa marca única para saber que esa participación ya ocurrió y no debe repetirse.",
+        "visualHint":  "Sello de \u0027derecho ya ejercido\u0027 aplicado sin mostrar identidad",
+        "image":  "images/modules/m4/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-3",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "Se genera desde un secreto y un evento",
+        "text":  "El nullifier se forma al mezclar un secreto privado con la huella de la elección. Piensa en ello como un sello único creado para ese momento: sirve para marcar que la participación ocurrió, pero no permite reconstruir la identidad del ciudadano.",
+        "visualHint":  "Sello único formándose a partir de un secreto privado y una huella del evento electoral, sin revelar la identidad del ciudadano.",
+        "image":  "images/modules/m4/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-4",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "El ledger conserva la marca de unicidad",
+        "text":  "Una vez creada, la marca única queda guardada en el ledger como registro de “ya participó”. Si alguien intenta usar otra vez ese mismo derecho, el sistema compara la nueva participación con esa marca y detecta la repetición sin necesidad de revelar la identidad del ciudadano.",
+        "visualHint":  "Ledger guardando una marca de participación ya usada y bloqueando un segundo intento sin mostrar la identidad del ciudadano.",
+        "image":  "images/modules/m4/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-1",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "El problema del doble voto",
+        "text":  "En una votación privada, no basta con ocultar la identidad del ciudadano: también hay que impedir que el mismo derecho se use más de una vez. Ese es el verdadero reto del doble voto: detectar la repetición sin transformar la elección en una lista pública de quién participó.",
+        "visualHint":  "Papeletas duplicadas bloqueadas por un escudo de verificación",
+        "image":  "images/modules/m4/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-2",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "La marca de exclusión resuelve el conflicto",
+        "text":  "Cada vez que ese derecho se usa, el sistema deja una marca de exclusión. Piensa en ella como un sello de “ya participó”: cuando aparece un segundo intento, el sistema reconoce la misma marca y lo rechaza de inmediato, sin revelar la identidad del ciudadano.",
+        "visualHint":  "Sistema detectando una marca de participación ya registrada y bloqueando automáticamente un segundo intento.",
+        "image":  "images/modules/m4/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-3",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "La misma idea sirve para otros recursos",
+        "text":  "Aunque aquí lo usas para proteger la votación, la idea es más amplia: si un derecho privado ya fue ejercido, no debe poder usarse otra vez. El nullifier sirve justamente para eso: detectar reutilización sin revelar identidad.",
+        "visualHint":  "Un mismo patrón de marca única bloqueando un segundo uso de un derecho privado, con la votación como ejemplo principal.",
+        "image":  "images/modules/m4/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-4",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "Privacidad y control siguen juntos",
+        "text":  "Aquí está la clave del nullifier: el sistema conserva control sin invadir privacidad. El ledger solo guarda la marca de “ya fue usado”; no necesita ver el nombre del ciudadano ni abrir su expediente para impedir que esa participación se repita.",
+        "visualHint":  "Ledger mostrando solo una marca de uso registrada mientras la identidad y el expediente del ciudadano permanecen ocultos.",
+        "image":  "images/modules/m4/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-1",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "Relacionar intentos sin revelar personas",
+        "text":  "A veces no basta con saber que una participación ocurrió: el sistema también necesita reconocer si dos acciones vienen del mismo origen, sin ver la identidad del ciudadano. A esa capacidad de relacionar acciones sin revelar a la persona se le llama linkability.",
+        "visualHint":  "Dos participaciones distintas conectadas por una misma marca de origen, mientras la identidad del ciudadano permanece oculta.",
+        "image":  "images/modules/m4/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-2",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "El nonce separa participaciones",
+        "text":  "El nonce es un diferenciador de intentos. Aunque el origen privado sea el mismo, el sistema añade ese valor para crear marcas distintas en cada acción. Así puede separar participaciones sin perder privacidad.",
+        "visualHint":  "Un mismo origen privado generando marcas distintas para participaciones diferentes gracias a un nonce.",
+        "image":  "images/modules/m4/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-3",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "Una fórmula mínima, una consecuencia fuerte",
+        "text":  "Una fórmula tan simple como `hash(secreto + nonce)` basta para crear una marca distinta por cada intento. El detalle técnico parece pequeño, pero resuelve algo enorme: el sistema puede seguir el uso de cada participación sin revelar la identidad del ciudadano.",
+        "visualHint":  "Una fórmula simple generando marcas distintas para cada intento, mientras la identidad del ciudadano permanece oculta.",
+        "image":  "images/modules/m4/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-4",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "La vinculación debe ser intencional",
+        "text":  "Relacionar acciones también es una decisión de privacidad. A veces conviene reconocer que dos participaciones vienen del mismo origen; otras veces, es mejor mantenerlas completamente separadas. La clave es que esa vinculación sea intencional, no accidental.",
+        "visualHint":  "Dos participaciones que pueden mostrarse conectadas o separadas según la decisión del sistema, mientras la identidad del ciudadano sigue oculta.",
+        "image":  "images/modules/m4/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-1",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "Aplicación: participación electoral privada",
+        "text":  "En una votación privada, cada participación deja su propia marca de unicidad. El sistema guarda esa marca para impedir duplicados y, al mismo tiempo, conserva el secreto del voto para que nadie sepa quién votó por quién.",
+        "visualHint":  "Una participación válida deja una marca única en el sistema mientras el contenido del voto permanece oculto.",
+        "image":  "images/modules/m4/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-2",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "La misma lógica sirve en otros sistemas",
+        "text":  "Aunque aquí lo aplicas a la votación, la lógica es general: cuando un derecho es válido, debe poder usarse una sola vez. El nullifier garantiza esa unicidad sin necesidad de exponer la identidad de quien lo ejerce.",
+        "visualHint":  "Un derecho válido marcado para un solo uso, con la votación como ejemplo principal y sin revelar la identidad del ciudadano.",
+        "image":  "images/modules/m4/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-3",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "El circuit verifica la marca antes de aceptar",
+        "text":  "Antes de aceptar la participación, el circuit hace dos controles. Primero verifica que la marca fue construida correctamente. Después confirma que esa marca no haya sido usada antes. Solo si ambas condiciones se cumplen, la participación puede avanzar.",
+        "visualHint":  "Sistema realizando dos verificaciones sobre una marca: primero validez, luego uso previo, antes de aceptar la participación.",
+        "image":  "images/modules/m4/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-4",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "Sin ese conjunto no hay unicidad",
+        "text":  "Sin un registro de marcas ya usadas, el sistema no tendría cómo saber si una participación es nueva o repetida. Ese conjunto de nullifiers funciona como la memoria pública que protege la unicidad de la elección.",
+        "visualHint":  "Un registro de marcas ya usadas funcionando como memoria del sistema para detectar participaciones repetidas.",
+        "image":  "images/modules/m4/l4-slide-4.png"
+    }
+]

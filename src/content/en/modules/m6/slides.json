@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m6-l1-slide-1",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "The vote must remain sealed",
+        "text":  "Once a citizen is already eligible to participate, one essential requirement still remains: the decision itself must stay private. That is where commitments matter.",
+        "visualHint":  "Ballot entering a sealed capsule",
+        "image":  "images/modules/m6/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-2",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "What is a commitment",
+        "text":  "A cryptographic commitment is a primitive that allows you to \u0027seal\u0027 a value. The book defines it as: commit(value) → commitment. Later, you can open it to reveal the original value. Properties: hiding (can\u0027t see value) and binding (can\u0027t change value after committing).",
+        "visualHint":  "Lock box containing a secret value",
+        "image":  "images/modules/m6/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-3",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "The two properties",
+        "text":  "The book emphasizes: (1) Hiding - the commitment doesn\u0027t reveal the value. (2) Binding - once committed, you can\u0027t change what you committed to. These two properties make commitments fundamental to privacy-preserving protocols.",
+        "visualHint":  "Shield for hiding, chains for binding",
+        "image":  "images/modules/m6/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-4",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "Commitments in Midnight",
+        "text":  "Midnight provides two primitives: persistentCommit and persistentHash. The book explains these are stored in the ledger and provide the foundation for private data handling. Understanding them is key to building on Midnight.",
+        "visualHint":  "Two different types of commit boxes in the ledger",
+        "image":  "images/modules/m6/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-1",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "persistentCommit: the sealed value",
+        "text":  "The book explains that persistentCommit stores a value that can only be revealed by the holder of the opening key. Think of it as a safe deposit box: only the owner can open it. It\u0027s perfect for vote encryption and token amounts.",
+        "visualHint":  "Safe deposit box with key",
+        "image":  "images/modules/m6/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-2",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "persistentHash: the public summary",
+        "text":  "persistentHash is different. It creates a verifiable fingerprint for data that should not be exposed in full. In this story, it is useful for public summaries such as the root of a protected electoral register.",
+        "visualHint":  "Fingerprint scanner showing a hash output",
+        "image":  "images/modules/m6/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-3",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "When to use each",
+        "text":  "The book gives clear guidance: use persistentCommit for values that must remain hidden until revealed (votes, amounts). Use persistentHash for data that\u0027s public but needs integrity (Merkle roots, public announcements). The choice affects privacy.",
+        "visualHint":  "Decision tree: hidden until reveal → persistentCommit; public integrity → persistentHash",
+        "image":  "images/modules/m6/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-4",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "The opening key",
+        "text":  "persistentCommit uses a two-part system: the commitment and an opening key. The book explains that only someone with the opening key can reveal the value. This enables selective disclosure - you can prove something about a value without revealing it all.",
+        "visualHint":  "Key opening a lock to reveal value",
+        "image":  "images/modules/m6/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-1",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "The register must exist without being exposed",
+        "text":  "After identity and civic conditions are validated, eligible citizens must belong to an electoral register. The challenge is proving membership without publishing the full list.",
+        "visualHint":  "Protected electoral register inside a secure structure",
+        "image":  "images/modules/m6/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-2",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "What is a Merkle tree",
+        "text":  "A Merkle tree is a binary tree where each leaf is a hash of data, and each parent is the hash of its children\u0027s hashes. The book shows that the root is a compact representation of all data. Changing any leaf changes the root.",
+        "visualHint":  "Binary tree with leaves at bottom, root at top",
+        "image":  "images/modules/m6/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-3",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "Merkle proof of membership",
+        "text":  "To prove membership, you provide the leaf value and the sibling hashes along the path to the root. The verifier can recompute the root from these. The book emphasizes: the proof size is O(log n), efficient for large sets.",
+        "visualHint":  "Path highlighted from leaf to root with sibling hashes",
+        "image":  "images/modules/m6/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-4",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "Using Merkle trees in circuits",
+        "text":  "The book shows how to verify Merkle proofs in a circuit. The circuit takes the leaf, the proof path, and recomputes the root. This is how privacy-preserving eligibility verification works: prove you\u0027re in the set without revealing which element you are.",
+        "visualHint":  "Circuit verifying Merkle proof path",
+        "image":  "images/modules/m6/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-1",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "Application: verifiable electoral register",
+        "text":  "The election authority publishes a Merkle root of the eligible register. Each citizen presents a membership proof and the system confirms access without revealing full identity.",
+        "visualHint":  "Voting registration with Merkle tree verification",
+        "image":  "images/modules/m6/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-2",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "Application: token balance verification",
+        "text":  "For private token transfers, commitments represent token amounts. The book explains that a Merkle tree can store commitment openings, and proofs verify sufficient balance without revealing the exact amount or the user\u0027s identity.",
+        "visualHint":  "Token balance tree with proof verification",
+        "image":  "images/modules/m6/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-3",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "The full flow",
+        "text":  "The book summarizes: (1) Commit to value with persistentCommit. (2) Store commitment in ledger. (3) For verification, use ZK circuit with Merkle proof. (4) The verifier checks commitment + proof without seeing values.",
+        "visualHint":  "Flow diagram: commit → store → prove → verify",
+        "image":  "images/modules/m6/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-4",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "Putting it together",
+        "text":  "The book concludes by showing how commitments and Merkle trees are the backbone of privacy on Midnight. They enable proving properties about private data while keeping the data hidden. Master these, and you can build any private application.",
+        "visualHint":  "Architecture diagram showing all pieces connected",
+        "image":  "images/modules/m6/l4-slide-4.png"
+    }
+]

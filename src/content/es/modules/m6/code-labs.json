@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m6-l1-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l1",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: propiedades de un commitment",
+    "instructions": "Completa una de las dos propiedades fundamentales de los commitments.",
+    "successCriteria": "Llenar el espacio con binding.",
+    "payload": {
+      "template": "Un commitment tiene dos propiedades: hiding y ___.",
+      "blanks": [
+        { "id": "blank-1", "answer": "binding" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l2-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l2",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: uso de `persistentCommit`",
+    "instructions": "Completa el caso de uso de `persistentCommit` dentro de la misión.",
+    "successCriteria": "Llenar el espacio con oculto.",
+    "payload": {
+    "template": "Usa persistentCommit cuando los valores deben permanecer ___ hasta su apertura autorizada.",
+      "blanks": [
+        { "id": "blank-1", "answer": "oculto" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l3-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l3",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: tamaño de la prueba Merkle",
+    "instructions": "Completa la eficiencia de las pruebas Merkle del padrón protegido.",
+    "successCriteria": "Llenar el espacio con log.",
+    "payload": {
+      "template": "Una prueba Merkle tiene tamaño O(___ n).",
+      "blanks": [
+        { "id": "blank-1", "answer": "log" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l4-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l4",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: flujo de verificación",
+    "instructions": "Completa qué verifica el circuito ZK junto con la prueba Merkle.",
+    "successCriteria": "Llenar el espacio con commitment.",
+    "payload": {
+      "template": "El circuito verifica el ___ más la prueba Merkle.",
+      "blanks": [
+        { "id": "blank-1", "answer": "commitment" }
+      ]
+    }
+  }
+]

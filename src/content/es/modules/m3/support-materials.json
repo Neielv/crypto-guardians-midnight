@@ -1,0 +1,220 @@
+[
+  {
+    "supportMaterialId": "m3-l1-slide-1-support-1",
+    "slideId": "m3-l1-slide-1",
+    "lessonId": "m3-l1",
+    "moduleId": "m3",
+    "sourceChapter": "Introducción",
+    "sourceSection": "¿Qué son Zero-Knowledge Proofs?",
+    "title": "La misión exige probar sin exponer",
+    "excerpts": [
+      "Compact permite construir aplicaciones donde las personas pueden probar hechos sobre sus datos sin revelar los datos mismos.",
+      "Esa promesa es la base de la misión de privacidad programable."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l1-slide-2-support-1",
+    "slideId": "m3-l1-slide-2",
+    "lessonId": "m3-l1",
+    "moduleId": "m3",
+    "sourceChapter": "Introducción",
+    "sourceSection": "Definición de zero-knowledge proof",
+    "title": "Definición técnica de ZK proof",
+    "excerpts": [
+      "Una zero-knowledge proof permite probar que una declaración es verdadera sin revelar información adicional más allá de su validez."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l1-slide-3-support-1",
+    "slideId": "m3-l1-slide-3",
+    "lessonId": "m3-l1",
+    "moduleId": "m3",
+    "sourceChapter": "Introducción",
+    "sourceSection": "Prover y verifier",
+    "title": "Roles en la prueba",
+    "excerpts": [
+      "El libro presenta a una parte como prover y a otra como verifier.",
+      "La validez viaja; el secreto no."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l1-slide-4-support-1",
+    "slideId": "m3-l1-slide-4",
+    "lessonId": "m3-l1",
+    "moduleId": "m3",
+    "sourceChapter": "Introducción",
+    "sourceSection": "Ejemplo de mayoría de edad",
+    "title": "Ejemplo operativo del libro",
+    "excerpts": [
+      "Una ZK proof puede verificar que la persona tiene más de 21 años sin revelar la fecha de nacimiento real."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l2-slide-1-support-1",
+    "slideId": "m3-l2-slide-1",
+    "lessonId": "m3-l2",
+    "moduleId": "m3",
+    "sourceChapter": "Circuits",
+    "sourceSection": "¿Por qué circuits?",
+    "title": "El circuito es la base matemática",
+    "excerpts": [
+      "El compilador de Compact genera circuitos zero-knowledge usados para probar la corrección de las interacciones ledger."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l2-slide-2-support-1",
+    "slideId": "m3-l2-slide-2",
+    "lessonId": "m3-l2",
+    "moduleId": "m3",
+    "sourceChapter": "Circuits",
+    "sourceSection": "Lógica de negocio",
+    "title": "Qué resuelve un circuit",
+    "excerpts": [
+      "Los circuits definen lógica de negocio, generan proofs y pueden exponerse a TypeScript."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l2-slide-3-support-1",
+    "slideId": "m3-l2-slide-3",
+    "lessonId": "m3-l2",
+    "moduleId": "m3",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Visibilidad",
+    "title": "Exportar para llamar desde fuera",
+    "excerpts": [
+      "Usa `export` para hacer circuits callable desde TypeScript."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuit exportado",
+        "code": "export circuit publicAction(): [] {\n    // ...\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l2-slide-4-support-1",
+    "slideId": "m3-l2-slide-4",
+    "lessonId": "m3-l2",
+    "moduleId": "m3",
+    "sourceChapter": "Introducción",
+    "sourceSection": "Generación de proofs",
+    "title": "La prueba se genera en ejecución",
+    "excerpts": [
+      "Los proofs reales se generan localmente en tiempo de ejecución para habilitar la selección de divulgación."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l3-slide-1-support-1",
+    "slideId": "m3-l3-slide-1",
+    "lessonId": "m3-l3",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Introducción",
+    "title": "El witness no cruza sin permiso",
+    "excerpts": [
+      "La información privada debe divulgarse solo cuando sea necesario."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l3-slide-2-support-1",
+    "slideId": "m3-l3-slide-2",
+    "lessonId": "m3-l3",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Declarando divulgación explícitamente",
+    "title": "Qué hace `disclose()`",
+    "excerpts": [
+      "`disclose()` declara explícitamente la intención de usar un valor de witness en un contexto que podría divulgarlo."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Patrón correcto",
+        "code": "balance = disclose(getBalance());"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l3-slide-3-support-1",
+    "slideId": "m3-l3-slide-3",
+    "lessonId": "m3-l3",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Privacidad por defecto",
+    "title": "Divulgación como excepción",
+    "excerpts": [
+      "Compact trata la privacidad como default y la divulgación como una excepción explícita."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l3-slide-4-support-1",
+    "slideId": "m3-l3-slide-4",
+    "lessonId": "m3-l3",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Ejemplo del libro",
+    "title": "Línea exacta del libro",
+    "excerpts": [
+      "El ejemplo del libro mueve un valor de witness al ledger con una única llamada a `disclose()`."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Ejemplo exacto",
+        "code": "export circuit recordBalance(): [] {\n  balance = disclose(getBalance());\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l4-slide-1-support-1",
+    "slideId": "m3-l4-slide-1",
+    "lessonId": "m3-l4",
+    "moduleId": "m3",
+    "sourceChapter": "Witnesses",
+    "sourceSection": "Protección de datos de witness",
+    "title": "El compilador rastrea el flujo del witness",
+    "excerpts": [
+      "El compilador detecta divulgaciones no declaradas de datos de witness a través de un programa de protección."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l4-slide-2-support-1",
+    "slideId": "m3-l4-slide-2",
+    "lessonId": "m3-l4",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Mensaje de error",
+    "title": "Qué significa la alerta",
+    "excerpts": [
+      "El error indica que un valor potencialmente privado podría divulgarse sin declaración explícita."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Error del libro",
+        "code": "Exception: potential witness-value disclosure must be declared but is not:"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l4-slide-3-support-1",
+    "slideId": "m3-l4-slide-3",
+    "lessonId": "m3-l4",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Seguimiento indirecto",
+    "title": "La divulgación puede ser indirecta",
+    "excerpts": [
+      "La divulgación no siempre es directa; el compilador sigue el camino del valor a través del programa."
+    ]
+  },
+  {
+    "supportMaterialId": "m3-l4-slide-4-support-1",
+    "slideId": "m3-l4-slide-4",
+    "lessonId": "m3-l4",
+    "moduleId": "m3",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Principio final",
+    "title": "Privacidad por defecto",
+    "excerpts": [
+      "La privacidad es el default y la divulgación requiere intención explícita."
+    ]
+  }
+]

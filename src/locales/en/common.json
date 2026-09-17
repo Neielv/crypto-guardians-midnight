@@ -1,0 +1,115 @@
+{
+  "common": {
+    "start": "Start",
+    "continue": "Continue"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "finalBoss": "Final Boss",
+    "backToDashboard": "Back to dashboard"
+  },
+  "landing": {
+    "title": "CryptoGuardians Midnight Edition",
+    "subtitle": "Interactive tutorial about privacy and zero-knowledge on Midnight.",
+    "description": "A narrative experience to learn witness, ledger and programmable privacy."
+  },
+  "onboarding": {
+    "shadowTitle": "No one knows you here...",
+    "shadowSubtitle": "Choose your name in the shadows. We don't need to know who you are; we need to know how you will act.",
+    "aliasLabel": "Shadow alias",
+    "aliasPlaceholder": "Ex: Neon-V",
+    "aliasErrorRequired": "You must choose an alias to continue.",
+    "aliasErrorMinLength": "Alias must be at least 2 characters.",
+    "suggestAlias": "Suggest alias",
+    "enterMission": "Enter mission",
+    "backToLanding": "Back to start",
+    "introMessage": "No one knows you here. Not even us.",
+    "clickToContinue": "Click to emerge from the shadows"
+  },
+  "briefing": {
+    "title": "Mission Directive",
+    "codename": "Classified — Shadow level",
+    "opening": "Listen carefully, agent.",
+    "threat": "The Dark Miners have taken control of public ledgers. They use transparency as a weapon: they trace every transaction, identify every voter, and pressure those who do not align. Democracy is under siege.",
+    "mission": "Our only defense is programmable privacy. Tools like witness and zero-knowledge proofs let us prove truth without revealing identity. Your mission is to infiltrate, master these technologies, and protect the vote of those who cannot defend themselves.",
+    "superior": "I am your handler. I do not ask who you are; only that you deliver. Are you ready to operate in the shadows?",
+    "acceptMission": "Accept the mission"
+  },
+  "dashboard": {
+    "eyebrow": "Mission control",
+    "title": "Agent dashboard",
+    "description": "Choose your next module and continue training.",
+    "openModule": "Open module",
+    "loadingTitle": "Loading modules...",
+    "loadingDescription": "Preparing the learning content for the selected language.",
+    "loadErrorTitle": "We couldn't load the dashboard content",
+    "emptyTitle": "No modules available",
+    "emptyDescription": "The content pack loaded, but no modules were found.",
+    "comingSoon": "Coming soon",
+    "comingSoonDescription": "Content not developed yet.",
+    "moduleLocked": "Available once you unlock this module.",
+    "lessonCount_one": "{{count}} lesson loaded",
+    "lessonCount_other": "{{count}} lessons loaded",
+    "stats": {
+      "totalModules": "Total modules",
+      "availableModules": "Available",
+      "lockedModules": "Locked",
+      "completedModules": "Completed",
+      "activeModule": "Active module",
+      "noActiveModule": "No active module yet"
+    }
+  },
+  "settings": {
+    "sectionEyebrow": "System",
+    "title": "Settings",
+    "description": "Choose the interface language and then return to your mission dashboard.",
+    "languageTitle": "Language",
+    "currentLanguage": "Current language: {{locale}}"
+  },
+  "shell": {
+    "demoLabel": "Midnight demo",
+    "description": "Privacy-first learning journey for Midnight and Compact.",
+    "threatLevel": "Threat level",
+    "exposureLabel": "Exposure: {{level}} ({{score}})",
+    "headerEyebrow": "Agent status",
+    "headerTitle": "Operational dashboard"
+  },
+  "module": {
+    "badgeLesson": "Lesson",
+    "badgeChallenge": "Challenge",
+    "badgeCodeLab": "Code Lab",
+    "moduleLabel": "Module {{moduleId}}",
+    "currentLesson": "Current lesson",
+    "lessonProgress": "{{current}} / {{total}}",
+    "lessonCompleted": "Lesson completed",
+    "moduleCompleted": "Module completed",
+    "moduleCompletedDescription": "This module mission is now closed. Your progress was saved and the next step is already available.",
+    "secureProgress": "Secure progress",
+    "nextLesson": "Next lesson",
+    "completeModule": "Complete module",
+    "goToNextModule": "Go to next module",
+    "sidebarTitle": "Classes",
+    "sidebarSubtitle": "Mission map"
+  },
+  "slide": {
+    "progressLabel": "Slide {{current}} / {{total}}",
+    "tabs": {
+      "lesson": "Lesson",
+      "support": "Support material"
+    },
+    "supportSource": "Material based on .docs/book/index.html",
+    "supportEmpty": "There is no support material for this slide yet.",
+    "previous": "Previous",
+    "next": "Next",
+    "startChallenge": "Start challenge",
+    "visualPlaceholderTitle": "Support visual",
+    "visualPlaceholderFallback": "Illustration pending for this lesson."
+  },
+  "status": {
+    "locked": "Locked",
+    "available": "Available",
+    "completed": "Completed",
+    "active": "Active"
+  }
+}

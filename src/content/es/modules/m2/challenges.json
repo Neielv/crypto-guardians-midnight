@@ -1,0 +1,90 @@
+[
+  {
+    "challengeId": "m2-l1-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l1",
+    "type": "trivia",
+    "title": "Registro verificable",
+    "instructions": "Identifica la declaración correcta que crea un registro público de identidades verificables usando la estructura adecuada de Compact.",
+    "successCriteria": "Selecciona la opción que declara `registry` como `Map<Bytes<32>, Citizen>` dentro del ledger.",
+    "narrativeIntro": "Antes de confiar una elección al sistema, la Agencia necesita un registro verificable. Debes reconocer la estructura exacta que convierte una identidad en un expediente consultable.",
+    "successMessage": "Correcto. Ese registro permite almacenar expedientes verificables y consultarlos sin improvisaciones.",
+    "failureMessage": "No todavía. El registro verificable debe vivir en el ledger y usar `Map<Bytes<32>, Citizen>` como estructura base.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué declaración coincide con el ejemplo técnico del libro para guardar identidades verificables?",
+      "options": [
+        { "id": "a", "label": "export ledger registry: Map<Bytes<32>, Citizen>;" },
+        { "id": "b", "label": "witness registry(): Map<Citizen, Bytes<32>>;" },
+        { "id": "c", "label": "export ledger registry(): Citizen[];" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l2-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l2",
+    "type": "trivia",
+    "title": "Operaciones del registro",
+    "instructions": "Selecciona la operación real del `Map` que permite comprobar si una identidad ya existe en el ledger antes de insertarla.",
+    "successCriteria": "Elige la opción `member(key): Boolean`.",
+    "narrativeIntro": "No basta con almacenar expedientes: también debes detectar si una identidad ya fue registrada antes de continuar la misión.",
+    "successMessage": "Bien. `member(key)` permite verificar existencia antes de registrar o seguir validando.",
+    "failureMessage": "Revisa las operaciones del `Map`. La misión necesita la que responde con `Boolean` para saber si la clave ya existe.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué operación del libro devuelve un `Boolean` para verificar si una clave ya está en el registro?",
+      "options": [
+        { "id": "a", "label": "member(key): Boolean" },
+        { "id": "b", "label": "lookup(key): []" },
+        { "id": "c", "label": "insert(key, value): Boolean" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l3-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l3",
+    "type": "trivia",
+    "title": "Lectura del expediente",
+    "instructions": "Identifica la expresión del libro que accede correctamente a un campo de un `struct` ya creado.",
+    "successCriteria": "Selecciona la opción que usa sintaxis de punto para leer un campo del struct.",
+    "narrativeIntro": "Un expediente verificable no sirve si no puedes inspeccionarlo con precisión. Debes reconocer la forma correcta de leer un campo sin ambigüedad.",
+    "successMessage": "Exacto. La sintaxis de punto es la forma correcta de acceder a un campo del expediente.",
+    "failureMessage": "Todavía no. Recuerda que, una vez construido el struct, sus campos se leen con sintaxis de punto.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué expresión coincide con el ejemplo técnico del libro para acceder a un campo de un registro ciudadano estructurado?",
+      "options": [
+        { "id": "a", "label": "citizenRecord.address" },
+        { "id": "b", "label": "citizenRecord->address" },
+        { "id": "c", "label": "address(citizenRecord)" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l4-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l4",
+    "type": "trivia",
+    "title": "Firma del circuit",
+    "instructions": "Elige la firma correcta para un circuit exportado que no devuelve valor y puede ser llamado desde TypeScript.",
+    "successCriteria": "Selecciona la opción que usa `export circuit ...(): []`.",
+    "narrativeIntro": "Una firma mal declarada puede derribar toda la operación. Debes reconocer la forma exacta que la Agencia puede invocar desde la aplicación.",
+    "successMessage": "Correcto. Un circuit exportado sin retorno debe declarar `[]` y quedar listo para ser invocado desde TypeScript.",
+    "failureMessage": "No todavía. La sintaxis correcta exige `export`, nombre, parámetros y retorno `[]` cuando no hay valor de salida.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué firma sigue exactamente la sintaxis correcta del libro?",
+      "options": [
+        { "id": "a", "label": "export circuit register(): []" },
+        { "id": "b", "label": "export circuit register(): Void" },
+        { "id": "c", "label": "circuit export register(): []" }
+      ],
+      "correctOptionId": "a"
+    }
+  }
+]

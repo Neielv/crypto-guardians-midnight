@@ -1,0 +1,13 @@
+{
+  "moduleId": "m0",
+  "title": "Identidad Auto-Soberana",
+  "summary": "Aquí comienza tu entrenamiento operativo: proteger tu identidad es la primera línea de defensa antes de proteger a la ciudadanía, los votos y el secreto electoral.",
+  "concepts": ["witness", "local-first", "identidad auto-soberana"],
+  "unlocks": "m1",
+  "narrativeTitle": "El Nombre en las Sombras",
+  "technicalTitle": "Identidad Auto-Soberana",
+  "dramaticDescription": "Si tu identidad cae, la misión se abre desde dentro. Antes de resguardar a la ciudadanía del rastreo y el abuso, debes aprender a operar sin entregar el control de quién eres.",
+  "introImage": "images/briefing/slide1.png",
+  "introScene": "Esta es la fase inicial de una operación real. Los Mineros Oscuros convierten cualquier identidad centralizada en una puerta de entrada para vigilar, manipular y comprometer sistemas más grandes. Por eso tu entrenamiento empieza contigo: en Midnight, tu identidad no vive en un servidor central y en Compact solo revelas lo necesario, bajo tu autorización, mediante artefactos llamados witnesses. Si no puedes proteger tu propio control, no podrás proteger después a la ciudadanía, los votos ni la integridad electoral.",
+  "startButtonLabel": "Comenzar"
+}

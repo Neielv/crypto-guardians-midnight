@@ -1,0 +1,12 @@
+{
+  "moduleId": "m3",
+  "title": "Zero-knowledge proofs",
+  "summary": "Learn how to verify that a registered citizen record meets civic conditions without exposing the full dossier and disclose only the minimum necessary information.",
+  "concepts": ["zk", "proofs", "privacy"],
+  "unlocks": "m4",
+  "narrativeTitle": "The Silent Proof",
+  "technicalTitle": "Zero-knowledge proofs",
+  "dramaticDescription": "The Agency must prove that a registered citizen meets voting conditions without revealing identity. The system verifies eligibility, but never exposes the full dossier.",
+  "introScene": "Your mission is to build a verification that confirms a voter registry record is eligible to vote without exposing the name or the full dossier. The system only needs to validate the required condition.",
+  "startButtonLabel": "Verify eligibility"
+}

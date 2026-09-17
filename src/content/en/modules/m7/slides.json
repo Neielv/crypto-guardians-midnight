@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m7-l1-slide-1",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "The final challenge",
+        "text":  "The book presents the ultimate test: build a complete privacy-preserving voting system that integrates all concepts learned. This is the boss battle - the integration of everything from witness to Merkle trees. Only by combining all pieces can you succeed.",
+        "visualHint":  "Final exam with all topics from the course",
+        "image":  "images/modules/m7/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-2",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "What you must integrate",
+        "text":  "The challenge requires combining: witness (private inputs), assert (circuit logic), disclose (selective reveal), nullifier (uniqueness), DUST (cost management), and Merkle trees (membership proofs). Each piece plays a critical role.",
+        "visualHint":  "Puzzle pieces coming together: witness, assert, disclose, nullifier, DUST, Merkle",
+        "image":  "images/modules/m7/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-3",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "The scenario: private election",
+        "text":  "The book describes a complete election scenario: eligible voters must prove membership without revealing identity, vote encryption must be secret, tallying must be verifiable, and double-voting must be impossible. This is the ultimate test.",
+        "visualHint":  "Election ballot box with privacy shields",
+        "image":  "images/modules/m7/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-4",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "Why this matters",
+        "text":  "This integration demonstrates real-world privacy-preserving applications. The book shows that only by mastering all these concepts can you build systems that protect user privacy while maintaining integrity. This is the future of voting, airdrops, and more.",
+        "visualHint":  "Trophy or graduation cap marking completion",
+        "image":  "images/modules/m7/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-1",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "Step 1: Identity and eligibility",
+        "text":  "The book shows how to start: use witness for private identity data, use Merkle tree for eligibility list. The circuit proves the voter is in the list without revealing who they are. This is the foundation.",
+        "visualHint":  "User identity being verified against a Merkle tree",
+        "image":  "images/modules/m7/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-2",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Step 2: Vote encryption and commitment",
+        "text":  "Next, use persistentCommit to encrypt the vote. The book explains that the vote is sealed in a commitment, readable only by the election authority. Use disclose to reveal vote count without revealing who voted for whom.",
+        "visualHint":  "Vote being sealed in an encrypted commitment",
+        "image":  "images/modules/m7/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-3",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "Step 3: Uniqueness with nullifier",
+        "text":  "The nullifier prevents double-voting. The book shows: generate nullifier from secret key + vote event, publish it to ledger, verify it\u0027s unique. The circuit uses assert to enforce this. This is the anti-double-vote mechanism.",
+        "visualHint":  "Nullifier being checked in the ledger",
+        "image":  "images/modules/m7/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-4",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "Step 4: DUST cost management",
+        "text":  "Finally, account for DUST. The book teaches: the proof server generates the proof, consuming DUST from the user\u0027s balance. The circuit must be optimized to minimize costs while maintaining privacy. This completes the full system.",
+        "visualHint":  "DUST balance being deducted for proof generation",
+        "image":  "images/modules/m7/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-1",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "System architecture overview",
+        "text":  "The book presents the full architecture: (1) Ledger stores Merkle root of eligible voters, commitment to vote, and nullifier set. (2) User device creates witness data. (3) Proof server generates ZK proof. (4) Circuit verifies everything.",
+        "visualHint":  "Architecture diagram with all components",
+        "image":  "images/modules/m7/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-2",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "The complete circuit",
+        "text":  "The circuit does: (1) Verify Merkle proof for eligibility. (2) Verify vote commitment is valid. (3) Verify nullifier is unique. (4) Assert all conditions are met. The book shows this combines all concepts in one verification.",
+        "visualHint":  "Circuit diagram with all verification steps",
+        "image":  "images/modules/m7/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-3",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "Privacy preserved at each step",
+        "text":  "The book emphasizes: voter identity hidden (Merkle proof), vote content hidden (commitment), vote count verifiable (disclose), no double-voting (nullifier). Each step preserves a different aspect of privacy while enabling verification.",
+        "visualHint":  "Privacy shields at each step of the flow",
+        "image":  "images/modules/m7/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-4",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "The challenge parameters",
+        "text":  "The boss battle has specific requirements: handle 1000 eligible voters, support 3 candidates, prevent double-voting, keep votes private, and provide a public tally. You must optimize the circuit to minimize DUST while meeting all requirements.",
+        "visualHint":  "Challenge parameters panel with all requirements",
+        "image":  "images/modules/m7/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-1",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "The boss battle begins",
+        "text":  "It\u0027s time. The book sets up the final challenge: implement the complete voting system. You\u0027ll need to create the circuit that verifies eligibility, encrypts the vote, prevents double-voting, and provides a tally. This is everything you\u0027ve learned.",
+        "visualHint":  "Start button or opening battle scene",
+        "image":  "images/modules/m7/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-2",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Your toolkit for victory",
+        "text":  "You have all the tools: witness for private inputs, assert for logic, disclose for selective reveal, nullifier for uniqueness, DUST for cost, Merkle for membership. The book reminds you: each has its place. Choose wisely.",
+        "visualHint":  "Toolkit with all course concepts as tools",
+        "image":  "images/modules/m7/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-3",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "Optimization strategy",
+        "text":  "The boss has a twist: minimize DUST while maintaining privacy. The book teaches: optimize circuits by reducing constraints, use efficient hash functions, batch proofs where possible. Victory goes to those who balance privacy with efficiency.",
+        "visualHint":  "Optimization settings being adjusted",
+        "image":  "images/modules/m7/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-4",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "Congratulations, Guardian",
+        "text":  "The book concludes: you\u0027ve mastered self-sovereign identity, ledger vs witness, verifiable identity, zero-knowledge proofs, nullifiers, DUST costs, commitments, and Merkle trees. You are now a Crypto Guardian, ready to build privacy-preserving systems. Welcome to the Midnight.",
+        "visualHint":  "Celebration with guardian shield or trophy",
+        "image":  "images/modules/m7/l4-slide-4.png"
+    }
+]

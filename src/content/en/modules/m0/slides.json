@@ -1,0 +1,42 @@
+[
+    {
+        "slideId":  "m0-l1-slide-1",
+        "lessonId":  "m0-l1",
+        "moduleId":  "m0",
+        "order":  1,
+        "title":  "Welcome to the Agency",
+        "text":  "Before starting a mission, you need an operational identity that does not live on a central server.",
+        "visualHint":  "Agent standing in front of a registration terminal.",
+        "image":  "images/modules/m0/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m0-l1-slide-2",
+        "lessonId":  "m0-l1",
+        "moduleId":  "m0",
+        "order":  2,
+        "title":  "Not everything should live in the cloud",
+        "text":  "When a central database is attacked, the user\u0027s identity becomes exposed.",
+        "visualHint":  "Dark miners trying to open a central database.",
+        "image":  "images/modules/m0/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m0-l1-slide-3",
+        "lessonId":  "m0-l1",
+        "moduleId":  "m0",
+        "order":  4,
+        "title":  "Local-first",
+        "text":  "In this mission, your data is stored locally so the witness stays under your control.",
+        "visualHint":  "A digital vault inside the agent\u0027s device.",
+        "image":  "images/modules/m0/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m0-l1-slide-4",
+        "lessonId":  "m0-l1",
+        "moduleId":  "m0",
+        "order":  3,
+        "title":  "Your witness is a personal vault",
+        "text":  "Your witness is like a personal vault on your device. It contains sensitive data, such as your secret key, that the Agency will use to generate mathematical proofs, but that data never leaves your control and is never published on the network. In Compact it is declared as `witness dataName(): Type;`, with parentheses because it is a witness function.",
+        "visualHint":  "An open digital vault showing protected credentials while a mathematical proof leaves without exposing the contents.",
+        "image":  "images/modules/m0/l1-slide-4.png"
+    }
+]

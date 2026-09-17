@@ -1,0 +1,71 @@
+[
+  {
+    "supportMaterialId": "m1-l1-slide-1-support-1",
+    "slideId": "m1-l1-slide-1",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "State Management",
+    "sourceSection": "ledger section",
+    "title": "How to define public fields in the ledger",
+    "excerpts": [
+      "The ledger section describes the state kept on-chain.",
+      "Everything you declare there becomes part of the visible contract state."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Public ledger definition",
+        "code": "export ledger authority: Bytes<32>;\nexport ledger value: Uint<64>;\nexport ledger state: State;\nexport ledger round: Counter;"
+      },
+      {
+        "title": "Remember",
+        "code": "// correct\nexport ledger name: Bytes<32>;\n\n// incorrect\nexport ledger name(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m1-l1-slide-2-support-1",
+    "slideId": "m1-l1-slide-2",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Witness characteristics",
+    "title": "How to define private data with witness",
+    "excerpts": [
+      "Witness values can contain private information.",
+      "They are opaque to circuits and are represented by their hash."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Private data definition",
+        "code": "witness secretKey(): Bytes<32>;\nwitness getBalance(): Uint<64>;"
+      },
+      {
+        "title": "Remember",
+        "code": "// correct\nwitness idNumber(): Bytes<32>;\n\n// witness does use parentheses"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m1-l1-slide-3-support-1",
+    "slideId": "m1-l1-slide-3",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Declaring disclosure explicitly",
+    "title": "How to move a private value into the ledger explicitly",
+    "excerpts": [
+      "Private information should be disclosed only when necessary, so Compact requires disclosure to be declared explicitly.",
+      "Without the disclose() wrapper, the compiler rejects the program with a potential witness-value disclosure error."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Correct use of disclose()",
+        "code": "import CompactStandardLibrary;\n\nwitness getBalance(): Bytes<32>;\nexport ledger balance: Bytes<32>;\n\nexport circuit recordBalance(): [] {\n  balance = disclose(getBalance());\n}"
+      },
+      {
+        "title": "Error without disclose()",
+        "code": "Exception: potential witness-value disclosure must be declared but is not:\n  witness value potentially disclosed:\n    the return value of witness getBalance at line 2 char 1\n  nature of the disclosure:\n    ledger operation might disclose the witness value"
+      }
+    ]
+  }
+]

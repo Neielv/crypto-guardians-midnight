@@ -1,0 +1,46 @@
+[
+  {
+    "lessonId": "m4-l1",
+    "moduleId": "m4",
+    "title": "What is a nullifier and why uniqueness matters",
+    "objective": "Understand what a nullifier is and how it guarantees uniqueness in voting and airdrop systems.",
+    "steps": [
+      { "stepId": "m4-l1-s1", "type": "slides", "slideIds": ["m4-l1-slide-1", "m4-l1-slide-2", "m4-l1-slide-3", "m4-l1-slide-4"] },
+      { "stepId": "m4-l1-c1", "type": "challenge", "challengeId": "m4-l1-challenge-1" },
+      { "stepId": "m4-l1-cl1", "type": "code_lab", "codeLabId": "m4-l1-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m4-l2",
+    "moduleId": "m4",
+    "title": "Preventing double-spending and double-voting",
+    "objective": "Understand how nullifiers prevent the same user from voting twice or spending their tokens twice.",
+    "steps": [
+      { "stepId": "m4-l2-s1", "type": "slides", "slideIds": ["m4-l2-slide-1", "m4-l2-slide-2", "m4-l2-slide-3", "m4-l2-slide-4"] },
+      { "stepId": "m4-l2-c1", "type": "challenge", "challengeId": "m4-l2-challenge-1" },
+      { "stepId": "m4-l2-cl1", "type": "code_lab", "codeLabId": "m4-l2-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m4-l3",
+    "moduleId": "m4",
+    "title": "Controlled linkability with nonce",
+    "objective": "Learn to use the nonce to allow controlled linkage between actions without revealing identity.",
+    "steps": [
+      { "stepId": "m4-l3-s1", "type": "slides", "slideIds": ["m4-l3-slide-1", "m4-l3-slide-2", "m4-l3-slide-3", "m4-l3-slide-4"] },
+      { "stepId": "m4-l3-c1", "type": "challenge", "challengeId": "m4-l3-challenge-1" },
+      { "stepId": "m4-l3-cl1", "type": "code_lab", "codeLabId": "m4-l3-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m4-l4",
+    "moduleId": "m4",
+    "title": "Practical application: voting and airdrops",
+    "objective": "Implement a voting and token distribution system using nullifiers.",
+    "steps": [
+      { "stepId": "m4-l4-s1", "type": "slides", "slideIds": ["m4-l4-slide-1", "m4-l4-slide-2", "m4-l4-slide-3", "m4-l4-slide-4"] },
+      { "stepId": "m4-l4-c1", "type": "challenge", "challengeId": "m4-l4-challenge-1" },
+      { "stepId": "m4-l4-cl1", "type": "code_lab", "codeLabId": "m4-l4-code-lab-1" }
+    ]
+  }
+]

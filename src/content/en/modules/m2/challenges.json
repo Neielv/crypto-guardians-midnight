@@ -1,0 +1,114 @@
+[
+  {
+    "challengeId": "m2-l1-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l1",
+    "type": "trivia",
+    "title": "Verifiable registry",
+    "instructions": "Identify the declaration that creates a public registry of verifiable identities using the correct Compact structure.",
+    "successCriteria": "Select the option that declares `registry` as `Map<Bytes<32>, Citizen>` inside the ledger.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "Which declaration matches the book's technical example for storing verifiable identities?",
+      "options": [
+        {
+          "id": "a",
+          "label": "export ledger registry: Map<Bytes<32>, Citizen>;"
+        },
+        {
+          "id": "b",
+          "label": "witness registry(): Map<Citizen, Bytes<32>>;"
+        },
+        {
+          "id": "c",
+          "label": "export ledger registry(): Citizen[];"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l2-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l2",
+    "type": "trivia",
+    "title": "Registry operations",
+    "instructions": "Select the real `Map` operation that checks whether an identity already exists in the ledger before insertion.",
+    "successCriteria": "Choose the `member(key): Boolean` option.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "Which operation from the book returns a `Boolean` to verify whether a key is already in the registry?",
+      "options": [
+        {
+          "id": "a",
+          "label": "member(key): Boolean"
+        },
+        {
+          "id": "b",
+          "label": "lookup(key): []"
+        },
+        {
+          "id": "c",
+          "label": "insert(key, value): Boolean"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l3-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l3",
+    "type": "trivia",
+    "title": "Dossier lookup",
+    "instructions": "Identify the expression from the book that correctly accesses a field from an already created `struct`.",
+    "successCriteria": "Select the option that uses dot syntax to read a struct field.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "Which expression matches the book's technical example for accessing a struct field?",
+      "options": [
+        {
+          "id": "a",
+          "label": "player.address"
+        },
+        {
+          "id": "b",
+          "label": "player->address"
+        },
+        {
+          "id": "c",
+          "label": "address(player)"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m2-l4-challenge-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l4",
+    "type": "trivia",
+    "title": "Circuit signature",
+    "instructions": "Choose the correct signature for an exported circuit that returns no value and can be called from TypeScript.",
+    "successCriteria": "Select the option that uses `export circuit ...(): []`.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "Which signature follows the book's exact syntax?",
+      "options": [
+        {
+          "id": "a",
+          "label": "export circuit register(): []"
+        },
+        {
+          "id": "b",
+          "label": "export circuit register(): Void"
+        },
+        {
+          "id": "c",
+          "label": "circuit export register(): []"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  }
+]

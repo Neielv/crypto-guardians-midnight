@@ -1,0 +1,13 @@
+{
+  "moduleId": "m2",
+  "title": "Identidad verificable",
+  "summary": "Modela una identidad ciudadana verificable, registra su expediente con estructuras tipadas y prepara las reglas que luego definirán su elegibilidad.",
+  "concepts": ["struct", "Map", "registro verificable", "circuits"],
+  "unlocks": "m3",
+  "narrativeTitle": "La Firma del Ciudadano",
+  "technicalTitle": "Identidad verificable",
+  "dramaticDescription": "Tu nombre ahora tiene forma. No es solo una palabra: es un perfil que el sistema puede leer y verificar sin exponer quién eres.",
+  "introScene": "Agente {{agent}}, para que el sistema de votación sea legítimo, necesitamos identificar a los ciudadanos reales sin que los Mineros Oscuros puedan cazarlos. Tu misión: diseñar la Firma del Ciudadano. Usarás struct para modelar expedientes que el contrato pueda verificar sin exponer nombres. Registrarás estas identidades en el Ledger mediante Map y sellarás el proceso con circuits exportados. Si la estructura es débil, la identidad se filtrará; si es robusta, la libertad estará a salvo. ¿Listo para modelar la resistencia?",
+  "introImage": "images/modules/m2/intro.png",
+  "startButtonLabel": "Aceptar Misión"
+}

@@ -1,0 +1,12 @@
+{
+  "moduleId": "m5",
+  "title": "Cost of privacy",
+  "summary": "Manage DUST and understand that protecting citizen privacy also requires efficiency and strategy decisions.",
+  "concepts": ["DUST", "costs", "private mode", "strategy"],
+  "unlocks": "m6",
+  "narrativeTitle": "The Price of Privacy",
+  "technicalTitle": "Cost of privacy",
+  "dramaticDescription": "Everything has a cost. In a world where every protected piece of data requires resources, you must decide how much privacy you can afford to spend.",
+  "introScene": "Your history is shielded. But the system presents you with a new metric: DUST. Each layer of privacy you add costs more. How much are you willing to pay to protect what you are?",
+  "startButtonLabel": "Continue"
+}

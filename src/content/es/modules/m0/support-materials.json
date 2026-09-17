@@ -1,0 +1,86 @@
+[
+  {
+    "supportMaterialId": "m0-l1-slide-1-support-1",
+    "slideId": "m0-l1-slide-1",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Witnesses · Declarando Witnesses",
+    "title": "La identidad entra al contrato como witness",
+    "excerpts": [
+      "Los witnesses conectan datos privados off-chain con tu contrato Compact.",
+      "Los witnesses se declaran de forma similar a los circuits, pero con la palabra clave witness."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Declaración de witnesses",
+        "code": "witness secretKey(): Bytes<32>;\nwitness getBalance(): Uint<64>;\nwitness userAddress(): UserAddress;"
+      },
+      {
+        "title": "Detalle de sintaxis",
+        "code": "// witness sí lleva paréntesis\nwitness nombreDelDato(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-2-support-1",
+    "slideId": "m0-l1-slide-2",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "State Management",
+    "sourceSection": "Sección ledger",
+    "title": "Qué se publica y qué se mantiene fuera del estado on-chain",
+    "excerpts": [
+      "La sección ledger describe el estado que el contrato mantiene on-chain.",
+      "Ese estado debe contener solo lo que realmente necesita ser público para que el sistema funcione."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Campos públicos en ledger",
+        "code": "export ledger authority: Bytes<32>;\nexport ledger value: Uint<64>;\nexport ledger state: State;\nexport ledger round: Counter;"
+      },
+      {
+        "title": "Detalle de sintaxis",
+        "code": "// ledger no lleva paréntesis\nexport ledger nombre: Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-4-support-1",
+    "slideId": "m0-l1-slide-4",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Witnesses · Ejemplo Completo",
+    "title": "El witness guarda el secreto y solo expone lo necesario",
+    "excerpts": [
+      "En el contrato de ejemplo, el witness `secretKey` proporciona la clave privada de la persona usuaria.",
+      "Los valores witness pueden contener información privada y requieren `disclose()` para participar en operaciones ledger."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Uso de secretKey() dentro de un circuit",
+        "code": "witness secretKey(): Bytes<32>;\n\nexport circuit set(v: Uint<64>): [] {\n  assert(state == State.UNSET);\n  const sk = secretKey();\n  const pk = publicKey(round, sk);\n  authority = disclose(pk);\n  value = disclose(v);\n  state = State.SET;\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-3-support-1",
+    "slideId": "m0-l1-slide-3",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Estado local y computaciones",
+    "sourceSection": "Witnesses en la máquina local",
+    "title": "Por qué el witness permanece en la máquina local",
+    "excerpts": [
+      "Compact puede llamar al contexto local mediante witnesses.",
+      "El witness no se implementa en el código fuente Compact; su implementación es responsabilidad del código TypeScript de la aplicación."
+    ],
+    "codeBlocks": [
+      {
+        "title": "El valor local alimenta el circuit",
+        "code": "witness secretKey(): Bytes<32>;\n\nexport circuit clear(): [] {\n  assert(state == State.SET);\n  const sk = secretKey();\n  const pk = publicKey(round, sk);\n  assert(authority == pk);\n  state = State.UNSET;\n  round.increment(1);\n}"
+      }
+    ]
+  }
+]

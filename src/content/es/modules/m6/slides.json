@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m6-l1-slide-1",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "Un registro sensible debe quedar sellado",
+        "text":  "En esta misión no basta con anotar quién está habilitado o qué voto emitió un ciudadano: ese dato debe quedar protegido. Tú, como agente, usas un compromiso criptográfico como una cápsula sellada que fija el contenido sin dejarlo a la vista.",
+        "visualHint":  "Papeleta entrando en una cápsula sellada",
+        "image":  "images/modules/m6/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-2",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "Un compromiso fija el dato sin mostrarlo",
+        "text":  "Un commitment funciona como un expediente sellado: nadie ve lo que hay dentro, pero sí puede comprobar que ese registro existe y que no fue cambiado después. Eso sirve tanto para un dato del padrón como para un voto protegido.",
+        "visualHint":  "Caja fuerte cerrada protegiendo un voto",
+        "image":  "images/modules/m6/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-3",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "Oculta y fija al mismo tiempo",
+        "text":  "Las dos propiedades clave son estas: el contenido queda oculto y, al mismo tiempo, queda fijado. Así proteges al ciudadano frente a los Mineros Oscuros sin perder integridad en el proceso electoral.",
+        "visualHint":  "Escudo de privacidad y sello de integridad sobre una papeleta",
+        "image":  "images/modules/m6/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l1-slide-4",
+        "lessonId":  "m6-l1",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "Midnight te da dos herramientas para este paso",
+        "text":  "En Midnight, `persistentCommit` y `persistentHash` llevan esa lógica al ledger, pero no hacen lo mismo. Una estrategia sirve para sellar contenido sensible; la otra, para publicar una huella verificable de un conjunto como el padrón protegido.",
+        "visualHint":  "Dos primitivas criptográficas conectadas al ledger",
+        "image":  "images/modules/m6/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-1",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "`persistentCommit` sella lo que debe seguir oculto",
+        "text":  "`persistentCommit` sirve cuando el valor debe permanecer cerrado hasta el momento correcto. Piensa en un registro sellado que tú guardas para probar después sin haberlo expuesto antes.",
+        "visualHint":  "Commitment cerrando una papeleta digital",
+        "image":  "images/modules/m6/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-2",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "`persistentHash` resume sin abrir el registro",
+        "text":  "`persistentHash` deja una huella verificable de datos que no conviene publicar completos. En la misión electoral, te permite anclar la raíz de un padrón protegido sin exhibir cada registro ciudadano.",
+        "visualHint":  "Huella hash representando una lista electoral",
+        "image":  "images/modules/m6/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-3",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "Cada estrategia de sellado resuelve un problema distinto",
+        "text":  "Si debes ocultar el contenido exacto de un dato, usas `persistentCommit`. Si debes publicar un resumen verificable de un conjunto, usas `persistentHash`. Una herramienta protege el contenido; la otra protege la integridad del resumen.",
+        "visualHint":  "Árbol de decisión entre voto sellado y registro resumido",
+        "image":  "images/modules/m6/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l2-slide-4",
+        "lessonId":  "m6-l2",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "La apertura no se improvisa",
+        "text":  "Un commitment se acompaña de la información necesaria para abrirlo después. Eso te permite revelar solo lo autorizado cuando corresponda, sin convertir la privacidad en una caja negra imposible de auditar.",
+        "visualHint":  "Llave de apertura liberando solo una parte autorizada",
+        "image":  "images/modules/m6/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-1",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "El padrón debe existir sin quedar expuesto",
+        "text":  "Una vez validada la habilitación, el ciudadano debe entrar en un padrón protegido. El reto para ti, como agente, es permitir que cada persona demuestre que pertenece al registro sin publicar la lista completa a los Mineros Oscuros.",
+        "visualHint":  "Padrón electoral protegido dentro de una estructura segura",
+        "image":  "images/modules/m6/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-2",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "El árbol Merkle resume el padrón",
+        "text":  "Un árbol Merkle funciona como un resumen compacto del padrón protegido. Cada hoja representa una entrada del registro y la raíz actúa como el sello final que resume a todo el conjunto habilitado.",
+        "visualHint":  "Árbol de Merkle construido a partir de ciudadanos habilitados",
+        "image":  "images/modules/m6/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-3",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "La prueba demuestra pertenencia, no el expediente completo",
+        "text":  "Con una prueba de membresía Merkle, el ciudadano presenta algo parecido a un pase de acceso: demuestra que su registro pertenece al padrón sin revelar el resto de la base ni exponer a los demás integrantes.",
+        "visualHint":  "Camino Merkle resaltando una pertenencia sin mostrar la lista completa",
+        "image":  "images/modules/m6/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l3-slide-4",
+        "lessonId":  "m6-l3",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "El circuito verifica el acceso al padrón",
+        "text":  "El circuito recompone la raíz a partir de la hoja y del camino de prueba. Si coincide con la raíz publicada, el sistema acepta que ese ciudadano pertenece al padrón protegido sin haber abierto el registro completo.",
+        "visualHint":  "Circuito validando una prueba de pertenencia al padrón",
+        "image":  "images/modules/m6/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-1",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  1,
+        "title":  "Aplicación: padrón electoral verificable",
+        "text":  "La autoridad electoral publica la raíz Merkle del padrón habilitado. Luego cada ciudadano presenta su prueba de pertenencia y el sistema confirma acceso sin revelar identidades completas ni exponer el padrón ante los Mineros Oscuros.",
+        "visualHint":  "Registro electoral verificando una prueba Merkle",
+        "image":  "images/modules/m6/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-2",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  2,
+        "title":  "Lo importante aquí es la misión electoral",
+        "text":  "Este patrón podría reutilizarse en otros contextos, pero aquí importa una cosa: proteger el padrón electoral. La Agencia necesita verificar quién pertenece al registro sin convertir ese registro en una base abierta para ataques o presión indebida.",
+        "visualHint":  "Comparación entre padrón electoral y otros registros privados",
+        "image":  "images/modules/m6/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-3",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  3,
+        "title":  "El flujo del padrón protegido",
+        "text":  "Primero construyes el árbol y publicas su raíz como resumen compacto del padrón. Luego cada ciudadano conserva su prueba de membresía. Finalmente el circuito verifica esa pertenencia y habilita el siguiente paso de la elección.",
+        "visualHint":  "Flujo: padrón → raíz → prueba → verificación",
+        "image":  "images/modules/m6/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m6-l4-slide-4",
+        "lessonId":  "m6-l4",
+        "moduleId":  "m6",
+        "order":  4,
+        "title":  "Con el padrón protegido, el voto ya puede avanzar",
+        "text":  "Cuando los compromisos criptográficos y las pruebas Merkle trabajan juntos, logras dos objetivos a la vez: verificar que el ciudadano está habilitado y mantener protegido su rastro dentro del padrón. Ese es el puente técnico hacia una votación privada completa.",
+        "visualHint":  "Arquitectura conectando padrón protegido con voto privado",
+        "image":  "images/modules/m6/l4-slide-4.png"
+    }
+]

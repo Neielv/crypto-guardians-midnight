@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m5-l1-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l1",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: DUST resource",
+    "instructions": "Complete the book's description of what DUST measures.",
+    "successCriteria": "Fill the blank with computational cost.",
+    "payload": {
+      "template": "DUST measures the ___ required to generate ZK proofs.",
+      "blanks": [
+        { "id": "blank-1", "answer": "computational cost" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l2-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l2",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: estimate DUST",
+    "instructions": "Complete the book's method for estimating DUST costs.",
+    "successCriteria": "Fill the blank with constraints.",
+    "payload": {
+      "template": "To estimate DUST, count the number of ___ in your circuit.",
+      "blanks": [
+        { "id": "blank-1", "answer": "constraints" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l3-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l3",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: proof server data",
+    "instructions": "Complete what data is sent to the proof server.",
+    "successCriteria": "Fill the blank with witnesses.",
+    "payload": {
+      "template": "The user sends encrypted ___ to the proof server.",
+      "blanks": [
+        { "id": "blank-1", "answer": "witnesses" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l4-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l4",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: optimization strategy",
+    "instructions": "Complete the proof aggregation technique.",
+    "successCriteria": "Fill the blank with single.",
+    "payload": {
+      "template": "Proof aggregation combines multiple proofs into a ___ proof.",
+      "blanks": [
+        { "id": "blank-1", "answer": "single" }
+      ]
+    }
+  }
+]

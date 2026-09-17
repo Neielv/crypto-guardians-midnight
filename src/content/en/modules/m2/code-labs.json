@@ -1,0 +1,74 @@
+[
+  {
+    "codeLabId": "m2-l1-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l1",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: register the map",
+    "instructions": "Complete the declaration so the ledger stores a verifiable citizen registry using `Map<Bytes<32>, Citizen>`.",
+    "successCriteria": "Complete the blank with `Map<Bytes<32>, Citizen>`.",
+    "payload": {
+      "template": "export ledger registry: ___;",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "Map<Bytes<32>, Citizen>"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l2-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l2",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: check membership",
+    "instructions": "Complete the exact call from the book used to check whether a key is already inside the registry before the mission proceeds.",
+    "successCriteria": "Complete the blank with `member`.",
+    "payload": {
+      "template": "const alreadyExists = registry.___(agentKey);",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "member"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l3-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l3",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: access the field",
+    "instructions": "Complete the exact expression from the book used to read the `address` field from an already created struct.",
+    "successCriteria": "Complete the blank with `address`.",
+    "payload": {
+      "template": "const addr = player.___;",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "address"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l4-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l4",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: correct circuit return",
+    "instructions": "Complete the proper signature for an `export circuit` that returns no value. Use exactly the return type from the book.",
+    "successCriteria": "Complete the blank with `[]`.",
+    "payload": {
+      "template": "export circuit register(): ___ {\n  count.increment(1);\n}",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "[]"
+        }
+      ]
+    }
+  }
+]

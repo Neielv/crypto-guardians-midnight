@@ -1,0 +1,29 @@
+[
+  {
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "title": "Configure visible data",
+    "objective": "Apply ledger vs witness to reveal only the minimum required information.",
+    "steps": [
+      {
+        "stepId": "m1-l1-s1",
+        "type": "slides",
+        "slideIds": [
+          "m1-l1-slide-1",
+          "m1-l1-slide-2",
+          "m1-l1-slide-3"
+        ]
+      },
+      {
+        "stepId": "m1-l1-c1",
+        "type": "challenge",
+        "challengeId": "m1-l1-challenge-1"
+      },
+      {
+        "stepId": "m1-l1-cl1",
+        "type": "code_lab",
+        "codeLabId": "m1-l1-code-lab-1"
+      }
+    ]
+  }
+]

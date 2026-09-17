@@ -1,0 +1,29 @@
+[
+  {
+    "codeLabId": "m0-l1-code-lab-1",
+    "moduleId": "m0",
+    "lessonId": "m0-l1",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: Declara tu primera caja fuerte",
+    "instructions": "Completa la declaración para que tu identidad privada quede bajo tu control como witness.",
+    "successCriteria": "Completa el hueco con la palabra witness.",
+    "narrativeIntro": "La Agencia necesita una identidad que permanezca en las sombras. Declara correctamente la pieza que protege tus datos privados.",
+    "successMessage": "Bien hecho. Ese witness es tu caja fuerte personal. Nadie más tiene acceso a él.",
+    "failureMessage": "Todavía no. Recuerda que la palabra clave que protege datos privados bajo control local es witness.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["witness"],
+      "acceptableAnswers": ["witness"],
+      "normalizeWhitespace": true
+    },
+    "payload": {
+      "template": "___ identidadPrivada(): Bytes<32>;",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "witness"
+        }
+      ]
+    }
+  }
+]

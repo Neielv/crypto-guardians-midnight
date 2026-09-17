@@ -1,0 +1,43 @@
+[
+  {
+    "challengeId": "m1-l1-challenge-1",
+    "moduleId": "m1",
+    "lessonId": "m1-l1",
+    "type": "visibility_editor",
+    "title": "Decidir qué queda expuesto",
+    "instructions": "Decide qué datos de una persona ciudadana pueden quedar en el muro público y cuáles deben quedar protegidos para no exponer su voto.",
+    "successCriteria": "Solo el nombre debe quedar público; el resto debe permanecer privado.",
+    "narrativeIntro": "Un registro ciudadano está por entrar al sistema de votación. Si publicas un dato sensible, los Mineros Oscuros ganan una pista para vigilar. Debes decidir qué puede ver cualquiera y qué debe quedar resguardado.",
+    "successMessage": "Decisión correcta. El ledger conserva solo lo seguro y la información sensible queda protegida para no exponer a la ciudadanía.",
+    "failureMessage": "Esa configuración abre un riesgo. Si publicas datos sensibles, facilitas la vigilancia; si ocultas lo indispensable, la verificación falla.",
+    "payload": {
+      "fields": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "expectedVisibility": "public"
+        },
+        {
+          "id": "cedula",
+          "label": "Cédula",
+          "expectedVisibility": "private"
+        },
+        {
+          "id": "fechaNacimiento",
+          "label": "Fecha de nacimiento",
+          "expectedVisibility": "private"
+        },
+        {
+          "id": "telefono",
+          "label": "Teléfono",
+          "expectedVisibility": "private"
+        },
+        {
+          "id": "direccion",
+          "label": "Dirección",
+          "expectedVisibility": "private"
+        }
+      ]
+    }
+  }
+]

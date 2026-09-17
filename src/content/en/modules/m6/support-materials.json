@@ -1,0 +1,283 @@
+[
+  {
+    "supportMaterialId": "m6-l1-slide-1-support-1",
+    "slideId": "m6-l1-slide-1",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Introduction",
+    "title": "Why a vote needs to stay sealed",
+    "excerpts": [
+      "You need to commit to a value without revealing it, then reveal it later.",
+      "A teacher needs to grade without seeing the exam first.",
+      "A bidder needs to submit a sealed bid."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-2-support-1",
+    "slideId": "m6-l1-slide-2",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Definition",
+    "title": "What is a commitment",
+    "excerpts": [
+      "A cryptographic commitment seals a value: commit(value) → commitment.",
+      "Later, you can open it to reveal the original value.",
+      "Properties: hiding (can't see value) and binding (can't change value)."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Commitment concept",
+        "code": "const commitment = commit(vote);\n// Commitment can be published\n// Original value remains hidden\n// Cannot be changed after commit"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-3-support-1",
+    "slideId": "m6-l1-slide-3",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Properties",
+    "title": "The two properties",
+    "excerpts": [
+      "Hiding - the commitment doesn't reveal the value.",
+      "Binding - once committed, you can't change what you committed to.",
+      "These make commitments fundamental to privacy protocols."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-4-support-1",
+    "slideId": "m6-l1-slide-4",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Midnight Primitives",
+    "title": "Commitments in Midnight",
+    "excerpts": [
+      "Midnight provides two primitives: persistentCommit and persistentHash.",
+      "These are stored in the ledger.",
+      "They are the foundation for private data handling."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-1-support-1",
+    "slideId": "m6-l2-slide-1",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "persistentCommit",
+    "title": "persistentCommit: the sealed value",
+    "excerpts": [
+      "persistentCommit stores a value that can only be revealed by the holder of the opening key.",
+      "Like a safe deposit box - only the owner can open it.",
+      "Perfect for vote encryption and token amounts."
+    ],
+    "codeBlocks": [
+      {
+        "title": "persistentCommit",
+        "code": "export ledger commitments: Map<Field, Commitment>;\n\n// Create a commitment\nconst { commitment, opening } = persistentCommit(value);\ncommitments.set(userId, commitment);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-2-support-1",
+    "slideId": "m6-l2-slide-2",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "persistentHash",
+    "title": "persistentHash: the public fingerprint",
+    "excerpts": [
+      "persistentHash is a public commitment - a fingerprint of a value.",
+      "Anyone can compute it but can't reverse it.",
+      "Useful for public data that needs integrity verification."
+    ],
+    "codeBlocks": [
+      {
+        "title": "persistentHash",
+        "code": "export ledger roots: Map<Field, Field>;\n\n// Store Merkle root\nconst root = persistentHash(merkleTree.getRoot());\nroots.set(electionId, root);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-3-support-1",
+    "slideId": "m6-l2-slide-3",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "Choice",
+    "title": "When to use each",
+    "excerpts": [
+      "Use persistentCommit for values that must remain hidden until revealed.",
+      "Use persistentHash for data that's public but needs integrity.",
+      "The choice affects privacy."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-4-support-1",
+    "slideId": "m6-l2-slide-4",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "Opening Key",
+    "title": "The opening key",
+    "excerpts": [
+      "persistentCommit uses commitment + opening key.",
+      "Only someone with the opening key can reveal the value.",
+      "This enables selective disclosure."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Opening commitment",
+        "code": "// Opening a commitment\nconst revealed = persistentCommit.open(\n  commitment,\n  openingKey\n);\n// revealed contains the original value"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-1-support-1",
+    "slideId": "m6-l3-slide-1",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Merkle Trees",
+    "sourceSection": "Problem",
+    "title": "Why the register must stay protected",
+    "excerpts": [
+      "You need to prove something belongs to a set without listing all members.",
+      "How do you prove you belong to the electoral register without revealing who you are?",
+      "Merkle trees solve this efficiently."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-2-support-1",
+    "slideId": "m6-l3-slide-2",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Merkle Trees",
+    "sourceSection": "Definition",
+    "title": "What is a Merkle tree",
+    "excerpts": [
+      "A binary tree where each leaf is a hash of data.",
+      "Each parent is the hash of its children's hashes.",
+      "The root is a compact representation of all data."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Merkle tree structure",
+        "code": "Leaves: [hash(A), hash(B), hash(C), hash(D)]\nParents: [hash(hash(A)+hash(B)), hash(hash(C)+hash(D))]\nRoot: hash(hash(A,B) + hash(C,D))"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-3-support-1",
+    "slideId": "m6-l3-slide-3",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Merkle Trees",
+    "sourceSection": "Proof",
+    "title": "Merkle proof of membership",
+    "excerpts": [
+      "Provide leaf value + sibling hashes along path to root.",
+      "Verifier recomputes the root from these.",
+      "Proof size is O(log n) - efficient for large sets."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Merkle proof verification",
+        "code": "export circuit verifyMembership(\n  leaf: Field,\n  proofPath: [Field; depth],\n  root: Field\n) {\n  let computed = leaf;\n  for (i in 0..depth) {\n    computed = hash(computed, proofPath[i]);\n  }\n  assert(computed == root);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-4-support-1",
+    "slideId": "m6-l3-slide-4",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Merkle Trees",
+    "sourceSection": "Circuits",
+    "title": "Using Merkle trees in circuits",
+    "excerpts": [
+      "Verify Merkle proofs in a circuit.",
+      "Circuit takes leaf, proof path, and recomputes root.",
+      "Prove membership without revealing which element you are."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-1-support-1",
+    "slideId": "m6-l4-slide-1",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Voting",
+    "title": "Application: verifiable electoral register",
+    "excerpts": [
+      "The election authority publishes a Merkle root of the eligible register.",
+      "Each citizen proves membership using a Merkle proof in a ZK circuit.",
+      "Verify eligibility without revealing identity."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Eligibility verification",
+        "code": "export circuit verifyEligibility(\n  leaf: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  // Prove leaf is in tree with given root\n  assert(verifyMerkle(leaf, merkleProof, root));\n  // Circuit succeeds if user is eligible"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-2-support-1",
+    "slideId": "m6-l4-slide-2",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Tokens",
+    "title": "Application: token balance verification",
+    "excerpts": [
+      "Commitments represent token amounts.",
+      "Merkle tree stores commitment openings.",
+      "Verify sufficient balance without revealing exact amount."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Balance proof",
+        "code": "export circuit verifyBalance(\n  commitment: Commitment,\n  merkleProof: [Field; depth],\n  root: Field,\n  minAmount: Field\n) {\n  // Verify commitment is in tree\n  assert(verifyMerkle(commitment, merkleProof, root));\n  // Prove amount >= minAmount without revealing"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-3-support-1",
+    "slideId": "m6-l4-slide-3",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Flow",
+    "title": "The full flow",
+    "excerpts": [
+      "1. Commit to value with persistentCommit.",
+      "2. Store commitment in ledger.",
+      "3. For verification, use ZK circuit with Merkle proof.",
+      "4. Verifier checks commitment + proof without seeing values."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-4-support-1",
+    "slideId": "m6-l4-slide-4",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Conclusion",
+    "title": "Putting it together",
+    "excerpts": [
+      "Commitments and Merkle trees are the backbone of privacy on Midnight.",
+      "They enable proving properties about private data while keeping it hidden.",
+      "Master these, and you can build any private application."
+    ],
+    "codeBlocks": []
+  }
+]

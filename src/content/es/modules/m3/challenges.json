@@ -1,0 +1,114 @@
+[
+  {
+    "challengeId": "m3-l1-challenge-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l1",
+    "type": "trivia",
+    "title": "Verificación silenciosa",
+    "instructions": "Elige la definición del libro que mejor describe una zero-knowledge proof.",
+    "successCriteria": "Selecciona la opción que explica que la prueba valida una afirmación sin revelar información adicional.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué hace una zero-knowledge proof según el libro base?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Prueba que una afirmación es verdadera sin revelar información adicional más allá de su validez"
+        },
+        {
+          "id": "b",
+          "label": "Publica todos los datos del usuario y luego verifica su consistencia"
+        },
+        {
+          "id": "c",
+          "label": "Convierte cualquier witness en un valor público de forma automática"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m3-l2-challenge-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l2",
+    "type": "trivia",
+    "title": "Motor de la prueba",
+    "instructions": "Identifica la afirmación correcta sobre los circuits en Compact.",
+    "successCriteria": "Selecciona la opción que explica que los circuits se compilan a circuitos zero-knowledge verificables.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué ocurre cuando escribes un Compact circuit según el libro?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Se transforma en un circuito zero-knowledge real que puede generar y verificar proofs"
+        },
+        {
+          "id": "b",
+          "label": "Se ejecuta solo como comentario dentro del contrato"
+        },
+        {
+          "id": "c",
+          "label": "Se vuelve automáticamente un witness privado"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m3-l3-challenge-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l3",
+    "type": "trivia",
+    "title": "Permiso de divulgación",
+    "instructions": "Selecciona el patrón correcto para pasar un valor de witness al ledger sin violar la protección de datos.",
+    "successCriteria": "Elige la opción que envuelve el valor con `disclose()`.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué línea coincide con el ejemplo correcto del libro?",
+      "options": [
+        {
+          "id": "a",
+          "label": "balance = disclose(getBalance());"
+        },
+        {
+          "id": "b",
+          "label": "balance = getBalance();"
+        },
+        {
+          "id": "c",
+          "label": "witness balance(): getBalance();"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m3-l4-challenge-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l4",
+    "type": "trivia",
+    "title": "Error crítico de la misión",
+    "instructions": "Identifica qué significa realmente el error `potential witness-value disclosure`.",
+    "successCriteria": "Selecciona la opción que describe una fuga potencial de un valor de witness hacia un contexto público sin declaración explícita.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué está indicando el compilador con ese error?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Un valor potencialmente privado intenta divulgarse sin `disclose()`"
+        },
+        {
+          "id": "b",
+          "label": "El ledger no acepta tipos `Bytes<32>`"
+        },
+        {
+          "id": "c",
+          "label": "El pragma del contrato debe eliminarse"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  }
+]

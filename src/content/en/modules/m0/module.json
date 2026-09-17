@@ -1,0 +1,12 @@
+{
+  "moduleId": "m0",
+  "title": "Self-Sovereign Identity",
+  "summary": "Here begins your training within the agency. You will learn why your identity must remain under your control.",
+  "concepts": ["witness", "local-first", "self-sovereign identity"],
+  "unlocks": "m1",
+  "narrativeTitle": "The Name in the Shadows",
+  "technicalTitle": "Self-Sovereign Identity",
+  "dramaticDescription": "In a world where every step is recorded, you decide which name to show and which to keep. Your identity is not data: it is a choice.",
+  "introImage": "images/briefing/slide1.png",
+  "startButtonLabel": "Begin"
+}

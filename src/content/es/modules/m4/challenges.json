@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m4-l1-challenge-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l1",
+    "type": "trivia",
+    "title": "El identificador de exclusión",
+    "instructions": "Elige la mejor descripción de un nullifier en el contexto de una votación protegida.",
+    "successCriteria": "Selecciona la opción que explica que el nullifier marca una participación como ya realizada sin revelar la identidad.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué es un nullifier dentro de una votación protegida?",
+      "options": [
+        { "id": "a", "label": "Un identificador público que muestra la identidad del votante" },
+        { "id": "b", "label": "Un valor que marca una participación como ya realizada sin revelar la identidad del ciudadano" },
+        { "id": "c", "label": "Una clave secreta que se publica en el ledger" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m4-l2-challenge-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l2",
+    "type": "trivia",
+    "title": "Prevención de doble voto",
+    "instructions": "Identifica cómo el sistema evita que un ciudadano registrado vote dos veces usando nullifiers.",
+    "successCriteria": "Selecciona la opción que explica que el nullifier se registra y el segundo intento es rechazado.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Cómo evita el sistema el doble voto con nullifiers?",
+      "options": [
+        { "id": "a", "label": "El ledger guarda la identidad del votante junto con su voto" },
+        { "id": "b", "label": "El nullifier generado se registra y un segundo intento asociado al mismo ciudadano encuentra que ya existe y es rechazado" },
+        { "id": "c", "label": "El sistema limita la cantidad de votos por dirección IP" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m4-l3-challenge-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l3",
+    "type": "trivia",
+    "title": "Vinculación controlada",
+    "instructions": "Selecciona la fórmula correcta para generar múltiples nullifiers vinculados del mismo registro autorizado.",
+    "successCriteria": "Elige la opción que usa hash(clave_secreta + nonce).",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué fórmula genera nullifiers vinculados con nonce?",
+      "options": [
+        { "id": "a", "label": "nullifier = hash(clave_secreta + nonce)" },
+        { "id": "b", "label": "nullifier = nonce * 2" },
+        { "id": "c", "label": "nullifier = clave_secreta" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m4-l4-challenge-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l4",
+    "type": "trivia",
+    "title": "Aplicación práctica",
+    "instructions": "Identifica qué verifica el circuit al procesar un nullifier en una votación protegida.",
+    "successCriteria": "Selecciona la opción que incluye verificar que el nullifier fue generado correctamente y que no existe en el set.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué verifica el circuit antes de aceptar un nullifier en una votación protegida?",
+      "options": [
+        { "id": "a", "label": "Solo verifica la identidad del ciudadano" },
+        { "id": "b", "label": "Verifica que el nullifier fue generado correctamente usando la clave secreta Y que no existe todavía en el set de nullifiers del ledger" },
+        { "id": "c", "label": "Solo verifica que el nullifier sea mayor a cero" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

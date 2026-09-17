@@ -1,0 +1,30 @@
+[
+  {
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "title": "Your identity as an agent-citizen",
+    "objective": "Understand that a citizen's digital identity can belong to the user instead of a central server.",
+    "steps": [
+      {
+        "stepId": "m0-l1-s1",
+        "type": "slides",
+        "slideIds": [
+          "m0-l1-slide-1",
+          "m0-l1-slide-2",
+          "m0-l1-slide-4",
+          "m0-l1-slide-3"
+        ]
+      },
+      {
+        "stepId": "m0-l1-c1",
+        "type": "challenge",
+        "challengeId": "m0-l1-challenge-1"
+      },
+      {
+        "stepId": "m0-l1-cl1",
+        "type": "code_lab",
+        "codeLabId": "m0-l1-code-lab-1"
+      }
+    ]
+  }
+]

@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m3-l1-slide-1",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "The Agency must prove, not expose",
+        "text":  "At this stage the mission changes: storing data is no longer enough. We must prove properties about that data without handing the full dossier to the adversary.",
+        "visualHint":  "Agents validating a condition through a secure viewer without opening the full dossier.",
+        "image":  "images/modules/m3/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-2",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "A ZK proof verifies without revealing",
+        "text":  "The book defines a zero-knowledge proof as a cryptographic method to prove that a statement is true without revealing additional information beyond its validity.",
+        "visualHint":  "Verification seal approved while the contents of the dossier remain hidden.",
+        "image":  "images/modules/m3/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-3",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "Prover and verifier play different roles",
+        "text":  "A proof always has two sides: the party that proves and the party that verifies. The book uses those roles to explain why the system can accept a claim without receiving the private data behind it.",
+        "visualHint":  "Two linked terminals: one generating the proof, the other only validating the outcome.",
+        "image":  "images/modules/m3/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-4",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Classic example: age without birth date",
+        "text":  "The book uses a clear example: proving that someone is over 21 without showing the real birth date. That is exactly why a zero-knowledge proof matters in this mission.",
+        "visualHint":  "Access card approved for age eligibility without exposing a birth date.",
+        "image":  "images/modules/m3/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-1",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "Circuits are the proof engine",
+        "text":  "Compact compiles circuits into real zero-knowledge circuits. That means the logic we write becomes the mathematical basis that later generates and verifies proofs.",
+        "visualHint":  "ZK circuit engine powering up inside the Agency core.",
+        "image":  "images/modules/m3/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-2",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "A circuit defines verifiable business logic",
+        "text":  "The book explains that a circuit is not just a function: it defines what the contract can do, how state changes, and what can later be proven to a verifier.",
+        "visualHint":  "Mission blueprint where a contract action becomes a formal proof path.",
+        "image":  "images/modules/m3/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-3",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "`export` opens the operation to TypeScript",
+        "text":  "When a circuit must be called from outside, the book requires `export`. That decision connects the Agency app with the operation that ultimately generates the proof or mutates the ledger.",
+        "visualHint":  "TypeScript interface linking to an exported circuit.",
+        "image":  "images/modules/m3/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-4",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Proofs are generated at runtime",
+        "text":  "The book also notes that real proofs are generated locally at runtime. That keeps private data under control while the proof itself can move for verification.",
+        "visualHint":  "Proof generated on the agent device and sent out as a verifiable token.",
+        "image":  "images/modules/m3/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-1",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "Not every private value may touch the ledger",
+        "text":  "If a value is born in witness, Compact treats it as sensitive. That is why it cannot end up in ledger without an explicit declaration of intent.",
+        "visualHint":  "Security barrier stopping witness data before it reaches ledger.",
+        "image":  "images/modules/m3/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-2",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "`disclose()` declares the exception",
+        "text":  "The book explains that `disclose()` does not reveal by itself; it explicitly declares that an expression may cross into a public or verifiable context.",
+        "visualHint":  "Authorization key `disclose()` opening only one controlled outbound gate.",
+        "image":  "images/modules/m3/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-3",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "The mission demands minimal disclosure",
+        "text":  "Programmable privacy works because disclosure is an exception, not the rule. If `disclose()` is not declared precisely, the language protects the witness and aborts the operation.",
+        "visualHint":  "Tactical panel marking a single safe exit for data that truly needs to become public.",
+        "image":  "images/modules/m3/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-4",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Exact example: `balance = disclose(getBalance())`",
+        "text":  "The book uses a direct example: a witness value may be stored in ledger only if it is wrapped with `disclose(getBalance())`. That exact form is what we must recognize and apply.",
+        "visualHint":  "Highlighted code line moving from witness to ledger through `disclose()`.",
+        "image":  "images/modules/m3/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-1",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "The compiler watches for witness leaks",
+        "text":  "Compact includes a protection system that tracks witness data flow. If it detects undeclared disclosure, it stops the mission before the leak can occur.",
+        "visualHint":  "Compiler firewall flagging a leak path in red.",
+        "image":  "images/modules/m3/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-2",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "`potential witness-value disclosure` is not noise",
+        "text":  "That error means something precise: a value that may contain private data is trying to reach a public context without explicit permission. It is not optional to fix it.",
+        "visualHint":  "Error console showing `potential witness-value disclosure` as a critical alert.",
+        "image":  "images/modules/m3/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-3",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "Understand the flow before patching it",
+        "text":  "The book shows that disclosure may be indirect. So the fix is not guessing: you must understand why the value is still witness data and where `disclose()` belongs in the flow.",
+        "visualHint":  "Data path highlighted step by step up to the exact point where `disclose()` is missing.",
+        "image":  "images/modules/m3/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-4",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Privacy by default, disclosure by exception",
+        "text":  "That is the central principle of the module: every private value stays protected by default and only crosses the boundary when the mission declares that intent explicitly and technically.",
+        "visualHint":  "Privacy shield around witness data and a single authorized exit toward ledger.",
+        "image":  "images/modules/m3/l4-slide-4.png"
+    }
+]

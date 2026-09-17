@@ -1,0 +1,42 @@
+[
+    {
+        "slideId": "m0-l1-slide-1",
+        "lessonId": "m0-l1",
+        "moduleId": "m0",
+        "order": 1,
+        "title": "Tu identidad protege la misión",
+        "text": "Antes de proteger los votos de miles de personas, debes proteger el punto de entrada más cercano: tu propia identidad operativa. Si depende de otro sistema, la misión depende de otro sistema. Una identidad auto-soberana significa que tú conservas el control y que nadie accede a tu información sin tu autorización.",
+        "visualHint": "Agente frente a una terminal de registro en una sala apenas iluminada.",
+        "image": "images/modules/m0/l1-slide-1.png"
+    },
+    {
+        "slideId": "m0-l1-slide-2",
+        "lessonId": "m0-l1",
+        "moduleId": "m0",
+        "order": 2,
+        "title": "Una identidad centralizada puede volverse un arma",
+        "text": "Una base centralizada se parece a una sala con todas las llaves colgadas en la misma pared. Si cae en manos enemigas, no solo te exponen a ti: también pueden rastrear personas, presionar operadores y preparar ataques contra la ciudadanía. Así trabajan los Mineros Oscuros: convierten la concentración de datos en un arma.",
+        "visualHint": "Mineros Oscuros intentando abrir una base de datos central.",
+        "image": "images/modules/m0/l1-slide-2.png"
+    },
+    {
+        "slideId": "m0-l1-slide-3",
+        "lessonId": "m0-l1",
+        "moduleId": "m0",
+        "order": 3,
+        "title": "Local-first",
+        "text": "Local-first significa que lo más sensible permanece contigo, como si llevaras los documentos críticos en un maletín sellado en lugar de dejarlos en un archivo abierto. Menos exposición significa menos oportunidades para el enemigo. Si tu identidad se protege desde tu propio control, después podrás diseñar sistemas que también protejan a la ciudadanía y el secreto del voto.",
+        "visualHint": "Caja fuerte digital en el dispositivo del agente.",
+        "image": "images/modules/m0/l1-slide-3.png"
+    },
+    {
+        "slideId": "m0-l1-slide-4",
+        "lessonId": "m0-l1",
+        "moduleId": "m0",
+        "order": 4,
+        "title": "Tu witness es una caja fuerte personal",
+        "text": "Un witness funciona como una caja fuerte operativa en tu dispositivo: guarda el dato sensible, pero permite demostrar lo necesario sin entregarlo completo. Esa lógica será clave más adelante para verificar identidades, autorizaciones y condiciones sin romper el secreto que la misión debe preservar. En Compact aparece como `witness nombreDelDato(): Tipo;`.",
+        "visualHint": "Caja fuerte digital abierta mostrando credenciales protegidas y una prueba matemática saliendo sin exponer su contenido.",
+        "image": "images/modules/m0/l1-slide-4.png"
+    }
+]

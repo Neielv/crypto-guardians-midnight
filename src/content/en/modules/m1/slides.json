@@ -1,0 +1,32 @@
+[
+    {
+        "slideId": "m1-l1-slide-1",
+        "lessonId": "m1-l1",
+        "moduleId": "m1",
+        "order": 1,
+        "title": "The Public Ledger",
+        "text": "The ledger represents the visible state of the system. That's why you must decide precisely what information can be exposed without putting participants at risk.",
+        "visualHint": "Glowing open book in a control room.",
+        "image": "images/modules/m1/l1-slide-1.png"
+    },
+    {
+        "slideId": "m1-l1-slide-2",
+        "lessonId": "m1-l1",
+        "moduleId": "m1",
+        "order": 2,
+        "title": "The Private Box",
+        "text": "The witness contains sensitive data that people keep under their absolute control. It is the private sanctuary of citizen identity, ensuring that nothing personal is exposed on the Ledger without explicit consent.",
+        "visualHint": "Safe with witness label.",
+        "image": "images/modules/m1/l1-slide-2.png"
+    },
+    {
+        "slideId": "m1-l1-slide-3",
+        "lessonId": "m1-l1",
+        "moduleId": "m1",
+        "order": 3,
+        "title": "Minimal Disclosure",
+        "text": "In an electoral system, publishing too much exposes citizens without adding real value to verification. Privacy is not about hiding everything, but about revealing only what is essential.",
+        "visualHint": "Scale between transparency and privacy.",
+        "image": "images/modules/m1/l1-slide-3.png"
+    }
+]

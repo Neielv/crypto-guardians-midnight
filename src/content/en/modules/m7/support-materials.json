@@ -1,0 +1,286 @@
+[
+  {
+    "supportMaterialId": "m7-l1-slide-1-support-1",
+    "slideId": "m7-l1-slide-1",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Final Integration",
+    "sourceSection": "Overview",
+    "title": "The final challenge",
+    "excerpts": [
+      "Build a complete privacy-preserving voting system integrating all concepts.",
+      "This is the boss battle - integration of everything from witness to Merkle trees.",
+      "Only by combining all pieces can you succeed."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-2-support-1",
+    "slideId": "m7-l1-slide-2",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Final Integration",
+    "sourceSection": "Requirements",
+    "title": "What you must integrate",
+    "excerpts": [
+      "witness - private inputs",
+      "assert - circuit logic",
+      "disclose - selective reveal",
+      "nullifier - uniqueness",
+      "DUST - cost management",
+      "Merkle trees - membership proofs"
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-3-support-1",
+    "slideId": "m7-l1-slide-3",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Final Integration",
+    "sourceSection": "Scenario",
+    "title": "The scenario: private election",
+    "excerpts": [
+      "Eligible voters must prove membership without revealing identity.",
+      "Vote encryption must be secret.",
+      "Tallying must be verifiable.",
+      "Double-voting must be impossible."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-4-support-1",
+    "slideId": "m7-l1-slide-4",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Final Integration",
+    "sourceSection": "Importance",
+    "title": "Why this matters",
+    "excerpts": [
+      "This integration demonstrates real-world privacy-preserving applications.",
+      "Mastering all these concepts enables building systems that protect privacy.",
+      "This is the future of voting, airdrops, and more."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-1-support-1",
+    "slideId": "m7-l2-slide-1",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combining Concepts",
+    "sourceSection": "Step 1",
+    "title": "Step 1: Identity and eligibility",
+    "excerpts": [
+      "Use witness for private identity data.",
+      "Use Merkle tree for eligibility list.",
+      "Circuit proves voter is in the list without revealing identity."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Eligibility with Merkle",
+        "code": "export circuit verifyEligibility(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-2-support-1",
+    "slideId": "m7-l2-slide-2",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combining Concepts",
+    "sourceSection": "Step 2",
+    "title": "Step 2: Vote encryption and commitment",
+    "excerpts": [
+      "Use persistentCommit to encrypt the vote.",
+      "Vote is sealed in a commitment, readable only by authority.",
+      "Use disclose to reveal vote count without revealing who voted for whom."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Vote commitment",
+        "code": "// Encrypt vote\nconst { commitment, opening } = persistentCommit(vote);\n\n// Later, disclose aggregate\nconst tally = disclose(commitments, aggregate);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-3-support-1",
+    "slideId": "m7-l2-slide-3",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combining Concepts",
+    "sourceSection": "Step 3",
+    "title": "Step 3: Uniqueness with nullifier",
+    "excerpts": [
+      "Nullifier prevents double-voting.",
+      "Generate nullifier from secret key + vote event.",
+      "Publish to ledger, verify it's unique with assert."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier for uniqueness",
+        "code": "export circuit castVote(nullifier: Field) {\n  // Verify unique\n  assert(!usedNullifiers.member(nullifier));\n  \n  // Register\n  usedNullifiers.insert(nullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-4-support-1",
+    "slideId": "m7-l2-slide-4",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combining Concepts",
+    "sourceSection": "Step 4",
+    "title": "Step 4: DUST cost management",
+    "excerpts": [
+      "Proof server generates the proof, consuming DUST.",
+      "Circuit must be optimized to minimize costs.",
+      "This completes the full system."
+    ],
+    "codeBlocks": [
+      {
+        "title": "DUST accounting",
+        "code": "import { dust } from '@midnight/coins';\n\n// DUST is deducted from user balance\n// for proof generation\nconst proof = await proofServer.generate(\n  encryptedWitness,\n  { from: user, amount: estimatedDust }\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-1-support-1",
+    "slideId": "m7-l3-slide-1",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Final Scenario",
+    "sourceSection": "Architecture",
+    "title": "System architecture overview",
+    "excerpts": [
+      "Ledger stores: Merkle root, vote commitment, nullifier set.",
+      "User device creates witness data.",
+      "Proof server generates ZK proof.",
+      "Circuit verifies everything."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-2-support-1",
+    "slideId": "m7-l3-slide-2",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Final Scenario",
+    "sourceSection": "Circuit",
+    "title": "The complete circuit",
+    "excerpts": [
+      "Verify Merkle proof for eligibility.",
+      "Verify vote commitment is valid.",
+      "Verify nullifier is unique.",
+      "Assert all conditions are met."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Complete voting circuit",
+        "code": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  vote: Field,\n  nullifier: Field,\n  root: Field\n) {\n  // 1. Eligibility\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  \n  // 2. Uniqueness\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n  \n  // 3. Vote commitment valid\n  assert(verifyCommitment(vote, commitment));\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-3-support-1",
+    "slideId": "m7-l3-slide-3",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Final Scenario",
+    "sourceSection": "Privacy",
+    "title": "Privacy preserved at each step",
+    "excerpts": [
+      "Voter identity hidden (Merkle proof).",
+      "Vote content hidden (commitment).",
+      "Vote count verifiable (disclose).",
+      "No double-voting (nullifier)."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-4-support-1",
+    "slideId": "m7-l3-slide-4",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Final Scenario",
+    "sourceSection": "Parameters",
+    "title": "The challenge parameters",
+    "excerpts": [
+      "Handle 1000 eligible voters.",
+      "Support 3 candidates.",
+      "Prevent double-voting.",
+      "Keep votes private.",
+      "Provide public tally.",
+      "Optimize circuit for DUST."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-1-support-1",
+    "slideId": "m7-l4-slide-1",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Boss Battle",
+    "sourceSection": "Begin",
+    "title": "The boss battle begins",
+    "excerpts": [
+      "Implement the complete voting system.",
+      "Verify eligibility, encrypt vote, prevent double-voting, provide tally.",
+      "This is everything you've learned."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-2-support-1",
+    "slideId": "m7-l4-slide-2",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Boss Battle",
+    "sourceSection": "Tools",
+    "title": "Your toolkit for victory",
+    "excerpts": [
+      "witness - private inputs",
+      "assert - logic",
+      "disclose - selective reveal",
+      "nullifier - uniqueness",
+      "DUST - cost",
+      "Merkle - membership"
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-3-support-1",
+    "slideId": "m7-l4-slide-3",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Boss Battle",
+    "sourceSection": "Optimization",
+    "title": "Optimization strategy",
+    "excerpts": [
+      "Minimize DUST while maintaining privacy.",
+      "Optimize circuits by reducing constraints.",
+      "Use efficient hash functions.",
+      "Batch proofs where possible."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Optimized circuit",
+        "code": "// Before: 2000 constraints\nconst h1 = hash(a);\nconst h2 = hash(b);\n\n// After: 800 constraints (reuse)\nconst shared = hash(a, b);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-4-support-1",
+    "slideId": "m7-l4-slide-4",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Boss Battle",
+    "sourceSection": "Completion",
+    "title": "Congratulations, Guardian",
+    "excerpts": [
+      "You've mastered: self-sovereign identity, ledger vs witness, verifiable identity, ZK proofs, nullifiers, DUST, commitments, Merkle trees.",
+      "You are now a Crypto Guardian.",
+      "Ready to build privacy-preserving systems."
+    ],
+    "codeBlocks": []
+  }
+]

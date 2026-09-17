@@ -1,0 +1,86 @@
+[
+  {
+    "supportMaterialId": "m0-l1-slide-1-support-1",
+    "slideId": "m0-l1-slide-1",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Witnesses · Declaring Witnesses",
+    "title": "Operational identity enters the contract through a witness",
+    "excerpts": [
+      "Witnesses are the connection between private off-chain data and your Compact contract.",
+      "Witnesses are declared similarly to circuits, but with the witness keyword."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Witness declarations",
+        "code": "witness secretKey(): Bytes<32>;\nwitness getBalance(): Uint<64>;\nwitness userAddress(): UserAddress;"
+      },
+      {
+        "title": "Syntax detail",
+        "code": "// witness does use parentheses\nwitness dataName(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-2-support-1",
+    "slideId": "m0-l1-slide-2",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "State Management",
+    "sourceSection": "ledger section",
+    "title": "What gets published and what stays out of chain state",
+    "excerpts": [
+      "A key part of a Compact smart contract is the ledger section, which describes the state kept on-chain.",
+      "The example stores a key, a value, the contract state, and a round counter used to preserve anonymity."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Public ledger fields",
+        "code": "export ledger authority: Bytes<32>;\nexport ledger value: Uint<64>;\nexport ledger state: State;\nexport ledger round: Counter;"
+      },
+      {
+        "title": "Syntax detail",
+        "code": "// ledger does not use parentheses\nexport ledger name: Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-4-support-1",
+    "slideId": "m0-l1-slide-4",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Witnesses · Complete Example",
+    "title": "The witness keeps the secret and exposes only what is needed",
+    "excerpts": [
+      "In the example contract, the witness secretKey is used to provide the user's private key.",
+      "Witness values can contain private information and require disclose() before they can be used in ledger operations."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Using secretKey() inside a circuit",
+        "code": "witness secretKey(): Bytes<32>;\n\nexport circuit set(v: Uint<64>): [] {\n  assert(state == State.UNSET);\n  const sk = secretKey();\n  const pk = publicKey(round, sk);\n  authority = disclose(pk);\n  value = disclose(v);\n  state = State.SET;\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m0-l1-slide-3-support-1",
+    "slideId": "m0-l1-slide-3",
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "sourceChapter": "Local state and computations",
+    "sourceSection": "Witnesses on the local machine",
+    "title": "Why the witness stays on the local machine",
+    "excerpts": [
+      "The third context is the user's local machine. Compact can call the local context through witnesses.",
+      "The witness is not implemented in Compact source code. Instead, its implementation is the responsibility of the DApp TypeScript code."
+    ],
+    "codeBlocks": [
+      {
+        "title": "The local value feeds the circuit",
+        "code": "witness secretKey(): Bytes<32>;\n\nexport circuit clear(): [] {\n  assert(state == State.SET);\n  const sk = secretKey();\n  const pk = publicKey(round, sk);\n  assert(authority == pk);\n  state = State.UNSET;\n  round.increment(1);\n}"
+      }
+    ]
+  }
+]

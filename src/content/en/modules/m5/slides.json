@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m5-l1-slide-1",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "The price of privacy",
+        "text":  "In the Midnight blockchain, privacy is not free. Every zero-knowledge proof requires computational resources to generate. The book introduces DUST as the unit that measures this computational cost. Like gas in other blockchains, DUST represents the \u0027energy\u0027 needed to keep data private.",
+        "visualHint":  "Energy meter showing cost for private operations",
+        "image":  "images/modules/m5/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-2",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "What is DUST",
+        "text":  "DUST is a cryptographic resource metric in Midnight that measures the computational cost of generating ZK proofs. The more complex the proof (more inputs, more constraints), the more DUST is consumed. It\u0027s the bridge between privacy and efficiency.",
+        "visualHint":  "DUST icon representing computational resource",
+        "image":  "images/modules/m5/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-3",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Why privacy costs resources",
+        "text":  "Zero-knowledge proofs require complex mathematical operations. The prover must perform hundreds or thousands of hash operations, elliptic curve arithmetic, and other expensive computations. This work is what makes privacy possible but also what makes it costly.",
+        "visualHint":  "Complex mathematical operations visualized as machinery",
+        "image":  "images/modules/m5/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-4",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "The DUST balance",
+        "text":  "Users must maintain a DUST balance to perform private operations. The book explains that this balance is separate from the token balance and is consumed when proofs are generated. Understanding DUST is essential for building efficient private applications.",
+        "visualHint":  "Wallet showing two balances: tokens and DUST",
+        "image":  "images/modules/m5/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-1",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "ZK proof generation resources",
+        "text":  "Generating a ZK proof requires significant computational resources. The book describes the key resources: CPU for cryptographic operations, memory for storing intermediate values, and time for the proof to be computed. Each of these contributes to DUST consumption.",
+        "visualHint":  "Computer resources: CPU, RAM, time icons",
+        "image":  "images/modules/m5/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-2",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Factors affecting DUST cost",
+        "text":  "The book\u0027s formula shows that DUST cost depends on: the number of witness variables, the number of constraints in the circuit, and the proof system used. More complex circuits cost more DUST. This is why circuit design is crucial for efficiency.",
+        "visualHint":  "Formula showing DUST = f(witness, constraints, system)",
+        "image":  "images/modules/m5/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-3",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Proof complexity trade-offs",
+        "text":  "The book teaches that there\u0027s always a trade-off between privacy and cost. More private proofs (proving more things without revealing) require larger circuits and therefore more DUST. Understanding this helps design more efficient systems.",
+        "visualHint":  "Scale balancing privacy level vs DUST cost",
+        "image":  "images/modules/m5/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-4",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Estimating DUST for your circuit",
+        "text":  "Before deploying, developers can estimate DUST costs by analyzing their circuit. The book shows that counting constraints and witness variables gives a good approximation. This helps users plan their DUST budget.",
+        "visualHint":  "Calculator computing DUST from circuit analysis",
+        "image":  "images/modules/m5/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-1",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "The proof server role",
+        "text":  "In the Midnight architecture, proof generation is often delegated to specialized servers. The book explains that these proof servers perform the heavy cryptographic computations off-chain, consuming DUST on behalf of users. This enables lightweight clients.",
+        "visualHint":  "Server rack with proof generation label",
+        "image":  "images/modules/m5/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-2",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "How proof servers work",
+        "text":  "The flow is: user provides witness data (encrypted), proof server generates the ZK proof consuming DUST, then returns the proof to the user. The user\u0027s token balance pays for the DUST consumed. This separates heavy computation from the user device.",
+        "visualHint":  "Flow diagram: user → witness → server → proof → user",
+        "image":  "images/modules/m5/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-3",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Trust model for proof servers",
+        "text":  "The book clarifies the trust assumptions: proof servers cannot see the private data because it\u0027s provided as encrypted witnesses. They only compute the proof. The integrity of the proof is guaranteed cryptographically, not by trust in the server.",
+        "visualHint":  "Shield protecting data from proof server view",
+        "image":  "images/modules/m5/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-4",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Decentralized proof generation",
+        "text":  "The book mentions that Midnight supports a network of proof servers. Users can choose their proof server or even run their own. Competition among providers helps keep DUST costs reasonable and the system resilient.",
+        "visualHint":  "Network of interconnected proof servers",
+        "image":  "images/modules/m5/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-1",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "Circuit optimization strategies",
+        "text":  "The first strategy the book teaches is optimizing circuits. This means reducing the number of constraints, reusing computation, and choosing efficient hash functions. Smaller circuits consume less DUST.",
+        "visualHint":  "Circuit being simplified and streamlined",
+        "image":  "images/modules/m5/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-2",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Proof aggregation",
+        "text":  "Another strategy is proof aggregation. Instead of generating separate proofs for each action, multiple actions can be proven together in a single proof. The book shows this reduces the amortized DUST cost per action.",
+        "visualHint":  "Multiple proofs merging into one larger proof",
+        "image":  "images/modules/m5/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-3",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Caching proofs",
+        "text":  "For repeated operations, the book suggests caching proofs. Some data doesn\u0027t change between operations, so the same proof can be reused. This avoids regenerating proofs and saves DUST.",
+        "visualHint":  "Cache storage holding reusable proofs",
+        "image":  "images/modules/m5/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-4",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Balancing privacy and cost",
+        "text":  "The book concludes with the key insight: privacy is a feature that costs DUST. Design systems that give users control over the privacy-cost trade-off. Allow them to choose the level of privacy they need for each operation.",
+        "visualHint":  "Control panel with privacy level slider and cost indicator",
+        "image":  "images/modules/m5/l4-slide-4.png"
+    }
+]

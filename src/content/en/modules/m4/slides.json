@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m4-l1-slide-1",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "A political right cannot be used twice",
+        "text":  "Once a citizen is eligible to participate, the system still needs one more guarantee: that the same political right cannot be exercised twice. That is where the nullifier appears.",
+        "visualHint":  "Electoral panel marking a single valid participation per citizen",
+        "image":  "images/modules/m4/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-2",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "A nullifier marks usage without revealing identity",
+        "text":  "A nullifier is a unique usage mark. It lets the contract know that participation already happened without exposing which citizen performed it.",
+        "visualHint":  "\u0027Right already exercised\u0027 stamp applied without showing identity",
+        "image":  "images/modules/m4/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-3",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "How a nullifier is generated",
+        "text":  "The book shows the formula: nullifier = hash(secret_key + event). This way, each pair (user, action) produces a unique value but is not reversible to discover the identity.",
+        "visualHint":  "Hash function taking two inputs and producing a unique code",
+        "image":  "images/modules/m4/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l1-slide-4",
+        "lessonId":  "m4-l1",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "The nullifier lives in the ledger",
+        "text":  "Once generated, the nullifier is published to the ledger. The smart contract stores it so that the next time the same citizen tries to participate, the system detects the repetition and rejects the action.",
+        "visualHint":  "Database with exclusion codes organized",
+        "image":  "images/modules/m4/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-1",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "The double-voting problem",
+        "text":  "Without nullifiers, a malicious citizen could try to vote multiple times. In a private voting system, the threat is real: detect repetition without turning the election into a database of exposed identities.",
+        "visualHint":  "Duplicate ballots blocked by a verification shield",
+        "image":  "images/modules/m4/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-2",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "The exclusion mark resolves the conflict",
+        "text":  "Each time voting rights are exercised, the system records a nullifier. The next attempt finds that same mark and gets rejected automatically.",
+        "visualHint":  "Electoral console showing an already registered nullifier",
+        "image":  "images/modules/m4/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-3",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "Double-spending: the same problem",
+        "text":  "The book extends the concept to tokens: if someone tries to spend the same token twice, the second attempt fails because the first transaction already consumed (nullified) that token\u0027s commitment.",
+        "visualHint":  "Coin split into two copies, one accepted and one rejected",
+        "image":  "images/modules/m4/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l2-slide-4",
+        "lessonId":  "m4-l2",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "Privacy is maintained",
+        "text":  "The trick is that the ledger only sees the nullifier, not the identity. The contract only knows that \u0027something has been spent\u0027 but cannot link it to a specific user identity.",
+        "visualHint":  "Encryption protecting identity while showing \u0027used\u0027 status",
+        "image":  "images/modules/m4/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-1",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "Linkability: relating without revealing",
+        "text":  "Sometimes you want to link two actions from the same user without revealing who they are. For example: verifying someone is eligible for multiple airdrop rounds without exposing their identity.",
+        "visualHint":  "Chain of events linked by a hidden identifier",
+        "image":  "images/modules/m4/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-2",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "The nonce enables multiple linked actions",
+        "text":  "The book introduces the nonce as a counter that increments with each action. Combined with the user\u0027s secret key, it produces different nullifiers for each action while still being linkable to each other.",
+        "visualHint":  "Counter generating different codes for each use",
+        "image":  "images/modules/m4/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-3",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "Formula with nonce",
+        "text":  "The book\u0027s formula is: nullifier = hash(secret_key + nonce). If nonce is 0, 1, 2..., each action produces a unique nullifier and the contract can verify that all come from the same user.",
+        "visualHint":  "Hash equation with nonce producing multiple outputs",
+        "image":  "images/modules/m4/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l3-slide-4",
+        "lessonId":  "m4-l3",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "Granular control of linking",
+        "text":  "By choosing what data to include in the hash, the system controls when there is linkability and when there isn\u0027t. If you want completely independent actions, you just use the secret key without a nonce.",
+        "visualHint":  "Control panel with switches to activate/deactivate linking",
+        "image":  "images/modules/m4/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-1",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  1,
+        "title":  "Application: private voting system",
+        "text":  "The book shows a real case: each voter generates a nullifier with their secret key. The contract saves it in a set of already-used nullifiers. The election result is public, but who voted for whom remains private.",
+        "visualHint":  "Electronic ballot box with exclusion witness",
+        "image":  "images/modules/m4/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-2",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  2,
+        "title":  "Application: airdrop distribution",
+        "text":  "For an airdrop, the contract can verify eligibility through ZK proofs, and each eligible address generates a nullifier when claiming their tokens. That prevents claiming twice.",
+        "visualHint":  "Token distribution box with single-use verification",
+        "image":  "images/modules/m4/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-3",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  3,
+        "title":  "The circuit validates the nullifier",
+        "text":  "The contract uses a circuit to verify two things: (1) the nullifier was correctly generated using the user\u0027s secret key, and (2) it doesn\u0027t already exist in the ledger\u0027s nullifier set.",
+        "visualHint":  "Circuit validating a nullifier before storing it",
+        "image":  "images/modules/m4/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m4-l4-slide-4",
+        "lessonId":  "m4-l4",
+        "moduleId":  "m4",
+        "order":  4,
+        "title":  "The nullifier set is the key",
+        "text":  "The book concludes: without a public nullifier set, there\u0027s no way to prevent double-spending or double-voting. The set is your exclusion list, and each new nullifier must be checked against it before accepting the action.",
+        "visualHint":  "Growing list of unique codes with verification on each new entry",
+        "image":  "images/modules/m4/l4-slide-4.png"
+    }
+]

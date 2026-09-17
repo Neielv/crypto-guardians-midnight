@@ -1,0 +1,283 @@
+[
+  {
+    "supportMaterialId": "m6-l1-slide-1-support-1",
+    "slideId": "m6-l1-slide-1",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Introducción",
+    "title": "El problema del commitment",
+    "excerpts": [
+      "Necesitas comprometerte a un valor sin revelarlo, y luego revelarlo después.",
+      "Un profesor necesita calificar sin ver el examen primero.",
+      "Un postor necesita enviar una oferta sellada."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-2-support-1",
+    "slideId": "m6-l1-slide-2",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Definición",
+    "title": "Qué es un commitment",
+    "excerpts": [
+      "Un compromiso criptográfico sella un valor: commit(valor) → commitment.",
+      "Después, puedes abrirlo para revelar el valor original.",
+      "Propiedades: hiding (no puedes ver el valor) y binding (no puedes cambiar el valor)."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Concepto de commitment",
+        "code": "const commitment = commit(vote);\n// El commitment puede publicarse\n// El valor original permanece oculto\n// No puede cambiarse después de commit"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-3-support-1",
+    "slideId": "m6-l1-slide-3",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Propiedades",
+    "title": "Las dos propiedades",
+    "excerpts": [
+      "Hiding - el commitment no revela el valor.",
+      "Binding - una vez comprometido, no puedes cambiar a qué te comprometiste.",
+      "Estas hacen que los commitments sean fundamentales para privacidad."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l1-slide-4-support-1",
+    "slideId": "m6-l1-slide-4",
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "sourceChapter": "Commitments",
+    "sourceSection": "Primitivas de Midnight",
+    "title": "Commitments en Midnight",
+    "excerpts": [
+      "Midnight provee dos primitivas: persistentCommit y persistentHash.",
+      "Estas se almacenan en el ledger.",
+      "Son la base para el manejo de datos privados."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-1-support-1",
+    "slideId": "m6-l2-slide-1",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "persistentCommit",
+    "title": "persistentCommit: el valor sellado",
+    "excerpts": [
+      "persistentCommit almacena un valor que solo puede ser revelado por el titular de la clave de apertura.",
+      "Como una caja de seguridad - solo el dueño puede abrirla.",
+      "Perfecto para encriptación de votos y montos de tokens."
+    ],
+    "codeBlocks": [
+      {
+        "title": "persistentCommit",
+        "code": "export ledger commitments: Map<Field, Commitment>;\n\n// Crear un commitment\nconst { commitment, opening } = persistentCommit(value);\ncommitments.set(userId, commitment);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-2-support-1",
+    "slideId": "m6-l2-slide-2",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "persistentHash",
+    "title": "persistentHash: la huella pública",
+    "excerpts": [
+      "persistentHash es un compromiso público - una huella de un valor.",
+      "Cualquiera puede computarlo pero no puede revertirlo.",
+      "Útil para datos públicos que necesitan verificación de integridad."
+    ],
+    "codeBlocks": [
+      {
+        "title": "persistentHash",
+        "code": "export ledger roots: Map<Field, Field>;\n\n// Almacenar raíz Merkle\nconst root = persistentHash(merkleTree.getRoot());\nroots.set(electionId, root);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-3-support-1",
+    "slideId": "m6-l2-slide-3",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "Elección",
+    "title": "Cuándo usar cada uno",
+    "excerpts": [
+      "Usa persistentCommit para valores que deben permanecer ocultos hasta ser revelados.",
+      "Usa persistentHash para datos que son públicos pero necesitan integridad.",
+      "La elección afecta la privacidad."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l2-slide-4-support-1",
+    "slideId": "m6-l2-slide-4",
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "sourceChapter": "persistentCommit vs persistentHash",
+    "sourceSection": "Clave de Apertura",
+    "title": "La clave de apertura",
+    "excerpts": [
+      "persistentCommit usa commitment + clave de apertura.",
+      "Solo alguien con la clave de apertura puede revelar el valor.",
+      "Esto habilita la divulgación selectiva."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Abriendo commitment",
+        "code": "// Abriendo un commitment\nconst revealed = persistentCommit.open(\n  commitment,\n  openingKey\n);\n// revealed contiene el valor original"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-1-support-1",
+    "slideId": "m6-l3-slide-1",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Árboles Merkle",
+    "sourceSection": "Problema",
+    "title": "El problema de la membresía",
+    "excerpts": [
+      "Necesitas probar que algo pertenece a un conjunto sin listar todos los miembros.",
+      "¿Cómo probar que estás en la lista de votantes elegibles sin revelar quién?",
+      "Los árboles Merkle resuelven esto eficientemente."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-2-support-1",
+    "slideId": "m6-l3-slide-2",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Árboles Merkle",
+    "sourceSection": "Definición",
+    "title": "Qué es un árbol Merkle",
+    "excerpts": [
+      "Un árbol binario donde cada hoja es un hash de datos.",
+      "Cada padre es el hash de los hashes de sus hijos.",
+      "La raíz es una representación compacta de todos los datos."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Estructura de árbol Merkle",
+        "code": "Hojas: [hash(A), hash(B), hash(C), hash(D)]\nPadres: [hash(hash(A)+hash(B)), hash(hash(C)+hash(D))]\nRaíz: hash(hash(A,B) + hash(C,D))"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-3-support-1",
+    "slideId": "m6-l3-slide-3",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Árboles Merkle",
+    "sourceSection": "Prueba",
+    "title": "Prueba Merkle de membresía",
+    "excerpts": [
+      "Proporciona valor de hoja + hashes hermanos a lo largo del camino a la raíz.",
+      "El verificador recomputa la raíz desde estos.",
+      "El tamaño de la prueba es O(log n) - eficiente para conjuntos grandes."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Verificación de prueba Merkle",
+        "code": "export circuit verifyMembership(\n  leaf: Field,\n  proofPath: [Field; depth],\n  root: Field\n) {\n  let computed = leaf;\n  for (i in 0..depth) {\n    computed = hash(computed, proofPath[i]);\n  }\n  assert(computed == root);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l3-slide-4-support-1",
+    "slideId": "m6-l3-slide-4",
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "sourceChapter": "Árboles Merkle",
+    "sourceSection": "Circuitos",
+    "title": "Usando árboles Merkle en circuitos",
+    "excerpts": [
+      "Verifica pruebas Merkle en un circuito.",
+      "El circuito toma hoja, camino de prueba, y recomputa la raíz.",
+      "Prueba membresía sin revelar qué elemento eres."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-1-support-1",
+    "slideId": "m6-l4-slide-1",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Aplicaciones Prácticas",
+    "sourceSection": "Votación",
+    "title": "Aplicación: elegibilidad de votación privada",
+    "excerpts": [
+      "La comisión electoral publica raíz Merkle de votantes elegibles.",
+      "Cada votante prueba membresía usando prueba Merkle en circuito ZK.",
+      "Verifica elegibilidad sin revelar identidad."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Verificación de elegibilidad",
+        "code": "export circuit verifyEligibility(\n  leaf: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  // Probar hoja está en árbol con raíz dada\n  assert(verifyMerkle(leaf, merkleProof, root));\n  // El circuito succeeds si el usuario es elegible"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-2-support-1",
+    "slideId": "m6-l4-slide-2",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Aplicaciones Prácticas",
+    "sourceSection": "Tokens",
+    "title": "Aplicación: verificación de balance de tokens",
+    "excerpts": [
+      "Los commitments representan montos de tokens.",
+      "El árbol Merkle almacena aperturas de commitments.",
+      "Verifica balance suficiente sin revelar monto exacto."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Prueba de balance",
+        "code": "export circuit verifyBalance(\n  commitment: Commitment,\n  merkleProof: [Field; depth],\n  root: Field,\n  minAmount: Field\n) {\n  // Verificar commitment está en árbol\n  assert(verifyMerkle(commitment, merkleProof, root));\n  // Probar monto >= minAmount sin revelar"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-3-support-1",
+    "slideId": "m6-l4-slide-3",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Aplicaciones Prácticas",
+    "sourceSection": "Flujo",
+    "title": "El flujo completo",
+    "excerpts": [
+      "1. Compromete valor con persistentCommit.",
+      "2. Almacena commitment en ledger.",
+      "3. Para verificación, usa circuito ZK con prueba Merkle.",
+      "4. El verificador verifica commitment + prueba sin ver valores."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m6-l4-slide-4-support-1",
+    "slideId": "m6-l4-slide-4",
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "sourceChapter": "Aplicaciones Prácticas",
+    "sourceSection": "Conclusión",
+    "title": "Juntándolo todo",
+    "excerpts": [
+      "Los commitments y árboles Merkle son la columna vertebral de privacidad en Midnight.",
+      "Ellos permiten demostrar propiedades sobre datos privados manteniéndolos ocultos.",
+      "Domina estos, y puedes construir cualquier aplicación privada."
+    ],
+    "codeBlocks": []
+  }
+]

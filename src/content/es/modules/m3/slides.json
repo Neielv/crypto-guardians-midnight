@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m3-l1-slide-1",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "El ciudadano debe probar, no exhibirse",
+        "text":  "El sistema necesita saber si el ciudadano cumple una condición, no conocer todo su expediente. Piensa en demostrar que tienes la llave correcta sin abrir la caja.",
+        "visualHint":  "Agentes validando una condición frente a un visor seguro sin abrir el expediente completo.",
+        "image":  "images/modules/m3/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-2",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "Una ZK proof es un sello de “sí, cumple”",
+        "text":  "El sistema confirma una condición, por ejemplo “está empadronado”, sin recibir más datos que ese sí o no.",
+        "visualHint":  "Sello de verificación aprobado mientras el contenido del expediente sigue oculto.",
+        "image":  "images/modules/m3/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-3",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "Quien genera y quien valida",
+        "text":  "Un lado fabrica la prueba con el dato privado; el otro solo recibe el “sí” y lo verifica, sin ver el dato que lo originó.",
+        "visualHint":  "Dos terminales enlazadas: una genera la prueba y la otra solo valida el resultado.",
+        "image":  "images/modules/m3/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l1-slide-4",
+        "lessonId":  "m3-l1",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Ejemplo clásico: mayoría de edad",
+        "text":  "Demostrar que cumples la edad mínima sin mostrar la fecha de nacimiento. Se verifica la condición; el dato sensible permanece oculto.",
+        "visualHint":  "Tarjeta de acceso aprobada por mayoría de edad sin mostrar fecha de nacimiento.",
+        "image":  "images/modules/m3/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-1",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "Un circuit es una caja de herramientas de verificación",
+        "text":  "Aplica las reglas del sistema y devuelve una validación sin exponer la información sensible.",
+        "visualHint":  "Motor de circuitos ZK encendiéndose en el núcleo de la Agencia.",
+        "image":  "images/modules/m3/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-2",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "Un circuit es la regla operativa del contrato",
+        "text":  "Define qué puede hacer el sistema, qué se puede probar después y cómo cambia el estado, sin exponer datos privados.",
+        "visualHint":  "Plano de misión donde una acción del contrato se traduce en una verificación formal.",
+        "image":  "images/modules/m3/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-3",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "`export` hace invocable una operación",
+        "text":  "Con `export`, la aplicación puede llamar al circuit; sin él, queda como herramienta interna del contrato.",
+        "visualHint":  "Interfaz de TypeScript conectándose a un circuit exportado.",
+        "image":  "images/modules/m3/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l2-slide-4",
+        "lessonId":  "m3-l2",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Los proofs se generan en ejecución",
+        "text":  "Piensa en la proof como un comprobante que se fabrica solo cuando hace falta. El expediente privado del ciudadano se queda bajo control local, y hacia el sistema solo viaja la prueba necesaria para verificar la condición.",
+        "visualHint":  "Prueba generándose en la terminal local del agente y saliendo solo como token verificable.",
+        "image":  "images/modules/m3/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-1",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "No todo valor privado puede tocar el ledger",
+        "text":  "Piensa en un valor de `witness` como un documento confidencial. Aunque el sistema lo use para verificar una condición, no puede publicarlo en el ledger por inercia. Para que cruce esa frontera, tú debes autorizarlo de forma explícita.",
+        "visualHint":  "Barricada de seguridad bloqueando datos de witness antes de entrar al ledger.",
+        "image":  "images/modules/m3/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-2",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "`disclose()` declara la excepción",
+        "text":  "Piensa en `disclose()` como un permiso puntual, no como una puerta abierta. No publica todo el contenido: solo autoriza que una expresión concreta cruce hacia un contexto público o verificable. La privacidad sigue siendo la regla; `disclose()` marca la excepción.",
+        "visualHint":  "Llave de autorización `disclose()` abriendo solo una compuerta de salida controlada.",
+        "image":  "images/modules/m3/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-3",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "La misión exige divulgación mínima",
+        "text":  "No toda verdad necesita contarse completa. Si la condición ya quedó probada, el sistema solo debe recibir la parte mínima necesaria; el resto del expediente del ciudadano debe seguir protegido frente a los Mineros Oscuros.",
+        "visualHint":  "Sistema mostrando solo un dato mínimo autorizado mientras el resto del expediente permanece cubierto y protegido.",
+        "image":  "images/modules/m3/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l3-slide-4",
+        "lessonId":  "m3-l3",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Ejemplo exacto: `balance = disclose(getBalance())`",
+        "text":  "Aquí no basta con querer publicar un valor: hay que señalar exactamente qué pieza puede cruzar la frontera. `disclose(getBalance())` funciona como una autorización precisa sobre ese dato, y no sobre todo lo que lo rodea.",
+        "visualHint":  "Línea de código destacada pasando de witness a ledger con `disclose()`.",
+        "image":  "images/modules/m3/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-1",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  1,
+        "title":  "El compilador vigila fugas de witness",
+        "text":  "Piensa en el compilador como un guardia interno del sistema. Sigue el rastro de los datos que nacen en `witness` y, si detecta que uno intenta salir sin autorización, detiene la operación antes de que la fuga ocurra.",
+        "visualHint":  "Guardia interno del sistema detectando en rojo el intento de salida de un dato privado antes de que cruce al ledger.",
+        "image":  "images/modules/m3/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-2",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  2,
+        "title":  "`potential witness-value disclosure` no es ruido",
+        "text":  "Ese mensaje no es un detalle técnico ni una molestia del compilador. Es una alerta de fuga: te está avisando que un valor con posible información privada intenta llegar a un contexto público sin autorización explícita. Si no lo corriges, la misión queda expuesta.",
+        "visualHint":  "Consola de error marcando `potential witness-value disclosure` como alerta crítica.",
+        "image":  "images/modules/m3/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-3",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  3,
+        "title":  "Primero entiende el flujo, luego corrige",
+        "text":  "Una alerta así no se discute: se corrige. Tu tarea es encontrar qué ruta está empujando un dato privado hacia fuera y reemplazarla por una salida autorizada que no exponga más de lo necesario.",
+        "visualHint":  "Agente corrigiendo una ruta insegura dentro del sistema, bloqueando una salida roja y dejando solo una salida autorizada.",
+        "image":  "images/modules/m3/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m3-l4-slide-4",
+        "lessonId":  "m3-l4",
+        "moduleId":  "m3",
+        "order":  4,
+        "title":  "Privacidad por defecto, divulgación por excepción",
+        "text":  "Esta es la regla central de la misión: lo privado se protege por defecto. Nada cruza hacia fuera por accidente. Solo pasa aquello que la operación declara de forma explícita, mínima y técnicamente intencional.",
+        "visualHint":  "Escudo de privacidad envolviendo el witness y una única salida autorizada hacia el ledger.",
+        "image":  "images/modules/m3/l4-slide-4.png"
+    }
+]

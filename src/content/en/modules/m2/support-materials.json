@@ -1,0 +1,314 @@
+[
+  {
+    "supportMaterialId": "m2-l1-slide-1-support-1",
+    "slideId": "m2-l1-slide-1",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Contract organization",
+    "sourceSection": "Types, ledger, witnesses, and circuits",
+    "title": "A verifiable citizen identity is modeled with explicit types",
+    "excerpts": [
+      "The book shows that a contract can organize types, ledger, witnesses, and circuits inside the same unit.",
+      "A verifiable identity stops being abstract once the contract models it with a well-defined type."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Contract skeleton",
+        "code": "export struct Citizen {\n    name: Bytes<32>,\n    nationality: Bytes<32>,\n    politicalRights: Boolean\n}\n\nexport ledger registry: Map<Bytes<32>, Citizen>;\nexport ledger count: Counter;\n\nwitness getSecretKey(): Bytes<32>;\n\nexport circuit register(name: Bytes<32>, nationality: Bytes<32>, politicalRights: Boolean): [] {\n    // implementation\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-2-support-1",
+    "slideId": "m2-l1-slide-2",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Declaring a Struct",
+    "title": "How to declare the shape of a citizen identity",
+    "excerpts": [
+      "Struct fields are separated by commas.",
+      "A trailing comma is allowed but not required."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Struct adapted to verifiable citizenship",
+        "code": "export struct Citizen {\n    name: Bytes<32>,\n    nationality: Bytes<32>,\n    politicalRights: Boolean\n}"
+      },
+      {
+        "title": "Creation with named fields",
+        "code": "const citizen = Citizen {\n    name: ownerName,\n    nationality: ownerNationality,\n    politicalRights: true\n};"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-3-support-1",
+    "slideId": "m2-l1-slide-3",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Contract organization",
+    "sourceSection": "Ledger state declarations",
+    "title": "How the citizen registry is stored in ledger",
+    "excerpts": [
+      "Verifiable identities can be stored in a ledger `Map` so the contract can reference them later.",
+      "The book example uses an additional counter to track registry-related state."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Public registry",
+        "code": "export ledger registry: Map<Bytes<32>, Citizen>;\nexport ledger count: Counter;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-4-support-1",
+    "slideId": "m2-l1-slide-4",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Contract organization",
+    "sourceSection": "Circuits",
+    "title": "How registration becomes a contract operation",
+    "excerpts": [
+      "The book shows an exported circuit with typed arguments used to register data in the contract.",
+      "That circuit becomes the entry point that executes the registration mission."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuit adapted to citizen enrollment",
+        "code": "export circuit register(name: Bytes<32>, nationality: Bytes<32>, politicalRights: Boolean): [] {\n    // implementation\n}"
+      },
+      {
+        "title": "Related witness",
+        "code": "witness getSecretKey(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-1-support-1",
+    "slideId": "m2-l2-slide-1",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "Map<key_type, value_type>",
+    "title": "A registry is an operational `Map`, not just a declaration",
+    "excerpts": [
+      "`Map<key_type, value_type>` is an unbounded set of mappings between key values and value values.",
+      "The book defines built-in operations so the registry can be operated directly instead of through parallel structures."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Registry type",
+        "code": "export ledger registry: Map<Bytes<32>, Citizen>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-2-support-1",
+    "slideId": "m2-l2-slide-2",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "Map operations",
+    "title": "The real `Map` operations",
+    "excerpts": [
+      "`insert(key, value): []` updates the Map to include a new value at a given key.",
+      "`lookup(key): value_type`, `member(key): Boolean`, and `size(): Uint<64>` complete the essential registry operations."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Book signatures",
+        "code": "insert(key: key_type, value: value_type): []\nlookup(key: key_type): value_type\nmember(key: key_type): Boolean\nsize(): Uint<64>"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-3-support-1",
+    "slideId": "m2-l2-slide-3",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "insert and member",
+    "title": "How to validate an insertion before registration",
+    "excerpts": [
+      "`member(key)` returns a `Boolean` telling you whether a key is already contained in the Map.",
+      "`insert(key, value)` adds or updates the registry entry for that key."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Minimal pattern",
+        "code": "const alreadyExists = registry.member(citizenKey);\nregistry.insert(citizenKey, citizen);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-4-support-1",
+    "slideId": "m2-l2-slide-4",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "lookup and size",
+    "title": "How to audit and query the registry",
+    "excerpts": [
+      "`lookup(key)` retrieves the value for a key and may return another ADT.",
+      "`size()` returns the number of entries in the Map so the registry can be measured without mutating it."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Lookup and count",
+        "code": "const citizen = registry.lookup(citizenKey);\nconst total = registry.size();"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-1-support-1",
+    "slideId": "m2-l3-slide-1",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Creating Struct Values",
+    "title": "How to build a verifiable dossier",
+    "excerpts": [
+      "The book shows that named fields are recommended for clarity.",
+      "That pattern prevents confusion about which value belongs in each identity field."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Named fields",
+        "code": "const player = Player {\n    address: ownerKey,\n    score: 0,\n    isActive: true\n};"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-2-support-1",
+    "slideId": "m2-l3-slide-2",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Creating Struct Values",
+    "title": "Named, positional, and mixed construction",
+    "excerpts": [
+      "The book presents three ways to create a struct: named fields, positional fields, and mixed construction.",
+      "For identity missions, named fields should be preferred because they are easier to audit."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Variants from the book",
+        "code": "const player = Player {\n    address: ownerKey,\n    score: 0,\n    isActive: true\n};\n\nconst player2 = Player { ownerKey, 0, true };\nconst player3 = Player { ownerKey, 0, isActive: true };"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-3-support-1",
+    "slideId": "m2-l3-slide-3",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Accessing Fields",
+    "title": "How to read a dossier field",
+    "excerpts": [
+      "Struct fields are read with dot syntax.",
+      "Each access preserves the concrete type of the field being read."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Field access",
+        "code": "const player = Player { address: ownerKey, score: 100, isActive: true };\n\nconst addr = player.address;\nconst points = player.score;\nconst active = player.isActive;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-4-support-1",
+    "slideId": "m2-l3-slide-4",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Default Values",
+    "title": "How to initialize an empty dossier",
+    "excerpts": [
+      "`default<Player>` creates an instance with default values for every field.",
+      "That gives a safe baseline before the verifiable identity is fully populated."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Default value",
+        "code": "const emptyPlayer = default<Player>;\n// Equivalent to: Player { address: default<Bytes<32>>, score: 0, isActive: false }"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-1-support-1",
+    "slideId": "m2-l4-slide-1",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuits",
+    "sourceSection": "Why circuits?",
+    "title": "Why the mission depends on circuits",
+    "excerpts": [
+      "Circuits define the contract's business logic.",
+      "The compiler turns them into zero-knowledge circuits capable of generating and verifying proofs."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Core idea",
+        "code": "// a circuit defines what the contract can do\nexport circuit publicAction(): [] {\n    // ...\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-2-support-1",
+    "slideId": "m2-l4-slide-2",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Basic syntax",
+    "title": "The exact way to declare a circuit",
+    "excerpts": [
+      "A circuit declaration includes the name, parameters, and return type.",
+      "The exported variant uses the same syntax with the `export` keyword added."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Syntax from the book",
+        "code": "circuit c(a: A, b: B): R {\n    // circuit body\n}\n\nexport circuit name(): [] {\n    // exported circuit body\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-3-support-1",
+    "slideId": "m2-l4-slide-3",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Visibility",
+    "title": "`export` versus internal helper",
+    "excerpts": [
+      "`export` makes the circuit callable from TypeScript.",
+      "Without `export`, the circuit is only available to other circuits inside the contract."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Public and internal circuits",
+        "code": "export circuit publicAction(): [] {\n    // ...\n}\n\ncircuit internalHelper(): Field {\n    return 42;\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-4-support-1",
+    "slideId": "m2-l4-slide-4",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Return type",
+    "title": "`[]` is mandatory when there is no return value",
+    "excerpts": [
+      "The book emphasizes that circuits without a return value use `[]`, not `Void`.",
+      "That difference is both syntactic and semantic: `Void` will not compile."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Correct vs wrong",
+        "code": "// ✅ CORRECT\nexport circuit doSomething(): [] {\n    counter.increment(1);\n}\n\n// ❌ WRONG\nexport circuit doSomething(): Void {\n    counter.increment(1);\n}"
+      }
+    ]
+  }
+]

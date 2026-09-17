@@ -1,0 +1,292 @@
+[
+  {
+    "supportMaterialId": "m5-l1-slide-1-support-1",
+    "slideId": "m5-l1-slide-1",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST and Privacy Costs",
+    "sourceSection": "Introduction",
+    "title": "The price of privacy",
+    "excerpts": [
+      "Every zero-knowledge proof requires computational resources to generate.",
+      "DUST is the unit that measures this computational cost in Midnight.",
+      "Like gas in other blockchains, DUST represents the energy needed to keep data private."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-2-support-1",
+    "slideId": "m5-l1-slide-2",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST and Privacy Costs",
+    "sourceSection": "What is DUST",
+    "title": "What is DUST",
+    "excerpts": [
+      "DUST is a cryptographic resource metric that measures the computational cost of generating ZK proofs.",
+      "More complex proofs (more inputs, more constraints) consume more DUST.",
+      "DUST is the bridge between privacy and efficiency."
+    ],
+    "codeBlocks": [
+      {
+        "title": "DUST concept",
+        "code": "// DUST represents computational resources\n// needed for zero-knowledge proofs\nconst dustCost = calculateDust(witnessCount, constraints);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-3-support-1",
+    "slideId": "m5-l1-slide-3",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST and Privacy Costs",
+    "sourceSection": "Why Privacy Costs",
+    "title": "Why privacy costs resources",
+    "excerpts": [
+      "ZK proofs require complex mathematical operations: hash operations, elliptic curve arithmetic.",
+      "Hundreds or thousands of these operations are needed for each proof.",
+      "This work makes privacy possible but also costly."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l1-slide-4-support-1",
+    "slideId": "m5-l1-slide-4",
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "sourceChapter": "DUST and Privacy Costs",
+    "sourceSection": "DUST Balance",
+    "title": "The DUST balance",
+    "excerpts": [
+      "Users must maintain a DUST balance to perform private operations.",
+      "This balance is separate from the token balance.",
+      "Understanding DUST is essential for building efficient private applications."
+    ],
+    "codeBlocks": [
+      {
+        "title": "DUST balance check",
+        "code": "import { dust } from '@midnight/coins';\n\nconst dustBalance = await dust.balanceOf(user);\nassert(dustBalance >= requiredDust, 'Insufficient DUST');"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-1-support-1",
+    "slideId": "m5-l2-slide-1",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "ZK Resources and Proof Costs",
+    "sourceSection": "Resources",
+    "title": "ZK proof generation resources",
+    "excerpts": [
+      "Generating a ZK proof requires CPU for cryptographic operations.",
+      "Memory is needed for storing intermediate values.",
+      "Time is required for the proof to be computed."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-2-support-1",
+    "slideId": "m5-l2-slide-2",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "ZK Resources and Proof Costs",
+    "sourceSection": "Factors",
+    "title": "Factors affecting DUST cost",
+    "excerpts": [
+      "DUST cost depends on: number of witness variables.",
+      "Number of constraints in the circuit.",
+      "Proof system used."
+    ],
+    "codeBlocks": [
+      {
+        "title": "DUST formula",
+        "code": "const dustCost = calculateDust(\n  witnessCount,   // number of private inputs\n  constraintCount, // circuit complexity\n  proofSystem     // proof system type\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-3-support-1",
+    "slideId": "m5-l2-slide-3",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "ZK Resources and Proof Costs",
+    "sourceSection": "Trade-offs",
+    "title": "Proof complexity trade-offs",
+    "excerpts": [
+      "There's always a trade-off between privacy and cost.",
+      "More private proofs require larger circuits and more DUST.",
+      "Understanding this helps design efficient systems."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l2-slide-4-support-1",
+    "slideId": "m5-l2-slide-4",
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "sourceChapter": "ZK Resources and Proof Costs",
+    "sourceSection": "Estimation",
+    "title": "Estimating DUST for your circuit",
+    "excerpts": [
+      "Before deploying, analyze the circuit to estimate DUST costs.",
+      "Counting constraints and witness variables gives a good approximation.",
+      "This helps users plan their DUST budget."
+    ],
+    "codeBlocks": [
+      {
+        "title": "DUST estimation",
+        "code": "export circuit estimateDust<C>(constraints: Uint<C>) {\n  // Rough estimation formula\n  const baseCost = 1000;\n  const perConstraint = 10;\n  return baseCost + (perConstraint * constraints);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-1-support-1",
+    "slideId": "m5-l3-slide-1",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Proof Server Architecture",
+    "sourceSection": "Role",
+    "title": "The proof server role",
+    "excerpts": [
+      "Proof generation is often delegated to specialized servers.",
+      "These servers perform heavy cryptographic computations off-chain.",
+      "This enables lightweight clients that consume DUST via the server."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-2-support-1",
+    "slideId": "m5-l3-slide-2",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Proof Server Architecture",
+    "sourceSection": "How it Works",
+    "title": "How proof servers work",
+    "excerpts": [
+      "User provides witness data (encrypted).",
+      "Proof server generates the ZK proof, consuming DUST.",
+      "The proof is returned to the user."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Proof server flow",
+        "code": "const encryptedWitness = encrypt(witness, serverPublicKey);\nconst proof = await proofServer.generate(encryptedWitness);\n// DUST is deducted from user's account"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-3-support-1",
+    "slideId": "m5-l3-slide-3",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Proof Server Architecture",
+    "sourceSection": "Trust",
+    "title": "Trust model for proof servers",
+    "excerpts": [
+      "Proof servers cannot see private data because it's provided as encrypted witnesses.",
+      "The integrity of the proof is guaranteed cryptographically.",
+      "No need to trust the server - the math ensures correctness."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Encrypted witness",
+        "code": "import { encrypt } from '@midnight/crypto';\n\n// Private data never leaves user device in clear\nconst encryptedWitness = encrypt(\n  { secretKey, eligibility, nonce },\n  serverPublicKey\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l3-slide-4-support-1",
+    "slideId": "m5-l3-slide-4",
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "sourceChapter": "Proof Server Architecture",
+    "sourceSection": "Decentralization",
+    "title": "Decentralized proof generation",
+    "excerpts": [
+      "Midnight supports a network of proof servers.",
+      "Users can choose their proof server or run their own.",
+      "Competition among providers helps keep costs reasonable."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-1-support-1",
+    "slideId": "m5-l4-slide-1",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Privacy Cost Strategies",
+    "sourceSection": "Optimization",
+    "title": "Circuit optimization strategies",
+    "excerpts": [
+      "Reduce the number of constraints in your circuits.",
+      "Reuse computation where possible.",
+      "Choose efficient hash functions. Smaller circuits consume less DUST."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Optimized circuit",
+        "code": "// Before: 1000 constraints\nconst hash1 = hash(a);\nconst hash2 = hash(b);\n\n// After: 500 constraints (reuse)\nconst hashA = hash(a);\nconst hashB = hash(b, hashA); // Chain computation"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-2-support-1",
+    "slideId": "m5-l4-slide-2",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Privacy Cost Strategies",
+    "sourceSection": "Aggregation",
+    "title": "Proof aggregation",
+    "excerpts": [
+      "Multiple actions can be proven together in a single proof.",
+      "This reduces the amortized DUST cost per action.",
+      "Batch operations are more efficient."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Aggregated proof",
+        "code": "export circuit batchVote(\n  candidates: [Field; 10],\n  nullifiers: [Field; 10]\n) {\n  // Prove all 10 votes in one circuit\n  for (i in 0..10) {\n    assert(isValid[i]);\n  }\n  // Single proof for 10 actions"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-3-support-1",
+    "slideId": "m5-l4-slide-3",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Privacy Cost Strategies",
+    "sourceSection": "Caching",
+    "title": "Caching proofs",
+    "excerpts": [
+      "For repeated operations, cache proofs.",
+      "Some data doesn't change between operations.",
+      "Reusing proofs avoids regenerating them and saves DUST."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Proof cache",
+        "code": "// Cache eligibility proof for the season\nconst cachedProof = proofCache.get(seasonId);\nif (cachedProof) {\n  return cachedProof; // Reuse, save DUST\n}\n// Only generate if not cached"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m5-l4-slide-4-support-1",
+    "slideId": "m5-l4-slide-4",
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "sourceChapter": "Privacy Cost Strategies",
+    "sourceSection": "Balance",
+    "title": "Balancing privacy and cost",
+    "excerpts": [
+      "Privacy is a feature that costs DUST.",
+      "Design systems that give users control over the trade-off.",
+      "Allow users to choose their privacy level for each operation."
+    ],
+    "codeBlocks": [
+      {
+        "title": "User-controlled privacy",
+        "code": "enum PrivacyLevel {\n  Public,      // No proof needed\n  Protected,   // Basic ZK proof\n  FullyPrivate // Full privacy proof\n}\n\nconst userChoice = await user.selectPrivacyLevel();"
+      }
+    ]
+  }
+]

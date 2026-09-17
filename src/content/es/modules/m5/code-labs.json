@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m5-l1-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l1",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: recurso DUST",
+    "instructions": "Completa qué mide el combustible criptográfico de la misión.",
+    "successCriteria": "Llenar el espacio con costo computacional.",
+    "payload": {
+      "template": "DUST mide el ___ requerido para generar pruebas ZK.",
+      "blanks": [
+        { "id": "blank-1", "answer": "costo computacional" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l2-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l2",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: estimar DUST",
+    "instructions": "Completa la pista clave para presupuestar DUST antes del despliegue.",
+    "successCriteria": "Llenar el espacio con restricciones.",
+    "payload": {
+      "template": "Para estimar DUST, cuenta el número de ___ en tu circuito.",
+      "blanks": [
+        { "id": "blank-1", "answer": "restricciones" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l3-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l3",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: datos del servidor de pruebas",
+    "instructions": "Completa qué material protegido se envía al taller blindado de pruebas.",
+    "successCriteria": "Llenar el espacio con witnesses.",
+    "payload": {
+      "template": "El sistema envía ___ cifrados al servidor de pruebas.",
+      "blanks": [
+        { "id": "blank-1", "answer": "witnesses" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m5-l4-code-lab-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l4",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: estrategia de optimización",
+    "instructions": "Completa la técnica que agrupa acciones para ahorrar DUST.",
+    "successCriteria": "Llenar el espacio con única.",
+    "payload": {
+      "template": "La agregación de pruebas combina múltiples pruebas en una prueba ___.",
+      "blanks": [
+        { "id": "blank-1", "answer": "única" }
+      ]
+    }
+  }
+]

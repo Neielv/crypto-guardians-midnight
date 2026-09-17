@@ -1,0 +1,50 @@
+[
+  {
+    "lessonId": "m3-l1",
+    "moduleId": "m3",
+    "title": "Probar sin revelar",
+    "objective": "Entender qué es una zero-knowledge proof y cómo separa verificación de divulgación.",
+    "narrativeIntro": "La Agencia ya no puede exponer a la ciudadanía para demostrar que un registro del padrón cumple una condición. Ahora debes aprender a verificar elegibilidad sin revelar identidad.",
+    "steps": [
+      { "stepId": "m3-l1-s1", "type": "slides", "slideIds": ["m3-l1-slide-1", "m3-l1-slide-2", "m3-l1-slide-3", "m3-l1-slide-4"] },
+      { "stepId": "m3-l1-c1", "type": "challenge", "challengeId": "m3-l1-challenge-1" },
+      { "stepId": "m3-l1-cl1", "type": "code_lab", "codeLabId": "m3-l1-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m3-l2",
+    "moduleId": "m3",
+    "title": "Los circuits generan la prueba",
+    "objective": "Comprender cómo Compact transforma circuits en pruebas verificables y qué papel cumplen el prover y el verifier.",
+    "narrativeIntro": "No basta con entender la idea. Debes comprender cómo la lógica del contrato se convierte en una prueba que el sistema puede verificar para validar un registro sin conocer su identidad.",
+    "steps": [
+      { "stepId": "m3-l2-s1", "type": "slides", "slideIds": ["m3-l2-slide-1", "m3-l2-slide-2", "m3-l2-slide-3", "m3-l2-slide-4"] },
+      { "stepId": "m3-l2-c1", "type": "challenge", "challengeId": "m3-l2-challenge-1" },
+      { "stepId": "m3-l2-cl1", "type": "code_lab", "codeLabId": "m3-l2-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m3-l3",
+    "moduleId": "m3",
+    "title": "Divulgación explícita",
+    "objective": "Aprender cuándo un valor privado necesita `disclose()` antes de tocar el ledger.",
+    "narrativeIntro": "La privacidad no se rompe por accidente: se declara. Debes aprender qué dato del expediente puede divulgarse para la verificación y qué debe seguir protegido.",
+    "steps": [
+      { "stepId": "m3-l3-s1", "type": "slides", "slideIds": ["m3-l3-slide-1", "m3-l3-slide-2", "m3-l3-slide-3", "m3-l3-slide-4"] },
+      { "stepId": "m3-l3-c1", "type": "challenge", "challengeId": "m3-l3-challenge-1" },
+      { "stepId": "m3-l3-cl1", "type": "code_lab", "codeLabId": "m3-l3-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m3-l4",
+    "moduleId": "m3",
+    "title": "Blindar la misión",
+    "objective": "Reconocer el error `potential witness-value disclosure` y aplicar patrones seguros.",
+    "narrativeIntro": "Cuando una fuga potencial aparece, el compilador te lo advierte. Debes aprender a leer la alerta y corregir la ruta antes de exponer datos del registro que deben permanecer privados.",
+    "steps": [
+      { "stepId": "m3-l4-s1", "type": "slides", "slideIds": ["m3-l4-slide-1", "m3-l4-slide-2", "m3-l4-slide-3", "m3-l4-slide-4"] },
+      { "stepId": "m3-l4-c1", "type": "challenge", "challengeId": "m3-l4-challenge-1" },
+      { "stepId": "m3-l4-cl1", "type": "code_lab", "codeLabId": "m3-l4-code-lab-1" }
+    ]
+  }
+]

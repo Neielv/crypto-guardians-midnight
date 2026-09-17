@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "image": "images/briefing/slide1.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "Escúchame bien, agente.",
+        "type": "bold"
+      },
+      {
+        "text": "Los Mineros Oscuros ya tienen acceso a la blockchain actual. Saben exactamente por quién votó cada persona del país. La transparencia total se ha convertido en su herramienta de control.",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "image": "images/briefing/slide2.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "Tenemos reportes de familias enteras recibiendo amenazas de muerte. Niños, esposas, padres… están usando el voto como un arma de extorsión.",
+        "type": "italic"
+      },
+      {
+        "text": "Esta es nuestra última oportunidad para recuperar la libertad.",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "image": "images/briefing/slide3.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "Necesitamos que construyas un nuevo sistema de votación en Compact donde nadie, ni siquiera nosotros, pueda saber por quién votó cada ciudadano.",
+        "type": "normal"
+      },
+      {
+        "text": "Si fallas, mañana miles de personas tendrán que elegir entre su vida y su conciencia. El tiempo se nos acaba. ¿Estás listo para aceptar la misión?",
+        "type": "bold"
+      }
+    ]
+  }
+]

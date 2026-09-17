@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m2-l1-slide-1",
+        "lessonId":  "m2-l1",
+        "moduleId":  "m2",
+        "order":  1,
+        "title":  "A citizen identity needs structure",
+        "text":  "If the agent is also treated as a citizen inside the system, identity cannot remain an ambiguous block of data. In Compact, it should be modeled as a verifiable structure with typed fields and a clear name, so the contract knows exactly what it is registering.",
+        "visualHint":  "Mission panel showing an identity file split into clearly defined fields.",
+        "image":  "images/modules/m2/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m2-l1-slide-2",
+        "lessonId":  "m2-l1",
+        "moduleId":  "m2",
+        "order":  2,
+        "title":  "`struct` defines the shape of the civic dossier",
+        "text":  "Compact lets you define identity with `struct`. A short example like `export struct Citizen { name: Bytes\u003c32\u003e, nationality: Bytes\u003c32\u003e, politicalRights: Boolean }` shows how the contract distinguishes each relevant citizen trait.",
+        "visualHint":  "Technical blueprint of a `Citizen` structure with civic identity fields.",
+        "image":  "images/modules/m2/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m2-l1-slide-3",
+        "lessonId":  "m2-l1",
+        "moduleId":  "m2",
+        "order":  3,
+        "title":  "The citizen registry lives in a ledger `Map`",
+        "text":  "Having the citizen dossier is just the first step. The electoral body needs a census — an official register where each identity is archived and can be queried when it's time to vote. The correct way to store citizen data in the census is: 'export ledger registry: Map<Bytes<32>, Citizen>;'",
+        "visualHint":  "Tactical console showing a `registry` map linking keys to `Citizen` records.",
+        "image":  "images/modules/m2/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m2-l1-slide-4",
+        "lessonId":  "m2-l1",
+        "moduleId":  "m2",
+        "order":  4,
+        "title":  "`export circuit register(...)` formalizes enrollment",
+        "text":  "After declaring types, ledger, and witness, the contract uses an exported circuit to register identity. The key idea is simple: the citizen does not only exist locally, but is also formally enrolled in the system through an explicit operation.",
+        "visualHint":  "Agent confirming a citizen enrollment while the `register` circuit runs in the control room.",
+        "image":  "images/modules/m2/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m2-l2-slide-1",
+        "lessonId":  "m2-l2",
+        "moduleId":  "m2",
+        "order":  1,
+        "title":  "A registry is useless if you cannot operate it",
+        "text":  "The registry is not a static list; it is an operational `Map` that links each citizen key with its dossier. Thanks to the ledger's native tools, the electoral body manages the register directly and securely, without the need for external databases that Dark Miners could try to manipulate.",
+        "visualHint":  "Operator reviewing a registry console with insert, search, and verify actions.",
+        "image":  "images/modules/m2/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m2-l2-slide-2",
+        "lessonId":  "m2-l2",
+        "moduleId":  "m2",
+        "order":  2,
+        "title":  "`Map` comes with built-in operations",
+        "text":  "The electoral body does not need third-party tools; the system already includes the necessary arsenal to master the registry. With `insert` we enroll, with `member` we verify identity, with `lookup` we audit the dossier, and with `size` we control the census volume. These are built-in, shielded protocols that make any other structure unnecessary.",
+        "visualHint":  "Tactical map showing `insert`, `lookup`, `member`, and `size` as available commands.",
+        "image":  "images/modules/m2/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m2-l2-slide-3",
+        "lessonId":  "m2-l2",
+        "moduleId":  "m2",
+        "order":  3,
+        "title":  "`insert` and `member` validate the operation",
+        "text":  "`insert(key, value)` adds or updates an entry in the registry. `member(key)` returns a `Boolean` that tells you whether the key already exists. Together they let the mission decide whether an identity was already registered before proceeding.",
+        "visualHint":  "Agent marking an identity as existing after a `member(key)` check.",
+        "image":  "images/modules/m2/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m2-l2-slide-4",
+        "lessonId":  "m2-l2",
+        "moduleId":  "m2",
+        "order":  4,
+        "title":  "`lookup` and `size` support auditing",
+        "text":  "`lookup(key)` retrieves the value associated with a key, and `size()` returns the number of entries in the `Map`. That allows the Agency to audit how many identities exist and inspect a dossier without mutating the contract.",
+        "visualHint":  "Control board showing registry size and a dossier retrieved by `lookup`.",
+        "image":  "images/modules/m2/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m2-l3-slide-1",
+        "lessonId":  "m2-l3",
+        "moduleId":  "m2",
+        "order":  1,
+        "title":  "The dossier must be buildable during the mission",
+        "text":  "A verifiable identity is not only declared: it must also be built as a concrete value. Compact lets you instantiate a `struct` with named fields so it stays clear which value belongs in each slot.",
+        "visualHint":  "Agent assembling a dossier with named fields inside a tactical terminal.",
+        "image":  "images/modules/m2/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m2-l3-slide-2",
+        "lessonId":  "m2-l3",
+        "moduleId":  "m2",
+        "order":  2,
+        "title":  "Named fields prevent identity mistakes",
+        "text":  "The book recommends creating structs with named fields for clarity. That way, `Citizen { name: ..., nationality: ..., politicalRights: ... }` makes it explicit which value belongs to each dossier field.",
+        "visualHint":  "`Citizen` file completed with civic labels in the Agency console.",
+        "image":  "images/modules/m2/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m2-l3-slide-3",
+        "lessonId":  "m2-l3",
+        "moduleId":  "m2",
+        "order":  3,
+        "title":  "Reading a field is part of verification",
+        "text":  "After creating the identity, the contract can access its fields with dot syntax. The book shows `player.address`, `player.score`, and `player.isActive`, which is the same idea used to inspect a verifiable dossier.",
+        "visualHint":  "Mission inspector zooming into individual fields of a stored dossier.",
+        "image":  "images/modules/m2/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m2-l3-slide-4",
+        "lessonId":  "m2-l3",
+        "moduleId":  "m2",
+        "order":  4,
+        "title":  "`default\u003cT\u003e` prepares a safe baseline",
+        "text":  "Compact also lets you build a default value with `default\u003cCitizen\u003e`. That is useful to initialize an empty dossier and know exactly which values start at zero or false before the identity is filled in.",
+        "visualHint":  "Blank dossier template generated automatically before intake.",
+        "image":  "images/modules/m2/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m2-l4-slide-1",
+        "lessonId":  "m2-l4",
+        "moduleId":  "m2",
+        "order":  1,
+        "title":  "The mission runs through circuits",
+        "text":  "In Compact, circuits are the contract\u0027s operational units. They hold the logic that transforms ledger state and that the compiler turns into verifiable zero-knowledge circuits.",
+        "visualHint":  "Control room where a circuit activates as the core routine of the mission.",
+        "image":  "images/modules/m2/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m2-l4-slide-2",
+        "lessonId":  "m2-l4",
+        "moduleId":  "m2",
+        "order":  2,
+        "title":  "Circuit syntax must be exact",
+        "text":  "The book shows `circuit c(a: A, b: B): R { ... }` and also `export circuit name(): [] { ... }`. That means the name, parameters, and return type are always part of the declaration.",
+        "visualHint":  "Blueprint of a circuit with parameters and return type highlighted.",
+        "image":  "images/modules/m2/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m2-l4-slide-3",
+        "lessonId":  "m2-l4",
+        "moduleId":  "m2",
+        "order":  3,
+        "title":  "`export` decides whether the Agency can invoke it",
+        "text":  "A circuit with `export` can be called from TypeScript. Without `export`, it remains an internal helper. That difference matters when the mission must expose a public action or keep logic private inside the contract.",
+        "visualHint":  "Panel with two doors: one public labeled `export` and one internal marked as helper.",
+        "image":  "images/modules/m2/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m2-l4-slide-4",
+        "lessonId":  "m2-l4",
+        "moduleId":  "m2",
+        "order":  4,
+        "title":  "Non-returning circuits use `[]`, never `Void`",
+        "text":  "The book is explicit: if a circuit does not return a value, its return type must be `[]`. Declaring `Void` is wrong and will not compile. That detail is critical when designing a registration or update operation.",
+        "visualHint":  "Technical alert showing `[]` as correct and `Void` marked red as an error.",
+        "image":  "images/modules/m2/l4-slide-4.png"
+    }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m4-l1-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l1",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: generate a nullifier",
+    "instructions": "Complete the book's formula to generate a nullifier from the secret key and event.",
+    "successCriteria": "Fill the blank with hash(secret_key + event).",
+    "payload": {
+      "template": "const nullifier = ___(secretKey + event);",
+      "blanks": [
+        { "id": "blank-1", "answer": "hash" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l2-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l2",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: verify uniqueness",
+    "instructions": "Complete the book's operation to verify that a nullifier doesn't yet exist in the set.",
+    "successCriteria": "Fill the blank with member.",
+    "payload": {
+      "template": "const isUnique = nullifierSet___(nullifier);",
+      "blanks": [
+        { "id": "blank-1", "answer": "member" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l3-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l3",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: nullifier with nonce",
+    "instructions": "Complete the book's formula that includes nonce to allow multiple linked actions.",
+    "successCriteria": "Fill the blank with nonce.",
+    "payload": {
+      "template": "const nullifier = hash(secretKey + ___);",
+      "blanks": [
+        { "id": "blank-1", "answer": "nonce" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l4-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l4",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: register the nullifier",
+    "instructions": "Complete the book's operation to add a nullifier to the set after verifying it's unique.",
+    "successCriteria": "Fill the blank with insert.",
+    "payload": {
+      "template": "nullifierSet___(nullifier);",
+      "blanks": [
+        { "id": "blank-1", "answer": "insert" }
+      ]
+    }
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "codeLabId": "m2-l1-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l1",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: Registrar el mapa",
+    "instructions": "Completa la declaración para que el ledger pueda almacenar un registro de ciudadanos verificables usando un `Map`.",
+    "successCriteria": "Completa el hueco con `Map<Bytes<32>, Citizen>`.",
+    "narrativeIntro": "Debes crear el registro que sostendrá los expedientes verificables. Sin esa base, la Agencia no podrá distinguir a quienes sí pueden participar.",
+    "successMessage": "Excelente. Has creado el registro que permitirá almacenar y consultar expedientes verificables.",
+    "failureMessage": "Todavía no. El registro debe declarar un `Map<Bytes<32>, Citizen>` en el ledger.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["Map<Bytes<32>, Citizen>"],
+      "acceptableAnswers": ["Map<Bytes<32>, Citizen>"],
+      "normalizeWhitespace": true
+    },
+    "payload": {
+      "template": "export ledger registry: ___;",
+      "blanks": [
+        { "id": "blank-1", "answer": "Map<Bytes<32>, Citizen>" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l2-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l2",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: consultar pertenencia",
+    "instructions": "Completa la llamada exacta para comprobar si una clave ya está dentro del registro antes de continuar la misión.",
+    "successCriteria": "Completa el hueco con `member`.",
+    "narrativeIntro": "Antes de registrar una identidad, debes saber si ya existe. Escribe la operación correcta para comprobar pertenencia.",
+    "successMessage": "Bien. `member` es la operación que permite comprobar existencia sin alterar el registro.",
+    "failureMessage": "Revisa la operación. La misión necesita la llamada que responde si la clave ya pertenece al registro.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["member"],
+      "acceptableAnswers": ["member"],
+      "normalizeWhitespace": true
+    },
+    "payload": {
+      "template": "const yaExiste = registry.___(citizenKey);",
+      "blanks": [
+        { "id": "blank-1", "answer": "member" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l3-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l3",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: acceder al campo",
+    "instructions": "Completa la expresión exacta para leer el campo `address` de un registro ciudadano ya creado.",
+    "successCriteria": "Completa el hueco con `address`.",
+    "narrativeIntro": "El expediente ciudadano ya existe. Ahora necesitas leer uno de sus campos sin perder precisión.",
+    "successMessage": "Correcto. Así se accede a un campo concreto de un struct ya creado.",
+    "failureMessage": "Todavía no. Una vez creado el struct, el campo se accede con sintaxis de punto.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["address"],
+      "acceptableAnswers": ["address"],
+      "normalizeWhitespace": true
+    },
+    "payload": {
+      "template": "const addr = citizenRecord.___;",
+      "blanks": [
+        { "id": "blank-1", "answer": "address" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m2-l4-code-lab-1",
+    "moduleId": "m2",
+    "lessonId": "m2-l4",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: retorno correcto del circuit",
+    "instructions": "Completa la firma correcta para un `export circuit` que no devuelve valor. Usa exactamente el tipo de retorno adecuado.",
+    "successCriteria": "Completa el hueco con `[]`.",
+    "narrativeIntro": "No basta con escribir la misión: debes declararla con una firma correcta. Ese detalle define si el sistema podrá ejecutarla o no.",
+    "successMessage": "Bien. Un circuit sin retorno debe declarar `[]` para mantener una firma válida.",
+    "failureMessage": "Revisa el retorno. Cuando un circuit no devuelve valor, la forma correcta es `[]`.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["[]"],
+      "acceptableAnswers": ["[]"],
+      "normalizeWhitespace": true
+    },
+    "payload": {
+      "template": "export circuit register(): ___ {\n  count.increment(1);\n}",
+      "blanks": [
+        { "id": "blank-1", "answer": "[]" }
+      ]
+    }
+  }
+]

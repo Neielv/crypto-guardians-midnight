@@ -1,0 +1,46 @@
+[
+  {
+    "lessonId": "m6-l1",
+    "moduleId": "m6",
+    "title": "Sealing the vote after eligibility",
+    "objective": "Understand what cryptographic commitments are and why they let an already eligible citizen vote without revealing the choice.",
+    "steps": [
+      { "stepId": "m6-l1-s1", "type": "slides", "slideIds": ["m6-l1-slide-1", "m6-l1-slide-2", "m6-l1-slide-3", "m6-l1-slide-4"] },
+      { "stepId": "m6-l1-c1", "type": "challenge", "challengeId": "m6-l1-challenge-1" },
+      { "stepId": "m6-l1-cl1", "type": "code_lab", "codeLabId": "m6-l1-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m6-l2",
+    "moduleId": "m6",
+    "title": "Summarize the register or seal the vote",
+    "objective": "Learn the difference between these two Midnight primitives and when to use each within the electoral flow.",
+    "steps": [
+      { "stepId": "m6-l2-s1", "type": "slides", "slideIds": ["m6-l2-slide-1", "m6-l2-slide-2", "m6-l2-slide-3", "m6-l2-slide-4"] },
+      { "stepId": "m6-l2-c1", "type": "challenge", "challengeId": "m6-l2-challenge-1" },
+      { "stepId": "m6-l2-cl1", "type": "code_lab", "codeLabId": "m6-l2-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m6-l3",
+    "moduleId": "m6",
+    "title": "Protected register with Merkle",
+    "objective": "Learn how Merkle trees let you build and verify an electoral register without exposing every citizen.",
+    "steps": [
+      { "stepId": "m6-l3-s1", "type": "slides", "slideIds": ["m6-l3-slide-1", "m6-l3-slide-2", "m6-l3-slide-3", "m6-l3-slide-4"] },
+      { "stepId": "m6-l3-c1", "type": "challenge", "challengeId": "m6-l3-challenge-1" },
+      { "stepId": "m6-l3-cl1", "type": "code_lab", "codeLabId": "m6-l3-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m6-l4",
+    "moduleId": "m6",
+    "title": "Practical electoral flow",
+    "objective": "Apply commitments and Merkle trees to connect the protected register, eligibility, and private voting.",
+    "steps": [
+      { "stepId": "m6-l4-s1", "type": "slides", "slideIds": ["m6-l4-slide-1", "m6-l4-slide-2", "m6-l4-slide-3", "m6-l4-slide-4"] },
+      { "stepId": "m6-l4-c1", "type": "challenge", "challengeId": "m6-l4-challenge-1" },
+      { "stepId": "m6-l4-cl1", "type": "code_lab", "codeLabId": "m6-l4-code-lab-1" }
+    ]
+  }
+]

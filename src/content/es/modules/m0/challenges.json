@@ -1,0 +1,35 @@
+[
+  {
+    "challengeId": "m0-l1-challenge-1",
+    "moduleId": "m0",
+    "lessonId": "m0-l1",
+    "type": "drag_and_drop",
+    "title": "Soberanía de Identidad",
+    "instructions": "Como nuevo agente, debes decidir dónde reside tu poder. Arrastra cada elemento a su destino para asegurar tu identidad auto-soberana.",
+    "successCriteria": "Protege tus secretos en el Witness y aleja el riesgo de los servidores centrales.",
+    "narrativeIntro": "Los Mineros Oscuros prosperan gracias a las bases de datos centralizadas. Tu misión es romper esa cadena. Clasifica tu información correctamente para que la Agencia pueda validarte sin exponerte.",
+    "successMessage": "Misión cumplida. Tu identidad ahora es auto-soberana. El Witness es tu único punto de verdad privada.",
+    "failureMessage": "Agente, estás cometiendo el mismo error que el resto del mundo. No entregues tus secretos a la nube. Revisa dónde guardas cada dato.",
+    "maxAttempts": 3,
+    "payload": {
+      "items": [
+        { "id": "nr", "label": "Tu Nombre Real" },
+        { "id": "cs", "label": "Tu Clave Secreta" },
+        { "id": "ds", "label": "Tus Datos Sensibles" },
+        { "id": "bc", "label": "Base de Datos Central" },
+        { "id": "re", "label": "Riesgo de Exposición" }
+      ],
+      "zones": [
+        { "id": "witness", "label": "Tu Bóveda (Witness)" },
+        { "id": "central", "label": "Servidores Centrales" }
+      ],
+      "validAssignments": {
+        "nr": "witness",
+        "cs": "witness",
+        "ds": "witness",
+        "bc": "central",
+        "re": "central"
+      }
+    }
+  }
+]

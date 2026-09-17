@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Internal docs and working files
+.docs/
+.atl/
+.temp-image-prompts/
+
+# AI prompt assets / internal generation helpers
+scripts/
+src/content/es/image-prompts.json
+src/content/en/image-prompts.json
+
+# Local odd files
+nul
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

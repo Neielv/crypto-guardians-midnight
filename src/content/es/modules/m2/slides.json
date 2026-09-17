@@ -1,0 +1,162 @@
+[
+    {
+        "slideId": "m2-l1-slide-1",
+        "lessonId": "m2-l1",
+        "moduleId": "m2",
+        "order": 1,
+        "title": "La identidad del ciudadano necesita un molde seguro",
+        "text": "`struct` es el molde del expediente ciudadano. Si cada dato queda suelto, el sistema no puede verificar con confianza y los Mineros Oscuros encuentran grietas para rastrear o confundir identidades.",
+        "visualHint": "Cinematic close-up of a holographic citizen profile being assembled in a dark tactical room. Blocks of glowing blue data (ID, Age, Region) snapping into an organized structure. Intricate UI details, realistic lighting, 8k, Unreal Engine 5 style.",
+        "image": "images/modules/m2/l1-slide-1.png"
+    },
+    {
+        "slideId": "m2-l1-slide-2",
+        "lessonId": "m2-l1",
+        "moduleId": "m2",
+        "order": 2,
+        "title": "`struct` da forma a la Firma del Ciudadano",
+        "text": "`struct` es la ficha verificable del ciudadano. Define qué datos existen, dónde van y cómo se entienden dentro del sistema. Sin ese molde, no hay registro confiable; solo información dispersa y vulnerable.",
+        "visualHint": "A 3D digital blueprint of a 'Citizen' data node, looking like a high-tech crystal or structured core. Glowing labels for fields. Cyberpunk laboratory environment, shallow depth of field, sharp neon accents, highly detailed glass and metal textures.",
+        "image": "images/modules/m2/l1-slide-2.png"
+    },
+    {
+        "slideId": "m2-l1-slide-3",
+        "lessonId": "m2-l1",
+        "moduleId": "m2",
+        "order": 3,
+        "title": "El padrón necesita un archivo verificable",
+        "text": "`Map` es el archivo donde el padrón guarda cada expediente ciudadano. No basta con tener identidades bien modeladas: deben quedar registradas en un lugar que el contrato pueda consultar sin improvisar ni exponer más de lo necesario.",
+        "visualHint": "Wide view of a futuristic digital vault map. Thousands of glowing data nodes connected to a central terminal. An agent's gloved hand interacting with one specific node. Cold blue and purple palette, volumetric lighting, 8k.",
+        "image": "images/modules/m2/l1-slide-3.png"
+    },
+    {
+        "slideId": "m2-l1-slide-4",
+        "lessonId": "m2-l1",
+        "moduleId": "m2",
+        "order": 4,
+        "title": "`register` es la ventanilla oficial de alta",
+        "text": "`export circuit register(...)` es la operación que convierte un expediente en un ciudadano registrado. No es solo sintaxis: es la puerta formal que la Agencia usará para incorporar identidades al sistema sin abrir una fuga de información.",
+        "visualHint": "Agente confirmando el alta de un ciudadano mientras el circuito `register` se ejecuta en la sala de control.",
+        "image": "images/modules/m2/l1-slide-4.png"
+    },
+    {
+        "slideId": "m2-l2-slide-1",
+        "lessonId": "m2-l2",
+        "moduleId": "m2",
+        "order": 1,
+        "title": "Un padrón útil debe poder consultarse sin exponerse",
+        "text": "`Map` es el archivo operativo del padrón. No basta con guardar expedientes: la Agencia debe poder comprobar quién está registrado sin convertir el sistema en una base abierta para los Mineros Oscuros.",
+        "visualHint": "Operador revisando una consola de registro con acciones de insertar, buscar y verificar.",
+        "image": "images/modules/m2/l2-slide-1.png"
+    },
+    {
+        "slideId": "m2-l2-slide-2",
+        "lessonId": "m2-l2",
+        "moduleId": "m2",
+        "order": 2,
+        "title": "El padrón necesita herramientas de control",
+        "text": "`Map` trae las herramientas con las que la Agencia opera el registro. `insert` incorpora expedientes, `member` confirma si una identidad ya existe, `lookup` recupera una ficha y `size` permite medir el padrón sin tocar su contenido.",
+        "visualHint": "Mapa táctico mostrando métodos `insert`, `lookup`, `member` y `size` como comandos disponibles.",
+        "image": "images/modules/m2/l2-slide-2.png"
+    },
+    {
+        "slideId": "m2-l2-slide-3",
+        "lessonId": "m2-l2",
+        "moduleId": "m2",
+        "order": 3,
+        "title": "`member` revisa, `insert` incorpora",
+        "text": "Antes de dar de alta a un ciudadano, la Agencia debe comprobar si ya está registrado. `member` funciona como una revisión previa; `insert`, como la incorporación formal al padrón. Juntas evitan improvisación y duplicados.",
+        "visualHint": "Agente marcando una identidad como existente después de consultar `member(key)`.",
+        "image": "images/modules/m2/l2-slide-3.png"
+    },
+    {
+        "slideId": "m2-l2-slide-4",
+        "lessonId": "m2-l2",
+        "moduleId": "m2",
+        "order": 4,
+        "title": "`lookup` inspecciona y `size` dimensiona",
+        "text": "La Agencia también necesita auditar el padrón sin alterar su estado. `lookup` permite revisar una ficha concreta y `size` muestra cuántos registros existen, para entender el alcance del sistema sin exponer más de la cuenta.",
+        "visualHint": "Tablero de control mostrando el tamaño del registro y la ficha recuperada por `lookup`.",
+        "image": "images/modules/m2/l2-slide-4.png"
+    },
+    {
+        "slideId": "m2-l3-slide-1",
+        "lessonId": "m2-l3",
+        "moduleId": "m2",
+        "order": 1,
+        "title": "El expediente debe poder armarse sin errores",
+        "text": "Un `struct` no sirve solo para declarar identidad: también debe poder construirse en misión. Si la Agencia no puede armar un expediente claro y completo, el sistema no podrá verificar a quién protege.",
+        "visualHint": "Agente armando un expediente con campos nombrados dentro de una terminal táctica.",
+        "image": "images/modules/m2/l3-slide-1.png"
+    },
+    {
+        "slideId": "m2-l3-slide-2",
+        "lessonId": "m2-l3",
+        "moduleId": "m2",
+        "order": 2,
+        "title": "Los campos nombrados evitan confusiones peligrosas",
+        "text": "Los named fields funcionan como etiquetas en una ficha sensible. Cada dato queda en su lugar y el contrato entiende exactamente qué está leyendo, sin mezclar información crítica del ciudadano.",
+        "visualHint": "Fichero `Citizen` completado con etiquetas cívicas en la consola de la Agencia.",
+        "image": "images/modules/m2/l3-slide-2.png"
+    },
+    {
+        "slideId": "m2-l3-slide-3",
+        "lessonId": "m2-l3",
+        "moduleId": "m2",
+        "order": 3,
+        "title": "Verificar también es inspeccionar el dato correcto",
+        "text": "Leer un campo con sintaxis de punto es abrir el compartimento exacto del expediente. No se trata solo de acceder a un valor: se trata de revisar la pieza correcta sin romper el orden ni la seguridad del registro.",
+        "visualHint": "Inspector de misión ampliando campos individuales de un expediente almacenado.",
+        "image": "images/modules/m2/l3-slide-3.png"
+    },
+    {
+        "slideId": "m2-l3-slide-4",
+        "lessonId": "m2-l3",
+        "moduleId": "m2",
+        "order": 4,
+        "title": "`default\u003cT\u003e` es la plantilla segura de arranque",
+        "text": "`default\u003cCitizen\u003e` funciona como un formulario base listo para completarse. Te da una estructura inicial ordenada para que el expediente pueda poblarse sin improvisar desde cero.",
+        "visualHint": "Plantilla vacía de un expediente digital generada automáticamente antes del alta.",
+        "image": "images/modules/m2/l3-slide-4.png"
+    },
+    {
+        "slideId": "m2-l4-slide-1",
+        "lessonId": "m2-l4",
+        "moduleId": "m2",
+        "order": 1,
+        "title": "El alta ciudadana se ejecuta con circuits",
+        "text": "Los circuits son las operaciones oficiales del contrato. Ahí vive la lógica que registra a un ciudadano y define cómo se ejecuta el alta verificable. Sin esa operación, ninguna identidad puede entrar formalmente al sistema.",
+        "visualHint": "Sala de control donde un circuit se activa como rutina central de la misión.",
+        "image": "images/modules/m2/l4-slide-1.png"
+    },
+    {
+        "slideId": "m2-l4-slide-2",
+        "lessonId": "m2-l4",
+        "moduleId": "m2",
+        "order": 2,
+        "title": "La firma de un circuit no admite improvisación",
+        "text": "Un circuit declara nombre, parámetros y tipo de retorno de forma exacta. Esa precisión es parte de la seguridad: si la firma falla, la operación de alta no puede ejecutarse de manera confiable.",
+        "visualHint": "Blueprint de un circuit con parámetros y tipo de retorno resaltados.",
+        "image": "images/modules/m2/l4-slide-2.png"
+    },
+    {
+        "slideId": "m2-l4-slide-3",
+        "lessonId": "m2-l4",
+        "moduleId": "m2",
+        "order": 3,
+        "title": "`export` abre una ventanilla oficial para la Agencia",
+        "text": "Un circuit con `export` puede invocarse desde la aplicación; sin él, queda como helper interno. Esa diferencia define qué operaciones puede activar la Agencia para incorporar ciudadanos y ejecutar la misión.",
+        "visualHint": "Panel con dos puertas: una pública etiquetada `export` y otra interna marcada como helper.",
+        "image": "images/modules/m2/l4-slide-3.png"
+    },
+    {
+        "slideId": "m2-l4-slide-4",
+        "lessonId": "m2-l4",
+        "moduleId": "m2",
+        "order": 4,
+        "title": "Las operaciones que no devuelven valor se declaran con `[]`",
+        "text": "Si un circuit no entrega un valor, su firma usa `[]` y nunca `Void`. Es un detalle que no admite errores: una firma incorrecta rompe la operación de alta antes de que empiece.",
+        "visualHint": "Split-screen cyberpunk terminal. On the left, the word 'Void' is crossed out with red glitchy distortion. On the right, '[]' glows in a stable, neon green high-tech font. Technical UI design, realistic display, dramatic shadows.",
+        "image": "images/modules/m2/l4-slide-4.png"
+    }
+]

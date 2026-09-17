@@ -1,0 +1,286 @@
+[
+  {
+    "supportMaterialId": "m7-l1-slide-1-support-1",
+    "slideId": "m7-l1-slide-1",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Integración Final",
+    "sourceSection": "Resumen",
+    "title": "El desafío final",
+    "excerpts": [
+      "Construir un sistema de votación completo que preserve privacidad integrando todos los conceptos.",
+      "Esta es la batalla final - integración de todo desde witness hasta árboles Merkle.",
+      "Solo combinando todas las piezas puedes tener éxito."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-2-support-1",
+    "slideId": "m7-l1-slide-2",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Integración Final",
+    "sourceSection": "Requisitos",
+    "title": "Qué debes integrar",
+    "excerpts": [
+      "witness - inputs privados",
+      "assert - lógica de circuito",
+      "disclose - revelación selectiva",
+      "nullifier - unicidad",
+      "DUST - gestión de costos",
+      "árboles Merkle - pruebas de membresía"
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-3-support-1",
+    "slideId": "m7-l1-slide-3",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Integración Final",
+    "sourceSection": "Escenario",
+    "title": "El escenario: elección privada",
+    "excerpts": [
+      "Los votantes elegibles deben probar membresía sin revelar identidad.",
+      "La encriptación del voto debe ser secreta.",
+      "El conteo debe ser verificable.",
+      "El doble voto debe ser imposible."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l1-slide-4-support-1",
+    "slideId": "m7-l1-slide-4",
+    "lessonId": "m7-l1",
+    "moduleId": "m7",
+    "sourceChapter": "Integración Final",
+    "sourceSection": "Importancia",
+    "title": "Por qué esto importa",
+    "excerpts": [
+      "Esta integración demuestra aplicaciones del mundo real que preservan privacidad.",
+      "Dominar todos estos conceptos permite construir sistemas que protegen la privacidad.",
+      "Este es el futuro de votaciones, airdrops, y más."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-1-support-1",
+    "slideId": "m7-l2-slide-1",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combinando Conceptos",
+    "sourceSection": "Paso 1",
+    "title": "Paso 1: Identidad y elegibilidad",
+    "excerpts": [
+      "Usa witness para datos de identidad privados.",
+      "Usa árbol Merkle para lista de elegibilidad.",
+      "El circuito prueba que el votante está en la lista sin revelar identidad."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Elegibilidad con Merkle",
+        "code": "export circuit verifyEligibility(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-2-support-1",
+    "slideId": "m7-l2-slide-2",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combinando Conceptos",
+    "sourceSection": "Paso 2",
+    "title": "Paso 2: Encriptación del voto y commitment",
+    "excerpts": [
+      "Usa persistentCommit para encriptar el voto.",
+      "El voto se sella en un commitment, legible solo por la autoridad.",
+      "Usa disclose para revelar conteo sin revelar quién votó por quién."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Commitment de voto",
+        "code": "// Encriptar voto\nconst { commitment, opening } = persistentCommit(vote);\n\n// Después, disclose agregado\nconst tally = disclose(commitments, aggregate);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-3-support-1",
+    "slideId": "m7-l2-slide-3",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combinando Conceptos",
+    "sourceSection": "Paso 3",
+    "title": "Paso 3: Unicidad con nullifier",
+    "excerpts": [
+      "El nullifier previene el doble voto.",
+      "Genera nullifier desde clave secreta + evento de voto.",
+      "Publícalo en ledger, verifica que sea único con assert."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier para unicidad",
+        "code": "export circuit castVote(nullifier: Field) {\n  // Verificar único\n  assert(!usedNullifiers.member(nullifier));\n  \n  // Registrar\n  usedNullifiers.insert(nullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l2-slide-4-support-1",
+    "slideId": "m7-l2-slide-4",
+    "lessonId": "m7-l2",
+    "moduleId": "m7",
+    "sourceChapter": "Combinando Conceptos",
+    "sourceSection": "Paso 4",
+    "title": "Paso 4: Gestión de costo DUST",
+    "excerpts": [
+      "El servidor de pruebas genera la prueba, consumiendo DUST.",
+      "El circuito debe estar optimizado para minimizar costos.",
+      "Esto completa el sistema completo."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Contabilidad de DUST",
+        "code": "import { dust } from '@midnight/coins';\n\n// DUST se descuenta del balance del usuario\n// para generación de pruebas\nconst proof = await proofServer.generate(\n  encryptedWitness,\n  { from: user, amount: estimatedDust }\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-1-support-1",
+    "slideId": "m7-l3-slide-1",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Escenario Final",
+    "sourceSection": "Arquitectura",
+    "title": "Resumen de arquitectura del sistema",
+    "excerpts": [
+      "Ledger almacena: raíz Merkle, commitment de voto, conjunto de nullifiers.",
+      "Dispositivo del usuario crea datos witness.",
+      "Servidor de pruebas genera prueba ZK.",
+      "Circuito verifica todo."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-2-support-1",
+    "slideId": "m7-l3-slide-2",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Escenario Final",
+    "sourceSection": "Circuito",
+    "title": "El circuito completo",
+    "excerpts": [
+      "Verifica prueba Merkle para elegibilidad.",
+      "Verifica que el commitment del voto es válido.",
+      "Verifica que el nullifier es único.",
+      "Assert que todas las condiciones se cumplen."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuito de votación completo",
+        "code": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  vote: Field,\n  nullifier: Field,\n  root: Field\n) {\n  // 1. Elegibilidad\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  \n  // 2. Unicidad\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n  \n  // 3. Commitment de voto válido\n  assert(verifyCommitment(vote, commitment));\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-3-support-1",
+    "slideId": "m7-l3-slide-3",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Escenario Final",
+    "sourceSection": "Privacidad",
+    "title": "Privacidad preservada en cada paso",
+    "excerpts": [
+      "Identidad del votante ocultada (prueba Merkle).",
+      "Contenido del voto ocultado (commitment).",
+      "Conteo de votos verificable (disclose).",
+      "Sin doble voto (nullifier)."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l3-slide-4-support-1",
+    "slideId": "m7-l3-slide-4",
+    "lessonId": "m7-l3",
+    "moduleId": "m7",
+    "sourceChapter": "Escenario Final",
+    "sourceSection": "Parámetros",
+    "title": "Los parámetros del desafío",
+    "excerpts": [
+      "Manejar 1000 votantes elegibles.",
+      "Soportar 3 candidatos.",
+      "Prevenir doble voto.",
+      "Mantener votos privados.",
+      "Proporcionar conteo público.",
+      "Optimizar circuito para DUST."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-1-support-1",
+    "slideId": "m7-l4-slide-1",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Batalla Final",
+    "sourceSection": "Inicio",
+    "title": "Comienza la batalla final",
+    "excerpts": [
+      "Implementar el sistema de votación completo.",
+      "Verificar elegibilidad, encriptar voto, prevenir doble voto, proporcionar conteo.",
+      "Esto es todo lo que has aprendido."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-2-support-1",
+    "slideId": "m7-l4-slide-2",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Batalla Final",
+    "sourceSection": "Herramientas",
+    "title": "Tu kit de herramientas para la victoria",
+    "excerpts": [
+      "witness - inputs privados",
+      "assert - lógica",
+      "disclose - revelación selectiva",
+      "nullifier - unicidad",
+      "DUST - costo",
+      "Merkle - membresía"
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-3-support-1",
+    "slideId": "m7-l4-slide-3",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Batalla Final",
+    "sourceSection": "Optimización",
+    "title": "Estrategia de optimización",
+    "excerpts": [
+      "Minimizar DUST mientras mantiene privacidad.",
+      "Optimizar circuitos reduciendo restricciones.",
+      "Usar funciones hash eficientes.",
+      "Agrupar pruebas donde sea posible."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuito optimizado",
+        "code": "// Antes: 2000 restricciones\nconst h1 = hash(a);\nconst h2 = hash(b);\n\n// Después: 800 restricciones (reutilizar)\nconst shared = hash(a, b);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m7-l4-slide-4-support-1",
+    "slideId": "m7-l4-slide-4",
+    "lessonId": "m7-l4",
+    "moduleId": "m7",
+    "sourceChapter": "Batalla Final",
+    "sourceSection": "Finalización",
+    "title": "Felicidades, Guardián",
+    "excerpts": [
+      "Has dominado: identidad auto-soberana, ledger vs witness, identidad verificable, pruebas ZK, nullifiers, DUST, commitments, árboles Merkle.",
+      "Ahora eres un Crypto Guardian.",
+      "Listo para construir sistemas que preservan privacidad."
+    ],
+    "codeBlocks": []
+  }
+]

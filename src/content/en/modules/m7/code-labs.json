@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m7-l1-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l1",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: integration concept",
+    "instructions": "Complete the list of concepts that must be integrated.",
+    "successCriteria": "Fill the blank with Merkle.",
+    "payload": {
+      "template": "The final challenge integrates witness, assert, disclose, nullifier, DUST, and ___ trees.",
+      "blanks": [
+        { "id": "blank-1", "answer": "Merkle" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l2-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l2",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: nullifier formula",
+    "instructions": "Complete the nullifier generation in the final system.",
+    "successCriteria": "Fill the blank with secret_key.",
+    "payload": {
+      "template": "nullifier = hash(___ + vote_event)",
+      "blanks": [
+        { "id": "blank-1", "answer": "secret_key" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l3-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l3",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: circuit verification",
+    "instructions": "Complete what the circuit verifies first.",
+    "successCriteria": "Fill the blank with Merkle.",
+    "payload": {
+      "template": "The circuit first verifies the ___ proof for eligibility.",
+      "blanks": [
+        { "id": "blank-1", "answer": "Merkle" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l4-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: optimization target",
+    "instructions": "Complete what must be optimized in the final challenge.",
+    "successCriteria": "Fill the blank with DUST.",
+    "payload": {
+      "template": "Optimize the circuit to minimize ___ while maintaining privacy.",
+      "blanks": [
+        { "id": "blank-1", "answer": "DUST" }
+      ]
+    }
+  }
+]

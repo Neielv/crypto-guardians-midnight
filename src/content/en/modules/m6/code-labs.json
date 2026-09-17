@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m6-l1-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l1",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: commitment properties",
+    "instructions": "Complete the two fundamental properties of commitments.",
+    "successCriteria": "Fill the blank with binding.",
+    "payload": {
+      "template": "A commitment has two properties: hiding and ___.",
+      "blanks": [
+        { "id": "blank-1", "answer": "binding" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l2-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l2",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: persistentCommit use case",
+    "instructions": "Complete the use case for persistentCommit.",
+    "successCriteria": "Fill the blank with hidden.",
+    "payload": {
+      "template": "Use persistentCommit when values must remain ___ until revealed.",
+      "blanks": [
+        { "id": "blank-1", "answer": "hidden" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l3-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l3",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: Merkle proof size",
+    "instructions": "Complete the efficiency of Merkle proofs.",
+    "successCriteria": "Fill the blank with log.",
+    "payload": {
+      "template": "A Merkle proof has O(___ n) size.",
+      "blanks": [
+        { "id": "blank-1", "answer": "log" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m6-l4-code-lab-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l4",
+    "type": "fill_in_the_blank",
+    "title": "Hands on: verification flow",
+    "instructions": "Complete what the ZK circuit verifies.",
+    "successCriteria": "Fill the blank with commitment.",
+    "payload": {
+      "template": "The circuit verifies the ___ plus the Merkle proof.",
+      "blanks": [
+        { "id": "blank-1", "answer": "commitment" }
+      ]
+    }
+  }
+]

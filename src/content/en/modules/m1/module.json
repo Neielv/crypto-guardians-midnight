@@ -1,0 +1,13 @@
+{
+  "moduleId": "m1",
+  "title": "Ledger vs Witness",
+  "summary": "Distinguish which parts of a citizen identity may be public and which must remain private to protect voting rights.",
+  "concepts": ["ledger", "witness", "public vs private", "visibility"],
+  "unlocks": "m2",
+  "narrativeTitle": "The Visible and the Hidden",
+  "technicalTitle": "Ledger vs Witness",
+  "dramaticDescription": "Not everything that exists should be seen. Learn what to reveal and what to protect: privacy isn't concealment, it's survival.",
+  "introScene": "{{agent}}, the Dark Miners are monitoring the blockchain to intimidate voters with personal data. Your mission is to ensure that personal information never becomes public. Don't give them anything they can use. Ready for the operation?",
+  "introImage": "images/modules/m1/intro.png",
+  "startButtonLabel": "Accept Mission"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "title": "Qué es DUST y por qué importa",
+    "objective": "Entender qué es DUST en Midnight y por qué proteger el voto del ciudadano implica un costo computacional.",
+    "narrativeIntro": "Antes de proteger una votación, debes entender qué estás gastando. DUST no es un adorno técnico: es el combustible silencioso que paga cada prueba que oculta el voto del ciudadano mientras la Agencia mantiene a raya a los Mineros Oscuros.",
+    "steps": [
+      { "stepId": "m5-l1-s1", "type": "slides", "slideIds": ["m5-l1-slide-1", "m5-l1-slide-2", "m5-l1-slide-3", "m5-l1-slide-4"] },
+      { "stepId": "m5-l1-c1", "type": "challenge", "challengeId": "m5-l1-challenge-1" },
+      { "stepId": "m5-l1-cl1", "type": "code_lab", "codeLabId": "m5-l1-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "title": "Recursos ZK y costos de generación de pruebas",
+    "objective": "Aprender qué recursos requiere la generación de pruebas zero-knowledge y cómo DUST refleja ese costo en la misión electoral.",
+    "narrativeIntro": "Una prueba ZK no aparece por arte de magia. Funciona más como un taller criptográfico: CPU, memoria y tiempo trabajan juntos para fabricar el blindaje del voto. Si no entiendes qué consume ese taller, no puedes presupuestar la misión ni sostenerla bajo presión.",
+    "steps": [
+      { "stepId": "m5-l2-s1", "type": "slides", "slideIds": ["m5-l2-slide-1", "m5-l2-slide-2", "m5-l2-slide-3", "m5-l2-slide-4"] },
+      { "stepId": "m5-l2-c1", "type": "challenge", "challengeId": "m5-l2-challenge-1" },
+      { "stepId": "m5-l2-cl1", "type": "code_lab", "codeLabId": "m5-l2-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "title": "Arquitectura de servidores de pruebas",
+    "objective": "Entender cómo funcionan los servidores de pruebas en Midnight y qué papel cumplen al generar pruebas ZK para una votación protegida.",
+    "narrativeIntro": "No siempre conviene fabricar las pruebas en el mismo dispositivo que opera la misión. A veces necesitas un taller blindado aparte: el servidor de pruebas. Tu tarea es entender cómo delegar ese trabajo sin entregar la privacidad del ciudadano, incluso si los Mineros Oscuros vigilan la infraestructura.",
+    "steps": [
+      { "stepId": "m5-l3-s1", "type": "slides", "slideIds": ["m5-l3-slide-1", "m5-l3-slide-2", "m5-l3-slide-3", "m5-l3-slide-4"] },
+      { "stepId": "m5-l3-c1", "type": "challenge", "challengeId": "m5-l3-challenge-1" },
+      { "stepId": "m5-l3-cl1", "type": "code_lab", "codeLabId": "m5-l3-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "title": "Estrategias de costo de privacidad",
+    "objective": "Aprender estrategias para optimizar el uso de DUST y equilibrar privacidad con eficiencia en una votación protegida.",
+    "narrativeIntro": "En una operación encubierta no se desperdician recursos. Optimizar DUST es eso mismo: racionar el presupuesto criptográfico sin bajar el escudo del ciudadano. Si la Agencia gasta de más o diseña mal, los Mineros Oscuros ganan ventaja por agotamiento.",
+    "steps": [
+      { "stepId": "m5-l4-s1", "type": "slides", "slideIds": ["m5-l4-slide-1", "m5-l4-slide-2", "m5-l4-slide-3", "m5-l4-slide-4"] },
+      { "stepId": "m5-l4-c1", "type": "challenge", "challengeId": "m5-l4-challenge-1" },
+      { "stepId": "m5-l4-cl1", "type": "code_lab", "codeLabId": "m5-l4-code-lab-1" }
+    ]
+  }
+]

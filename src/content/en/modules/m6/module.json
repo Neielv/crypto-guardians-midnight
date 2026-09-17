@@ -1,0 +1,12 @@
+{
+  "moduleId": "m6",
+  "title": "Protected registry",
+  "summary": "Learn how commitments, persistent hashes, and Merkle trees make it possible to build a verifiable registry without exposing each registered person.",
+  "concepts": ["commitment", "Merkle", "electoral registry", "integrity"],
+  "unlocks": "m7",
+  "narrativeTitle": "The Protected Registry",
+  "technicalTitle": "Protected registry",
+  "dramaticDescription": "It is not enough to know who can vote: you must also avoid turning the registry into a public target. Build a verifiable list without exposing the people inside it.",
+  "introScene": "The agent explains that the electoral registry cannot be published as an open list of names. Your mission is to prove membership without exposing the people who belong to the record.",
+  "startButtonLabel": "Start Mission 6"
+}

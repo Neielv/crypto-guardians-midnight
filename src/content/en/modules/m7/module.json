@@ -1,0 +1,12 @@
+{
+  "moduleId": "m7",
+  "title": "Complete private voting",
+  "summary": "Integrate identity, register, sealed vote, uniqueness, and final verification so a citizen can exercise voting rights without losing privacy.",
+  "concepts": ["integration", "private voting", "audit", "closure"],
+  "unlocks": null,
+  "narrativeTitle": "The Vote Nobody Sees",
+  "technicalTitle": "Complete private voting",
+  "dramaticDescription": "Now everything converges: protected identity, verifiable register, sealed vote, and guaranteed uniqueness. You have built a system where a citizen can exercise their right without being observed.",
+  "introScene": "The agent awaits you in the final hall of the system. Everything you built in previous missions now integrates: the witness, the Merkle tree, the commitment, and the nullifier work together to make private, verifiable voting possible.",
+  "startButtonLabel": "Start Mission 7"
+}

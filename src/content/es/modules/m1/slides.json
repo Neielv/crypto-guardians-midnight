@@ -1,0 +1,32 @@
+[
+    {
+        "slideId":  "m1-l1-slide-1",
+        "lessonId":  "m1-l1",
+        "moduleId":  "m1",
+        "order":  1,
+        "title":  "El muro público",
+        "text":  "El ledger es el muro que todos pueden mirar. Si allí escribes más de lo necesario, los Mineros Oscuros podrán unir pistas sobre ciudadanos y votos. Solo debe aparecer lo seguro para todos.",
+        "visualHint":  "Muro público con avisos visibles y zonas tachadas por seguridad.",
+        "image":  "images/modules/m1/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m1-l1-slide-2",
+        "lessonId":  "m1-l1",
+        "moduleId":  "m1",
+        "order":  2,
+        "title":  "El refugio sellado",
+        "text": "El witness es el compartimento sellado donde permanecen los datos sensibles de cada ciudadano. Desde allí, el sistema puede comprobar lo necesario sin colgar esa información en el muro público.",
+        "visualHint":  "Compartimento sellado resguardando fichas ciudadanas.",
+        "image":  "images/modules/m1/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m1-l1-slide-3",
+        "lessonId":  "m1-l1",
+        "moduleId":  "m1",
+        "order":  3,
+        "title":  "La regla de mínimo detalle",
+        "text":  "Tu regla de diseño es simple: revelar solo lo mínimo para verificar. Así proteges a la ciudadanía y mantienes el voto secreto sin dejar al sistema ciego.",
+        "visualHint":  "Balanza entre verificación y secreto del voto.",
+        "image":  "images/modules/m1/l1-slide-3.png"
+    }
+]

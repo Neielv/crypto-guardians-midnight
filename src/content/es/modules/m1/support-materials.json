@@ -1,0 +1,71 @@
+[
+  {
+    "supportMaterialId": "m1-l1-slide-1-support-1",
+    "slideId": "m1-l1-slide-1",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "State Management",
+    "sourceSection": "Sección ledger",
+    "title": "Cómo definir campos públicos en el ledger",
+    "excerpts": [
+      "La sección ledger describe el estado mantenido on-chain.",
+      "Todo lo que declares aquí forma parte del estado visible del contrato."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Definición de ledger público",
+        "code": "export ledger authority: Bytes<32>;\nexport ledger value: Uint<64>;\nexport ledger state: State;\nexport ledger round: Counter;"
+      },
+      {
+        "title": "Recuerda",
+        "code": "// correcto\nexport ledger nombre: Bytes<32>;\n\n// incorrecto\nexport ledger nombre(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m1-l1-slide-2-support-1",
+    "slideId": "m1-l1-slide-2",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Características de los Witnesses",
+    "title": "Cómo definir datos privados con witness",
+    "excerpts": [
+      "Los valores witness pueden contener información privada.",
+      "Son opacos para los circuits y se representan como su hash."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Definición de dato privado",
+        "code": "witness secretKey(): Bytes<32>;\nwitness getBalance(): Uint<64>;"
+      },
+      {
+        "title": "Recuerda",
+        "code": "// correcto\nwitness cedula(): Bytes<32>;\n\n// witness sí usa paréntesis"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m1-l1-slide-3-support-1",
+    "slideId": "m1-l1-slide-3",
+    "lessonId": "m1-l1",
+    "moduleId": "m1",
+    "sourceChapter": "disclose() Function",
+    "sourceSection": "Declarando divulgación explícitamente",
+    "title": "Cómo pasar un valor privado al ledger de forma explícita",
+    "excerpts": [
+      "La información privada debe divulgarse solo cuando sea necesario, por lo que Compact requiere que la divulgación sea declarada explícitamente.",
+      "Sin el wrapper disclose(), el compilador rechaza el programa con un error de potential witness-value disclosure."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Uso correcto de disclose()",
+        "code": "import CompactStandardLibrary;\n\nwitness getBalance(): Bytes<32>;\nexport ledger balance: Bytes<32>;\n\nexport circuit recordBalance(): [] {\n  balance = disclose(getBalance());\n}"
+      },
+      {
+        "title": "Error sin disclose()",
+        "code": "Exception: potential witness-value disclosure must be declared but is not:\n  witness value potentially disclosed:\n    the return value of witness getBalance at line 2 char 1\n  nature of the disclosure:\n    ledger operation might disclose the witness value"
+      }
+    ]
+  }
+]

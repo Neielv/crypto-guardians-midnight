@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m7-l1-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l1",
+    "type": "trivia",
+    "title": "Integration requirements",
+    "instructions": "Identify the concepts that must be integrated in the final challenge.",
+    "successCriteria": "Select witness, assert, disclose, nullifier, DUST, and Merkle.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What concepts must be integrated in the final challenge?",
+      "options": [
+        { "id": "a", "label": "witness, assert, disclose, nullifier, DUST, and Merkle trees" },
+        { "id": "b", "label": "Only witness and ledger" },
+        { "id": "c", "label": "Only encryption and decryption" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m7-l2-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l2",
+    "type": "trivia",
+    "title": "Integration sequence",
+    "instructions": "Select the correct order for the integration steps.",
+    "successCriteria": "Select eligibility → commitment → nullifier → DUST.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What is the correct order of integration steps?",
+      "options": [
+        { "id": "a", "label": "Eligibility → Vote commitment → Nullifier → DUST cost" },
+        { "id": "b", "label": "DUST → Nullifier → Commitment → Eligibility" },
+        { "id": "c", "label": "Nullifier → Eligibility → DUST → Commitment" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m7-l3-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l3",
+    "type": "trivia",
+    "title": "Privacy at each step",
+    "instructions": "Select what Merkle tree provides in the final system.",
+    "successCriteria": "Select proving eligibility without revealing identity.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What does the Merkle tree provide in the final voting system?",
+      "options": [
+        { "id": "a", "label": "Storing all voter identities publicly" },
+        { "id": "b", "label": "Proving eligibility without revealing identity" },
+        { "id": "c", "label": "Counting votes" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m7-l4-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "trivia",
+    "title": "Final optimization goal",
+    "instructions": "Select the optimization goal for the boss battle.",
+    "successCriteria": "Select minimizing DUST while maintaining privacy.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What is the optimization goal in the final challenge?",
+      "options": [
+        { "id": "a", "label": "Maximizing privacy at any cost" },
+        { "id": "b", "label": "Minimizing DUST while maintaining privacy" },
+        { "id": "c", "label": "Making everything public" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

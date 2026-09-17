@@ -1,0 +1,114 @@
+[
+  {
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "title": "Register a verifiable citizen identity",
+    "objective": "Understand how Compact uses `struct`, `Map`, and `export circuit` to register verifiable citizen identities in the ledger.",
+    "steps": [
+      {
+        "stepId": "m2-l1-s1",
+        "type": "slides",
+        "slideIds": [
+          "m2-l1-slide-1",
+          "m2-l1-slide-2",
+          "m2-l1-slide-3",
+          "m2-l1-slide-4"
+        ]
+      },
+      {
+        "stepId": "m2-l1-c1",
+        "type": "challenge",
+        "challengeId": "m2-l1-challenge-1"
+      },
+      {
+        "stepId": "m2-l1-cl1",
+        "type": "code_lab",
+        "codeLabId": "m2-l1-code-lab-1"
+      }
+    ]
+  },
+  {
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "title": "Operate the citizen registry",
+    "objective": "Learn how to insert, query, and count citizen identities in a ledger `Map` using real operations from the base book.",
+    "steps": [
+      {
+        "stepId": "m2-l2-s1",
+        "type": "slides",
+        "slideIds": [
+          "m2-l2-slide-1",
+          "m2-l2-slide-2",
+          "m2-l2-slide-3",
+          "m2-l2-slide-4"
+        ]
+      },
+      {
+        "stepId": "m2-l2-c1",
+        "type": "challenge",
+        "challengeId": "m2-l2-challenge-1"
+      },
+      {
+        "stepId": "m2-l2-cl1",
+        "type": "code_lab",
+        "codeLabId": "m2-l2-code-lab-1"
+      }
+    ]
+  },
+  {
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "title": "Build and read dossiers",
+    "objective": "Learn how to create `struct` values, access their fields, and use `default<T>` to prepare verifiable identities.",
+    "steps": [
+      {
+        "stepId": "m2-l3-s1",
+        "type": "slides",
+        "slideIds": [
+          "m2-l3-slide-1",
+          "m2-l3-slide-2",
+          "m2-l3-slide-3",
+          "m2-l3-slide-4"
+        ]
+      },
+      {
+        "stepId": "m2-l3-c1",
+        "type": "challenge",
+        "challengeId": "m2-l3-challenge-1"
+      },
+      {
+        "stepId": "m2-l3-cl1",
+        "type": "code_lab",
+        "codeLabId": "m2-l3-code-lab-1"
+      }
+    ]
+  },
+  {
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "title": "Design safe registration circuits",
+    "objective": "Understand the exact `circuit` syntax, when to use `export`, and why non-returning circuits must declare `[]`.",
+    "steps": [
+      {
+        "stepId": "m2-l4-s1",
+        "type": "slides",
+        "slideIds": [
+          "m2-l4-slide-1",
+          "m2-l4-slide-2",
+          "m2-l4-slide-3",
+          "m2-l4-slide-4"
+        ]
+      },
+      {
+        "stepId": "m2-l4-c1",
+        "type": "challenge",
+        "challengeId": "m2-l4-challenge-1"
+      },
+      {
+        "stepId": "m2-l4-cl1",
+        "type": "code_lab",
+        "codeLabId": "m2-l4-code-lab-1"
+      }
+    ]
+  }
+]

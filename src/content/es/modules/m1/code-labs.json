@@ -1,0 +1,48 @@
+[
+  {
+    "codeLabId": "m1-l1-code-lab-1",
+    "moduleId": "m1",
+    "lessonId": "m1-l1",
+    "type": "toggle_visibility",
+    "title": "Escribe una declaración segura",
+    "instructions": "Declara solo el nombre en ledger y resguarda cédula, fecha de nacimiento, teléfono y dirección como witness. Estás decidiendo qué podría quedar expuesto en un sistema de votación.",
+    "successCriteria": "El nombre debe declararse en ledger y el resto como witness.",
+    "narrativeIntro": "Ahora conviertes la decisión en una declaración real. Si escribes un campo sensible en el lugar equivocado, podrías exponer a un ciudadano ante los Mineros Oscuros.",
+    "successMessage": "Declaración correcta. Solo queda visible lo seguro y el resto permanece protegido para resguardar a la ciudadanía.",
+    "failureMessage": "Revisa la declaración. El nombre puede quedar visible, pero los datos sensibles deben permanecer como witness para no exponer a la ciudadanía.",
+    "payload": {
+      "fields": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "dataType": "Bytes<32>",
+          "expectedScope": "ledger"
+        },
+        {
+          "id": "cedula",
+          "label": "Cédula",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        },
+        {
+          "id": "fechaNacimiento",
+          "label": "Fecha de nacimiento",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        },
+        {
+          "id": "telefono",
+          "label": "Teléfono",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        },
+        {
+          "id": "direccion",
+          "label": "Dirección",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        }
+      ]
+    }
+  }
+]

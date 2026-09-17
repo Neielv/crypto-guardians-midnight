@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m5-l1-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l1",
+    "type": "trivia",
+    "title": "Understanding DUST",
+    "instructions": "Select the best description of DUST according to the base book.",
+    "successCriteria": "Select the option explaining that DUST measures computational cost for ZK proofs.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What is DUST in the Midnight context?",
+      "options": [
+        { "id": "a", "label": "A cryptocurrency token used for payments" },
+        { "id": "b", "label": "A computational resource metric that measures the cost of generating ZK proofs" },
+        { "id": "c", "label": "A type of encryption algorithm" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l2-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l2",
+    "type": "trivia",
+    "title": "DUST cost factors",
+    "instructions": "Identify what factors affect DUST cost according to the book.",
+    "successCriteria": "Select the option mentioning witness variables, constraints, and proof system.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What factors determine the DUST cost of a ZK proof?",
+      "options": [
+        { "id": "a", "label": "Only the number of inputs to the circuit" },
+        { "id": "b", "label": "The number of witness variables, number of constraints, and proof system used" },
+        { "id": "c", "label": "Only the size of the public outputs" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l3-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l3",
+    "type": "trivia",
+    "title": "Proof server trust model",
+    "instructions": "Select how trust works with proof servers.",
+    "successCriteria": "Select the option explaining that proof servers can't see private data because it's encrypted as witnesses.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "How does the trust model work with proof servers?",
+      "options": [
+        { "id": "a", "label": "You must trust the proof server to be honest with your data" },
+        { "id": "b", "label": "Proof servers cannot see private data because it's provided as encrypted witnesses; proof integrity is cryptographic" },
+        { "id": "c", "label": "Proof servers are not used in Midnight" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l4-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l4",
+    "type": "trivia",
+    "title": "Privacy optimization strategies",
+    "instructions": "Identify a strategy to reduce DUST costs.",
+    "successCriteria": "Select proof aggregation.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "Which is a strategy to reduce DUST costs?",
+      "options": [
+        { "id": "a", "label": "Using larger, more complex circuits" },
+        { "id": "b", "label": "Proof aggregation - combining multiple actions into a single proof" },
+        { "id": "c", "label": "Generating proofs more frequently" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

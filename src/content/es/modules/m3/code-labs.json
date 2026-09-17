@@ -1,0 +1,74 @@
+[
+  {
+    "codeLabId": "m3-l1-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l1",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: probar sin revelar",
+    "instructions": "Completa la frase clave del libro: una zero-knowledge proof prueba una afirmación sin revelar información adicional más allá de su ___.",
+    "successCriteria": "Completa el hueco con `validez`.",
+    "payload": {
+      "template": "...sin revelar información adicional más allá de su ___.",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "validez"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l2-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l2",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: firma exportada",
+    "instructions": "Completa la palabra clave que permite llamar al circuit desde TypeScript según el libro.",
+    "successCriteria": "Completa el hueco con `export`.",
+    "payload": {
+      "template": "___ circuit publicAction(): [] {\n  // ...\n}",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "export"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l3-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l3",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: permitir la divulgación",
+    "instructions": "Completa la llamada exacta que el libro usa para permitir que un valor de witness llegue al ledger.",
+    "successCriteria": "Completa el hueco con `disclose`.",
+    "payload": {
+      "template": "balance = ___(getBalance());",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "disclose"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l4-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l4",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: leer la alerta",
+    "instructions": "Completa el fragmento central del error del compilador que indica una divulgación no declarada de un valor de witness.",
+    "successCriteria": "Completa el hueco con `disclosure`.",
+    "payload": {
+      "template": "Exception: potential witness-value ___ must be declared but is not:",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "disclosure"
+        }
+      ]
+    }
+  }
+]

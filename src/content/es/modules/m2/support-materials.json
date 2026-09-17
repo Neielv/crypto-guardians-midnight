@@ -1,0 +1,314 @@
+[
+  {
+    "supportMaterialId": "m2-l1-slide-1-support-1",
+    "slideId": "m2-l1-slide-1",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Organización del contrato",
+    "sourceSection": "Tipos, ledger, witnesses y circuits",
+    "title": "Una identidad ciudadana verificable se modela con tipos explícitos",
+    "excerpts": [
+      "El libro muestra que un contrato puede organizar tipos, ledger, witnesses y circuits dentro de la misma unidad.",
+      "La identidad verificable deja de ser una idea abstracta cuando el contrato la modela con un tipo bien definido."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Esqueleto del contrato",
+        "code": "export struct Citizen {\n    name: Bytes<32>,\n    nationality: Bytes<32>,\n    politicalRights: Boolean\n}\n\nexport ledger registry: Map<Bytes<32>, Citizen>;\nexport ledger count: Counter;\n\nwitness getSecretKey(): Bytes<32>;\n\nexport circuit register(name: Bytes<32>, nationality: Bytes<32>, politicalRights: Boolean): [] {\n    // implementación\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-2-support-1",
+    "slideId": "m2-l1-slide-2",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Declarando un Struct",
+    "title": "Cómo se declara la forma de una identidad ciudadana",
+    "excerpts": [
+      "Los campos de un struct se separan por comas.",
+      "Una coma final es permitida pero no requerida."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Struct adaptado a ciudadanía verificable",
+        "code": "export struct Citizen {\n    name: Bytes<32>,\n    nationality: Bytes<32>,\n    politicalRights: Boolean\n}"
+      },
+      {
+        "title": "Creación con named fields",
+        "code": "const citizen = Citizen {\n    name: ownerName,\n    nationality: ownerNationality,\n    politicalRights: true\n};"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-3-support-1",
+    "slideId": "m2-l1-slide-3",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Organización del contrato",
+    "sourceSection": "Declaraciones de ledger state",
+    "title": "Cómo se guarda el registro ciudadano verificable en el ledger",
+    "excerpts": [
+      "Las identidades verificables pueden almacenarse en un `Map` del ledger para quedar disponibles al contrato.",
+      "El ejemplo del libro usa un contador adicional para rastrear estado asociado al registro."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Registro público",
+        "code": "export ledger registry: Map<Bytes<32>, Citizen>;\nexport ledger count: Counter;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l1-slide-4-support-1",
+    "slideId": "m2-l1-slide-4",
+    "lessonId": "m2-l1",
+    "moduleId": "m2",
+    "sourceChapter": "Organización del contrato",
+    "sourceSection": "Circuits",
+    "title": "Cómo se declara el registro como operación del contrato",
+    "excerpts": [
+      "El libro muestra un circuito exportado con argumentos tipados para registrar datos en el contrato.",
+      "Ese circuito se convierte en el punto de entrada que ejecuta la misión de registro."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuit adaptado al alta ciudadana",
+        "code": "export circuit register(name: Bytes<32>, nationality: Bytes<32>, politicalRights: Boolean): [] {\n    // implementación\n}"
+      },
+      {
+        "title": "Witness asociado",
+        "code": "witness getSecretKey(): Bytes<32>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-1-support-1",
+    "slideId": "m2-l2-slide-1",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "Map<key_type, value_type>",
+    "title": "El registro es un `Map` operativo, no solo una declaración",
+    "excerpts": [
+      "`Map<key_type, value_type>` es un conjunto no acotado de mapeos entre valores de tipo clave y valores de tipo valor.",
+      "El libro define operaciones integradas para trabajar ese registro sin estructuras paralelas."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Tipo del registro",
+        "code": "export ledger registry: Map<Bytes<32>, Citizen>;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-2-support-1",
+    "slideId": "m2-l2-slide-2",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "Operaciones de Map",
+    "title": "Las operaciones reales del `Map`",
+    "excerpts": [
+      "`insert(key, value): []` actualiza el Map para incluir un nuevo valor en una key dada.",
+      "`lookup(key): value_type`, `member(key): Boolean` y `size(): Uint<64>` completan las operaciones esenciales del registro."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Signatures del libro",
+        "code": "insert(key: key_type, value: value_type): []\nlookup(key: key_type): value_type\nmember(key: key_type): Boolean\nsize(): Uint<64>"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-3-support-1",
+    "slideId": "m2-l2-slide-3",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "insert y member",
+    "title": "Cómo validar una inserción antes de registrarla",
+    "excerpts": [
+      "`member(key)` devuelve `Boolean` para responder si una clave está contenida en el Map.",
+      "`insert(key, value)` agrega o actualiza la entrada del registro para esa clave."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Patrón mínimo",
+        "code": "const yaExiste = registry.member(citizenKey);\nregistry.insert(citizenKey, person);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l2-slide-4-support-1",
+    "slideId": "m2-l2-slide-4",
+    "lessonId": "m2-l2",
+    "moduleId": "m2",
+    "sourceChapter": "Ledger Data Types",
+    "sourceSection": "lookup y size",
+    "title": "Cómo auditar y consultar el registro",
+    "excerpts": [
+      "`lookup(key)` busca el valor de una clave y puede retornar otro ADT.",
+      "`size()` retorna el número de entradas del Map para medir el registro sin mutarlo."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Consulta y conteo",
+        "code": "const person = registry.lookup(citizenKey);\nconst total = registry.size();"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-1-support-1",
+    "slideId": "m2-l3-slide-1",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Creando Valores Struct",
+    "title": "Cómo construir un expediente verificable",
+    "excerpts": [
+      "El libro muestra que los named fields son recomendados por claridad.",
+      "Ese patrón evita confundir qué valor pertenece a cada campo de la identidad."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Named fields",
+        "code": "const player = Player {\n    address: ownerKey,\n    score: 0,\n    isActive: true\n};"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-2-support-1",
+    "slideId": "m2-l3-slide-2",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Creando Valores Struct",
+    "title": "Named, positional y mezcla",
+    "excerpts": [
+      "El libro presenta tres maneras de crear un struct: named fields, positional fields y mezcla.",
+      "Para la misión de identidad conviene priorizar named fields por legibilidad."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Variantes del libro",
+        "code": "const player = Player {\n    address: ownerKey,\n    score: 0,\n    isActive: true\n};\n\nconst player2 = Player { ownerKey, 0, true };\nconst player3 = Player { ownerKey, 0, isActive: true };"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-3-support-1",
+    "slideId": "m2-l3-slide-3",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Accediendo a Campos",
+    "title": "Cómo leer un dato del expediente",
+    "excerpts": [
+      "Los campos del struct se leen con sintaxis de punto.",
+      "Cada acceso conserva el tipo concreto del campo leído."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Acceso a campos",
+        "code": "const player = Player { address: ownerKey, score: 100, isActive: true };\n\nconst addr = player.address;\nconst points = player.score;\nconst active = player.isActive;"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l3-slide-4-support-1",
+    "slideId": "m2-l3-slide-4",
+    "lessonId": "m2-l3",
+    "moduleId": "m2",
+    "sourceChapter": "Core Language Features",
+    "sourceSection": "Valores por Defecto",
+    "title": "Cómo iniciar un expediente vacío",
+    "excerpts": [
+      "`default<Player>` crea una instancia con valores por defecto para cada campo.",
+      "Eso da una base segura antes de completar la identidad verificable."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Valor por defecto",
+        "code": "const emptyPlayer = default<Player>;\n// Equivalent to: Player { address: default<Bytes<32>>, score: 0, isActive: false }"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-1-support-1",
+    "slideId": "m2-l4-slide-1",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuits",
+    "sourceSection": "¿Por qué circuits?",
+    "title": "Por qué la misión depende de circuits",
+    "excerpts": [
+      "Los circuits definen la lógica de negocio del contrato.",
+      "El compilador los transforma en circuitos zero-knowledge capaces de generar y verificar proofs."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Idea central",
+        "code": "// un circuit define qué puede hacer el contrato\nexport circuit publicAction(): [] {\n    // ...\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-2-support-1",
+    "slideId": "m2-l4-slide-2",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Sintaxis Básica",
+    "title": "La forma exacta de declarar un circuit",
+    "excerpts": [
+      "Un circuit declara nombre, parámetros y tipo de retorno.",
+      "La variante exportada usa la misma sintaxis con la palabra clave `export`."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Sintaxis del libro",
+        "code": "circuit c(a: A, b: B): R {\n    // circuit body\n}\n\nexport circuit name(): [] {\n    // exported circuit body\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-3-support-1",
+    "slideId": "m2-l4-slide-3",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Visibilidad",
+    "title": "`export` contra helper interno",
+    "excerpts": [
+      "`export` vuelve callable el circuit desde TypeScript.",
+      "Sin `export`, el circuit queda disponible solo para otros circuits del contrato."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Circuit público e interno",
+        "code": "export circuit publicAction(): [] {\n    // ...\n}\n\ncircuit internalHelper(): Field {\n    return 42;\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m2-l4-slide-4-support-1",
+    "slideId": "m2-l4-slide-4",
+    "lessonId": "m2-l4",
+    "moduleId": "m2",
+    "sourceChapter": "Circuit Declaration",
+    "sourceSection": "Tipo de retorno",
+    "title": "`[]` es obligatorio cuando no hay retorno",
+    "excerpts": [
+      "El libro remarca que los circuits sin valor de retorno usan `[]`, no `Void`.",
+      "Esa diferencia es sintáctica y semántica: `Void` no compila."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Correcto vs incorrecto",
+        "code": "// ✅ CORRECT\nexport circuit doSomething(): [] {\n    counter.increment(1);\n}\n\n// ❌ WRONG\nexport circuit doSomething(): Void {\n    counter.increment(1);\n}"
+      }
+    ]
+  }
+]

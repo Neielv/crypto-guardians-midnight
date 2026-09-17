@@ -1,0 +1,35 @@
+[
+  {
+    "challengeId": "m1-l1-challenge-1",
+    "moduleId": "m1",
+    "lessonId": "m1-l1",
+    "type": "visibility_editor",
+    "title": "Ledger/Witness editor",
+    "instructions": "Configure which fields stay visible and which remain private.",
+    "successCriteria": "Only the name should be public; everything else should stay private.",
+    "payload": {
+      "fields": [
+        {
+          "id": "nombre",
+          "label": "Name",
+          "expectedVisibility": "public"
+        },
+        {
+          "id": "cedula",
+          "label": "ID number",
+          "expectedVisibility": "private"
+        },
+        {
+          "id": "fechaNacimiento",
+          "label": "Birth date",
+          "expectedVisibility": "private"
+        },
+        {
+          "id": "tipoSangre",
+          "label": "Blood type",
+          "expectedVisibility": "private"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "codeLabId": "m3-l1-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l1",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: prove without revealing",
+    "instructions": "Complete the key sentence from the book: a zero-knowledge proof validates a statement without revealing additional information beyond its ___.",
+    "successCriteria": "Complete the blank with `validity`.",
+    "payload": {
+      "template": "...without revealing additional information beyond its ___.",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "validity"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l2-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l2",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: exported signature",
+    "instructions": "Complete the keyword that allows a circuit to be called from TypeScript according to the book.",
+    "successCriteria": "Complete the blank with `export`.",
+    "payload": {
+      "template": "___ circuit publicAction(): [] {\n  // ...\n}",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "export"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l3-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l3",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: allow disclosure",
+    "instructions": "Complete the exact call the book uses to allow a witness value to reach the ledger.",
+    "successCriteria": "Complete the blank with `disclose`.",
+    "payload": {
+      "template": "balance = ___(getBalance());",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "disclose"
+        }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m3-l4-code-lab-1",
+    "moduleId": "m3",
+    "lessonId": "m3-l4",
+    "type": "fill_in_the_blank",
+    "title": "Code Lab: read the alert",
+    "instructions": "Complete the core fragment of the compiler error that signals an undeclared witness-value leak.",
+    "successCriteria": "Complete the blank with `disclosure`.",
+    "payload": {
+      "template": "Exception: potential witness-value ___ must be declared but is not:",
+      "blanks": [
+        {
+          "id": "blank-1",
+          "answer": "disclosure"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m7-l1-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l1",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: concepto de integración",
+    "instructions": "Completa la lista de piezas que deben integrarse en el sistema final.",
+    "successCriteria": "Llenar el espacio con Merkle.",
+    "payload": {
+      "template": "El sistema final integra witness, assert, commitment, disclose, nullifier y árboles ___.",
+      "blanks": [
+        { "id": "blank-1", "answer": "Merkle" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l2-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l2",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: fórmula de nullifier",
+    "instructions": "Completa la generación del nullifier en el sistema final.",
+    "successCriteria": "Llenar el espacio con secret_key.",
+    "payload": {
+      "template": "nullifier = hash(___ + vote_event)",
+      "blanks": [
+        { "id": "blank-1", "answer": "secret_key" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l3-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l3",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: verificación de circuito",
+    "instructions": "Completa qué verifica primero el circuito.",
+    "successCriteria": "Llenar el espacio con Merkle.",
+    "payload": {
+      "template": "El circuito primero verifica la prueba ___ para confirmar habilitación.",
+      "blanks": [
+        { "id": "blank-1", "answer": "Merkle" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m7-l4-code-lab-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "fill_in_the_blank",
+    "title": "Práctica: objetivo de optimización",
+    "instructions": "Completa qué debe optimizarse en la integración final.",
+    "successCriteria": "Llenar el espacio con DUST.",
+    "payload": {
+      "template": "Optimiza el circuito para minimizar ___ mientras mantiene privacidad.",
+      "blanks": [
+        { "id": "blank-1", "answer": "DUST" }
+      ]
+    }
+  }
+]

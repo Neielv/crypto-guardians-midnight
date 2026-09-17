@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m7-l1-slide-1",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "La misión entra en su etapa de integración",
+        "text":  "Ya aprendiste a proteger datos sensibles, a resumir el padrón y a sellar un voto. Ahora, tú como agente, debes unir todo para que el ciudadano pueda participar sin quedar expuesto.",
+        "visualHint":  "Sala final del sistema electoral con todas las piezas conectadas",
+        "image":  "images/modules/m7/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-2",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Cada pieza protege un punto crítico",
+        "text":  "El witness resguarda lo sensible, Merkle funciona como el resumen sellado del padrón, el commitment guarda el voto en una cápsula cerrada, el nullifier deja una marca única de participación y el DUST cubre el costo logístico de mantener el operativo blindado.",
+        "visualHint":  "Rompecabezas uniendo identidad, padrón, voto y unicidad",
+        "image":  "images/modules/m7/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-3",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "El sistema completo",
+        "text":  "La elección privada solo funciona si todas las garantías conviven: el ciudadano debe estar habilitado, su voto debe seguir oculto, el conteo debe poder verificarse y los Mineros Oscuros no deben encontrar una grieta para duplicar participación o extraer datos.",
+        "visualHint":  "Urna electoral protegida por capas de privacidad",
+        "image":  "images/modules/m7/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l1-slide-4",
+        "lessonId":  "m7-l1",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "Esto ya es arquitectura operativa",
+        "text":  "En este punto, Compact deja de ser una lista de conceptos. Se convierte en la arquitectura con la que la Agencia protege un derecho político sin renunciar a la verificabilidad.",
+        "visualHint":  "Trofeo final frente a una arquitectura de votación privada",
+        "image":  "images/modules/m7/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-1",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "Paso 1: confirmar que el ciudadano está en el padrón",
+        "text":  "El flujo comienza cuando el sistema recibe una prueba de pertenencia al padrón protegido. Esa prueba usa el resumen sellado del registro para confirmar habilitación sin abrir el expediente completo del ciudadano.",
+        "visualHint":  "Ciudadano validando su pertenencia al padrón con una prueba Merkle",
+        "image":  "images/modules/m7/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-2",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Paso 2: sellar el voto",
+        "text":  "Una vez confirmada la habilitación, el voto se emite como un commitment. Piensa en una cápsula sellada: el contenido queda oculto durante la operación, pero más adelante puede integrarse al resultado verificable.",
+        "visualHint":  "Voto entrando en un commitment sellado",
+        "image":  "images/modules/m7/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-3",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "Paso 3: registrar la unicidad",
+        "text":  "Junto al voto, el sistema registra un nullifier. Esa marca única de participación indica que ese derecho político ya fue usado en esta elección, sin revelar quién lo ejerció.",
+        "visualHint":  "Nullifier validado al lado de una urna digital",
+        "image":  "images/modules/m7/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l2-slide-4",
+        "lessonId":  "m7-l2",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "Paso 4: sostener el costo de la privacidad",
+        "text":  "Generar pruebas y mantener datos blindados tiene un costo. El DUST es el gasto logístico de sostener esa cobertura, así que debes administrarlo con eficiencia sin aflojar ninguna garantía.",
+        "visualHint":  "Panel de costos DUST acompañando la generación de pruebas",
+        "image":  "images/modules/m7/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-1",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "Arquitectura del sistema electoral",
+        "text":  "El ledger conserva la raíz del padrón protegido, los commitments de voto y el conjunto de nullifiers. El dispositivo del ciudadano aporta witnesses privados y el circuito verifica cada garantía que tú, como agente, decidiste integrar.",
+        "visualHint":  "Diagrama de arquitectura del padrón, voto y nullifiers",
+        "image":  "images/modules/m7/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-2",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Qué verifica realmente el circuito",
+        "text":  "El circuito confirma pertenencia al padrón protegido, valida que el voto llegue sellado y comprueba que la marca única de participación no haya sido usada antes. Solo si todo coincide, la participación avanza.",
+        "visualHint":  "Circuito chequeando padrón, voto sellado y unicidad",
+        "image":  "images/modules/m7/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-3",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "Privacidad preservada en cada capa",
+        "text":  "La identidad del ciudadano queda protegida por la prueba de pertenencia, el contenido del voto queda oculto por la cápsula sellada del commitment y la unicidad se controla mediante nullifiers. Cada capa bloquea un riesgo distinto.",
+        "visualHint":  "Capas de privacidad rodeando el flujo electoral",
+        "image":  "images/modules/m7/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l3-slide-4",
+        "lessonId":  "m7-l3",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "El reto es equilibrar garantías y eficiencia",
+        "text":  "El sistema debe soportar muchos ciudadanos habilitados, varios candidatos y verificación pública de resultados, sin perder privacidad ni disparar innecesariamente el costo en DUST que los Mineros Oscuros podrían explotar como punto débil.",
+        "visualHint":  "Panel con requisitos de escala, privacidad y eficiencia",
+        "image":  "images/modules/m7/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-1",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  1,
+        "title":  "Comienza el cierre operativo",
+        "text":  "Este es el momento en que todo se une: witness, padrón protegido, voto sellado, unicidad y conteo verificable. La misión ya no trata de piezas aisladas, sino de un proceso electoral completo bajo presión adversaria.",
+        "visualHint":  "Inicio de la fase final de integración",
+        "image":  "images/modules/m7/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-2",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  2,
+        "title":  "Tus herramientas protegen derechos, no solo datos",
+        "text":  "Witness, assert, disclose, Merkle, commitments y nullifiers no son piezas decorativas. Cada una protege un aspecto distinto del derecho del ciudadano a participar, incluso cuando los Mineros Oscuros intentan forzar exposición o duplicidad.",
+        "visualHint":  "Herramientas técnicas alineadas con derechos cívicos",
+        "image":  "images/modules/m7/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-3",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  3,
+        "title":  "La optimización también es parte del diseño",
+        "text":  "Un sistema correcto no alcanza si es inviable de operar. Por eso el cierre también exige reducir restricciones, usar hashes eficientes y administrar bien el costo DUST de cada prueba.",
+        "visualHint":  "Ajustes de optimización sobre un circuito electoral",
+        "image":  "images/modules/m7/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m7-l4-slide-4",
+        "lessonId":  "m7-l4",
+        "moduleId":  "m7",
+        "order":  4,
+        "title":  "La misión queda cerrada",
+        "text":  "Terminaste el recorrido completo: desde proteger la elegibilidad del ciudadano hasta permitir un voto privado, único y verificable. Ese es el cierre de una operación electoral bien resguardada.",
+        "visualHint":  "Celebración final con escudo de guardián y urna segura",
+        "image":  "images/modules/m7/l4-slide-4.png"
+    }
+]

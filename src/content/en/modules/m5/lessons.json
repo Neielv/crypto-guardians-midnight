@@ -1,0 +1,46 @@
+[
+  {
+    "lessonId": "m5-l1",
+    "moduleId": "m5",
+    "title": "What is DUST and why it matters",
+    "objective": "Understand what DUST is in the Midnight context and why privacy has an associated computational cost.",
+    "steps": [
+      { "stepId": "m5-l1-s1", "type": "slides", "slideIds": ["m5-l1-slide-1", "m5-l1-slide-2", "m5-l1-slide-3", "m5-l1-slide-4"] },
+      { "stepId": "m5-l1-c1", "type": "challenge", "challengeId": "m5-l1-challenge-1" },
+      { "stepId": "m5-l1-cl1", "type": "code_lab", "codeLabId": "m5-l1-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l2",
+    "moduleId": "m5",
+    "title": "ZK resources and proof generation costs",
+    "objective": "Learn about the computational resources required to generate zero-knowledge proofs and how DUST measures this cost.",
+    "steps": [
+      { "stepId": "m5-l2-s1", "type": "slides", "slideIds": ["m5-l2-slide-1", "m5-l2-slide-2", "m5-l2-slide-3", "m5-l2-slide-4"] },
+      { "stepId": "m5-l2-c1", "type": "challenge", "challengeId": "m5-l2-challenge-1" },
+      { "stepId": "m5-l2-cl1", "type": "code_lab", "codeLabId": "m5-l2-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l3",
+    "moduleId": "m5",
+    "title": "Proof server architecture",
+    "objective": "Understand how proof servers work in the Midnight ecosystem and their role in generating ZK proofs.",
+    "steps": [
+      { "stepId": "m5-l3-s1", "type": "slides", "slideIds": ["m5-l3-slide-1", "m5-l3-slide-2", "m5-l3-slide-3", "m5-l3-slide-4"] },
+      { "stepId": "m5-l3-c1", "type": "challenge", "challengeId": "m5-l3-challenge-1" },
+      { "stepId": "m5-l3-cl1", "type": "code_lab", "codeLabId": "m5-l3-code-lab-1" }
+    ]
+  },
+  {
+    "lessonId": "m5-l4",
+    "moduleId": "m5",
+    "title": "Privacy cost strategies",
+    "objective": "Learn strategies to optimize DUST usage and balance privacy with computational efficiency.",
+    "steps": [
+      { "stepId": "m5-l4-s1", "type": "slides", "slideIds": ["m5-l4-slide-1", "m5-l4-slide-2", "m5-l4-slide-3", "m5-l4-slide-4"] },
+      { "stepId": "m5-l4-c1", "type": "challenge", "challengeId": "m5-l4-challenge-1" },
+      { "stepId": "m5-l4-cl1", "type": "code_lab", "codeLabId": "m5-l4-code-lab-1" }
+    ]
+  }
+]

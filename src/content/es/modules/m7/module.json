@@ -1,0 +1,12 @@
+{
+  "moduleId": "m7",
+  "title": "Votación privada completa",
+  "summary": "Integra witness, padrón protegido, voto sellado, unicidad y conteo verificable para que tú, como agente, resguardes el derecho del ciudadano sin exponerlo.",
+  "concepts": ["integración", "votación privada", "auditoría", "cierre"],
+  "unlocks": null,
+  "narrativeTitle": "El Voto que Nadie Ve",
+  "technicalTitle": "Votación privada completa",
+  "dramaticDescription": "Ahora integras todo el operativo: el witness resguarda datos sensibles, el resumen sellado del padrón confirma habilitación, el voto viaja en una cápsula cerrada y la marca única de participación bloquea duplicados. Así la Agencia protege al ciudadano incluso bajo la presión de los Mineros Oscuros.",
+  "introScene": "La Agencia te asigna el cierre de la misión electoral. Tú, como agente, debes ensamblar las piezas que ya aprendiste: el witness, el registro protegido con Merkle, el commitment que sella el voto y el nullifier que evita repeticiones, todo con un costo DUST que debe mantenerse bajo control.",
+  "startButtonLabel": "Iniciar Misión 7"
+}

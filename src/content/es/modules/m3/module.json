@@ -1,0 +1,12 @@
+{
+  "moduleId": "m3",
+  "title": "Pruebas zero-knowledge",
+  "summary": "Aprende a demostrar que un registro ciudadano cumple condiciones cívicas sin exponer el expediente completo y a declarar solo la información mínima necesaria.",
+  "concepts": ["zk", "pruebas", "privacidad"],
+  "unlocks": "m4",
+  "narrativeTitle": "La Prueba Silenciosa",
+  "technicalTitle": "Pruebas zero-knowledge",
+  "dramaticDescription": "La Agencia debe demostrar que un ciudadano registrado cumple las condiciones para votar sin revelar su identidad. El sistema verifica la elegibilidad, pero no expone el expediente completo.",
+  "introScene": "Tu misión es construir una verificación que confirme que un registro del padrón es apto para votar sin mostrar el nombre ni todos los datos del expediente. El sistema solo necesita validar la condición requerida.",
+  "startButtonLabel": "Verificar elegibilidad"
+}

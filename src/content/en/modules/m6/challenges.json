@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m6-l1-challenge-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l1",
+    "type": "trivia",
+    "title": "Properties of a sealed vote",
+    "instructions": "Select the two fundamental properties that make commitments useful for protecting a vote.",
+    "successCriteria": "Select both hiding and binding.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What are the two fundamental properties of a cryptographic commitment?",
+      "options": [
+        { "id": "a", "label": "Hiding and binding" },
+        { "id": "b", "label": "Encryption and decryption" },
+        { "id": "c", "label": "Signing and verification" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m6-l2-challenge-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l2",
+    "type": "trivia",
+    "title": "Register or vote?",
+    "instructions": "Identify when to use persistentCommit within the electoral flow.",
+    "successCriteria": "Select the option for values that must remain hidden until revealed.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "When should you use persistentCommit instead of persistentHash?",
+      "options": [
+        { "id": "a", "label": "When the data is public and needs integrity verification" },
+        { "id": "b", "label": "When values must remain hidden until revealed (votes, amounts)" },
+        { "id": "c", "label": "When you need fast lookups" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m6-l3-challenge-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l3",
+    "type": "trivia",
+    "title": "Protected register proof complexity",
+    "instructions": "Select the complexity of a Merkle proof used to validate membership in the register.",
+    "successCriteria": "Select O(log n).",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What is the size/complexity of a Merkle proof for membership verification?",
+      "options": [
+        { "id": "a", "label": "O(n) - proportional to the number of elements" },
+        { "id": "b", "label": "O(log n) - logarithmic in the number of elements" },
+        { "id": "c", "label": "O(1) - constant size" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m6-l4-challenge-1",
+    "moduleId": "m6",
+    "lessonId": "m6-l4",
+    "type": "trivia",
+    "title": "Register and vote application",
+    "instructions": "Select what Merkle trees + commitments enable inside a private election.",
+    "successCriteria": "Select proving properties about private data while keeping it hidden.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "What do commitments and Merkle trees enable together?",
+      "options": [
+        { "id": "a", "label": "Making all data public" },
+        { "id": "b", "label": "Proving properties about private data while keeping the data hidden" },
+        { "id": "c", "label": "Storing more data efficiently" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

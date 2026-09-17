@@ -1,0 +1,18 @@
+{
+  "moduleId": "m1",
+  "title": "Lo Visible y lo Oculto",
+  "summary": "Pasa de proteger tu identidad a decidir qué datos de la ciudadanía puede ver el sistema sin poner en riesgo el voto secreto.",
+  "concepts": [
+    "ledger",
+    "witness",
+    "público vs privado",
+    "visibilidad"
+  ],
+  "unlocks": "m2",
+  "narrativeTitle": "Lo Visible y lo Oculto",
+  "technicalTitle": "Ledger vs Witness",
+  "dramaticDescription": "Ya protegiste tu rastro. Ahora debes proteger a la ciudadanía: cada dato mal expuesto puede convertir un voto secreto en una amenaza.",
+  "introScene": "{{agent}}, termina el entrenamiento personal. Desde ahora tus decisiones afectan a otras personas: si el ledger muestra de más, los Mineros Oscuros podrán seguir a la ciudadanía y presionar su voto. Tu misión es decidir qué se ve y qué queda a salvo.",
+  "introImage": "images/modules/m1/intro.png",
+  "startButtonLabel": "Aceptar Misión"
+}

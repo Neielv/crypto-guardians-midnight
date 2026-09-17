@@ -1,0 +1,12 @@
+{
+  "moduleId": "m2",
+  "title": "Verifiable Identity",
+  "summary": "Model the agent as a verifiable citizen, register their file with typed structures, and prepare the rules that will later define their eligibility.",
+  "concepts": ["struct", "Map", "verifiable registry", "circuits"],
+  "unlocks": "m3",
+  "narrativeTitle": "The Citizen's Signature",
+  "technicalTitle": "Verifiable Identity",
+  "dramaticDescription": "Your name now has shape. It is not just a word: it is a profile the system can read and verify without exposing who you are.",
+  "introScene": "Agent {{agent}}, for the voting system to be legitimate, we need to identify real citizens without the Dark Miners being able to hunt them. Your mission: design the Citizen's Signature. You will use struct to model records that the contract can verify without exposing names. You will register these identities in the Ledger using Map and seal the process with exported circuits. If the structure is weak, the identity will leak; if it is robust, freedom will be safe. Ready to model the resistance?",
+  "startButtonLabel": "Accept Mission"
+}

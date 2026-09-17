@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "image": "images/briefing/slide1.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "Listen carefully, agent.",
+        "type": "bold"
+      },
+      {
+        "text": "The Dark Miners already have access to the current blockchain. They know exactly who every person in the country voted for. Total transparency has become their tool of control.",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "image": "images/briefing/slide2.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "We have reports of entire families receiving death threats. Children, wives, parents... they are using the vote as a weapon of extortion.",
+        "type": "italic"
+      },
+      {
+        "text": "This is our last chance to reclaim freedom.",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "image": "images/briefing/slide3.png",
+    "gap": 8,
+    "texts": [
+      {
+        "text": "We need you to build a new voting system in Compact where no one, not even us, can know who each citizen voted for.",
+        "type": "normal"
+      },
+      {
+        "text": "If you fail, tomorrow thousands of people will have to choose between their life and their conscience. Time is running out. Are you ready to accept the mission?",
+        "type": "bold"
+      }
+    ]
+  }
+]

@@ -1,0 +1,307 @@
+[
+  {
+    "supportMaterialId": "m4-l1-slide-1-support-1",
+    "slideId": "m4-l1-slide-1",
+    "lessonId": "m4-l1",
+    "moduleId": "m4",
+    "sourceChapter": "Nullifiers and Uniqueness",
+    "sourceSection": "Introduction to Nullifiers",
+    "title": "The uniqueness problem in private systems",
+    "excerpts": [
+      "In voting and token distribution systems, each participant must be able to join exactly once.",
+      "The challenge is guaranteeing uniqueness without exposing the participant's identity.",
+      "Nullifiers solve this problem by adding an exclusion layer without revealing which citizen participated."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Basic nullifier formula",
+        "code": "nullifier = hash(secret_key + event)\n// Generates a unique identifier not linkable to identity"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l1-slide-2-support-1",
+    "slideId": "m4-l1-slide-2",
+    "lessonId": "m4-l1",
+    "moduleId": "m4",
+    "sourceChapter": "Nullifiers and Uniqueness",
+    "sourceSection": "Nullifier Definition",
+    "title": "The nullifier as an exclusion witness",
+    "excerpts": [
+      "A nullifier is a cryptographic value that marks an action as already performed.",
+      "It is generated from the user's secret key and a unique action identifier.",
+      "The nullifier is published to the ledger but doesn't reveal who generated it."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier generation",
+        "code": "witness secretKey(): Bytes<32>;\nwitness voteEvent: Field;\n\n// In the circuit\nconst nullifier = hash(secretKey, voteEvent);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l1-slide-3-support-1",
+    "slideId": "m4-l1-slide-3",
+    "lessonId": "m4-l1",
+    "moduleId": "m4",
+    "sourceChapter": "Nullifiers and Uniqueness",
+    "sourceSection": "Nullifier Generation",
+    "title": "How a nullifier is generated",
+    "excerpts": [
+      "The hash function takes the secret key and an event identifier.",
+      "The result is a seemingly random but deterministic value.",
+      "Only someone who knows the secret key can generate the correct nullifier."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier with hash",
+        "code": "import { hash } from '@midnight/circuits';\n\nconst nullifier = hash(\n  secretKey,\n  voteId  // unique identifier for the voting event\n);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l1-slide-4-support-1",
+    "slideId": "m4-l1-slide-4",
+    "lessonId": "m4-l1",
+    "moduleId": "m4",
+    "sourceChapter": "Nullifiers and Uniqueness",
+    "sourceSection": "Ledger Storage",
+    "title": "The nullifier lives in the ledger",
+    "excerpts": [
+      "Once generated, the nullifier is saved in the ledger as an exclusion witness.",
+      "The smart contract verifies the nullifier doesn't exist before accepting an action.",
+      "This prevents the same citizen from participating twice."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier set in ledger",
+        "code": "export ledger nullifierSet: Set<Field>;\n\n// Verification in circuit\nexport circuit vote(nullifier: Field) {\n  assert(!nullifierSet.member(nullifier), \"Already voted\");\n  nullifierSet.insert(nullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l2-slide-1-support-1",
+    "slideId": "m4-l2-slide-1",
+    "lessonId": "m4-l2",
+    "moduleId": "m4",
+    "sourceChapter": "Double-Voting and Double-Spending",
+    "sourceSection": "The Problem",
+    "title": "The double-voting problem",
+    "excerpts": [
+      "In any voting system, a malicious citizen could attempt to vote multiple times.",
+      "Privacy makes it difficult to detect this attack because we don't know who the voter is.",
+      "Nullifiers solve this by allowing exclusion verification without revealing identity."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m4-l2-slide-2-support-1",
+    "slideId": "m4-l2-slide-2",
+    "lessonId": "m4-l2",
+    "moduleId": "m4",
+    "sourceChapter": "Double-Voting and Double-Spending",
+    "sourceSection": "Solution with Nullifiers",
+    "title": "The nullifier as an exclusion witness",
+    "excerpts": [
+      "When a citizen votes, a nullifier is generated and registered in the ledger.",
+      "The next attempt with the same citizen will find the nullifier already registered.",
+      "The system rejects the action without needing to know the identity."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Uniqueness verification",
+        "code": "export circuit castVote(nullifier: Field) {\n  // Verify nullifier doesn't exist\n  assert(!nullifierSet.member(nullifier), \"Double vote detected\");\n  \n  // Register the nullifier\n  nullifierSet.insert(nullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l2-slide-3-support-1",
+    "slideId": "m4-l2-slide-3",
+    "lessonId": "m4-l2",
+    "moduleId": "m4",
+    "sourceChapter": "Double-Voting and Double-Spending",
+    "sourceSection": "Token Application",
+    "title": "Double-spending: the same problem",
+    "excerpts": [
+      "The nullifier concept also applies to token systems.",
+      "A user shouldn't be able to spend the same token twice.",
+      "The nullifier marks the token as 'spent' after the first use."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier for tokens",
+        "code": "export circuit spendToken(tokenNullifier: Field) {\n  // Prevent double-spending\n  assert(\n    !spentTokensSet.member(tokenNullifier),\n    \"Token already spent\"\n  );\n  \n  // Mark as spent\n  spentTokensSet.insert(tokenNullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l2-slide-4-support-1",
+    "slideId": "m4-l2-slide-4",
+    "lessonId": "m4-l2",
+    "moduleId": "m4",
+    "sourceChapter": "Double-Voting and Double-Spending",
+    "sourceSection": "Privacy Maintained",
+    "title": "Privacy is maintained",
+    "excerpts": [
+      "The ledger only sees the nullifier, not the user's identity.",
+      "The contract knows that 'something has been used' but cannot link it to an identity.",
+      "This preserves privacy while maintaining system integrity."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m4-l3-slide-1-support-1",
+    "slideId": "m4-l3-slide-1",
+    "lessonId": "m4-l3",
+    "moduleId": "m4",
+    "sourceChapter": "Controlled Linkability",
+    "sourceSection": "Concept",
+    "title": "Linkability: relating without revealing",
+    "excerpts": [
+      "Sometimes we want to link actions from the same user without revealing who they are.",
+      "For example: verifying eligibility for multiple airdrop rounds.",
+      "Nullifiers with nonce enable this granular control."
+    ],
+    "codeBlocks": []
+  },
+  {
+    "supportMaterialId": "m4-l3-slide-2-support-1",
+    "slideId": "m4-l3-slide-2",
+    "lessonId": "m4-l3",
+    "moduleId": "m4",
+    "sourceChapter": "Controlled Linkability",
+    "sourceSection": "Nonce",
+    "title": "The nonce enables multiple linked actions",
+    "excerpts": [
+      "The nonce is a counter that increments with each user action.",
+      "Combined with the secret key, it produces different nullifiers.",
+      "The system can verify all come from the same user."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier with nonce",
+        "code": "witness nonce(): Uint<32>;\n\nconst nullifier = hash(secretKey, nonce);\n// nonce 0 = first action\n// nonce 1 = second action\n// etc."
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l3-slide-3-support-1",
+    "slideId": "m4-l3-slide-3",
+    "lessonId": "m4-l3",
+    "moduleId": "m4",
+    "sourceChapter": "Controlled Linkability",
+    "sourceSection": "Formula",
+    "title": "Formula with nonce",
+    "excerpts": [
+      "nullifier = hash(secret_key + nonce)",
+      "If nonce is 0, 1, 2..., each action produces a unique nullifier.",
+      "The contract can verify the nullifiers share the same origin."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Linkability verification",
+        "code": "export circuit claimAirdrop(round: Uint<8>, userNonce: Uint<32>) {\n  // Generate nullifier with nonce\n  const nullifier = hash(secretKey, userNonce);\n  \n  // Verify hasn't participated in this round\n  assert(!roundNullifiers[round].member(nullifier));\n  \n  // Register\n  roundNullifiers[round].insert(nullifier);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l3-slide-4-support-1",
+    "slideId": "m4-l3-slide-4",
+    "lessonId": "m4-l3",
+    "moduleId": "m4",
+    "sourceChapter": "Controlled Linkability",
+    "sourceSection": "Granular Control",
+    "title": "Granular control of linking",
+    "excerpts": [
+      "Choosing what data to include in the hash controls when there's linkability.",
+      "Without nonce: completely independent actions (not linkable).",
+      "With nonce: actions linked to the same user."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Two scenarios",
+        "code": "// Without nonce - not linkable\nconst nullifierNoNonce = hash(secretKey);\n\n// With nonce - linkable\nconst nullifierWithNonce = hash(secretKey, nonce);"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l4-slide-1-support-1",
+    "slideId": "m4-l4-slide-1",
+    "lessonId": "m4-l4",
+    "moduleId": "m4",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Voting",
+    "title": "Private voting system",
+    "excerpts": [
+      "Each voter generates a nullifier with their secret key.",
+      "The contract saves the nullifier in a set of 'already voted'.",
+      "The election result is public; who voted for whom remains private."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Voting with nullifier",
+        "code": "export struct Ballot {\n  candidate: Field,\n  nullifier: Field\n}\n\nexport circuit castVote(ballot: Ballot) {\n  // Verify uniqueness\n  assert(!usedNullifiers.member(ballot.nullifier));\n  \n  // Register\n  usedNullifiers.insert(ballot.nullifier);\n  \n  // Count vote\n  votes[ballot.candidate].increment(1);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l4-slide-2-support-1",
+    "slideId": "m4-l4-slide-2",
+    "lessonId": "m4-l4",
+    "moduleId": "m4",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Airdrops",
+    "title": "Airdrop distribution",
+    "excerpts": [
+      "The contract verifies eligibility through ZK proofs.",
+      "Each eligible address generates a nullifier when claiming tokens.",
+      "This prevents claiming the same airdrop twice."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Airdrop with nullifier",
+        "code": "export circuit claimAirdrop(\n  eligibilityProof: Proof,\n  nullifier: Field,\n  recipient: Address\n) {\n  // Verify eligibility\n  assert(verifier.verify(eligibilityProof));\n  \n  // Verify hasn't claimed\n  assert(!claimedNullifiers.member(nullifier));\n  \n  // Register and transfer\n  claimedNullifiers.insert(nullifier);\n  balances[recipient].transfer(airdropAmount);\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l4-slide-3-support-1",
+    "slideId": "m4-l4-slide-3",
+    "lessonId": "m4-l4",
+    "moduleId": "m4",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Circuit",
+    "title": "The circuit validates the nullifier",
+    "excerpts": [
+      "The circuit performs two critical verifications.",
+      "First: the nullifier was generated with the correct secret key.",
+      "Second: the nullifier doesn't yet exist in the ledger set."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier validation",
+        "code": "export circuit validateAction(\n  secretKey: witness<Field>,\n  actionId: Field,\n  nullifier: Field\n) {\n  // 1. Verify correct generation\n  const computedNullifier = hash(secretKey, actionId);\n  assert(nullifier == computedNullifier);\n  \n  // 2. Verify it doesn't exist\n  assert(!nullifierSet.member(nullifier), \"Action already performed\");\n}"
+      }
+    ]
+  },
+  {
+    "supportMaterialId": "m4-l4-slide-4-support-1",
+    "slideId": "m4-l4-slide-4",
+    "lessonId": "m4-l4",
+    "moduleId": "m4",
+    "sourceChapter": "Practical Applications",
+    "sourceSection": "Conclusion",
+    "title": "The nullifier set is the key",
+    "excerpts": [
+      "Without a public nullifier set, there's no way to prevent double-spending.",
+      "The set is your exclusion list.",
+      "Each new nullifier must be verified against the set before accepting the action."
+    ],
+    "codeBlocks": [
+      {
+        "title": "Nullifier set",
+        "code": "export ledger nullifierSet: Set<Field>;\n\n// In each action\nassert(!nullifierSet.member(newNullifier));\nnullifierSet.insert(newNullifier);"
+      }
+    ]
+  }
+]

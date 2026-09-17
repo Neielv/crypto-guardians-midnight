@@ -1,0 +1,39 @@
+[
+  {
+    "codeLabId": "m1-l1-code-lab-1",
+    "moduleId": "m1",
+    "lessonId": "m1-l1",
+    "type": "toggle_visibility",
+    "title": "Code Lab: ledger vs witness",
+    "instructions": "Declare only the name in ledger and keep ID number, birth date, and blood type as witness data. Use real Compact syntax: `export ledger ...;` for visible data and `witness ...(): ...;` for private data.",
+    "successCriteria": "The name must be declared in ledger and the rest as witness.",
+    "payload": {
+      "fields": [
+        {
+          "id": "nombre",
+          "label": "Name",
+          "dataType": "Bytes<32>",
+          "expectedScope": "ledger"
+        },
+        {
+          "id": "cedula",
+          "label": "ID number",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        },
+        {
+          "id": "fechaNacimiento",
+          "label": "Birth date",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        },
+        {
+          "id": "tipoSangre",
+          "label": "Blood type",
+          "dataType": "Bytes<32>",
+          "expectedScope": "witness"
+        }
+      ]
+    }
+  }
+]

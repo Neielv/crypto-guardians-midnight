@@ -1,0 +1,12 @@
+{
+  "moduleId": "m6",
+  "title": "Padrón protegido",
+  "summary": "Aprende cómo los compromisos criptográficos, `persistentCommit`, `persistentHash` y los árboles Merkle te permiten proteger el padrón electoral sin exponer a cada ciudadano registrado.",
+  "concepts": ["commitment", "Merkle", "padrón electoral", "integridad"],
+  "unlocks": "m7",
+  "narrativeTitle": "El Padrón Protegido",
+  "technicalTitle": "Padrón protegido",
+  "dramaticDescription": "El padrón electoral debe poder verificarse sin convertirse en una vitrina para los Mineros Oscuros. Tú, como agente, debes aprender a sellar registros, resumir el conjunto y demostrar pertenencia sin exponer el expediente completo de cada ciudadano.",
+  "introScene": "La Agencia te asigna una misión delicada: proteger el padrón que habilita la votación. Debes construir un registro verificable donde cada ciudadano pueda demostrar que pertenece al censo sin revelar a los demás ni dejar el sistema expuesto ante los Mineros Oscuros.",
+  "startButtonLabel": "Iniciar Misión 6"
+}

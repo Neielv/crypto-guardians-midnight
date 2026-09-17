@@ -1,0 +1,12 @@
+{
+  "moduleId": "m4",
+  "title": "Nullifiers",
+  "summary": "Comprende cómo impedir la participación duplicada en una votación mientras se protege la identidad y el registro del ciudadano habilitado.",
+  "concepts": ["nullifier", "doble voto", "unicidad", "linkability controlada", "nonce"],
+  "unlocks": "m5",
+  "narrativeTitle": "La Marca de Unicidad",
+  "technicalTitle": "Nullifiers",
+  "dramaticDescription": "Como agente de la Agencia Crypto Guardians, ya sabes ocultar datos y verificar elegibilidad. Ahora debes impedir que los Mineros Oscuros exploten participaciones duplicadas sin exponer la identidad ni el registro del padrón.",
+  "introScene": "Tu misión es aprender a usar nullifiers para bloquear el doble voto y proteger la privacidad del ciudadano registrado, incluso cuando los Mineros Oscuros intentan reutilizar una participación.",
+  "startButtonLabel": "Iniciar Misión 4"
+}

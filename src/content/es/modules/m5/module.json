@@ -1,0 +1,12 @@
+{
+  "moduleId": "m5",
+  "title": "Costo de la privacidad",
+  "summary": "Aprende a tratar el DUST como el presupuesto silencioso de la misión: el recurso que permite proteger cada voto del ciudadano sin dejar a la Agencia sin margen operativo.",
+  "concepts": ["DUST", "costos", "votación protegida", "estrategia"],
+  "unlocks": "m6",
+  "narrativeTitle": "El costo de proteger el voto",
+  "technicalTitle": "Costo de la privacidad",
+  "dramaticDescription": "Cada prueba es como activar un escudo alrededor del voto del ciudadano: protege, pero consume DUST. Tú, como agente, debes administrar ese combustible criptográfico para que la misión electoral resista la presión constante de los Mineros Oscuros.",
+  "introScene": "La Agencia te entrega una misión clara: resguardar una votación sin exponer al ciudadano. El problema es simple de entender y difícil de ejecutar: cada escudo criptográfico cuesta DUST. Si gastas de más, la operación se vuelve inviable; si optimizas mal, dejas huecos que los Mineros Oscuros pueden aprovechar.",
+  "startButtonLabel": "Continuar"
+}

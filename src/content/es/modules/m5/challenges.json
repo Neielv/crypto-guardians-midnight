@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m5-l1-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l1",
+    "type": "trivia",
+    "title": "Entendiendo DUST",
+    "instructions": "Selecciona la descripción que mejor identifica el combustible criptográfico de esta misión electoral.",
+    "successCriteria": "Seleccionar la opción que explica que DUST mide el costo computacional de generar pruebas ZK.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué es DUST en el contexto de Midnight?",
+      "options": [
+        { "id": "a", "label": "Un token de criptomoneda usado para pagos" },
+        { "id": "b", "label": "Una métrica de recurso computacional que mide el costo de generar pruebas ZK" },
+        { "id": "c", "label": "Un tipo de algoritmo de cifrado" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l2-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l2",
+    "type": "trivia",
+    "title": "Factores de costo de DUST",
+    "instructions": "Identifica qué piezas del taller criptográfico hacen subir el costo de DUST al proteger el voto.",
+    "successCriteria": "Seleccionar la opción que menciona variables witness, restricciones y sistema de pruebas.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué factores determinan el costo de DUST de una prueba ZK?",
+      "options": [
+        { "id": "a", "label": "Solo el número de entradas del circuito" },
+        { "id": "b", "label": "El número de variables witness, número de restricciones y sistema de pruebas usado" },
+        { "id": "c", "label": "Solo el tamaño de las salidas públicas" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l3-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l3",
+    "type": "trivia",
+    "title": "Modelo de confianza de servidores de pruebas",
+    "instructions": "Selecciona cómo opera la confianza cuando la Agencia usa un servidor de pruebas para proteger la votación.",
+    "successCriteria": "Seleccionar la opción que explica que los servidores de pruebas no pueden ver datos privados porque se envían como witnesses cifrados.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Cómo funciona el modelo de confianza con servidores de pruebas?",
+      "options": [
+        { "id": "a", "label": "Debes confiar en que el servidor de pruebas sea honesto con los datos del ciudadano" },
+        { "id": "b", "label": "Los servidores de pruebas no pueden ver datos privados porque se proporcionan como witnesses cifrados; la integridad de la prueba es criptográfica" },
+        { "id": "c", "label": "Los servidores de pruebas no se usan en Midnight" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m5-l4-challenge-1",
+    "moduleId": "m5",
+    "lessonId": "m5-l4",
+    "type": "trivia",
+    "title": "Estrategias para optimizar DUST",
+    "instructions": "Identifica una estrategia para racionar DUST sin bajar el nivel de protección de la misión.",
+    "successCriteria": "Seleccionar agregación de pruebas.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Cuál es una estrategia para reducir costos de DUST?",
+      "options": [
+        { "id": "a", "label": "Usar circuitos más grandes y complejos" },
+        { "id": "b", "label": "Agregación de pruebas: combinar múltiples acciones en una sola prueba" },
+        { "id": "c", "label": "Generar pruebas con más frecuencia" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

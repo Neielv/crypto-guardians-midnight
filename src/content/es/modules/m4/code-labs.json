@@ -1,0 +1,62 @@
+[
+  {
+    "codeLabId": "m4-l1-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l1",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: generar un nullifier",
+    "instructions": "Genera un nullifier combinando la clave secreta y el evento de la elección.",
+    "successCriteria": "Completar el hueco con hash(clave_secreta + evento).",
+    "payload": {
+      "template": "const nullifier = ___(clave_secreta + evento);",
+      "blanks": [
+        { "id": "blank-1", "answer": "hash" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l2-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l2",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: verificar unicidad",
+    "instructions": "Comprueba si el nullifier ya existe en el set antes de aceptar la participación.",
+    "successCriteria": "Completar el hueco con member.",
+    "payload": {
+      "template": "const esUnico = nullifierSet.___(nullifier);",
+      "blanks": [
+        { "id": "blank-1", "answer": "member" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l3-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l3",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: nullifier con nonce",
+    "instructions": "Añade el nonce a la fórmula para generar nullifiers distintos por acción.",
+    "successCriteria": "Completar el hueco con nonce.",
+    "payload": {
+      "template": "const nullifier = hash(clave_secreta + ___);",
+      "blanks": [
+        { "id": "blank-1", "answer": "nonce" }
+      ]
+    }
+  },
+  {
+    "codeLabId": "m4-l4-code-lab-1",
+    "moduleId": "m4",
+    "lessonId": "m4-l4",
+    "type": "fill_in_the_blank",
+    "title": "Manos a la obra: registrar el nullifier",
+    "instructions": "Registra el nullifier en el set una vez confirmado que es único.",
+    "successCriteria": "Completar el hueco con insert.",
+    "payload": {
+      "template": "nullifierSet___(nullifier);",
+      "blanks": [
+        { "id": "blank-1", "answer": "insert" }
+      ]
+    }
+  }
+]

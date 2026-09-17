@@ -1,0 +1,31 @@
+[
+  {
+    "lessonId": "m0-l1",
+    "moduleId": "m0",
+    "title": "Tu identidad como agente",
+    "objective": "Entender que la identidad operativa del agente debe permanecer bajo su control para no abrir una vía de ataque contra la misión.",
+    "narrativeIntro": "Este no es un curso teórico: es tu primera práctica operativa. Antes de defender a la ciudadanía y resguardar votos en secreto, debes aprender a moverte con una identidad que no pueda ser capturada por los Mineros Oscuros ni convertida en un punto de acceso contra la misión. Aquí operas con control propio: decides qué revelar, cuándo y para qué.",
+    "steps": [
+      {
+        "stepId": "m0-l1-s1",
+        "type": "slides",
+        "slideIds": [
+          "m0-l1-slide-1",
+          "m0-l1-slide-2",
+          "m0-l1-slide-4",
+          "m0-l1-slide-3"
+        ]
+      },
+      {
+        "stepId": "m0-l1-c1",
+        "type": "challenge",
+        "challengeId": "m0-l1-challenge-1"
+      },
+      {
+        "stepId": "m0-l1-cl1",
+        "type": "code_lab",
+        "codeLabId": "m0-l1-code-lab-1"
+      }
+    ]
+  }
+]

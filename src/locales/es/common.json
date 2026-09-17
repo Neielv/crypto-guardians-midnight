@@ -1,0 +1,112 @@
+{
+  "common": {
+    "start": "Empezar",
+    "continue": "Continuar"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "settings": "Configuración",
+    "finalBoss": "Jefe final",
+    "backToDashboard": "Volver al dashboard"
+  },
+  "landing": {
+    "title": "CryptoGuardians Midnight Edition",
+    "subtitle": "Tutorial interactivo sobre privacidad y zero-knowledge en Midnight.",
+    "description": "Una experiencia narrativa para aprender witness, ledger y privacidad programable."
+  },
+  "onboarding": {
+    "shadowTitle": "Aquí nadie te conoce...",
+    "shadowSubtitle": "Elige tu nombre en las sombras. No necesitamos saber quién eres; necesitamos saber cómo actuarás.",
+    "aliasLabel": "Alias de sombra",
+    "aliasPlaceholder": "Ej: Neón-V",
+    "aliasErrorRequired": "Debes elegir un alias para continuar.",
+    "aliasErrorMinLength": "El alias debe tener al menos 2 caracteres.",
+    "suggestAlias": "Sugerir alias",
+    "enterMission": "Ingresar a la misión",
+    "backToLanding": "Volver al inicio",
+    "introMessage": "Aquí nadie te conoce. Ni siquiera nosotros.",
+    "clickToContinue": "Haz clic para emerger de las sombras"
+  },
+  "briefing": {
+    "title": "Directiva de Misión",
+    "codename": "Clasificado — Nivel sombra",
+    "opening": "Escúchame bien, agente.",
+    "acceptMission": "Aceptar la misión"
+  },
+  "dashboard": {
+    "eyebrow": "Centro de mando",
+    "title": "Dashboard del agente",
+    "description": "Elige tu próximo módulo y continúa tu entrenamiento.",
+    "openModule": "Abrir módulo",
+    "loadingTitle": "Cargando módulos...",
+    "loadingDescription": "Preparando el contenido educativo para el idioma seleccionado.",
+    "loadErrorTitle": "No pudimos cargar el dashboard",
+    "emptyTitle": "No hay módulos disponibles",
+    "emptyDescription": "Se cargó el paquete de contenido, pero no se encontraron módulos.",
+    "comingSoon": "Próximamente",
+    "comingSoonDescription": "Contenido todavía no desarrollado.",
+    "moduleLocked": "Disponible cuando desbloquees este módulo.",
+    "lessonCount_one": "{{count}} clase cargada",
+    "lessonCount_other": "{{count}} clases cargadas",
+    "stats": {
+      "totalModules": "Módulos totales",
+      "availableModules": "Disponibles",
+      "lockedModules": "Bloqueados",
+      "completedModules": "Completados",
+      "activeModule": "Módulo activo",
+      "noActiveModule": "Todavía sin actividad"
+    }
+  },
+  "settings": {
+    "sectionEyebrow": "Sistema",
+    "title": "Configuración",
+    "description": "Elige el idioma de la interfaz y luego vuelve a tu panel de misión.",
+    "languageTitle": "Idioma",
+    "currentLanguage": "Idioma actual: {{locale}}"
+  },
+  "shell": {
+    "demoLabel": "Demo Midnight",
+    "description": "Recorrido de aprendizaje enfocado en privacidad para Midnight y Compact.",
+    "threatLevel": "Nivel de amenaza",
+    "exposureLabel": "Exposición: {{level}} ({{score}})",
+    "headerEyebrow": "Estado del agente",
+    "headerTitle": "Panel operativo"
+  },
+  "module": {
+    "badgeLesson": "Lección",
+    "badgeChallenge": "Desafío",
+    "badgeCodeLab": "Code Lab",
+    "moduleLabel": "Módulo {{moduleId}}",
+    "currentLesson": "Lección actual",
+    "lessonProgress": "{{current}} / {{total}}",
+    "lessonCompleted": "Lección completada",
+    "moduleCompleted": "Módulo completado",
+    "moduleCompletedDescription": "La misión de este módulo quedó cerrada. Tu progreso fue guardado y el siguiente paso ya está disponible.",
+    "secureProgress": "Progreso seguro",
+    "nextLesson": "Siguiente lección",
+    "completeModule": "Completar módulo",
+    "goToNextModule": "Ir al siguiente módulo",
+    "sidebarTitle": "Clases",
+    "sidebarSubtitle": "Mapa de misión"
+  },
+  "slide": {
+    "progressLabel": "Slide {{current}} / {{total}}",
+    "tabs": {
+      "lesson": "Lección",
+      "support": "Material de apoyo"
+    },
+    "supportSource": "Material basado en .docs/book/index.html",
+    "supportEmpty": "Todavía no hay material de apoyo para esta lámina.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "startChallenge": "Empezar desafío",
+    "visualPlaceholderTitle": "Visual de apoyo",
+    "visualPlaceholderFallback": "Ilustración pendiente para esta lección."
+  },
+  "status": {
+    "locked": "Bloqueado",
+    "available": "Disponible",
+    "completed": "Completado",
+    "active": "Activo"
+  }
+}

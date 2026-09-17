@@ -1,0 +1,78 @@
+[
+  {
+    "challengeId": "m7-l1-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l1",
+    "type": "trivia",
+    "title": "Piezas de la integración",
+    "instructions": "Identifica las piezas que deben integrarse en el cierre de la misión.",
+    "successCriteria": "Seleccionar witness, assert, commitment, disclose, nullifier y Merkle.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué piezas deben integrarse en el sistema electoral final?",
+      "options": [
+        { "id": "a", "label": "witness, assert, commitment, disclose, nullifier y árboles Merkle" },
+        { "id": "b", "label": "Solo witness y ledger" },
+        { "id": "c", "label": "Solo encriptación y desencriptación" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m7-l2-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l2",
+    "type": "trivia",
+    "title": "Secuencia de integración",
+    "instructions": "Selecciona el orden correcto del flujo protegido. El costo DUST acompaña la operación, pero no forma parte de la secuencia lógica del voto.",
+    "successCriteria": "Seleccionar habilitación → commitment → nullifier.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Cuál es el orden correcto del flujo de participación protegida?",
+      "options": [
+        { "id": "a", "label": "Habilitación en el padrón → Commitment del voto → Nullifier" },
+        { "id": "b", "label": "DUST → Nullifier → Commitment → Elegibilidad" },
+        { "id": "c", "label": "Nullifier → Elegibilidad → Commitment" }
+      ],
+      "correctOptionId": "a"
+    }
+  },
+  {
+    "challengeId": "m7-l3-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l3",
+    "type": "trivia",
+    "title": "Privacidad en cada paso",
+    "instructions": "Selecciona qué aporta el árbol Merkle al sistema final.",
+    "successCriteria": "Seleccionar confirmar habilitación sin revelar identidad.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Qué aporta el árbol Merkle en el sistema de votación final?",
+      "options": [
+        { "id": "a", "label": "Almacenar todas las identidades de votantes públicamente" },
+        { "id": "b", "label": "Confirmar habilitación sin revelar identidad" },
+        { "id": "c", "label": "Contar votos" }
+      ],
+      "correctOptionId": "b"
+    }
+  },
+  {
+    "challengeId": "m7-l4-challenge-1",
+    "moduleId": "m7",
+    "lessonId": "m7-l4",
+    "type": "trivia",
+    "title": "Objetivo de optimización final",
+    "instructions": "Selecciona el objetivo de optimización del cierre operativo.",
+    "successCriteria": "Seleccionar minimizar DUST mientras mantiene privacidad.",
+    "maxAttempts": 3,
+    "payload": {
+      "question": "¿Cuál es el objetivo de optimización en la integración final?",
+      "options": [
+        { "id": "a", "label": "Maximizar privacidad a cualquier costo" },
+        { "id": "b", "label": "Minimizar DUST mientras mantiene privacidad" },
+        { "id": "c", "label": "Hacer todo público" }
+      ],
+      "correctOptionId": "b"
+    }
+  }
+]

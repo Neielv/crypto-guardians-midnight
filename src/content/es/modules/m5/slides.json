@@ -1,0 +1,162 @@
+[
+    {
+        "slideId":  "m5-l1-slide-1",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "El costo de proteger el voto",
+        "text":  "En Midnight, proteger una votación se parece a activar un escudo por cada acción sensible. Ese escudo no se ve, pero sí cuesta recursos para construirse. DUST es la unidad que mide ese costo: el combustible criptográfico que permite mantener privado el voto del ciudadano durante la misión.",
+        "visualHint":  "Medidor de energía mostrando el costo de proteger una votación",
+        "image":  "images/modules/m5/l1-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-2",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Qué es DUST",
+        "text":  "DUST mide cuánto trabajo criptográfico hace falta para generar una prueba ZK. Si la prueba tiene más entradas, más witness o más restricciones, consume más DUST. Piensa en él como el presupuesto silencioso de la operación: cuanto más ambiciosa es la protección, más presupuesto debes reservar.",
+        "visualHint":  "Icono de DUST representando recurso computacional",
+        "image":  "images/modules/m5/l1-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-3",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Por qué la privacidad cuesta recursos",
+        "text":  "La privacidad cuesta porque la prueba debe hacer trabajo real, no promesas. Para demostrar sin revelar, el sistema ejecuta hashes, aritmética de curvas elípticas y otros cálculos intensivos. Es como sellar un sobre con varios mecanismos de seguridad: el ciudadano queda protegido, pero fabricar ese sello exige recursos.",
+        "visualHint":  "Operaciones matemáticas complejas visualizadas como maquinaria",
+        "image":  "images/modules/m5/l1-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l1-slide-4",
+        "lessonId":  "m5-l1",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "El balance de DUST",
+        "text":  "Midnight separa dos bolsillos: uno para tokens y otro para DUST. El balance de DUST se consume cuando se generan pruebas privadas, así que no conviene confundirlo con un saldo común. Para la Agencia, esto importa porque una votación puede tener fondos y aun así quedarse sin combustible criptográfico si no planificas bien.",
+        "visualHint":  "Billetera mostrando dos balances: tokens y DUST de la misión",
+        "image":  "images/modules/m5/l1-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-1",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "Recursos de generación de pruebas ZK",
+        "text":  "Generar una prueba ZK se parece a poner en marcha un taller técnico. La CPU hace el trabajo pesado, la memoria guarda piezas intermedias y el tiempo marca cuánto tarda en salir el blindaje final. Todo ese taller se refleja en DUST, así que cada voto protegido tiene un costo operativo real.",
+        "visualHint":  "Recursos de computadora: CPU, RAM, íconos de tiempo",
+        "image":  "images/modules/m5/l2-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-2",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Factores que afectan el costo de DUST",
+        "text":  "El costo de DUST no sale de la nada: depende del número de variables witness, de las restricciones del circuito y del sistema de pruebas elegido. Si construyes un circuito más grande, el taller criptográfico tiene más piezas que mover. Por eso el diseño importa tanto como la intención de proteger el voto.",
+        "visualHint":  "Fórmula mostrando DUST = f(witness, restricciones, sistema)",
+        "image":  "images/modules/m5/l2-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-3",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Compromisos de complejidad de pruebas",
+        "text":  "Cada capa extra de privacidad es como añadir blindaje a un vehículo: puede hacerlo más seguro, pero también más pesado y caro de mover. Las pruebas que demuestran más sin revelar suelen necesitar circuitos mayores y, por tanto, más DUST. Entender ese equilibrio evita que la misión se vuelva impecable en teoría e inviable en práctica.",
+        "visualHint":  "Balanza equilibrando nivel de privacidad vs costo DUST",
+        "image":  "images/modules/m5/l2-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l2-slide-4",
+        "lessonId":  "m5-l2",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Estimando DUST para el circuito",
+        "text":  "Antes de desplegar, no improvisas: haces presupuesto. Analizar el circuito y contar restricciones y variables witness permite estimar el DUST necesario con bastante aproximación. Esa previsión le da a la Agencia margen para sostener la votación sin descubrir tarde que el combustible no alcanza.",
+        "visualHint":  "Calculadora computando DUST desde análisis de circuito",
+        "image":  "images/modules/m5/l2-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-1",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "El rol del servidor de pruebas",
+        "text":  "En Midnight, muchas veces conviene sacar el trabajo pesado del dispositivo principal y enviarlo a un servidor especializado. Piensa en él como un taller blindado que fabrica la prueba fuera de cadena mientras el cliente sigue ligero. Así la misión electoral puede operar sin exigirle toda la carga criptográfica al punto de uso.",
+        "visualHint":  "Rack de servidores con etiqueta de generación de pruebas",
+        "image":  "images/modules/m5/l3-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-2",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Cómo funcionan los servidores de pruebas",
+        "text":  "El flujo funciona como una entrega sellada. El sistema envía witnesses cifrados al servidor de pruebas, el servidor hace el trabajo criptográfico, consume DUST y devuelve solo la prueba al cliente. El balance de tokens financia ese DUST. La clave es que se separa el esfuerzo de cómputo sin entregar el secreto del ciudadano.",
+        "visualHint":  "Diagrama de flujo: sistema → witness → servidor → prueba → cliente",
+        "image":  "images/modules/m5/l3-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-3",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Modelo de confianza para servidores de pruebas",
+        "text":  "No confías en el servidor como confías en una persona; confías en el diseño. Como recibe witnesses cifrados, el servidor no ve los datos privados del ciudadano: solo procesa material protegido y devuelve la prueba. Eso es crucial frente a los Mineros Oscuros, porque la integridad depende de la criptografía, no de la buena voluntad del operador.",
+        "visualHint":  "Escudo protegiendo datos de la vista del servidor de pruebas",
+        "image":  "images/modules/m5/l3-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l3-slide-4",
+        "lessonId":  "m5-l3",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Generación de pruebas descentralizada",
+        "text":  "Midnight puede apoyarse en una red de servidores de pruebas, no en un único taller. La Agencia puede contratar un proveedor o levantar el suyo. Esa diversidad ayuda a contener costos de DUST y también reduce puntos únicos de presión si los Mineros Oscuros intentan saturar o influir una parte de la infraestructura.",
+        "visualHint":  "Red de servidores de pruebas interconectados",
+        "image":  "images/modules/m5/l3-slide-4.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-1",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  1,
+        "title":  "Estrategias de optimización de circuitos",
+        "text":  "Optimizar un circuito es como aligerar el equipo antes de una operación: quitas peso inútil sin renunciar a la protección. Reducir restricciones, reutilizar cómputo y elegir funciones hash eficientes hace que la prueba consuma menos DUST. Menos carga significa una misión más sostenible y menos margen para el desgaste.",
+        "visualHint":  "Circuito siendo simplificado y optimizado",
+        "image":  "images/modules/m5/l4-slide-1.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-2",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  2,
+        "title":  "Agregación de pruebas",
+        "text":  "La agregación de pruebas funciona como enviar un convoy en lugar de muchos vehículos sueltos. En vez de pagar el costo completo por cada acción, varias acciones se demuestran juntas en una sola prueba. Eso reduce el costo amortizado de DUST por acción y ayuda a que la jornada electoral no se desgaste por repeticiones innecesarias.",
+        "visualHint":  "Múltiples pruebas fusionándose en una prueba más grande",
+        "image":  "images/modules/m5/l4-slide-2.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-3",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  3,
+        "title":  "Caché de pruebas",
+        "text":  "Si una parte del trabajo ya está resuelta y no cambia, no la rehaces: la reutilizas. Eso es la caché de pruebas. Cuando ciertos datos permanecen estables, reaprovechar resultados evita regenerar pruebas completas, ahorra DUST y conserva la protección sin malgastar recursos de la Agencia.",
+        "visualHint":  "Almacenamiento de caché sosteniendo pruebas reutilizables",
+        "image":  "images/modules/m5/l4-slide-3.png"
+    },
+    {
+        "slideId":  "m5-l4-slide-4",
+        "lessonId":  "m5-l4",
+        "moduleId":  "m5",
+        "order":  4,
+        "title":  "Equilibrando privacidad y costo",
+        "text":  "La idea final es simple: la privacidad no es gratis, pero tampoco debe ser un lujo mal administrado. Tu trabajo, como agente, es equilibrar blindaje y costo para que el ciudadano conserve su privacidad y la misión electoral siga siendo viable incluso bajo presión de los Mineros Oscuros.",
+        "visualHint":  "Panel de control con nivel de privacidad e indicador de costo",
+        "image":  "images/modules/m5/l4-slide-4.png"
+    }
+]

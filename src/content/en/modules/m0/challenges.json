@@ -1,0 +1,35 @@
+[
+  {
+    "challengeId": "m0-l1-challenge-1",
+    "moduleId": "m0",
+    "lessonId": "m0-l1",
+    "type": "drag_and_drop",
+    "title": "Identity Sovereignty",
+    "instructions": "As a new agent, you must decide where your power resides. Drag each element to its destination to secure your self-sovereign identity.",
+    "successCriteria": "Protect your secrets in the Witness and move the risk away from central servers.",
+    "narrativeIntro": "The Dark Miners thrive on centralized databases. Your mission is to break that chain. Classify your information correctly so the Agency can validate you without exposing you.",
+    "successMessage": "Mission accomplished. Your identity is now self-sovereign. The Witness is your only point of private truth.",
+    "failureMessage": "Agent, you are making the same mistake as the rest of the world. Do not hand over your secrets to the cloud. Review where you store each data point.",
+    "maxAttempts": 3,
+    "payload": {
+      "items": [
+        { "id": "nr", "label": "Your Real Name" },
+        { "id": "cs", "label": "Your Secret Key" },
+        { "id": "ds", "label": "Your Sensitive Data" },
+        { "id": "bc", "label": "Central Database" },
+        { "id": "re", "label": "Exposure Risk" }
+      ],
+      "zones": [
+        { "id": "witness", "label": "Your Vault (Witness)" },
+        { "id": "central", "label": "Central Servers" }
+      ],
+      "validAssignments": {
+        "nr": "witness",
+        "cs": "witness",
+        "ds": "witness",
+        "bc": "central",
+        "re": "central"
+      }
+    }
+  }
+]

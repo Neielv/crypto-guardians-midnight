@@ -1,0 +1,12 @@
+{
+  "moduleId": "m4",
+  "title": "Nullifiers",
+  "summary": "Understand how the system protects the uniqueness of a political right so that an eligible person cannot participate twice without revealing their identity.",
+  "concepts": ["nullifier", "double voting", "uniqueness", "controlled linkability", "nonce"],
+  "unlocks": "m5",
+  "narrativeTitle": "The Mark of Uniqueness",
+  "technicalTitle": "Nullifiers",
+  "dramaticDescription": "You can already hide data and verify eligibility, but one problem remains: stopping double voting without revealing who is participating. The mark of uniqueness solves that dilemma.",
+  "introScene": "The agent warns you that the same person could vote more than once if the system does not leave an unrepeatable mark. You must learn to block double voting without breaking privacy.",
+  "startButtonLabel": "Start Mission 4"
+}
