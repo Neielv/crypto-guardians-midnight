@@ -188,10 +188,6 @@ This repository is being published to collect feedback on:
 - Private voting use-case framing
 - Overall product direction
 
-### Notes
-
-Internal working files, credentials, private docs, and AI prompt assets are intentionally excluded from this public version.
-
 ---
 
 ## Español
@@ -367,7 +363,3 @@ Este repositorio se publica para recoger feedback sobre:
 - Valor jugable de las lecciones/challenges
 - Enfoque del caso de uso de votación privada
 - Dirección general del producto
-
-### Notas
-
-Los archivos internos de trabajo, credenciales, documentación privada y assets de prompts de IA están excluidos intencionalmente de esta versión pública.
