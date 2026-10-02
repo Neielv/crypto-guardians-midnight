@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAppStore } from '@/app/store/app-store'
 import { ROUTES } from '@/lib/constants/routes'
+import { FEEDBACK_URL } from '@/lib/constants/feedback'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import packageJson from '../../../package.json'
@@ -65,6 +66,7 @@ export function AppShell({ children, sidebar, sidebarWidth = 250 }: AppShellProp
             <ShellLink to={ROUTES.dashboard}>{t('navigation.dashboard')}</ShellLink>
             <ShellLink to={ROUTES.settings}>{t('navigation.settings')}</ShellLink>
             <ShellLink to={ROUTES.finalBoss}>{t('navigation.finalBoss')}</ShellLink>
+            <ShellExternalLink href={FEEDBACK_URL}>{t('navigation.feedback')}</ShellExternalLink>
           </nav>
           <div style={{ marginTop: 28, paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
             <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>{t('shell.threatLevel')}</div>
@@ -133,5 +135,25 @@ function ShellLink({ to, children }: PropsWithChildren<{ to: string }>) {
     >
       {children}
     </Link>
+  )
+}
+
+function ShellExternalLink({ href, children }: PropsWithChildren<{ href: string }>) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'block',
+        padding: '12px 14px',
+        borderRadius: 14,
+        color: '#e4e4e7',
+        background: 'rgba(255,255,255,0.02)',
+        border: '1px solid rgba(255,255,255,0.05)',
+      }}
+    >
+      {children}
+    </a>
   )
 }

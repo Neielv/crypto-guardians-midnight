@@ -7,6 +7,7 @@ import { AppShell } from '@/components/layout/AppShell'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { ROUTES } from '@/lib/constants/routes'
+import { FEEDBACK_URL } from '@/lib/constants/feedback'
 
 const OFFICIAL_EXAMPLES_HUB_URL = 'https://github.com/midnightntwrk/midnight-awesome-dapps'
 
@@ -115,6 +116,35 @@ export default function ResultsPage() {
               <h2 style={{ margin: '0 0 10px', fontSize: 30 }}>{t('results.closing.title')}</h2>
               <p style={{ margin: 0, color: '#d4d4d8', lineHeight: 1.7 }}>{t('results.closing.description')}</p>
             </section>
+
+            <Card>
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+                <div style={{ minWidth: 0, flex: '1 1 280px' }}>
+                  <div style={{ color: '#86efac', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 8 }}>{t('results.feedback.eyebrow')}</div>
+                  <h2 style={{ margin: '0 0 8px', fontSize: 24 }}>{t('results.feedback.title')}</h2>
+                  <p style={{ margin: 0, color: '#d4d4d8', lineHeight: 1.6 }}>{t('results.feedback.description')}</p>
+                </div>
+                <a
+                  href={FEEDBACK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '10px 14px',
+                    borderRadius: 12,
+                    background: 'linear-gradient(135deg, #fafafa 0%, #d4d4d8 100%)',
+                    color: '#09090b',
+                    border: '1px solid rgba(255,255,255,0.65)',
+                    boxShadow: '0 10px 24px rgba(255,255,255,0.08)',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {t('results.feedback.linkLabel')}
+                </a>
+              </div>
+            </Card>
 
             <section className="results-page__next-steps" style={{ display: 'grid', gap: 16 }}>
               <div>

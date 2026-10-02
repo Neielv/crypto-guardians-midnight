@@ -7,6 +7,7 @@
     "dashboard": "Dashboard",
     "settings": "Settings",
     "finalBoss": "Final Boss",
+    "feedback": "Send feedback",
     "backToDashboard": "Back to dashboard",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
@@ -225,6 +226,12 @@
       "eyebrow": "Beyond the mission",
       "title": "The mission is complete. Now build what comes next.",
       "description": "You proved the core ideas behind privacy on Midnight. Take the next step by studying working examples and turning these patterns into your own private applications."
+    },
+    "feedback": {
+      "eyebrow": "Help us improve",
+      "title": "Share your feedback",
+      "description": "Your responses help us improve the learning experience for future agents.",
+      "linkLabel": "Send feedback"
     },
     "nextSteps": {
       "eyebrow": "Next learning path",

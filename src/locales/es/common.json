@@ -7,6 +7,7 @@
     "dashboard": "Dashboard",
     "settings": "Configuración",
     "finalBoss": "Jefe final",
+    "feedback": "Dar feedback",
     "backToDashboard": "Volver al dashboard",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú"
@@ -222,6 +223,12 @@
       "eyebrow": "Más allá de la misión",
       "title": "La misión terminó. Ahora empieza lo que vas a construir.",
       "description": "Probaste las ideas centrales de la privacidad en Midnight. Da el siguiente paso estudiando ejemplos funcionales y convierte estos patrones en tus propias aplicaciones privadas."
+    },
+    "feedback": {
+      "eyebrow": "Ayúdanos a mejorar",
+      "title": "Comparte tu feedback",
+      "description": "Tus respuestas nos ayudan a mejorar la experiencia de aprendizaje para futuros agentes.",
+      "linkLabel": "Dar feedback"
     },
     "nextSteps": {
       "eyebrow": "Siguiente aprendizaje",
