@@ -1,0 +1,18 @@
+pragma language_version 0.23;
+import CompactStandardLibrary;
+
+export ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;
+export ledger authorizedNullifiers: Set<Bytes<32>>;
+
+witness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;
+witness secretKey(): Bytes<32>;
+
+export circuit castVote(pk: Bytes<32>): [] {
+  const authPath = findAuthPath(pk);
+  assert(authPath.leaf == pk);
+  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));
+
+  const nul = persistentHash<Vector<2, Bytes<32>>>([pad(32, "vote:nullifier"), secretKey()]);
+  assert(!authorizedNullifiers.member(disclose(nul)));
+  authorizedNullifiers.insert(disclose(nul));
+}

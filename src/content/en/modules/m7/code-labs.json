@@ -5,10 +5,10 @@
     "lessonId": "m7-l1",
     "type": "fill_in_the_blank",
     "title": "Code lab: integrate private voting",
-    "instructions": "Complete the missing concept in the final block. The flow combines witness, assert, commitment, disclose, nullifier, DUST, and Merkle trees.",
+    "instructions": "Complete the missing concept in the final block. This documented Compact pattern combines a private witness, Merkle membership, a persistent nullifier, and a Set.",
     "successCriteria": "Complete the blank with Merkle.",
     "payload": {
-      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteCommitment: Commitment,\n  merkleProof: [Field; depth],\n  nullifier: Field,\n  root: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n  const tally = disclose(commitments, aggregate);\n  // Integrates witness, assert, commitment, disclose, nullifier, DUST, and ___ trees.\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // The commitment and tally layers are conceptual; this is the ___ membership pattern.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -20,12 +20,12 @@
     "lessonId": "m7-l2",
     "type": "fill_in_the_blank",
     "title": "Code lab: generate the nullifier",
-    "instructions": "Complete the nullifier formula using the secret key and vote event.",
-    "successCriteria": "Complete the blank with secretKey.",
+    "instructions": "Complete the documented round-scoped persistent nullifier formula using the witness secret key.",
+    "successCriteria": "Complete the blank with secretKey(); the same secret and round are rejected, while a new round is allowed.",
     "payload": {
-      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  voteEvent: Field\n): [] {\n  const nullifier = hash(___ + voteEvent);\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "secretKey" }
+        { "id": "blank-1", "answer": "secretKey()" }
       ]
     }
   },
@@ -35,12 +35,12 @@
     "lessonId": "m7-l3",
     "type": "fill_in_the_blank",
     "title": "Code lab: verify eligibility",
-    "instructions": "Complete the function that the circuit uses first to verify the membership proof.",
-    "successCriteria": "Complete the blank with Merkle.",
+    "instructions": "Complete the documented root function used to verify the Merkle membership path.",
+    "successCriteria": "Complete the blank with merkleTreePathRoot<10, Bytes<32>>.",
     "payload": {
-      "template": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field,\n  nullifier: Field\n): [] {\n  const leaf = hash(secretKey);\n  assert(verify___(leaf, merkleProof, root));\n  assert(!usedNullifiers.member(nullifier));\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(___(authPath))));\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "Merkle" }
+        { "id": "blank-1", "answer": "merkleTreePathRoot<10, Bytes<32>>" }
       ]
     }
   },
@@ -53,7 +53,7 @@
     "instructions": "Complete the resource that must be minimized while preserving privacy guarantees.",
     "successCriteria": "Complete the blank with DUST.",
     "payload": {
-      "template": "export circuit optimizedVote(\n  secretKey: witness<Field>,\n  vote: Field,\n  merkleProof: [Field; depth]\n): [] {\n  // Reduce constraints to minimize ___ without losing privacy.\n  const shared = hash(secretKey, vote);\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // Reduce unnecessary work to minimize ___ without losing privacy.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "DUST" }
       ]

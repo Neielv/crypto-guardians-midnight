@@ -25,7 +25,7 @@
         "moduleId":  "m4",
         "order":  3,
         "title":  "How a nullifier is generated",
-        "text":  "The book shows the formula: nullifier = hash(secret_key + event). This way, each pair (user, action) produces a unique value but is not reversible to discover the identity.",
+        "text":  "The documented Compact pattern derives a persistent nullifier from a private secret and a round. The domain-separated hash is deterministic: the same secret plus the same round repeats the same mark, while a new round produces a different mark. Hashing alone does not guarantee anonymity or unlinkability.",
         "visualHint":  "Hash function taking two inputs and producing a unique code",
         "image":  "images/modules/m4/l1-slide-3.png"
     },
@@ -35,7 +35,7 @@
         "moduleId":  "m4",
         "order":  4,
         "title":  "The nullifier lives in the ledger",
-        "text":  "Once generated, the nullifier is published to the ledger. The smart contract stores it so that the next time the same citizen tries to participate, the system detects the repetition and rejects the action.",
+        "text":  "Once generated, the disclosed nullifier is stored in a ledger Set. The round scopes the one-time action: the same secret in the same round is rejected, while the same secret in a new round is allowed.",
         "visualHint":  "Database with exclusion codes organized",
         "image":  "images/modules/m4/l1-slide-4.png"
     },
@@ -94,8 +94,8 @@
         "lessonId":  "m4-l3",
         "moduleId":  "m4",
         "order":  2,
-        "title":  "The nonce enables multiple linked actions",
-        "text":  "The book introduces the nonce as a counter that increments with each action. Combined with the user\u0027s secret key, it produces different nullifiers for each action while still being linkable to each other.",
+        "title":  "The round scopes a one-time action",
+        "text":  "A round context scopes a one-time action. Combined with the user\u0027s secret key, it produces a different nullifier for a new round without claiming that hashing alone guarantees anonymity or unlinkability.",
         "visualHint":  "Counter generating different codes for each use",
         "image":  "images/modules/m4/l3-slide-2.png"
     },
@@ -104,9 +104,9 @@
         "lessonId":  "m4-l3",
         "moduleId":  "m4",
         "order":  3,
-        "title":  "Formula with nonce",
-        "text":  "The book\u0027s formula is: nullifier = hash(secret_key + nonce). If nonce is 0, 1, 2..., each action produces a unique nullifier and the contract can verify that all come from the same user.",
-        "visualHint":  "Hash equation with nonce producing multiple outputs",
+        "title":  "Formula with round context",
+        "text":  "The documented formula is a persistent hash over a domain separator, the round converted to Bytes<32>, and the secret key. Same secret plus same round means replay rejection; same secret plus a new round is allowed. The round scopes the one-time action.",
+        "visualHint":  "Persistent hash combining a secret and round to produce scoped outputs",
         "image":  "images/modules/m4/l3-slide-3.png"
     },
     {
@@ -115,7 +115,7 @@
         "moduleId":  "m4",
         "order":  4,
         "title":  "Granular control of linking",
-        "text":  "By choosing what data to include in the hash, the system controls when there is linkability and when there isn\u0027t. If you want completely independent actions, you just use the secret key without a nonce.",
+        "text":  "The round is an explicit scope for reuse, not a promise of anonymity. Privacy properties depend on the complete protocol and disclosure design; do not infer anonymity or unlinkability from hashing alone.",
         "visualHint":  "Control panel with switches to activate/deactivate linking",
         "image":  "images/modules/m4/l3-slide-4.png"
     },
@@ -145,7 +145,7 @@
         "moduleId":  "m4",
         "order":  3,
         "title":  "The circuit validates the nullifier",
-        "text":  "The contract uses a circuit to verify two things: (1) the nullifier was correctly generated using the user\u0027s secret key, and (2) it doesn\u0027t already exist in the ledger\u0027s nullifier set.",
+        "text":  "The circuit derives the nullifier from the secret and round, then checks and inserts it in the ledger Set. A replay with the same secret and round is rejected; a new round is allowed. The round scopes the one-time action, while hashing alone does not guarantee anonymity or unlinkability.",
         "visualHint":  "Circuit validating a nullifier before storing it",
         "image":  "images/modules/m4/l4-slide-3.png"
     },

@@ -25,7 +25,7 @@
         "moduleId":  "m4",
         "order":  3,
         "title":  "Se genera desde un secreto y un evento",
-        "text":  "El nullifier se forma al mezclar un secreto privado con la huella de la elección. Piensa en ello como un sello único creado para ese momento: sirve para marcar que la participación ocurrió, pero no permite reconstruir la identidad del ciudadano.",
+        "text":  "El patrón documentado de Compact deriva un nullifier persistente desde un secreto privado y una ronda. El hash con separación de dominio es determinista: la misma clave más la misma ronda repite la misma marca, mientras una ronda nueva produce otra. El hashing por sí solo no garantiza anonimato ni unlinkability.",
         "visualHint":  "Sello único formándose a partir de un secreto privado y una huella del evento electoral, sin revelar la identidad del ciudadano.",
         "image":  "images/modules/m4/l1-slide-3.png"
     },
@@ -35,7 +35,7 @@
         "moduleId":  "m4",
         "order":  4,
         "title":  "El ledger conserva la marca de unicidad",
-        "text":  "Una vez creada, la marca única queda guardada en el ledger como registro de “ya participó”. Si alguien intenta usar otra vez ese mismo derecho, el sistema compara la nueva participación con esa marca y detecta la repetición sin necesidad de revelar la identidad del ciudadano.",
+        "text":  "Una vez creada, la marca divulgada se guarda en un Set del ledger. La ronda delimita la acción de uso único: la misma clave en la misma ronda se rechaza, mientras la misma clave en una ronda nueva se permite.",
         "visualHint":  "Ledger guardando una marca de participación ya usada y bloqueando un segundo intento sin mostrar la identidad del ciudadano.",
         "image":  "images/modules/m4/l1-slide-4.png"
     },
@@ -94,9 +94,9 @@
         "lessonId":  "m4-l3",
         "moduleId":  "m4",
         "order":  2,
-        "title":  "El nonce separa participaciones",
-        "text":  "El nonce es un diferenciador de intentos. Aunque el origen privado sea el mismo, el sistema añade ese valor para crear marcas distintas en cada acción. Así puede separar participaciones sin perder privacidad.",
-        "visualHint":  "Un mismo origen privado generando marcas distintas para participaciones diferentes gracias a un nonce.",
+        "title":  "La ronda delimita una acción de uso único",
+        "text":  "El contexto de ronda delimita una acción de uso único. Combinado con la clave secreta, produce un nullifier distinto en una ronda nueva, sin afirmar que el hashing por sí solo garantice anonimato o unlinkability.",
+        "visualHint":  "Un secreto y una ronda combinados para producir marcas delimitadas distintas.",
         "image":  "images/modules/m4/l3-slide-2.png"
     },
     {
@@ -105,7 +105,7 @@
         "moduleId":  "m4",
         "order":  3,
         "title":  "Una fórmula mínima, una consecuencia fuerte",
-        "text":  "Una fórmula tan simple como `hash(secreto + nonce)` basta para crear una marca distinta por cada intento. El detalle técnico parece pequeño, pero resuelve algo enorme: el sistema puede seguir el uso de cada participación sin revelar la identidad del ciudadano.",
+        "text":  "La fórmula documentada aplica un hash persistente sobre un separador de dominio, la ronda convertida a Bytes<32> y la clave secreta. La misma clave más la misma ronda implica rechazo por replay; una ronda nueva se permite. La ronda delimita la acción de uso único.",
         "visualHint":  "Una fórmula simple generando marcas distintas para cada intento, mientras la identidad del ciudadano permanece oculta.",
         "image":  "images/modules/m4/l3-slide-3.png"
     },
@@ -115,7 +115,7 @@
         "moduleId":  "m4",
         "order":  4,
         "title":  "La vinculación debe ser intencional",
-        "text":  "Relacionar acciones también es una decisión de privacidad. A veces conviene reconocer que dos participaciones vienen del mismo origen; otras veces, es mejor mantenerlas completamente separadas. La clave es que esa vinculación sea intencional, no accidental.",
+        "text":  "La ronda es un alcance explícito para permitir un nuevo uso, no una promesa de anonimato. Las propiedades de privacidad dependen del protocolo completo y de su diseño de divulgación; el hashing por sí solo no garantiza anonimato ni unlinkability.",
         "visualHint":  "Dos participaciones que pueden mostrarse conectadas o separadas según la decisión del sistema, mientras la identidad del ciudadano sigue oculta.",
         "image":  "images/modules/m4/l3-slide-4.png"
     },
@@ -145,7 +145,7 @@
         "moduleId":  "m4",
         "order":  3,
         "title":  "El circuit verifica la marca antes de aceptar",
-        "text":  "Antes de aceptar la participación, el circuit hace dos controles. Primero verifica que la marca fue construida correctamente. Después confirma que esa marca no haya sido usada antes. Solo si ambas condiciones se cumplen, la participación puede avanzar.",
+        "text":  "Antes de aceptar la participación, el circuit deriva el nullifier desde la clave y la ronda, y luego lo comprueba e inserta en el Set del ledger. Un replay con la misma clave y ronda se rechaza; una ronda nueva se permite. La ronda delimita la acción de uso único.",
         "visualHint":  "Sistema realizando dos verificaciones sobre una marca: primero validez, luego uso previo, antes de aceptar la participación.",
         "image":  "images/modules/m4/l4-slide-3.png"
     },

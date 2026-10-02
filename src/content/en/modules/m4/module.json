@@ -2,7 +2,7 @@
   "moduleId": "m4",
   "title": "Nullifiers",
   "summary": "Understand how the system protects the uniqueness of a political right so that an eligible person cannot participate twice without revealing their identity.",
-  "concepts": ["nullifier", "double voting", "uniqueness", "controlled linkability", "nonce"],
+  "concepts": ["nullifier", "double voting", "uniqueness", "round-scoped reuse", "persistentHash"],
   "unlocks": "m5",
   "narrativeTitle": "The Mark of Uniqueness",
   "technicalTitle": "Nullifiers",

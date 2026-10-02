@@ -83,13 +83,13 @@
     "type": "trivia",
     "title": "Vinculación controlada",
     "instructions": "Selecciona la fórmula correcta para generar múltiples nullifiers vinculados del mismo registro autorizado.",
-    "successCriteria": "Elige la opción que usa hash(clave_secreta + nonce).",
+    "successCriteria": "Elige la opción que describe un hash persistente con separación de dominio y alcance por ronda.",
     "maxAttempts": 3,
     "payload": {
-      "question": "¿Qué fórmula genera nullifiers vinculados con nonce?",
+      "question": "¿Qué usa el patrón documentado de Compact para delimitar una acción de nullifier de uso único?",
       "options": [
-        { "id": "a", "label": "nullifier = hash(clave_secreta + nonce)" },
-        { "id": "b", "label": "nullifier = nonce * 2" },
+        { "id": "a", "label": "persistentHash(dominio, roundBytes, secretKey)" },
+        { "id": "b", "label": "nullifier = round * 2" },
         { "id": "c", "label": "nullifier = clave_secreta" }
       ],
       "correctOptionId": "a"
@@ -107,8 +107,8 @@
     "payload": {
       "successMessage": "¡Buen trabajo! Con el nullifier verificamos que el voto es válido y evitamos el doble voto.",
       "contextLines": [
-        "function acceptVote(secretKey, nonce, submittedNullifier) {",
-        "  const nullifier = deriveNullifier(secretKey, nonce);",
+        "function acceptVote(secretKey, round, submittedNullifier) {",
+        "  const nullifier = deriveNullifier(secretKey, round);",
         "  const alreadyUsed = nullifierSet.member(nullifier);",
         "  // Coloca las comprobaciones antes de aceptar; un nullifier existente provoca rechazo.",
         "  // La identidad permanece privada; solo continúa un nullifier válido y no usado.",

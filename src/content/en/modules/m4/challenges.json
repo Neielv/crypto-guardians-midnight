@@ -83,13 +83,13 @@
     "type": "trivia",
     "title": "Controlled linking",
     "instructions": "Select the correct formula for generating multiple linked nullifiers from the same user.",
-    "successCriteria": "Choose the option using hash(secret_key + nonce).",
+    "successCriteria": "Choose the option describing a domain-separated persistent hash scoped by round.",
     "maxAttempts": 3,
     "payload": {
-      "question": "What is the book's formula for generating linked nullifiers with nonce?",
+      "question": "What does the documented Compact pattern use to scope a one-time nullifier action?",
       "options": [
-        { "id": "a", "label": "nullifier = hash(secret_key + nonce)" },
-        { "id": "b", "label": "nullifier = nonce * 2" },
+        { "id": "a", "label": "persistentHash(domain, roundBytes, secretKey)" },
+        { "id": "b", "label": "nullifier = round * 2" },
         { "id": "c", "label": "nullifier = secret_key" }
       ],
       "correctOptionId": "a"
@@ -107,8 +107,8 @@
     "payload": {
       "successMessage": "Great work! With the nullifier, we verified that the vote is valid and prevented double voting.",
       "contextLines": [
-        "function acceptVote(secretKey, nonce, submittedNullifier) {",
-        "  const nullifier = deriveNullifier(secretKey, nonce);",
+        "function acceptVote(secretKey, round, submittedNullifier) {",
+        "  const nullifier = deriveNullifier(secretKey, round);",
         "  const alreadyUsed = nullifierSet.member(nullifier);",
         "  // Place the checks before acceptance; an existing nullifier causes rejection.",
         "  // The identity stays private; only a valid, unused nullifier proceeds.",

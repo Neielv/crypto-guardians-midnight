@@ -26,9 +26,9 @@
   {
     "lessonId": "m4-l3",
     "moduleId": "m4",
-    "title": "Linkability controlada con nonce",
-    "objective": "Aprender a usar el nonce para habilitar vinculación controlada entre participaciones del mismo registro autorizado sin revelar la identidad del ciudadano.",
-    "narrativeIntro": "Debes dominar el uso del nonce para relacionar participaciones autorizadas solo cuando sea necesario, resistiendo a los Mineros Oscuros sin revelar la identidad del ciudadano ni su registro.",
+    "title": "Reutilización delimitada por ronda",
+    "objective": "Aprender cómo el contexto de ronda permite una acción por ronda sin afirmar que el hashing por sí solo garantiza anonimato ni unlinkability.",
+    "narrativeIntro": "Debes dominar el alcance de la ronda para permitir una acción nueva en cada ronda, sin confundir el hash con una garantía completa de anonimato o unlinkability.",
     "steps": [
       { "stepId": "m4-l3-s1", "type": "slides", "slideIds": ["m4-l3-slide-1", "m4-l3-slide-2", "m4-l3-slide-3", "m4-l3-slide-4"] },
       { "stepId": "m4-l3-c1", "type": "challenge", "challengeId": "m4-l3-challenge-1" },

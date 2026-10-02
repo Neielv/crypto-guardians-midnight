@@ -55,7 +55,7 @@
         "moduleId":  "m7",
         "order":  2,
         "title":  "Paso 2: sellar el voto",
-        "text":  "Una vez confirmada la habilitación, el voto se emite como un commitment. Piensa en una cápsula sellada: el contenido queda oculto durante la operación, pero más adelante puede integrarse al resultado verificable.",
+        "text":  "Una vez confirmada la habilitación, usa persistentCommit con una apertura privada para crear un commitment persistente del voto. El commitment oculta el voto y lo vincula con su apertura; no es una API de encriptación. La integración del conteo y la divulgación queda conceptual mientras no haya una API documentada disponible.",
         "visualHint":  "Voto entrando en un commitment sellado",
         "image":  "images/modules/m7/l2-slide-2.png"
     },
@@ -65,7 +65,7 @@
         "moduleId":  "m7",
         "order":  3,
         "title":  "Paso 3: registrar la unicidad",
-        "text":  "Junto al voto, el sistema registra un nullifier. Esa marca única de participación indica que ese derecho político ya fue usado en esta elección, sin revelar quién lo ejerció.",
+        "text":  "Junto al voto, el sistema deriva un nullifier persistente desde una clave secreta privada y una ronda, comprueba su pertenencia a un Set del ledger y lo inserta solo si aún no existe. La misma clave en la misma ronda se rechaza; una ronda nueva se permite. El hashing por sí solo no garantiza anonimato ni unlinkability.",
         "visualHint":  "Nullifier validado al lado de una urna digital",
         "image":  "images/modules/m7/l2-slide-3.png"
     },
@@ -95,7 +95,7 @@
         "moduleId":  "m7",
         "order":  2,
         "title":  "Qué verifica realmente el circuito",
-        "text":  "El circuito confirma pertenencia al padrón protegido, valida que el voto llegue sellado y comprueba que la marca única de participación no haya sido usada antes. Solo si todo coincide, la participación avanza.",
+        "text":  "El patrón documentado del circuito confirma la pertenencia al padrón protegido, deriva un nullifier persistente desde un witness privado y una ronda, y comprueba e inserta esa marca en un Set. La integración del commitment y el conteo queda conceptual; no se afirma una API genérica de verificación de commitments.",
         "visualHint":  "Circuito chequeando padrón, voto sellado y unicidad",
         "image":  "images/modules/m7/l3-slide-2.png"
     },

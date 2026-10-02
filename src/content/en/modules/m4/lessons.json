@@ -24,8 +24,8 @@
   {
     "lessonId": "m4-l3",
     "moduleId": "m4",
-    "title": "Controlled linkability with nonce",
-    "objective": "Learn to use the nonce to allow controlled linkage between actions without revealing identity.",
+    "title": "Round-scoped reuse",
+    "objective": "Learn how round context allows one action per round without claiming that hashing alone guarantees anonymity or unlinkability.",
     "steps": [
       { "stepId": "m4-l3-s1", "type": "slides", "slideIds": ["m4-l3-slide-1", "m4-l3-slide-2", "m4-l3-slide-3", "m4-l3-slide-4"] },
       { "stepId": "m4-l3-c1", "type": "challenge", "challengeId": "m4-l3-challenge-1" },

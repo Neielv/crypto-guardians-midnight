@@ -3,6 +3,7 @@ import type { CodeLabDefinition } from './code-lab.types'
 import { ChallengeShell } from '@/components/game/ChallengeShell'
 import { Button } from '@/components/ui/Button'
 import { ChallengeFeedback } from '@/components/game/ChallengeFeedback'
+import { CodeEditor } from './CodeEditor'
 
 type Props = {
   codeLab: CodeLabDefinition
@@ -10,25 +11,10 @@ type Props = {
 }
 
 export function CodeLabRunner({ codeLab, onSuccess }: Props) {
-  if (codeLab.type === 'fill_in_the_blank') return <FillInTheBlankCodeLab codeLab={codeLab} onSuccess={onSuccess} />
-  if (codeLab.type === 'toggle_visibility') return <ToggleVisibilityCodeLab codeLab={codeLab} onSuccess={onSuccess} />
+  if (codeLab.type === 'fill_in_the_blank') return <FillInTheBlankCodeLab key={codeLab.codeLabId} codeLab={codeLab} onSuccess={onSuccess} />
+  if (codeLab.type === 'toggle_visibility') return <ToggleVisibilityCodeLab key={codeLab.codeLabId} codeLab={codeLab} onSuccess={onSuccess} />
 
   return <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>Code lab type not implemented yet.</ChallengeShell>
-}
-
-function CodeEditor({ value, onChange, minHeight = 280 }: { value: string; onChange: (value: string) => void; minHeight?: number }) {
-  return (
-    <div className="code-lab-runner__editor">
-      <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>Compact code</div>
-      <textarea
-        className="code-lab-runner__textarea"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        spellCheck={false}
-        style={{ width: '100%', minHeight, padding: 16, borderRadius: 16, border: '1px solid rgba(255,255,255,0.08)', background: '#0a0a0a', color: '#f5f5f5', fontFamily: 'Consolas, monospace', fontSize: 14, lineHeight: 1.6, resize: 'vertical' }}
-      />
-    </div>
-  )
 }
 
 function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLabDefinition, { type: 'fill_in_the_blank' }>; onSuccess: (exposureDelta: number) => void }) {
@@ -48,8 +34,8 @@ function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLa
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
-      <CodeEditor value={sourceCode} onChange={setSourceCode} minHeight={220} />
-      <div className="code-lab-runner__actions" style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
+      <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} minHeight={220} />
+      <div className="code-lab-runner__actions">
         <Button onClick={submit} disabled={!sourceCode.trim()}>Validate</Button>
         <ChallengeFeedback result={result} />
       </div>
@@ -106,7 +92,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
       <div className="code-lab-runner__layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(260px, 0.9fr)', gap: 16, alignItems: 'start' }}>
         <div className="code-lab-runner__primary">
-          <CodeEditor value={sourceCode} onChange={setSourceCode} />
+          <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} />
         </div>
         <div className="code-lab-runner__secondary" style={{ display: 'grid', gap: 12 }}>
           <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Ledger / Witness</div>
@@ -130,7 +116,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
           })}
         </div>
       </div>
-      <div className="code-lab-runner__actions" style={{ display: 'flex', gap: 8, marginTop: 16, alignItems: 'center' }}>
+      <div className="code-lab-runner__actions">
         <Button onClick={submit}>Validate</Button>
         <ChallengeFeedback result={result} />
       </div>

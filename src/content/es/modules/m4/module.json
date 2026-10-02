@@ -2,7 +2,7 @@
   "moduleId": "m4",
   "title": "Nullifiers",
   "summary": "Comprende cómo impedir la participación duplicada en una votación mientras se protege la identidad y el registro del ciudadano habilitado.",
-  "concepts": ["nullifier", "doble voto", "unicidad", "linkability controlada", "nonce"],
+  "concepts": ["nullifier", "doble voto", "unicidad", "reutilización por ronda", "persistentHash"],
   "unlocks": "m5",
   "narrativeTitle": "La Marca de Unicidad",
   "technicalTitle": "Nullifiers",

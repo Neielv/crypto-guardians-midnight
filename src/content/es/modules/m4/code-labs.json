@@ -5,12 +5,12 @@
     "lessonId": "m4-l1",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: generar un nullifier",
-    "instructions": "Genera un nullifier combinando la clave secreta y el evento de la elección.",
-    "successCriteria": "Completar el hueco con hash(clave_secreta + evento).",
+    "instructions": "Completa el circuito documentado de Compact llamando al witness de la clave secreta; la ronda delimita la acción de uso único.",
+    "successCriteria": "Completa el hueco con secretKey(). La misma clave en la misma ronda se rechaza; la misma clave en una ronda nueva se permite.",
     "payload": {
-      "template": "const nullifier = ___(clave_secreta + evento);",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "hash" }
+        { "id": "blank-1", "answer": "secretKey()" }
       ]
     }
   },
@@ -20,10 +20,10 @@
     "lessonId": "m4-l2",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: verificar unicidad",
-    "instructions": "Comprueba si el nullifier ya existe en el set antes de aceptar la participación.",
-    "successCriteria": "Completar el hueco con member.",
+    "instructions": "Completa la comprobación de membresía Compact dentro del circuito completo con ronda.",
+    "successCriteria": "Completa el hueco con member; la simulación modela localmente el estado del Set y no ejecuta una transacción blockchain.",
     "payload": {
-      "template": "const esUnico = nullifierSet.___(nullifier);",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.___(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "member" }
       ]
@@ -34,13 +34,13 @@
     "moduleId": "m4",
     "lessonId": "m4-l3",
     "type": "fill_in_the_blank",
-    "title": "Manos a la obra: nullifier con nonce",
-    "instructions": "Añade el nonce a la fórmula para generar nullifiers distintos por acción.",
-    "successCriteria": "Completar el hueco con nonce.",
+    "title": "Manos a la obra: nullifier delimitado por ronda",
+    "instructions": "Completa el fragmento de ronda para que la misma clave pueda actuar una vez por ronda.",
+    "successCriteria": "Completa el hueco con round; la misma clave y ronda se rechazan, mientras una ronda nueva se permite.",
     "payload": {
-      "template": "const nullifier = hash(clave_secreta + ___);",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(___: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
       "blanks": [
-        { "id": "blank-1", "answer": "nonce" }
+        { "id": "blank-1", "answer": "round" }
       ]
     }
   },
@@ -50,10 +50,10 @@
     "lessonId": "m4-l4",
     "type": "fill_in_the_blank",
     "title": "Manos a la obra: registrar el nullifier",
-    "instructions": "Registra el nullifier en el set una vez confirmado que es único.",
+    "instructions": "Completa la operación de ledger Compact que registra el nullifier divulgado después de comprobar la membresía.",
     "successCriteria": "Completar el hueco con insert.",
     "payload": {
-      "template": "nullifierSet.___(nullifier);",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.___(disclose(nul));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "insert" }
       ]

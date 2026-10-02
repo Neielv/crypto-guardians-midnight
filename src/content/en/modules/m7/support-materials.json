@@ -78,8 +78,8 @@
     ],
     "codeBlocks": [
       {
-        "title": "Eligibility with Merkle",
-        "code": "export circuit verifyEligibility(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n}"
+        "title": "Documented Merkle membership pattern",
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n}"
       }
     ]
   },
@@ -92,14 +92,14 @@
     "sourceSection": "Step 2",
     "title": "Step 2: Vote encryption and commitment",
     "excerpts": [
-      "Use persistentCommit to encrypt the vote.",
-      "Vote is sealed in a commitment, readable only by authority.",
-      "Use disclose to reveal vote count without revealing who voted for whom."
+        "Use persistentCommit with a private opening to create a persistent vote commitment.",
+        "A commitment hides the vote and binds the sender to an opening; it is not an encryption API.",
+        "The tally and its disclosure are application-level integration concepts, not shown as an unverified Compact API here."
     ],
     "codeBlocks": [
       {
         "title": "Vote commitment",
-        "code": "// Encrypt vote\nconst { commitment, opening } = persistentCommit(vote);\n\n// Later, disclose aggregate\nconst tally = disclose(commitments, aggregate);"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nwitness voteOpening(): Bytes<32>;\n\nexport circuit commitVote(vote: Bytes<32>): Bytes<32> {\n  return persistentCommit(vote, voteOpening());\n}"
       }
     ]
   },
@@ -112,14 +112,14 @@
     "sourceSection": "Step 3",
     "title": "Step 3: Uniqueness with nullifier",
     "excerpts": [
-      "Nullifier prevents double-voting.",
-      "Generate nullifier from secret key + vote event.",
-      "Publish to ledger, verify it's unique with assert."
+      "A round-scoped nullifier prevents replayed double-voting.",
+        "Derive it from a private secret key, round context, and a domain-separating prefix.",
+      "The same secret and round are rejected; a new round is allowed."
     ],
     "codeBlocks": [
       {
         "title": "Nullifier for uniqueness",
-        "code": "export circuit castVote(nullifier: Field) {\n  // Verify unique\n  assert(!usedNullifiers.member(nullifier));\n  \n  // Register\n  usedNullifiers.insert(nullifier);\n}"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}"
       }
     ]
   },
@@ -136,12 +136,7 @@
       "Circuit must be optimized to minimize costs.",
       "This completes the full system."
     ],
-    "codeBlocks": [
-      {
-        "title": "DUST accounting",
-        "code": "import { dust } from '@midnight/coins';\n\n// DUST is deducted from user balance\n// for proof generation\nconst proof = await proofServer.generate(\n  encryptedWitness,\n  { from: user, amount: estimatedDust }\n);"
-      }
-    ]
+    "codeBlocks": []
   },
   {
     "supportMaterialId": "m7-l3-slide-1-support-1",
@@ -167,16 +162,16 @@
     "sourceChapter": "Final Scenario",
     "sourceSection": "Circuit",
     "title": "The complete circuit",
-    "excerpts": [
-      "Verify Merkle proof for eligibility.",
-      "Verify vote commitment is valid.",
-      "Verify nullifier is unique.",
-      "Assert all conditions are met."
-    ],
+      "excerpts": [
+        "Verify Merkle membership against the authorized root.",
+        "Derive a persistent nullifier from a private secret key and round context.",
+        "Check and insert the nullifier in a ledger Set.",
+        "Commitment and tally integration remain conceptual in this teaching slice."
+      ],
     "codeBlocks": [
       {
         "title": "Complete voting circuit",
-        "code": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  vote: Field,\n  nullifier: Field,\n  root: Field\n) {\n  // 1. Eligibility\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  \n  // 2. Uniqueness\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n  \n  // 3. Vote commitment valid\n  assert(verifyCommitment(vote, commitment));\n}"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // Commitment and tally integration remains conceptual in this teaching slice.\n}"
       }
     ]
   },
@@ -263,8 +258,8 @@
     ],
     "codeBlocks": [
       {
-        "title": "Optimized circuit",
-        "code": "// Before: 2000 constraints\nconst h1 = hash(a);\nconst h2 = hash(b);\n\n// After: 800 constraints (reuse)\nconst shared = hash(a, b);"
+        "title": "Optimization boundary",
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // Circuit design should minimize unnecessary work and DUST.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}"
       }
     ]
   },

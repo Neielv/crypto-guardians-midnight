@@ -78,8 +78,8 @@
     ],
     "codeBlocks": [
       {
-        "title": "Elegibilidad con Merkle",
-        "code": "export circuit verifyEligibility(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  root: Field\n) {\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n}"
+        "title": "Patrón documentado de membresía Merkle",
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n}"
       }
     ]
   },
@@ -92,14 +92,14 @@
     "sourceSection": "Paso 2",
     "title": "Paso 2: Encriptación del voto y commitment",
     "excerpts": [
-      "Usa persistentCommit para encriptar el voto.",
-      "El voto se sella en un commitment, legible solo por la autoridad.",
-      "Usa disclose para revelar conteo sin revelar quién votó por quién."
+        "Usa persistentCommit con una apertura privada para crear un commitment persistente del voto.",
+        "Un commitment oculta el voto y vincula a quien lo emite con una apertura; no es una API de encriptación.",
+        "El conteo y su divulgación son conceptos de integración de la aplicación, no una API de Compact no verificada aquí."
     ],
     "codeBlocks": [
       {
         "title": "Commitment de voto",
-        "code": "// Encriptar voto\nconst { commitment, opening } = persistentCommit(vote);\n\n// Después, disclose agregado\nconst tally = disclose(commitments, aggregate);"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nwitness voteOpening(): Bytes<32>;\n\nexport circuit commitVote(vote: Bytes<32>): Bytes<32> {\n  return persistentCommit(vote, voteOpening());\n}"
       }
     ]
   },
@@ -112,14 +112,14 @@
     "sourceSection": "Paso 3",
     "title": "Paso 3: Unicidad con nullifier",
     "excerpts": [
-      "El nullifier previene el doble voto.",
-      "Genera nullifier desde clave secreta + evento de voto.",
-      "Publícalo en ledger, verifica que sea único con assert."
+      "Un nullifier delimitado por ronda previene el replay y el doble voto.",
+        "Derívalo desde una clave secreta privada, el contexto de ronda y un prefijo de separación de dominio.",
+      "La misma clave y ronda se rechazan; una ronda nueva se permite."
     ],
     "codeBlocks": [
       {
         "title": "Nullifier para unicidad",
-        "code": "export circuit castVote(nullifier: Field) {\n  // Verificar único\n  assert(!usedNullifiers.member(nullifier));\n  \n  // Registrar\n  usedNullifiers.insert(nullifier);\n}"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}"
       }
     ]
   },
@@ -136,12 +136,7 @@
       "El circuito debe estar optimizado para minimizar costos.",
       "Esto completa el sistema completo."
     ],
-    "codeBlocks": [
-      {
-        "title": "Contabilidad de DUST",
-        "code": "import { dust } from '@midnight/coins';\n\n// DUST se descuenta del balance del usuario\n// para generación de pruebas\nconst proof = await proofServer.generate(\n  encryptedWitness,\n  { from: user, amount: estimatedDust }\n);"
-      }
-    ]
+    "codeBlocks": []
   },
   {
     "supportMaterialId": "m7-l3-slide-1-support-1",
@@ -167,16 +162,16 @@
     "sourceChapter": "Escenario Final",
     "sourceSection": "Circuito",
     "title": "El circuito completo",
-    "excerpts": [
-      "Verifica prueba Merkle para elegibilidad.",
-      "Verifica que el commitment del voto es válido.",
-      "Verifica que el nullifier es único.",
-      "Assert que todas las condiciones se cumplen."
-    ],
+      "excerpts": [
+        "Verifica la membresía en Merkle contra la raíz autorizada.",
+        "Deriva un nullifier persistente desde una clave secreta privada y el contexto de ronda.",
+        "Comprueba e inserta el nullifier en un Set del ledger.",
+        "La integración del commitment y el conteo queda conceptual en este fragmento didáctico."
+      ],
     "codeBlocks": [
       {
         "title": "Circuito de votación completo",
-        "code": "export circuit castVote(\n  secretKey: witness<Field>,\n  merkleProof: [Field; depth],\n  vote: Field,\n  nullifier: Field,\n  root: Field\n) {\n  // 1. Elegibilidad\n  const leaf = hash(secretKey);\n  assert(verifyMerkle(leaf, merkleProof, root));\n  \n  // 2. Unicidad\n  assert(!usedNullifiers.member(nullifier));\n  usedNullifiers.insert(nullifier);\n  \n  // 3. Commitment de voto válido\n  assert(verifyCommitment(vote, commitment));\n}"
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // La integración de commitment y conteo queda conceptual en este fragmento didáctico.\n}"
       }
     ]
   },
@@ -263,8 +258,8 @@
     ],
     "codeBlocks": [
       {
-        "title": "Circuito optimizado",
-        "code": "// Antes: 2000 restricciones\nconst h1 = hash(a);\nconst h2 = hash(b);\n\n// Después: 800 restricciones (reutilizar)\nconst shared = hash(a, b);"
+        "title": "Límite de la optimización",
+        "code": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // El diseño del circuito debe evitar trabajo innecesario y DUST.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}"
       }
     ]
   },
