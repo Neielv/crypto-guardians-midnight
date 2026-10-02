@@ -68,7 +68,10 @@
     "title": "Settings",
     "description": "Choose the interface language and then return to your mission dashboard.",
     "languageTitle": "Language",
-    "currentLanguage": "Current language: {{locale}}"
+    "currentLanguage": "Current language: {{locale}}",
+    "validationTitle": "Validation mode",
+    "validationModes": { "local": "Local validation", "backend": "Backend validation" },
+    "validationStatus": { "local": "Active: local validation/simulation.", "backend": "Active: backend validation. If no adapter is available, validation is unavailable." }
   },
   "shell": {
     "demoLabel": "Midnight demo",
@@ -115,6 +118,9 @@
     "touchHint": "On touch screens: tap an item, then tap its destination zone.",
     "interactiveStep": "Interactive step",
     "submit": "Submit",
+    "validate": "Validate",
+    "validationUnavailable": "Backend validation is unavailable because no API adapter is configured. No local fallback was used.",
+    "validationErrors": { "ledgerParentheses": "`export ledger` does not use parentheses. Use `export ledger name: Type;`. Parentheses are used in `witness name(): Type;`." },
     "success": "Success",
     "tryAgain": "Try again",
     "codeAssembly": {

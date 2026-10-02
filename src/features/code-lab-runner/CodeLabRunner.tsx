@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { CodeLabDefinition } from './code-lab.types'
 import { ChallengeShell } from '@/components/game/ChallengeShell'
 import { Button } from '@/components/ui/Button'
 import { ChallengeFeedback } from '@/components/game/ChallengeFeedback'
 import { CodeEditor } from './CodeEditor'
+import { useAppStore } from '@/app/store/app-store'
+import { useTranslation } from 'react-i18next'
+import { createValidationAdapter } from './validation-adapter'
 
 type Props = {
   codeLab: CodeLabDefinition
@@ -18,27 +21,40 @@ export function CodeLabRunner({ codeLab, onSuccess }: Props) {
 }
 
 function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLabDefinition, { type: 'fill_in_the_blank' }>; onSuccess: (exposureDelta: number) => void }) {
-  const [sourceCode, setSourceCode] = useState(codeLab.payload.template)
+  const { sourceCode, setSourceCode, isReady } = useWorkspaceSource(codeLab, codeLab.payload.template)
   const [result, setResult] = useState<'success' | 'failure' | null>(null)
-  const expected = codeLab.payload.blanks[0]?.answer ?? ''
-  const expectedSource = codeLab.payload.template.replace('___', expected)
+  const [unavailable, setUnavailable] = useState(false)
+  const [isValidating, setIsValidating] = useState(false)
+  const recordWorkspaceValidation = useAppStore((state) => state.recordWorkspaceValidation)
+  const validationMode = useAppStore((state) => state.validationMode)
+  const { t } = useTranslation('common')
 
-  const submit = () => {
-    if (sourceCode.trim() === expectedSource.trim()) {
-      setResult('success')
-      onSuccess(codeLab.effects?.onSuccess?.increaseExposure ?? 0)
+  const submit = async () => {
+    setIsValidating(true)
+    setUnavailable(false)
+    const validation = await createValidationAdapter(validationMode).validate({ codeLab, sourceCode })
+    setIsValidating(false)
+    if (validation.status === 'unavailable') {
+      setResult(null)
+      setUnavailable(true)
       return
     }
-    setResult('failure')
+    const snapshotCreated = codeLab.workspace
+      ? recordWorkspaceValidation({ status: validation.status, codeLabId: codeLab.codeLabId }, validation.status === 'success' && codeLab.workspace.snapshotOnSuccess, sourceCode, codeLab.workspace)
+      : true
+    setResult(snapshotCreated ? validation.status : 'failure')
+    if (validation.status === 'success' && snapshotCreated) onSuccess(codeLab.effects?.onSuccess?.increaseExposure ?? 0)
   }
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
-      <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} minHeight={220} />
+      <ValidationStatus mode={validationMode} />
+      {isReady ? <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} minHeight={220} /> : <EditorLoadingPlaceholder />}
       <div className="code-lab-runner__actions">
-        <Button onClick={submit} disabled={!sourceCode.trim()}>Validate</Button>
+        <Button onClick={() => void submit()} disabled={!sourceCode.trim() || isValidating}>{t('challenge.validate')}</Button>
         <ChallengeFeedback result={result} />
       </div>
+      {unavailable ? <p style={{ color: '#fca5a5', lineHeight: 1.6 }}>{t('challenge.validationUnavailable')}</p> : null}
     </ChallengeShell>
   )
 }
@@ -59,23 +75,31 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
       }),
     ) as Record<string, 'ledger' | 'witness'>
 
-  const [sourceCode, setSourceCode] = useState(buildCode(initialValues))
+  const { sourceCode, setSourceCode, isReady } = useWorkspaceSource(codeLab, buildCode(initialValues))
   const [result, setResult] = useState<'success' | 'failure' | null>(null)
+  const [unavailable, setUnavailable] = useState(false)
+  const [isValidating, setIsValidating] = useState(false)
+  const recordWorkspaceValidation = useAppStore((state) => state.recordWorkspaceValidation)
+  const validationMode = useAppStore((state) => state.validationMode)
+  const { t } = useTranslation('common')
   const values = parseCode(sourceCode)
   const hasLedgerParenthesesError = codeLab.payload.fields.some((field) => sourceCode.match(new RegExp(`export\\s+ledger\\s+${field.id}\\s*\\(\\)\\s*:\\s*${field.dataType.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*;`, 'i')))
 
-  const submit = () => {
-    if (hasLedgerParenthesesError) {
-      setResult('failure')
+  const submit = async () => {
+    setIsValidating(true)
+    setUnavailable(false)
+    const validation = await createValidationAdapter(validationMode).validate({ codeLab, sourceCode })
+    setIsValidating(false)
+    if (validation.status === 'unavailable') {
+      setResult(null)
+      setUnavailable(true)
       return
     }
-    const ok = codeLab.payload.fields.every((field) => values[field.id] === field.expectedScope)
-    if (ok) {
-      setResult('success')
-      onSuccess(codeLab.effects?.onSuccess?.increaseExposure ?? 0)
-      return
-    }
-    setResult('failure')
+    const snapshotCreated = codeLab.workspace
+      ? recordWorkspaceValidation({ status: validation.status, codeLabId: codeLab.codeLabId }, validation.status === 'success' && codeLab.workspace.snapshotOnSuccess, sourceCode, codeLab.workspace)
+      : true
+    setResult(snapshotCreated ? validation.status : 'failure')
+    if (validation.status === 'success' && snapshotCreated) onSuccess(codeLab.effects?.onSuccess?.increaseExposure ?? 0)
   }
 
   const toggleField = (fieldId: string) => {
@@ -90,9 +114,10 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
+      <ValidationStatus mode={validationMode} />
       <div className="code-lab-runner__layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(260px, 0.9fr)', gap: 16, alignItems: 'start' }}>
         <div className="code-lab-runner__primary">
-          <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} />
+          {isReady ? <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} /> : <EditorLoadingPlaceholder />}
         </div>
         <div className="code-lab-runner__secondary" style={{ display: 'grid', gap: 12 }}>
           <div style={{ color: '#a1a1aa', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Ledger / Witness</div>
@@ -117,14 +142,44 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
         </div>
       </div>
       <div className="code-lab-runner__actions">
-        <Button onClick={submit}>Validate</Button>
+        <Button onClick={() => void submit()} disabled={isValidating}>{t('challenge.validate')}</Button>
         <ChallengeFeedback result={result} />
       </div>
-      {hasLedgerParenthesesError ? (
+      {unavailable ? <p style={{ color: '#fca5a5', lineHeight: 1.6 }}>{t('challenge.validationUnavailable')}</p> : null}
+      {hasLedgerParenthesesError && validationMode === 'local' ? (
         <p className="code-lab-runner__validation-error" style={{ marginTop: 12, color: '#fca5a5', lineHeight: 1.6 }}>
-          `export ledger` no lleva paréntesis. Usa `export ledger nombre: Tipo;`. Los paréntesis se usan en `witness nombre(): Tipo;`.
+          {t('challenge.validationErrors.ledgerParentheses')}
         </p>
       ) : null}
     </ChallengeShell>
   )
+}
+
+function ValidationStatus({ mode }: { mode: 'local' | 'backend' }) {
+  const { t } = useTranslation('common')
+  return <p style={{ margin: '0 0 12px', color: '#a1a1aa', fontSize: 13 }}>{t(`settings.validationStatus.${mode}`)}</p>
+}
+
+function EditorLoadingPlaceholder() {
+  return <div className="code-lab-runner__editor-loading" role="status" aria-live="polite" aria-busy="true">Loading editor…</div>
+}
+
+function useWorkspaceSource(codeLab: CodeLabDefinition, template: string): { sourceCode: string; setSourceCode: (source: string) => void; isReady: boolean } {
+  const initializeWorkspace = useAppStore((state) => state.initializeWorkspace)
+  const updateWorkspaceDraft = useAppStore((state) => state.updateWorkspaceDraft)
+  const [sourceCode, setSourceCode] = useState(template)
+  const workspaceKey = codeLab.workspace ? `${codeLab.workspace.workspaceId}:${codeLab.codeLabId}` : 'legacy'
+  const [initializedKey, setInitializedKey] = useState(codeLab.workspace ? null : 'legacy')
+
+  useEffect(() => {
+    if (!codeLab.workspace) return
+    setSourceCode(initializeWorkspace(codeLab.workspace, template, codeLab.codeLabId))
+    setInitializedKey(workspaceKey)
+  }, [codeLab, initializeWorkspace, template])
+
+  useEffect(() => {
+    if (codeLab.workspace && initializedKey === workspaceKey) updateWorkspaceDraft(sourceCode, codeLab.codeLabId)
+  }, [codeLab.codeLabId, codeLab.workspace, initializedKey, sourceCode, updateWorkspaceDraft, workspaceKey])
+
+  return { sourceCode, setSourceCode, isReady: initializedKey === workspaceKey }
 }

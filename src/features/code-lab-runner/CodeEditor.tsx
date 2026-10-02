@@ -1,6 +1,7 @@
 import Editor, { loader } from '@monaco-editor/react'
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+import { useEffect, useRef } from 'react'
 import { registerCompactLanguage } from './compact-language'
 
 loader.config({ monaco })
@@ -23,6 +24,35 @@ type CodeEditorProps = {
 }
 
 export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeEditorProps) {
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null)
+  const modelChangeListenerRef = useRef<monaco.IDisposable | null>(null)
+  const isSynchronizingRef = useRef(false)
+  const isMountedRef = useRef(false)
+  const pendingValueRef = useRef(value)
+  const onChangeRef = useRef(onChange)
+
+  pendingValueRef.current = value
+  onChangeRef.current = onChange
+
+  const synchronizeModel = (nextValue: string) => {
+    const model = editorRef.current?.getModel()
+    if (!model || model.getValue() === nextValue) return
+
+    isSynchronizingRef.current = true
+    pendingValueRef.current = nextValue
+    model.setValue(nextValue)
+    isSynchronizingRef.current = false
+  }
+
+  useEffect(() => {
+    pendingValueRef.current = value
+    synchronizeModel(value)
+  }, [value])
+
+  useEffect(() => () => {
+    modelChangeListenerRef.current?.dispose()
+  }, [])
+
   return (
     <div className="code-lab-runner__editor">
       <div className="code-lab-runner__editor-toolbar">
@@ -41,8 +71,42 @@ export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeE
            path={`code-lab/${modelKey}.compact`}
            language="compact"
            theme="compact-dark"
-          value={value}
-          onChange={(nextValue) => onChange(nextValue ?? '')}
+           value={value}
+            onChange={(nextValue, event) => {
+              const pendingValue = pendingValueRef.current
+
+              // Monaco can report an undefined value while a model is being
+              // attached. Never turn a restored draft into an empty draft.
+              if (nextValue === undefined) {
+                if (pendingValue !== '') synchronizeModel(pendingValue)
+                return
+              }
+
+              // setValue and model attachment can emit a flush event before
+              // React has delivered the restored value to the editor.
+              if (
+                !isSynchronizingRef.current &&
+                nextValue === '' &&
+                pendingValue !== '' &&
+                (!isMountedRef.current || event.isFlush)
+              ) {
+                synchronizeModel(pendingValue)
+                return
+              }
+
+              if (isSynchronizingRef.current) return
+              pendingValueRef.current = nextValue
+              onChangeRef.current(nextValue)
+            }}
+           onMount={(editor) => {
+              editorRef.current = editor
+              isMountedRef.current = true
+              modelChangeListenerRef.current?.dispose()
+              modelChangeListenerRef.current = editor.onDidChangeModel(() => {
+                synchronizeModel(pendingValueRef.current)
+              })
+              synchronizeModel(pendingValueRef.current)
+            }}
           loading={<div className="code-lab-runner__editor-loading">Loading editor…</div>}
           options={{
             ariaLabel: 'Compact code editor',

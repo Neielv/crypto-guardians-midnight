@@ -4,25 +4,35 @@ import type { LearningContent } from '@/domains/learning/learning.model'
 import type { LessonId, Locale, ModuleId } from '@/domains/learning/learning.types'
 import type { ProgressState } from '@/domains/progression/progression.model'
 import type { ModuleRuntimeState, ModuleRuntimeView } from '@/features/module-player/module-player.types'
+import type { CodeLabWorkspaceMetadata } from '@/features/code-lab-runner/code-lab.types'
+import type { WorkspaceState, WorkspaceValidationResult } from '@/domains/workspace/workspace.model'
+import type { ValidationMode } from '@/features/code-lab-runner/validation-adapter'
 
 export type AppState = {
   locale: Locale
+  validationMode: ValidationMode
   agent: AgentProfile | null
   content: LearningContent | null
   progress: ProgressState
   exposure: ExposureState
   moduleRuntime: ModuleRuntimeState | null
+  workspace: WorkspaceState | null
 }
 
 export type AppActions = {
   bootstrapContent: (content: LearningContent) => void
   bootstrapProgress: () => void
   setLocale: (locale: Locale) => void
+  setValidationMode: (mode: ValidationMode) => void
   createAgent: (witness: AgentWitness) => void
   clearAgent: () => void
   completeBriefing: () => void
   startModule: (moduleId: ModuleId) => void
   setModuleRuntime: (runtime: ModuleRuntimeState | null) => void
+  initializeWorkspace: (metadata: CodeLabWorkspaceMetadata, template: string, codeLabId: string) => string
+  updateWorkspaceDraft: (source: string, codeLabId: string) => void
+  recordWorkspaceValidation: (result: WorkspaceValidationResult, snapshotOnSuccess: boolean, source?: string, metadata?: CodeLabWorkspaceMetadata) => boolean
+  clearWorkspace: () => void
   openLesson: (moduleId: ModuleId, lessonId: LessonId) => void
   goToStep: (stepIndex: number) => void
   goToSlide: (slideIndex: number) => void

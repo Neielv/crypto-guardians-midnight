@@ -65,7 +65,10 @@
     "title": "Configuración",
     "description": "Elige el idioma de la interfaz y luego vuelve a tu panel de misión.",
     "languageTitle": "Idioma",
-    "currentLanguage": "Idioma actual: {{locale}}"
+    "currentLanguage": "Idioma actual: {{locale}}",
+    "validationTitle": "Modo de validación",
+    "validationModes": { "local": "Validación local", "backend": "Validación backend" },
+    "validationStatus": { "local": "Activo: validación/simulación local.", "backend": "Activo: validación backend. Si no hay un adaptador disponible, la validación no estará disponible." }
   },
   "shell": {
     "demoLabel": "Demo Midnight",
@@ -112,6 +115,9 @@
     "touchHint": "En pantallas táctiles: toca un dato y luego su zona de destino.",
     "interactiveStep": "Paso interactivo",
     "submit": "Enviar",
+    "validate": "Validar",
+    "validationUnavailable": "La validación backend no está disponible porque no hay un adaptador API configurado. No se usó una alternativa local.",
+    "validationErrors": { "ledgerParentheses": "`export ledger` no lleva paréntesis. Usa `export ledger nombre: Tipo;`. Los paréntesis se usan en `witness nombre(): Tipo;`." },
     "success": "Correcto",
     "tryAgain": "Intentar de nuevo",
     "codeAssembly": {

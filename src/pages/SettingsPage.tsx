@@ -10,6 +10,8 @@ export default function SettingsPage() {
   const { t } = useTranslation('common')
   const locale = useAppStore((state) => state.locale)
   const setLocale = useAppStore((state) => state.setLocale)
+  const validationMode = useAppStore((state) => state.validationMode)
+  const setValidationMode = useAppStore((state) => state.setValidationMode)
   const isAgent = useAppStore((state) => state.agent !== null)
 
   return (
@@ -36,6 +38,12 @@ export default function SettingsPage() {
           <div className="settings-page__language-actions" style={{ display: 'flex', gap: 8, marginTop: 16 }}>
             <Button variant={locale === 'es' ? 'primary' : 'secondary'} onClick={() => setLocale('es')}>Español</Button>
             <Button variant={locale === 'en' ? 'primary' : 'secondary'} onClick={() => setLocale('en')}>English</Button>
+          </div>
+          <h2 style={{ marginTop: 28 }}>{t('settings.validationTitle')}</h2>
+          <p style={{ color: '#d4d4d8' }}>{t(`settings.validationStatus.${validationMode}`)}</p>
+          <div className="settings-page__validation-actions" style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+            <Button variant={validationMode === 'local' ? 'primary' : 'secondary'} onClick={() => setValidationMode('local')}>{t('settings.validationModes.local')}</Button>
+            <Button variant={validationMode === 'backend' ? 'primary' : 'secondary'} onClick={() => setValidationMode('backend')}>{t('settings.validationModes.backend')}</Button>
           </div>
           <div className="settings-page__navigation-action" style={{ marginTop: 20 }}>
             {isAgent ? (

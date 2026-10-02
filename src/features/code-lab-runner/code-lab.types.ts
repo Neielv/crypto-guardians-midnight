@@ -1,5 +1,13 @@
 import type { LessonId, ModuleId } from '@/domains/learning/learning.types'
 
+export type CodeLabWorkspaceMetadata = {
+  workspaceId: string
+  scaffold: string
+  cumulativeStep: number
+  requiredSnapshotVersion: number
+  snapshotOnSuccess: boolean
+}
+
 export type CodeLabType = 'fill_in_the_blank' | 'fix_the_line' | 'compose_condition' | 'toggle_visibility' | 'code_ordering'
 
 export type CodeLabEffects = {
@@ -35,6 +43,13 @@ export type BaseCodeLabDefinition<TType extends CodeLabType> = {
   hints?: string[]
   maxAttempts?: number
   effects?: CodeLabEffects
+  validation?: {
+    validationMode?: 'exact' | 'partial' | 'flexible'
+    expectedTokens?: string[]
+    acceptableAnswers?: string[]
+    normalizeWhitespace?: boolean
+  }
+  workspace?: CodeLabWorkspaceMetadata
   payload: CodeLabPayloadMap[TType]
 }
 

@@ -352,6 +352,14 @@ const codeLabValidationMetadataSchema = z.object({
   normalizeWhitespace: z.boolean().optional(),
 })
 
+const codeLabWorkspaceMetadataSchema = z.object({
+  workspaceId: nonEmptyStringSchema,
+  scaffold: nonEmptyStringSchema,
+  cumulativeStep: z.number().int().min(1),
+  requiredSnapshotVersion: z.number().int().min(0),
+  snapshotOnSuccess: z.boolean(),
+})
+
 const codeLabBaseSchema = z.object({
   codeLabId: nonEmptyStringSchema,
   moduleId: moduleIdSchema,
@@ -363,6 +371,7 @@ const codeLabBaseSchema = z.object({
   successMessage: nonEmptyStringSchema.optional(),
   failureMessage: nonEmptyStringSchema.optional(),
   validation: codeLabValidationMetadataSchema.optional(),
+  workspace: codeLabWorkspaceMetadataSchema.optional(),
   hints: z.array(nonEmptyStringSchema).optional(),
   maxAttempts: z.number().int().min(1).max(10).optional(),
 })

@@ -4,6 +4,13 @@
     "moduleId": "m2",
     "lessonId": "m2-l1",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\n\n// Continue the cumulative guardian contract here.",
+      "cumulativeStep": 1,
+      "requiredSnapshotVersion": 0,
+      "snapshotOnSuccess": true
+    },
     "title": "Manos a la obra: Registrar el mapa",
     "instructions": "Completa la declaración para que el ledger pueda almacenar un registro de ciudadanos verificables usando un `Map`.",
     "successCriteria": "Completa el hueco con `Map<Bytes<32>, Citizen>`.",
@@ -28,6 +35,13 @@
     "moduleId": "m2",
     "lessonId": "m2-l2",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\n\n// Continue the cumulative guardian contract here.",
+      "cumulativeStep": 2,
+      "requiredSnapshotVersion": 1,
+      "snapshotOnSuccess": true
+    },
     "title": "Manos a la obra: consultar pertenencia",
     "instructions": "Completa la llamada exacta para comprobar si una clave ya está dentro del registro antes de continuar la misión.",
     "successCriteria": "Completa el hueco con `member`.",
@@ -41,7 +55,7 @@
       "normalizeWhitespace": true
     },
     "payload": {
-      "template": "const yaExiste = registry.___(citizenKey);",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.___(citizenKey);",
       "blanks": [
         { "id": "blank-1", "answer": "member" }
       ]
@@ -52,6 +66,13 @@
     "moduleId": "m2",
     "lessonId": "m2-l3",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\n\n// Continue the cumulative guardian contract here.",
+      "cumulativeStep": 3,
+      "requiredSnapshotVersion": 2,
+      "snapshotOnSuccess": true
+    },
     "title": "Manos a la obra: acceder al campo",
     "instructions": "Completa la expresión exacta para leer el campo `address` de un registro ciudadano ya creado.",
     "successCriteria": "Completa el hueco con `address`.",
@@ -65,7 +86,7 @@
       "normalizeWhitespace": true
     },
     "payload": {
-      "template": "const addr = citizenRecord.___;",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.___;",
       "blanks": [
         { "id": "blank-1", "answer": "address" }
       ]
@@ -76,6 +97,13 @@
     "moduleId": "m2",
     "lessonId": "m2-l4",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\n\n// Continue the cumulative guardian contract here.",
+      "cumulativeStep": 4,
+      "requiredSnapshotVersion": 3,
+      "snapshotOnSuccess": true
+    },
     "title": "Manos a la obra: retorno correcto del circuit",
     "instructions": "Completa la firma correcta para un `export circuit` que no devuelve valor. Usa exactamente el tipo de retorno adecuado.",
     "successCriteria": "Completa el hueco con `[]`.",
@@ -89,7 +117,7 @@
       "normalizeWhitespace": true
     },
     "payload": {
-      "template": "export circuit register(): ___ {\n  count.increment(1);\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): ___ {\n  count.increment(1);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "[]" }
       ]

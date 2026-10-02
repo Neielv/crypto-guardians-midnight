@@ -14,6 +14,8 @@ import { migrateLegacyAgent } from '@/domains/agent/agent.model'
 import { STORAGE_KEYS } from '@/lib/constants/storage-keys'
 import type { AppStore } from './app-store.types'
 import type { ProgressState } from '@/domains/progression/progression.model'
+import { appendWorkspaceSnapshot, canCreateWorkspaceSnapshot, createWorkspaceState, selectWorkspaceSource, upgradeWorkspaceState } from '@/domains/workspace/workspace.model'
+import type { WorkspaceValidationResult } from '@/domains/workspace/workspace.model'
 
 const emptyProgress: ProgressState = {
   currentModuleId: null,
@@ -32,11 +34,13 @@ export const useAppStore = create<AppStore>()(
   persist(
     (set, get) => ({
       locale: 'es',
+      validationMode: 'local',
       agent: null,
       content: null,
       progress: { ...emptyProgress },
       exposure: { score: 0, level: 'safe' },
       moduleRuntime: null,
+      workspace: null,
       bootstrapContent: (content) => set({ content }),
       bootstrapProgress: () => {
         const { content, progress } = get()
@@ -44,6 +48,7 @@ export const useAppStore = create<AppStore>()(
         set({ progress: Object.keys(progress.modules).length > 0 ? synchronizeProgressState(content, progress) : createInitialProgressState(content) })
       },
       setLocale: (locale) => set({ locale }),
+      setValidationMode: (validationMode) => set({ validationMode }),
       createAgent: (witness) => set({ agent: { witness, createdAt: new Date().toISOString() } }),
       clearAgent: () => set({ agent: null }),
       completeBriefing: () => set((state) => ({ progress: { ...state.progress, hasCompletedBriefing: true } })),
@@ -52,6 +57,40 @@ export const useAppStore = create<AppStore>()(
         moduleRuntime: { moduleId, currentLessonId: null, currentStepIndex: 0, currentSlideIndex: 0, currentView: 'overview', lastStepResult: null },
       })),
       setModuleRuntime: (moduleRuntime) => set({ moduleRuntime }),
+      initializeWorkspace: (metadata, template, codeLabId) => {
+        const current = upgradeWorkspaceState(get().workspace)
+        if (!current || current.workspaceId !== metadata.workspaceId) {
+          const workspace = createWorkspaceState(metadata, template, codeLabId)
+          set({ workspace: { ...workspace, currentLabId: codeLabId } })
+          return workspace.draft
+        }
+        const migratedDrafts = current.drafts ?? (current.currentLabId ? { [current.currentLabId]: current.draft } : {})
+        const source = selectWorkspaceSource({ ...current, drafts: migratedDrafts }, metadata, template, codeLabId)
+        set({ workspace: { ...current, drafts: migratedDrafts, draft: source, currentSource: source, currentLabId: codeLabId, updatedAt: new Date().toISOString() } })
+        return source
+      },
+      updateWorkspaceDraft: (source, codeLabId) => set((state) => state.workspace ? {
+        workspace: { ...state.workspace, draft: source, drafts: { ...(state.workspace.drafts ?? {}), [codeLabId]: source }, currentLabId: codeLabId, updatedAt: new Date().toISOString() },
+      } : {}),
+      recordWorkspaceValidation: (result: WorkspaceValidationResult, snapshotOnSuccess, source, metadata) => {
+        let snapshotCreated = true
+        set((state) => {
+          if (!state.workspace) return {}
+          const current = upgradeWorkspaceState(state.workspace)!
+          const currentSource = source ?? current.currentSource
+          const draftWorkspace = { ...current, draft: currentSource }
+          if (snapshotOnSuccess && result.status === 'success') {
+            if (!metadata || !canCreateWorkspaceSnapshot(draftWorkspace, metadata, result.codeLabId)) {
+              snapshotCreated = false
+              return { workspace: { ...draftWorkspace, validation: { ...result, status: 'failure', message: 'Workspace snapshot prerequisite is not satisfied.' }, updatedAt: new Date().toISOString() } }
+            }
+            return { workspace: appendWorkspaceSnapshot(draftWorkspace, { codeLabId: result.codeLabId, missionId: result.codeLabId, cumulativeStep: metadata.cumulativeStep, source: currentSource, validation: result }) }
+          }
+          return { workspace: { ...draftWorkspace, validation: result, updatedAt: new Date().toISOString() } }
+        })
+        return snapshotCreated
+      },
+      clearWorkspace: () => set({ workspace: null }),
       openLesson: (moduleId, lessonId) => set((state) => ({
         progress: { ...state.progress, currentModuleId: moduleId, currentLessonId: lessonId },
         moduleRuntime: { moduleId, currentLessonId: lessonId, currentStepIndex: 0, currentSlideIndex: 0, currentView: 'lesson_step', lastStepResult: null },
@@ -87,11 +126,13 @@ export const useAppStore = create<AppStore>()(
       }),
       resetProgress: () => set((state) => ({
         locale: state.locale,
+        validationMode: state.validationMode,
         agent: state.agent,
         content: state.content,
         progress: state.content ? createInitialProgressState(state.content) : { ...emptyProgress },
         exposure: { score: 0, level: 'safe' },
         moduleRuntime: null,
+        workspace: null,
       })),
     }),
     {
@@ -99,12 +140,14 @@ export const useAppStore = create<AppStore>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         locale: state.locale,
+        validationMode: state.validationMode,
         agent: state.agent,
         progress: state.progress,
         exposure: state.exposure,
         moduleRuntime: state.moduleRuntime,
+        workspace: state.workspace,
       }),
-      version: 1,
+      version: 3,
       migrate: (persistedState) => {
         const state = persistedState as Partial<AppStore>
         if (state.agent?.witness && 'nombre' in state.agent.witness) {
@@ -114,9 +157,11 @@ export const useAppStore = create<AppStore>()(
               witness: migrateLegacyAgent(state.agent.witness),
               createdAt: state.agent.createdAt || new Date().toISOString(),
             },
+            workspace: state.workspace ?? null,
+            validationMode: state.validationMode === 'backend' ? 'backend' : 'local',
           } as AppStore
         }
-        return state as AppStore
+        return { ...state, workspace: state.workspace ?? null, validationMode: state.validationMode === 'backend' ? 'backend' : 'local' } as AppStore
       },
     },
   ),
