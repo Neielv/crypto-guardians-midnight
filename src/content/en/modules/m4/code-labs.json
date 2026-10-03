@@ -4,14 +4,20 @@
     "moduleId": "m4",
     "lessonId": "m4-l1",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 9,
+      "requiredSnapshotVersion": 8,
+      "snapshotOnSuccess": true
+    },
     "title": "Hands on: generate a nullifier",
     "instructions": "Complete the documented Compact circuit by calling the secret-key witness; the round scopes the one-time action.",
     "successCriteria": "Fill the blank with secretKey(). Same secret plus same round is rejected; the same secret plus a new round is allowed.",
+    "validation": { "validationMode": "exact", "expectedTokens": ["secretKey()"], "acceptableAnswers": ["secretKey()"], "normalizeWhitespace": true },
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
-      "blanks": [
-        { "id": "blank-1", "answer": "secretKey()" }
-      ]
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
+      "blanks": [{ "id": "blank-1", "answer": "secretKey()" }]
     }
   },
   {
@@ -19,14 +25,20 @@
     "moduleId": "m4",
     "lessonId": "m4-l2",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 10,
+      "requiredSnapshotVersion": 9,
+      "snapshotOnSuccess": true
+    },
     "title": "Hands on: verify uniqueness",
     "instructions": "Complete the Compact membership check in the complete round-scoped circuit.",
     "successCriteria": "Fill the blank with member; the simulation models the Set state locally and is not blockchain execution.",
+    "validation": { "validationMode": "exact", "expectedTokens": ["member"], "acceptableAnswers": ["member"], "normalizeWhitespace": true },
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.___(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
-      "blanks": [
-        { "id": "blank-1", "answer": "member" }
-      ]
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.___(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
+      "blanks": [{ "id": "blank-1", "answer": "member" }]
     }
   },
   {
@@ -34,14 +46,20 @@
     "moduleId": "m4",
     "lessonId": "m4-l3",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 11,
+      "requiredSnapshotVersion": 10,
+      "snapshotOnSuccess": true
+    },
     "title": "Hands on: round-scoped nullifier",
     "instructions": "Complete the round-scoping fragment so the same secret can act once per round.",
     "successCriteria": "Fill the blank with round; same secret and same round is rejected, while a new round is allowed.",
+    "validation": { "validationMode": "exact", "expectedTokens": ["round"], "acceptableAnswers": ["round"], "normalizeWhitespace": true },
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(___: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
-      "blanks": [
-        { "id": "blank-1", "answer": "round" }
-      ]
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(___: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
+      "blanks": [{ "id": "blank-1", "answer": "round" }]
     }
   },
   {
@@ -49,14 +67,20 @@
     "moduleId": "m4",
     "lessonId": "m4-l4",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 12,
+      "requiredSnapshotVersion": 11,
+      "snapshotOnSuccess": true
+    },
     "title": "Hands on: register the nullifier",
     "instructions": "Complete the Compact ledger operation that records the disclosed nullifier after the membership check.",
     "successCriteria": "Fill the blank with insert.",
+    "validation": { "validationMode": "exact", "expectedTokens": ["insert"], "acceptableAnswers": ["insert"], "normalizeWhitespace": true },
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.___(disclose(nul));\n}",
-      "blanks": [
-        { "id": "blank-1", "answer": "insert" }
-      ]
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([\n    pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk\n  ]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.___(disclose(nul));\n}",
+      "blanks": [{ "id": "blank-1", "answer": "insert" }]
     }
   }
 ]
