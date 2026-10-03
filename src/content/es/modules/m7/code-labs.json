@@ -4,11 +4,18 @@
     "moduleId": "m7",
     "lessonId": "m7-l1",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 21,
+      "requiredSnapshotVersion": 20,
+      "snapshotOnSuccess": true
+    },
     "title": "Práctica de código: integrar la votación privada",
     "instructions": "Completa el concepto que falta en el bloque final. Este patrón documentado de Compact reúne un witness privado, membresía en Merkle, un nullifier persistente y un Set.",
     "successCriteria": "Completar el espacio con Merkle.",
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // Las capas de commitment y conteo son conceptuales; este es el patrón de membresía ___.\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit batchVote(candidates: [Field; 10], nullifiers: [Field; 10]) {\n  // One proof for 10 actions\n}\n\n// DUST, commitments, and Merkle verification are established by the previous modules.\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // Las capas de commitment y conteo son conceptuales; este es el patrón de membresía ___.\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -19,11 +26,18 @@
     "moduleId": "m7",
     "lessonId": "m7-l2",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 22,
+      "requiredSnapshotVersion": 21,
+      "snapshotOnSuccess": true
+    },
     "title": "Práctica de código: generar el nullifier",
     "instructions": "Completa la fórmula documentada del nullifier persistente delimitado por ronda usando la clave secreta del witness.",
     "successCriteria": "Completa el espacio con secretKey(); la misma clave y ronda se rechazan, mientras una ronda nueva se permite.",
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\n// DUST, commitments, and Merkle verification are established by the previous modules.\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "secretKey()" }
       ]
@@ -34,11 +48,18 @@
     "moduleId": "m7",
     "lessonId": "m7-l3",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 23,
+      "requiredSnapshotVersion": 22,
+      "snapshotOnSuccess": true
+    },
     "title": "Práctica de código: verificar la elegibilidad",
     "instructions": "Completa la función documentada que se usa para verificar la ruta de membresía en Merkle.",
     "successCriteria": "Completar el espacio con merkleTreePathRoot<10, Bytes<32>>.",
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(___(authPath))));\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\n// DUST, commitments, and Merkle verification are established by the previous modules.\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(___(authPath))));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "merkleTreePathRoot<10, Bytes<32>>" }
       ]
@@ -49,11 +70,18 @@
     "moduleId": "m7",
     "lessonId": "m7-l4",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "cumulativeStep": 24,
+      "requiredSnapshotVersion": 23,
+      "snapshotOnSuccess": true
+    },
     "title": "Práctica de código: optimizar el circuito",
     "instructions": "Completa el recurso que debe minimizarse mientras se conservan las garantías de privacidad.",
     "successCriteria": "Completar el espacio con DUST.",
     "payload": {
-      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // Reduce trabajo innecesario para minimizar ___ sin perder privacidad.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\n// DUST, commitments, and Merkle verification are established by the previous modules.\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // Reduce trabajo innecesario para minimizar ___ sin perder privacidad.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}",
       "blanks": [
         { "id": "blank-1", "answer": "DUST" }
       ]
