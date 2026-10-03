@@ -4,11 +4,24 @@
     "moduleId": "m3",
     "lessonId": "m3-l1",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}",
+      "cumulativeStep": 5,
+      "requiredSnapshotVersion": 4,
+      "snapshotOnSuccess": true
+    },
     "title": "Code Lab: prove without revealing",
     "instructions": "Complete the key sentence from the book: a zero-knowledge proof validates a statement without revealing additional information beyond its ___.",
     "successCriteria": "Complete the blank with `validity`.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["validity"],
+      "acceptableAnswers": ["validity"],
+      "normalizeWhitespace": true
+    },
     "payload": {
-      "template": "...without revealing additional information beyond its ___.",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\n// A zero-knowledge proof validates a statement without revealing additional information beyond its ___",
       "blanks": [
         {
           "id": "blank-1",
@@ -22,11 +35,24 @@
     "moduleId": "m3",
     "lessonId": "m3-l2",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}",
+      "cumulativeStep": 6,
+      "requiredSnapshotVersion": 5,
+      "snapshotOnSuccess": true
+    },
     "title": "Code Lab: exported signature",
     "instructions": "Complete the keyword that allows a circuit to be called from TypeScript according to the book.",
     "successCriteria": "Complete the blank with `export`.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["export"],
+      "acceptableAnswers": ["export"],
+      "normalizeWhitespace": true
+    },
     "payload": {
-      "template": "___ circuit publicAction(): [] {\n  // ...\n}",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\n___ circuit publicAction(): [] {\n  // ...\n}",
       "blanks": [
         {
           "id": "blank-1",
@@ -40,11 +66,24 @@
     "moduleId": "m3",
     "lessonId": "m3-l3",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}",
+      "cumulativeStep": 7,
+      "requiredSnapshotVersion": 6,
+      "snapshotOnSuccess": true
+    },
     "title": "Code Lab: allow disclosure",
     "instructions": "Complete the exact call the book uses to allow a witness value to reach the ledger.",
     "successCriteria": "Complete the blank with `disclose`.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["disclose"],
+      "acceptableAnswers": ["disclose"],
+      "normalizeWhitespace": true
+    },
     "payload": {
-      "template": "balance = ___(getBalance());",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\nbalance = ___(getBalance());",
       "blanks": [
         {
           "id": "blank-1",
@@ -58,11 +97,24 @@
     "moduleId": "m3",
     "lessonId": "m3-l4",
     "type": "fill_in_the_blank",
+    "workspace": {
+      "workspaceId": "guardians-contract-v1",
+      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}",
+      "cumulativeStep": 8,
+      "requiredSnapshotVersion": 7,
+      "snapshotOnSuccess": true
+    },
     "title": "Code Lab: read the alert",
     "instructions": "Complete the core fragment of the compiler error that signals an undeclared witness-value leak.",
     "successCriteria": "Complete the blank with `disclosure`.",
+    "validation": {
+      "validationMode": "exact",
+      "expectedTokens": ["disclosure"],
+      "acceptableAnswers": ["disclosure"],
+      "normalizeWhitespace": true
+    },
     "payload": {
-      "template": "Exception: potential witness-value ___ must be declared but is not:",
+      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\n// Exception: potential witness-value ___ must be declared but is not:",
       "blanks": [
         {
           "id": "blank-1",

@@ -22,11 +22,15 @@ function normalizeWhitespace(value: string): string {
   return value.trim().replace(/\s+/g, ' ')
 }
 
+export function shouldNormalizeFillInTheBlankWhitespace(codeLab: CodeLabDefinition): boolean {
+  return Boolean(codeLab.workspace || codeLab.validation?.normalizeWhitespace)
+}
+
 function validateLocally({ codeLab, sourceCode }: ValidationRequest): ValidationResult {
   if (codeLab.type === 'fill_in_the_blank') {
     const expected = codeLab.payload.blanks[0]?.answer ?? ''
     const expectedSource = codeLab.payload.template.replace('___', expected)
-    const matches = codeLab.validation?.normalizeWhitespace
+    const matches = shouldNormalizeFillInTheBlankWhitespace(codeLab)
       ? normalizeWhitespace(sourceCode) === normalizeWhitespace(expectedSource)
       : sourceCode.trim() === expectedSource.trim()
     return matches ? { status: 'success' } : { status: 'failure' }

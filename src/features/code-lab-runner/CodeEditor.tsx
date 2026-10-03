@@ -34,14 +34,24 @@ export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeE
   pendingValueRef.current = value
   onChangeRef.current = onChange
 
-  const synchronizeModel = (nextValue: string) => {
-    const model = editorRef.current?.getModel()
-    if (!model || model.getValue() === nextValue) return
+  const modelUri = monaco.Uri.parse(`inmemory://code-lab/${encodeURIComponent(modelKey)}.compact`)
 
-    isSynchronizingRef.current = true
-    pendingValueRef.current = nextValue
-    model.setValue(nextValue)
-    isSynchronizingRef.current = false
+  const ensureModel = (editor: monaco.editor.IStandaloneCodeEditor, nextValue: string) => {
+    let model = monaco.editor.getModel(modelUri)
+    if (!model) model = monaco.editor.createModel(nextValue, 'compact', modelUri)
+    if (model.getValue() !== nextValue) {
+      isSynchronizingRef.current = true
+      pendingValueRef.current = nextValue
+      model.setValue(nextValue)
+      isSynchronizingRef.current = false
+    }
+    if (editor.getModel() !== model) editor.setModel(model)
+    return model
+  }
+
+  const synchronizeModel = (nextValue: string) => {
+    if (!editorRef.current) return
+    ensureModel(editorRef.current, nextValue)
   }
 
   useEffect(() => {
@@ -51,6 +61,8 @@ export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeE
 
   useEffect(() => () => {
     modelChangeListenerRef.current?.dispose()
+    editorRef.current = null
+    isMountedRef.current = false
   }, [])
 
   return (
@@ -66,12 +78,12 @@ export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeE
         </span>
       </div>
       <div className="code-lab-runner__monaco" style={{ minHeight }}>
-           <Editor
-            height={`clamp(${minHeight}px, 34vh, 380px)`}
-           path={`code-lab/${modelKey}.compact`}
-           language="compact"
-           theme="compact-dark"
-           value={value}
+            <Editor
+             height={`clamp(${minHeight}px, 34vh, 380px)`}
+            path={modelUri.toString()}
+            language="compact"
+            theme="compact-dark"
+            defaultValue={value}
             onChange={(nextValue, event) => {
               const pendingValue = pendingValueRef.current
 
@@ -98,14 +110,15 @@ export function CodeEditor({ value, onChange, modelKey, minHeight = 240 }: CodeE
               pendingValueRef.current = nextValue
               onChangeRef.current(nextValue)
             }}
-           onMount={(editor) => {
-              editorRef.current = editor
-              isMountedRef.current = true
-              modelChangeListenerRef.current?.dispose()
-              modelChangeListenerRef.current = editor.onDidChangeModel(() => {
-                synchronizeModel(pendingValueRef.current)
-              })
-              synchronizeModel(pendingValueRef.current)
+            onMount={(editor) => {
+               editorRef.current = editor
+               isMountedRef.current = true
+               modelChangeListenerRef.current?.dispose()
+               modelChangeListenerRef.current = editor.onDidChangeModel(() => {
+                 ensureModel(editor, pendingValueRef.current)
+               })
+               ensureModel(editor, pendingValueRef.current)
+               editor.layout()
             }}
           loading={<div className="code-lab-runner__editor-loading">Loading editor…</div>}
           options={{
