@@ -6,16 +6,16 @@
     "type": "fill_in_the_blank",
     "workspace": {
       "workspaceId": "guardians-contract-v1",
-      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "scaffold": "pragma language_version 0.23;\nimport CompactStandardLibrary;",
       "cumulativeStep": 21,
       "requiredSnapshotVersion": 20,
       "snapshotOnSuccess": true
     },
     "title": "Code lab: integrate private voting",
-    "instructions": "Complete the missing concept in the final block. This documented Compact pattern combines a private witness, Merkle membership, a persistent nullifier, and a Set.",
+    "instructions": "Complete the blank in the comment. This contract combines private witness data, Merkle membership, a persistent nullifier, and a Set.",
     "successCriteria": "Complete the blank with Merkle.",
     "payload": {
-      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}\n\nexport circuit batchVote(candidates: [Field; 10], nullifiers: [Field; 10]) {\n  // One proof for 10 actions\n}\n\n// DUST measures the computational cost required to generate ZK proofs.\n// To estimate DUST, count the number of constraints in your circuit.\n// The user sends encrypted witnesses to the proof server.\n\nexport circuit verifyEligibility(leaf: witness<Field>, merkleProof: [Field; depth], root: Field, voteCommitment: Commitment): [] {\n  assert(verifyMerkle(leaf, merkleProof, root));\n  // The circuit verifies the commitment together with the Merkle proof.\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spent: Set<Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(pk: Bytes<32>, round: Uint<64>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n  // The commitment and tally layers are conceptual; this is the ___ membership pattern.\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nexport ledger spentNullifiers: Set<Bytes<32>>;\nexport ledger voteCommitments: MerkleTree<10, Bytes<32>>;\n\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit castVote(pk: Bytes<32>, round: Uint<64>, vote: Bytes<32>, randomness: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk, \"Authorization path does not match public key\");\n  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))), \"Authorization root is invalid\");\n  const nul = nullifier(round, secretKey());\n  assert(!spentNullifiers.member(disclose(nul)), \"Already voted this round\");\n  voteCommitments.insert(persistentCommit<Bytes<32>>(vote, randomness));\n  spentNullifiers.insert(disclose(nul));\n}\n\n// The eligibility proof uses ___ membership without revealing the matched leaf.\nexport circuit verifyVoteOpening(commitment: Bytes<32>, vote: Bytes<32>, randomness: Bytes<32>): [] {\n  assert(persistentCommit<Bytes<32>>(vote, randomness) == commitment, \"Invalid vote opening\");\n}",
       "blanks": [
         { "id": "blank-1", "answer": "Merkle" }
       ]
@@ -28,16 +28,16 @@
     "type": "fill_in_the_blank",
     "workspace": {
       "workspaceId": "guardians-contract-v1",
-      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "scaffold": "pragma language_version 0.23;\nimport CompactStandardLibrary;",
       "cumulativeStep": 22,
       "requiredSnapshotVersion": 21,
       "snapshotOnSuccess": true
     },
     "title": "Code lab: generate the nullifier",
-    "instructions": "Complete the documented round-scoped persistent nullifier formula using the witness secret key.",
+    "instructions": "Complete the documented round-scoped persistent nullifier formula using the secret-key witness.",
     "successCriteria": "Complete the blank with secretKey(); the same secret and round are rejected, while a new round is allowed.",
     "payload": {
-      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Field as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, secretKey());\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}\n\nexport circuit batchVote(candidates: [Field; 10], nullifiers: [Field; 10]) {\n  // One proof for 10 actions\n}\n\n// DUST measures the computational cost required to generate ZK proofs.\n// To estimate DUST, count the number of constraints in your circuit.\n// The user sends encrypted witnesses to the proof server.\n\nexport circuit actWithSecret(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spent.member(disclose(nul)), \"Already acted this round\");\n  spent.insert(disclose(nul));\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spentNullifiers: Set<Bytes<32>>;\nwitness secretKey(): Bytes<32>;\n\ncircuit nullifier(round: Uint<64>, sk: Bytes<32>): Bytes<32> {\n  const roundBytes = round as Bytes<32>;\n  return persistentHash<Vector<3, Bytes<32>>>([pad(32, \"cryptoguardians:nullifier\"), roundBytes, sk]);\n}\n\nexport circuit act(round: Uint<64>): [] {\n  const nul = nullifier(round, ___);\n  assert(!spentNullifiers.member(disclose(nul)), \"Already acted this round\");\n  spentNullifiers.insert(disclose(nul));\n}",
       "blanks": [
         { "id": "blank-1", "answer": "secretKey()" }
       ]
@@ -50,7 +50,7 @@
     "type": "fill_in_the_blank",
     "workspace": {
       "workspaceId": "guardians-contract-v1",
-      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "scaffold": "pragma language_version 0.23;\nimport CompactStandardLibrary;",
       "cumulativeStep": 23,
       "requiredSnapshotVersion": 22,
       "snapshotOnSuccess": true
@@ -59,7 +59,7 @@
     "instructions": "Complete the documented root function used to verify the Merkle membership path.",
     "successCriteria": "Complete the blank with merkleTreePathRoot<10, Bytes<32>>.",
     "payload": {
-      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\n// Previous modules established the nullifier, DUST, commitment, and Merkle flow.\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk);\n  assert(authorizedCommitments.checkRoot(disclose(___(authPath))));\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger authorizedCommitments: HistoricMerkleTree<10, Bytes<32>>;\nwitness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;\n\nexport circuit verifyEligibility(pk: Bytes<32>): [] {\n  const authPath = findAuthPath(pk);\n  assert(authPath.leaf == pk, \"Path does not match the public key\");\n  assert(authorizedCommitments.checkRoot(disclose(___(authPath))), \"Eligibility root is invalid\");\n}",
       "blanks": [
         { "id": "blank-1", "answer": "merkleTreePathRoot<10, Bytes<32>>" }
       ]
@@ -72,7 +72,7 @@
     "type": "fill_in_the_blank",
     "workspace": {
       "workspaceId": "guardians-contract-v1",
-      "scaffold": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);",
+      "scaffold": "pragma language_version 0.23;\nimport CompactStandardLibrary;",
       "cumulativeStep": 24,
       "requiredSnapshotVersion": 23,
       "snapshotOnSuccess": true
@@ -81,7 +81,7 @@
     "instructions": "Complete the resource that must be minimized while preserving privacy guarantees.",
     "successCriteria": "Complete the blank with DUST.",
     "payload": {
-      "template": "export ledger registry: Map<Bytes<32>, Citizen>;\nconst alreadyExists = registry.member(citizenKey);\nconst addr = citizenRecord.address;\nexport circuit register(): [] {\n  count.increment(1);\n}\n\npragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger spent: Set<Bytes<32>>;\n// Previous modules established the nullifier, DUST, commitment, and Merkle flow.\n\nexport circuit optimizedVote(vote: Bytes<32>): Bytes<32> {\n  // Reduce unnecessary work to minimize ___ without losing privacy.\n  return persistentHash<Vector<2, Bytes<32>>>([pad(32, \"vote:commitment\"), vote]);\n}",
+      "template": "pragma language_version 0.23;\nimport CompactStandardLibrary;\n\nexport ledger voteCommitments: MerkleTree<10, Bytes<32>>;\n\nexport circuit optimizedVote(vote: Bytes<32>, randomness: Bytes<32>): Bytes<32> {\n  // Reduce unnecessary work to minimize ___ without losing privacy.\n  const commitment = persistentCommit<Bytes<32>>(vote, randomness);\n  voteCommitments.insert(commitment);\n  return commitment;\n}",
       "blanks": [
         { "id": "blank-1", "answer": "DUST" }
       ]
