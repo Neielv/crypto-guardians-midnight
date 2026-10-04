@@ -6,11 +6,9 @@ import type { ProgressState } from '@/domains/progression/progression.model'
 import type { ModuleRuntimeState, ModuleRuntimeView } from '@/features/module-player/module-player.types'
 import type { CodeLabWorkspaceMetadata } from '@/features/code-lab-runner/code-lab.types'
 import type { WorkspaceState, WorkspaceValidationResult } from '@/domains/workspace/workspace.model'
-import type { ValidationMode } from '@/features/code-lab-runner/validation-adapter'
 
 export type AppState = {
   locale: Locale
-  validationMode: ValidationMode
   agent: AgentProfile | null
   content: LearningContent | null
   progress: ProgressState
@@ -23,7 +21,6 @@ export type AppActions = {
   bootstrapContent: (content: LearningContent) => void
   bootstrapProgress: () => void
   setLocale: (locale: Locale) => void
-  setValidationMode: (mode: ValidationMode) => void
   createAgent: (witness: AgentWitness) => void
   clearAgent: () => void
   completeBriefing: () => void

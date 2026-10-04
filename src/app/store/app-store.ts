@@ -34,7 +34,6 @@ export const useAppStore = create<AppStore>()(
   persist(
     (set, get) => ({
       locale: 'es',
-      validationMode: 'local',
       agent: null,
       content: null,
       progress: { ...emptyProgress },
@@ -48,7 +47,6 @@ export const useAppStore = create<AppStore>()(
         set({ progress: Object.keys(progress.modules).length > 0 ? synchronizeProgressState(content, progress) : createInitialProgressState(content) })
       },
       setLocale: (locale) => set({ locale }),
-      setValidationMode: (validationMode) => set({ validationMode }),
       createAgent: (witness) => set({ agent: { witness, createdAt: new Date().toISOString() } }),
       clearAgent: () => set({ agent: null }),
       completeBriefing: () => set((state) => ({ progress: { ...state.progress, hasCompletedBriefing: true } })),
@@ -126,7 +124,6 @@ export const useAppStore = create<AppStore>()(
       }),
       resetProgress: () => set((state) => ({
         locale: state.locale,
-        validationMode: state.validationMode,
         agent: state.agent,
         content: state.content,
         progress: state.content ? createInitialProgressState(state.content) : { ...emptyProgress },
@@ -140,16 +137,16 @@ export const useAppStore = create<AppStore>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         locale: state.locale,
-        validationMode: state.validationMode,
         agent: state.agent,
         progress: state.progress,
         exposure: state.exposure,
         moduleRuntime: state.moduleRuntime,
         workspace: state.workspace,
       }),
-      version: 3,
+      version: 4,
       migrate: (persistedState) => {
-        const state = persistedState as Partial<AppStore>
+        const state = { ...(persistedState as Partial<AppStore> & { validationMode?: unknown }) }
+        delete state.validationMode
         if (state.agent?.witness && 'nombre' in state.agent.witness) {
           return {
             ...state,
@@ -158,10 +155,9 @@ export const useAppStore = create<AppStore>()(
               createdAt: state.agent.createdAt || new Date().toISOString(),
             },
             workspace: state.workspace ?? null,
-            validationMode: state.validationMode === 'backend' ? 'backend' : 'local',
           } as AppStore
         }
-        return { ...state, workspace: state.workspace ?? null, validationMode: state.validationMode === 'backend' ? 'backend' : 'local' } as AppStore
+        return { ...state, workspace: state.workspace ?? null } as AppStore
       },
     },
   ),

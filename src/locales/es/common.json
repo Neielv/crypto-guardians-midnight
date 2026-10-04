@@ -66,9 +66,8 @@
     "description": "Elige el idioma de la interfaz y luego vuelve a tu panel de misión.",
     "languageTitle": "Idioma",
     "currentLanguage": "Idioma actual: {{locale}}",
-    "validationTitle": "Modo de validación",
-    "validationModes": { "local": "Validación local", "backend": "Validación backend" },
-    "validationStatus": { "local": "Activo: validación/simulación local.", "backend": "Activo: validación backend. Si no hay un adaptador disponible, la validación no estará disponible." }
+    "validationTitle": "Validación",
+    "validationStatus": { "backend": "Activo: validación backend. Si el validador no está disponible, no se puede completar la validación." }
   },
   "shell": {
     "demoLabel": "Demo Midnight",

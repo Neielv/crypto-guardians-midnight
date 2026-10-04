@@ -26,13 +26,12 @@ function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLa
   const [unavailable, setUnavailable] = useState(false)
   const [isValidating, setIsValidating] = useState(false)
   const recordWorkspaceValidation = useAppStore((state) => state.recordWorkspaceValidation)
-  const validationMode = useAppStore((state) => state.validationMode)
   const { t } = useTranslation('common')
 
   const submit = async () => {
     setIsValidating(true)
     setUnavailable(false)
-    const validation = await createValidationAdapter(validationMode).validate({ codeLab, sourceCode })
+    const validation = await createValidationAdapter().validate({ codeLab, sourceCode })
     setIsValidating(false)
     if (validation.status === 'unavailable') {
       setResult(null)
@@ -48,7 +47,7 @@ function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLa
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
-      <ValidationStatus mode={validationMode} />
+      <ValidationStatus />
       {isReady ? <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} minHeight={220} /> : <EditorLoadingPlaceholder />}
       <div className="code-lab-runner__actions">
         <ValidationButton isValidating={isValidating} disabled={!sourceCode.trim()} onClick={() => void submit()} />
@@ -80,7 +79,6 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
   const [unavailable, setUnavailable] = useState(false)
   const [isValidating, setIsValidating] = useState(false)
   const recordWorkspaceValidation = useAppStore((state) => state.recordWorkspaceValidation)
-  const validationMode = useAppStore((state) => state.validationMode)
   const { t } = useTranslation('common')
   const values = parseCode(sourceCode)
   const hasLedgerParenthesesError = codeLab.payload.fields.some((field) => sourceCode.match(new RegExp(`export\\s+ledger\\s+${field.id}\\s*\\(\\)\\s*:\\s*${field.dataType.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*;`, 'i')))
@@ -88,7 +86,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
   const submit = async () => {
     setIsValidating(true)
     setUnavailable(false)
-    const validation = await createValidationAdapter(validationMode).validate({ codeLab, sourceCode })
+    const validation = await createValidationAdapter().validate({ codeLab, sourceCode })
     setIsValidating(false)
     if (validation.status === 'unavailable') {
       setResult(null)
@@ -114,7 +112,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
 
   return (
     <ChallengeShell title={codeLab.title} instructions={codeLab.instructions} narrativeIntro={codeLab.narrativeIntro}>
-      <ValidationStatus mode={validationMode} />
+      <ValidationStatus />
       <div className="code-lab-runner__layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(260px, 0.9fr)', gap: 16, alignItems: 'start' }}>
         <div className="code-lab-runner__primary">
           {isReady ? <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} /> : <EditorLoadingPlaceholder />}
@@ -146,7 +144,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
         <ChallengeFeedback result={result} />
       </div>
       {unavailable ? <p style={{ color: '#fca5a5', lineHeight: 1.6 }}>{t('challenge.validationUnavailable')}</p> : null}
-      {hasLedgerParenthesesError && validationMode === 'local' ? (
+      {hasLedgerParenthesesError ? (
         <p className="code-lab-runner__validation-error" style={{ marginTop: 12, color: '#fca5a5', lineHeight: 1.6 }}>
           {t('challenge.validationErrors.ledgerParentheses')}
         </p>
@@ -155,9 +153,9 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
   )
 }
 
-function ValidationStatus({ mode }: { mode: 'local' | 'backend' }) {
+function ValidationStatus() {
   const { t } = useTranslation('common')
-  return <p style={{ margin: '0 0 12px', color: '#a1a1aa', fontSize: 13 }}>{t(`settings.validationStatus.${mode}`)}</p>
+  return <p style={{ margin: '0 0 12px', color: '#a1a1aa', fontSize: 13 }}>{t('settings.validationStatus.backend')}</p>
 }
 
 function ValidationButton({ isValidating, disabled, onClick }: { isValidating: boolean; disabled: boolean; onClick: () => void }) {

@@ -69,9 +69,8 @@
     "description": "Choose the interface language and then return to your mission dashboard.",
     "languageTitle": "Language",
     "currentLanguage": "Current language: {{locale}}",
-    "validationTitle": "Validation mode",
-    "validationModes": { "local": "Local validation", "backend": "Backend validation" },
-    "validationStatus": { "local": "Active: local validation/simulation.", "backend": "Active: backend validation. If no adapter is available, validation is unavailable." }
+    "validationTitle": "Validation",
+    "validationStatus": { "backend": "Active: backend validation. If the validator is unavailable, validation cannot be completed." }
   },
   "shell": {
     "demoLabel": "Midnight demo",
