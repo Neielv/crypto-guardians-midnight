@@ -51,7 +51,7 @@ function FillInTheBlankCodeLab({ codeLab, onSuccess }: { codeLab: Extract<CodeLa
       <ValidationStatus mode={validationMode} />
       {isReady ? <CodeEditor value={sourceCode} onChange={setSourceCode} modelKey={codeLab.codeLabId} minHeight={220} /> : <EditorLoadingPlaceholder />}
       <div className="code-lab-runner__actions">
-        <Button onClick={() => void submit()} disabled={!sourceCode.trim() || isValidating}>{t('challenge.validate')}</Button>
+        <ValidationButton isValidating={isValidating} disabled={!sourceCode.trim()} onClick={() => void submit()} />
         <ChallengeFeedback result={result} />
       </div>
       {unavailable ? <p style={{ color: '#fca5a5', lineHeight: 1.6 }}>{t('challenge.validationUnavailable')}</p> : null}
@@ -142,7 +142,7 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
         </div>
       </div>
       <div className="code-lab-runner__actions">
-        <Button onClick={() => void submit()} disabled={isValidating}>{t('challenge.validate')}</Button>
+        <ValidationButton isValidating={isValidating} disabled={false} onClick={() => void submit()} />
         <ChallengeFeedback result={result} />
       </div>
       {unavailable ? <p style={{ color: '#fca5a5', lineHeight: 1.6 }}>{t('challenge.validationUnavailable')}</p> : null}
@@ -158,6 +158,15 @@ function ToggleVisibilityCodeLab({ codeLab, onSuccess }: { codeLab: Extract<Code
 function ValidationStatus({ mode }: { mode: 'local' | 'backend' }) {
   const { t } = useTranslation('common')
   return <p style={{ margin: '0 0 12px', color: '#a1a1aa', fontSize: 13 }}>{t(`settings.validationStatus.${mode}`)}</p>
+}
+
+function ValidationButton({ isValidating, disabled, onClick }: { isValidating: boolean; disabled: boolean; onClick: () => void }) {
+  const { t } = useTranslation('common')
+  return (
+    <Button onClick={onClick} disabled={disabled || isValidating} aria-busy={isValidating}>
+      {isValidating ? `⏳ ${t('challenge.validating')}` : t('challenge.validate')}
+    </Button>
+  )
 }
 
 function EditorLoadingPlaceholder() {

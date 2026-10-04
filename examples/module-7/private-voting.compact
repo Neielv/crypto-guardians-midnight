@@ -24,13 +24,18 @@ export circuit castVote(
   randomness: Bytes<32>
 ): [] {
   const authPath = findAuthPath(pk);
-  assert(authPath.leaf == pk);
-  assert(authorizedCommitments.checkRoot(disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))));
+  assert(authPath.leaf == pk, "Authorization path does not match public key");
+  assert(
+    authorizedCommitments.checkRoot(
+      disclose(merkleTreePathRoot<10, Bytes<32>>(authPath))
+    ),
+    "Authorization commitment root is invalid"
+  );
 
   const nul = nullifier(round, secretKey());
   assert(!spentNullifiers.member(disclose(nul)), "Already voted this round");
 
-  const commitment = persistentCommit(vote, randomness);
+  const commitment = persistentCommit<Bytes<32>>(vote, randomness);
   voteCommitments.insert(commitment);
   spentNullifiers.insert(disclose(nul));
 }
@@ -41,5 +46,8 @@ export circuit verifyVoteOpening(
   vote: Bytes<32>,
   randomness: Bytes<32>
 ): [] {
-  assert(persistentCommit(vote, randomness) == commitment, "Invalid vote opening");
+  assert(
+    persistentCommit<Bytes<32>>(vote, randomness) == commitment,
+    "Invalid vote opening"
+  );
 }
